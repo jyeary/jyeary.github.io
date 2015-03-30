@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="author" content="John Yeary"/>
+        <title>Search</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/css/foundation.min.css" rel="stylesheet"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/css/normalize.min.css" rel="stylesheet"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.min.css" rel="stylesheet"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/vendor/modernizr.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <div class="off-canvas-wrap" data-offcanvas>
+            <div class="inner-wrap">
+                <nav class="tab-bar">
+                    <section class="left-small">
+                        <a class="left-off-canvas-toggle menu-icon" href="#">
+                            <span/>
+                        </a>
+                    </section>
+                    <section class="right tab-bar-section"/>
+                </nav>
+                <aside class="left-off-canvas-menu">
+                    <ul class="off-canvas-list">
+                        <li>
+                            <label>
+                                Navigation
+                            </label>
+                        </li>
+                        <li>
+                            <a href="/">
+                                <i class="step fi-home size-24">
+                                </i>
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:johnyeary@gmail.com">
+                                <i class="step fi-mail size-24">
+                                </i>
+                                Contact
+                            </a>
+                        </li>
+                        <li>
+                            <label>
+                                Social Media
+                            </label>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/jyeary">
+                                <i class="step fi-social-twitter size-24">
+                                </i>
+                                Twitter
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.google.com/+JohnYeary">
+                                <i class="step fi-social-google-plus size-24">
+                                </i>
+                                Google+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.linkedin.com/in/jyeary">
+                                <i class="step fi-social-linkedin size-24">
+                                </i>
+                                LinkedIn
+                            </a>
+                        </li>
+                        <li>
+                            <label>
+                                Code
+                            </label>
+                        </li>
+                        <li>
+                            <a href="http://code.bluelotussoftware.com">
+                                <i class="step fi-social-bitbucket size-24">
+                                </i>
+                                Bitbucket
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/jyeary">
+                                <i class="step fi-social-github size-24">
+                                </i>
+                                Github
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/search">
+                                <i class="step fi-magnifying-glass size-24">
+                                </i>
+                                Search
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="http://feeds.feedburner.com/JavaEvangelistJohnYearysBlog">
+                                <i class="step fi-rss size-24">
+                                </i>
+                                Subscribe
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
+                <section class="main-section">
+                    <div class="row">
+                        <div class="large-9 small-11 large-centered small-centered columns">
+                            <style>
+                                table {
+                                    border: 0;   
+                                }
+                                .cse input.gsc-search-button, input.gsc-search-button {
+                                    font-size: 20px;
+                                    margin-bottom: 14px;
+                                }
+                                .gsc-inline-block {
+                                    border: 0;    
+                                }
+                            </style>
+                            <div style="min-height: 677px;">
+                                <h2 style="text-align: center">Custom Search</h2>
+                                <script>
+                                    (function () {
+                                        var cx = "partner-pub-5788327419556268:jht6a6vmuc8";
+                                        var gcse = document.createElement("script");
+                                        gcse.type = "text/javascript";
+                                        gcse.async = true;
+                                        gcse.src = (document.location.protocol == "https:" ? "https:" : "http:") +
+                                                "//www.google.com/cse/cse.js?cx=" + cx;
+                                        var s = document.getElementsByTagName("script")[0];
+                                        s.parentNode.insertBefore(gcse, s);
+                                    })();
+                                </script>
+                                <gcse:search></gcse:search>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- close the off-canvas menu -->
+                <a class="exit-off-canvas"></a>
+            </div>
+        </div>
+
+        <!-- CDN JS Required for Foundation -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/vendor/jquery.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/vendor/jquery.cookie.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/vendor/placeholder.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/vendor/fastclick.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation/foundation.min.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation/foundation.abide.min.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation/foundation.accordion.min.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation/foundation.alert.min.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation/foundation.clearing.min.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation/foundation.dropdown.min.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation/foundation.equalizer.min.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation/foundation.interchange.min.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation/foundation.joyride.min.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation/foundation.magellan.min.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation/foundation.offcanvas.min.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation/foundation.orbit.min.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation/foundation.reveal.min.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation/foundation.slider.min.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation/foundation.tab.min.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation/foundation.tooltip.min.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation/foundation.topbar.min.js" type="text/javascript">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.1/js/foundation/foundation.topbar.min.js" type="text/javascript">
+        </script>
+        <script>
+            $(document).foundation();
+        </script>
+    </body>
+</html>
