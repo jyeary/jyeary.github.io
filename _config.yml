@@ -1,1 +1,22 @@
 exclude : [nbproject]
+timezone : UTC
+
+gems:
+  - jekyll-sitemap
+
+defaults : 
+    - 
+      scope:
+        path: ""
+        type: "posts"
+      values:
+          layout: "post"
+          author: "John Yeary"
+    - 
+      scope:
+        path: ""
+        type: "pages"
+      values: 
+          layout: "default"
+          author: "John Yeary"
+        
