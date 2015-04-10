@@ -35,3 +35,15 @@ ul.off-canvas-list li a i {
     text-decoration: inherit;
     content: url('../img/bitbucket-24.png');
 }
+
+.tab-bar-section {
+    background-color: white;
+}
+
+.banner {
+    background-image: url('https://lh3.googleusercontent.com/-xEDlG48x1HM/TgJxu2gmjAI/AAAAAAAABOw/gOZ59i4rjek/w1800-h220-no/JUMBOglassfish-short.png');
+    background-position: center;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
