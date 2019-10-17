@@ -1,145 +1,64 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <meta name="author" content="{{page.author}}"/>
-        <title>{{page.author}} | {{page.title}}</title>
-        <link rel="me" type="text/html" href="http://profiles.google.com/johnyeary?rel=me">
-        <link rel="me" type="text/html" href="http://feeds.feedburner.com/johnyeary/">
-        <link rel="me" type="text/html" href="http://twitter.com/jyeary/">
-        <link rel="stylesheet" href="/css/foundation.css" />
-        <link rel="stylesheet" href="/css/foundation-icons/foundation-icons.css"/>
-        <link rel="stylesheet" href="/css/app.css">
-        <!-- 16x16 -->
-        <link rel="shortcut icon" href="/favicon.ico">
-        <script type="text/javascript" src="/js/vendor/modernizr.js"></script>
-    </head>
-    <body>
-        <div class="off-canvas-wrap" data-offcanvas>
-            <div class="inner-wrap">
-                <nav class="tab-bar">
-                    <section class="left-small">
-                        <a class="left-off-canvas-toggle menu-icon" href="#">
-                            <span></span>
-                        </a>
-                    </section>
-                    <section class="right tab-bar-section"></section>
-                </nav>
+<html>
+<head>
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-                <aside class="left-off-canvas-menu">
-                    <ul class="off-canvas-list">
-                        <li>
-                            <label>Navigation</label>
-                        </li>
-                        <li>
-                            <a href="/"><i class="step fi-home size-24"></i>
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/archive.html"><i class="step fi-list-thumbnails size-24"></i>Post Archives</a>
-                        </li>
-                        <li>
-                            <script type="text/javascript">
-                            //<![CDATA[
-                            //<!--
-                            var x = "function f(x){var i,o=\"\",l=x.length;for(i=l-1;i>=0;i--) {try{o+=x.c" +
-                                    "harAt(i);}catch(e){}}return o;}f(\")\\\"function f(x,y){var i,o=\\\"\\\\\\\"" +
-                                    "\\\\,l=x.length;for(i=0;i<l;i++){if(i<72)y++;y%=127;o+=String.fromCharCode(" +
-                                    "x.charCodeAt(i)^(y++));}return o;}f(\\\"\\\\-$.:<6;#w,/6\\\\\\\\025\\\\\\\\" +
-                                    "006\\\\\\\\t\\\\\\\\tAIMOQSUWY[] \\\\\\\\\\\"\\\\$&(*,.02468:<>\\\\\\\\000\\" +
-                                    "\\\\\\002\\\\\\\\004\\\\\\\\032I\\\\\\\\nD\\\\\\\\\\\\\\\\UT\\\\\\\\tj\\\\\\" +
-                                    "\\032W]W,6+|\\\\\\\\\\\"\\\\%$ )75$!\\\\\\\\031=6=42q\\\\\\\\003\\\\\\\\016" +
-                                    "\\\\\\\\017?F[:\\\\\\\\0254\\\\\\\\007JKLMNOPQRSTUVWXYZ[\\\\\\\\\\\\\\\\]^ " +
-                                    "!\\\\\\\\\\\"\\\\#$%&'()*7e-mcqba.H7ec}i:}u0s~IM\\\\\\\\002PM_C\\\\\\\\n\\\\" +
-                                    "\\\\032\\\\\\\\035v\\\\\\\\t\\\\\\\\022\\\\\\\\021\\\\\\\\001F\\\\\\\\016m@" +
-                                    "oZ\\\\\\\\025\\\\\\\\026\\\\\\\\027\\\\\\\\030\\\\\\\\031\\\\\\\\032\\\\\\\\" +
-                                    "033\\\\\\\\034\\\\\\\\035\\\\\\\\036\\\\\\\\037`abcdefghijklmnopqrst\\\\\\\\" +
-                                    "02699,89/\\\\\\\\000/\\\\\\\\0021@ABCDEFGHIJKLMNOPQRSTUVWXYZ[@R\\\\\\\\037>" +
-                                    "#+84>\\\"\\\\,72)\\\"(f};)lo,0(rtsbus.o nruter};)i(tArahc.x=+o{)--i;0=>i;1-" +
-                                    "l=i(rof}}{)e(hctac};l=+l;x=+x{yrt{)07=!)31/l(tAedoCrahc.x(elihw;lo=l,htgnel" +
-                                    ".x=lo,\\\"\\\"=o,i rav{)x(f noitcnuf\")";
-                            while (x = eval(x))
-                                ;
-                            //-->
-                            //]]>
-                            </script>
-                        </li>
-                        <li>
-                            <label>Social Media</label>
-                        </li>
-                        <li>
-                            <a href="https://twitter.com/jyeary">
-                                <i class="step fi-social-twitter size-24"></i>
-                                Twitter
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.google.com/+JohnYeary">
-                                <i class="step fi-social-google-plus size-24"></i>
-                                Google+
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.linkedin.com/in/jyeary">
-                                <i class="step fi-social-linkedin size-24"></i>
-                                LinkedIn
-                            </a>
-                        </li>
-                        <li>
-                            <label>
-                                Code
-                            </label>
-                        </li>
-                        <li>
-                            <a href="https://bitbucket.org/jyeary">
-                                <i class="step fi-social-bitbucket size-24"></i>
-                                Bitbucket
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://github.com/jyeary">
-                                <i class="step fi-social-github size-24"></i>
-                                Github
-                            </a>
-                        </li>
+    <!-- Page Meta -->
+    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.name }}{% endif %}</title>
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
 
-                        <li>
-                            <a href="/search">
-                                <i class="step fi-magnifying-glass size-24"></i>
-                                Search
-                            </a>
-                        </li>
+    <!-- Mobile Meta -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-                        <li>
-                            <a href="https://github.com/jyeary.atom">
-                                <i class="step fi-rss size-24"></i>
-                                Subscribe
-                            </a>
-                        </li>
-                    </ul>
-                </aside>
-                
-                <div class="row">
-                    <div class="banner large-12 medium-12 small-12">
-                        <h1>John Yeary</h1>
-                        <h2 class="subheader">Adventurer, Explorer, Traveler, Patriot</h2>
-                    </div>
-                </div>
-                <section class="main-section">
-                    {{content}}
-                </section>
+    <!-- Brand icon -->
+    <link rel="shortcut icon" href="{{ site.baseurl }}assets/images/favicon.ico" >
 
-                <!-- close the off-canvas menu -->
-                <a class="exit-off-canvas"></a>
-            </div>
-        </div>
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}assets/css/syntax.css" />
 
-        <script type="text/javascript" src="/js/vendor/jquery.js"></script>
-        <script type="text/javascript" src="/js/foundation.min.js"></script>
-        <script type="text/javascript">
-        $(document).foundation();
-        </script>
-    </body>
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- Ghost outputs important style and meta data with this tag -->
+    {% include head.html %}
+
+</head>
+<body class="{% if paginator.page > 1 %}paged archive-template{% elsif page.class %}{{ page.class }}{% else %}home-template{% endif %} nav-closed">
+
+    <!-- The blog navigation links -->
+    {% include navigation.html %}
+
+    <div class="site-wrapper">
+
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        {{ content }}
+
+        <!-- The tiny footer at the very bottom -->
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="{{ site.baseurl }}">{{ site.name }}</a> &copy; {{  site.time | date: '%Y' }}</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/jekyller/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- highlight.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- jQuery needs to come before `{{ghost_foot}}` so that jQuery can be used in code injection -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Ghost outputs important scripts and data with this tag -->
+    <!-- {{ghost_foot}} -->
+    <!-- Add Google Analytics  -->
+    {% include analytics.html %}
+    <!-- Fitvids makes video embeds responsive and awesome -->
+    <script type="text/javascript" src="{{ site.baseurl }}assets/js/jquery.fitvids.js"></script>
+    <!-- The main JavaScript file for Casper -->
+    <script type="text/javascript" src="{{ site.baseurl }}assets/js/index.js"></script>
+
+</body>
 </html>

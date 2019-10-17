@@ -1,42 +1,37 @@
 ---
 layout: default
-title: Welcome
+title: John Yeary
+cover: 'assets/images/cover4.jpg'
+class: 'home-template'
+navigation: True
+#logo: 'assets/images/ghost.png'
+current: home
 ---
+<!-- < default -->
+<!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<div class="row">
-    <div class="large-12 columns">
-        <div class="panel">
-            <h3>Information</h3>
-            <p>This is the landing page for my projects on GitHub.</p>
-            <p>If you want more information on me, or my other blogs and projects, you should check out:</p>
-            <div class="row">
-                <div class="large-4 medium-4 columns">
-                    <p><a href="http://javaevangelist.blogspot.com">Java Evangelist John Yeary</a><br />A blog on Java EE, SE, and other web technologies.</p>
-                </div>
-                <div class="large-4 medium-4 columns">
-                    <p><a href="http://johnyeary.com">John Yeary</a><br />A personal blog about things I like which is mostly not technology related.</p>
-                </div>  
-                <div class="large-4 medium-4 columns">
-                    <p><a href="http://bitbucket.org/jyeary">John Yeary Bitbucket Repository</a><br />There is a lot of code here published over time.</p>
-                </div>  
-            </div>
+<!-- The big featured header  -->
+<header class="main-header {% if page.cover %}"
+        style="background-image: url({{ site.baseurl }}{{ page.cover }}) {% else %}no-cover{% endif %}">
+    <nav class="main-nav overlay clearfix">
+        {% if page.logo %}<a class="blog-logo" href="{{ site.baseurl }}"><img src="{{ site.baseurl }}{{ page.logo }}" alt="Blog Logo" /></a>{% endif %}
+        {% if page.navigation %}
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        {% endif %}
+    </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">{{ site.name }}</h1>
+            <h2 class="page-description">{{ site.description }}</h2>
         </div>
     </div>
-</div>
+    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
+</header>
 
-<div class="row">
-    <!-- 2-column Grid -->
-    <div class="large-8 medium-8 columns">
-        <div class="row">
-            {% for post in site.posts offset %}
-            <div class="large-12 columns">
-                <time datetime="{{ post.date | xmlschema }}">{{ post.date | date: "%F" }}</time>
-                <p><a href="{{ post.url }}">{{ post.title }}</a></p>
-            </div>
-            {% endfor %}
-        </div>
-    </div>     
+<!-- The main content area on the homepage -->
+<main id="content" class="content" role="main">
 
-    <div class="large-4 medium-4 columns">  
-    </div>
-</div>
+    <!-- The tag below includes the post loop - partials/loop.hbs -->
+    {% include loop.html %}
+
+</main>

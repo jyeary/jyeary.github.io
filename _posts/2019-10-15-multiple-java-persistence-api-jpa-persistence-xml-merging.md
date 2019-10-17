@@ -1,22 +1,19 @@
 ---
-author: John Yeary
+layout: post
+cover: 'assets/images/boats-canoes-daytime-2907206.jpg'
+navigation: true
+author: jyeary
 comments: true
 date: 2019-10-15 15:50:47+00:00
-layout: post
-link: https://blog.johnyeary.com/2019/10/multiple-java-persistence-api-jpa-persistence-xml-merging/
-slug: multiple-java-persistence-api-jpa-persistence-xml-merging
 title: Multiple Java Persistence API (JPA) persistence.xml Merging
 categories:
-- HOWTO
 - Java
-- Technology
 tags:
-- example
 - java
-- jpa
+subclass: 'post tag-Java'
 ---
 
-# Introduction
+## Introduction
 
 Java Persistence API (JPA) is a great technology for combining the power of Java and data persistence. The specification goes a long way from the days of using EJB 1.0 for data management, but still comes with some limitations. One of them is using multiple jars that may contain _persistence.xml_ files. The current limitation is that the first _persistence.xml_ file that is found, is loaded by the `Classloader`, and the others are ignored. 
 
@@ -27,8 +24,6 @@ The original idea came from Fabrizio Giudici so I can not claim this as my own. 
 # Code
 
 The code will work on Java 8, but the changes in later versions of Java around class loading may prevent us from using this clever trick.
-
-    
    ```java
     package com.bluelotussoftware.persistence;
     
@@ -306,7 +301,7 @@ The code will work on Java 8, but the changes in later versions of Java around c
 
 The implementation is simply a matter of doing a switch on the ``ClassLoader`` as shown below.
 
-    ```java
+```java
     public static void main(String[] args) {
     
             ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
@@ -324,7 +319,7 @@ The implementation is simply a matter of doing a switch on the ``ClassLoader`` a
     
             ...
         }
-
+```
 # Conclusion
 
 The Java Persistence API (JPA) is a great technology, but has some limitations with regards to loading multiple _persistence.xml_ files. We can use `Classloader` magic to accomplish loading multiple _persistence.xml_ files.
