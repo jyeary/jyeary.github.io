@@ -8,9 +8,8 @@ comments: true
 date: 2019-03-27 15:25:39+00:00
 title: JS Equality Table
 categories: jyeary
-tags:
-- web
-subclass: 'post tag-Web'
+tags: web
+subclass: 'post tag-web'
 ---
 
 It seems I am always looking for the difference between **==** and **===**.  I was looking at a response to a question on Stackoverflow when I found this gem. I am publishing it here in case anyone else needs a graphical explanation.

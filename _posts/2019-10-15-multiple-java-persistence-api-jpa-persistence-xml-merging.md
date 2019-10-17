@@ -8,9 +8,8 @@ comments: true
 date: 2019-10-15 15:50:47+00:00
 title: Multiple Java Persistence API (JPA) persistence.xml Merging
 categories: jyeary
-tags:
-- java
-subclass: 'post tag-Java'
+tags: java
+subclass: 'post tag-java'
 ---
 
 ## Introduction
