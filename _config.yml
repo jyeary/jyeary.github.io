@@ -8,6 +8,7 @@ language: 'en-us'
 
 # Set the host to 0.0.0.0 for use on containers.
 # host: 0.0.0.0
+host: jyeary.github.io
 
 # Website info
 name: 'John Yeary'
