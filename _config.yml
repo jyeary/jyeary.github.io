@@ -6,7 +6,8 @@ highlighter: rouge
 paginate: 5
 language: 'en-us'
 
-host: 0.0.0.0
+# Set the host to 0.0.0.0 for use on containers.
+# host: 0.0.0.0
 
 # Website info
 name: 'John Yeary'
@@ -14,14 +15,11 @@ description: "A Caffeinated Java Developer."
 
 short_url: 'jyeary.github.io'
 google_analytics: UA-4194623-5
-disqus: username
+disqus: jyeary
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
 baseurl: /
 
 # Permalinks
-# permalink: /:title
-# permalink: /author/:username
-# permalink: /tag/:tag
 permalink: :year-:month-:day-:title
 
 # gems and other configs
