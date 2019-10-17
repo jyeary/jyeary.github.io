@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>jyeary.github.io/</title>
+   
+   <link>http://localhost:4000</link>
+   <description>A Caffeinated Java Developer.</description>
+   <language>en-us</language>
+   <managingEditor> </managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>JS Equality Table</title>
+	  <link>//2019-03-27-js-equality-table</link>
+	  <author></author>
+	  <pubDate>2019-03-27T15:25:39+00:00</pubDate>
+	  <guid>//2019-03-27-js-equality-table</guid>
+	  <description><![CDATA[
+	     <p>It seems I am always looking for the difference between <strong>==</strong> and <strong>===</strong>.  I was looking at a response to a question on Stackoverflow when I found this gem. I am publishing it here in case anyone else needs a graphical explanation.</p>
+
+<p><a href="https://dorey.github.io/JavaScript-Equality-Table/">JavaScript-Equality-Table</a></p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Wordpress</title>
+	  <link>//2017-10-06-wordpress</link>
+	  <author></author>
+	  <pubDate>2017-10-06T00:00:00+00:00</pubDate>
+	  <guid>//2017-10-06-wordpress</guid>
+	  <description><![CDATA[
+	     <p>I found Wordpress easier to use for my needs. The jekyll solution works for a lot of people, but I found that converting a Blogger blog to it was more difficult. If you are interested in my personal blog, please click on the links on the main page for my blogs.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>A new Blogging Platform with Github Pages</title>
+	  <link>//2015-04-02-a-new-blog-site</link>
+	  <author></author>
+	  <pubDate>2015-04-02T00:00:00+00:00</pubDate>
+	  <guid>//2015-04-02-a-new-blog-site</guid>
+	  <description><![CDATA[
+	     <p>I am looking at exporting my pages from Blogger to a platform where I can have more control over the layout. If this <em>endeavor</em>
+works, I will look at moving my crown jewel from Blogger too.</p>
+
+<p>I want to explore how difficult it is to get this setup and working effectively.</p>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

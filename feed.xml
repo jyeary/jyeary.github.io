@@ -1,28 +1,70 @@
----
-layout: null
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ site.name | xml_escape }} - Articles</title>
-    <description>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</description>
+    <title>John Yeary - Articles</title>
+    <description>A Caffeinated Java Developer.</description>
     <link>
-    {{ site.url }}</link>
-    {% for post in site.posts %}
-      {% unless post.link %}
+    http://localhost:4000</link>
+    
+      
       <item>
-        <title>{{ post.title | xml_escape }}</title>
-        {% if post.excerpt %}
-          <description>{{ post.excerpt | xml_escape }}</description>
-        {% else %}
-          <description>{{ post.content | xml_escape }}</description>
-        {% endif %}
-        <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
+        <title>Multiple Java Persistence API (JPA) persistence.xml Merging</title>
+        
+          <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Tue, 15 Oct 2019 15:50:47 +0000</pubDate>
         <link>
-        {{ site.url }}{{ post.url }}</link>
-        <guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
+        http://localhost:4000/2019-10-15-multiple-java-persistence-api-jpa-persistence-xml-merging</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-10-15-multiple-java-persistence-api-jpa-persistence-xml-merging</guid>
       </item>
-      {% endunless %}
-    {% endfor %}
+      
+    
+      
+      <item>
+        <title>JS Equality Table</title>
+        
+          <description>&lt;p&gt;It seems I am always looking for the difference between &lt;strong&gt;==&lt;/strong&gt; and &lt;strong&gt;===&lt;/strong&gt;.  I was looking at a response to a question on Stackoverflow when I found this gem. I am publishing it here in case anyone else needs a graphical explanation.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 27 Mar 2019 15:25:39 +0000</pubDate>
+        <link>
+        http://localhost:4000/2019-03-27-js-equality-table</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-03-27-js-equality-table</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Wordpress</title>
+        
+          <description>&lt;p&gt;I found Wordpress easier to use for my needs. The jekyll solution works for a lot of people, but I found that converting a Blogger blog to it was more difficult. If you are interested in my personal blog, please click on the links on the main page for my blogs.&lt;/p&gt;
+</description>
+        
+        <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
+        <link>
+        http://localhost:4000/2017-10-06-wordpress</link>
+        <guid isPermaLink="true">http://localhost:4000/2017-10-06-wordpress</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>A new Blogging Platform with Github Pages</title>
+        
+          <description>&lt;p&gt;I am looking at exporting my pages from Blogger to a platform where I can have more control over the layout. If this &lt;em&gt;endeavor&lt;/em&gt;
+works, I will look at moving my crown jewel from Blogger too.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 02 Apr 2015 00:00:00 +0000</pubDate>
+        <link>
+        http://localhost:4000/2015-04-02-a-new-blog-site</link>
+        <guid isPermaLink="true">http://localhost:4000/2015-04-02-a-new-blog-site</guid>
+      </item>
+      
+    
   </channel>
 </rss>
