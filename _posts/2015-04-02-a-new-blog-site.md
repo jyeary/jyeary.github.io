@@ -1,8 +1,17 @@
 ---
 layout: post
+cover: 'assets/images/architecture-staircase-stairs-3043349.jpg'
+navigation: true
+author: jyeary
+comments: true
+date: 2015-04-02 00:00:00+00:00
 title: A new Blogging Platform with Github Pages
+categories:
+- Web
+tags:
+- web
+subclass: 'post tag-Web'
 ---
-
 I am looking at exporting my pages from Blogger to a platform where I can have more control over the layout. If this _endeavor_
 works, I will look at moving my crown jewel from Blogger too.
 
