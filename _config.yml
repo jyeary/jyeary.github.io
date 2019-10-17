@@ -8,7 +8,6 @@ language: 'en-us'
 
 # Set the host to 0.0.0.0 for use on containers.
 # host: 0.0.0.0
-host: jyeary.github.io
 
 # Website info
 name: 'John Yeary'
@@ -45,15 +44,15 @@ plugins: [jekyll-paginate]
 # repo defaults to USERNAME.github.io
 # Branch defaults to "source" for USERNAME.github.io
 # or "master" otherwise
-safe: false
-lsi: false
-username: jekyller
-repo: jasper
-branch: master
-relative_source: ../jasper/
-destination: _site/
-production_url:  https://jekyller.github.io/jasper/
-source_url:  https://github.com/jekyller/jasper/
+#safe: false
+#lsi: false
+#username: jekyller
+#repo: jasper
+#branch: master
+#relative_source: ../jasper/
+#destination: _site/
+#production_url:  https://jekyller.github.io/jasper/
+#source_url:  https://github.com/jekyller/jasper/
 
 exclude:
   - README.md
