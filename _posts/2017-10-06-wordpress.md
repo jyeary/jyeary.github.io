@@ -7,8 +7,7 @@ author: jyeary
 comments: true
 date: 2017-10-06 00:00:00+00:00
 title: Wordpress
-categories:
-- Web
+categories: jyeary
 tags:
 - web
 subclass: 'post tag-Web'

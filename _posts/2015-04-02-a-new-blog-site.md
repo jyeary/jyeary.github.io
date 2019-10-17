@@ -7,8 +7,7 @@ author: jyeary
 comments: true
 date: 2015-04-02 00:00:00+00:00
 title: A new Blogging Platform with Github Pages
-categories:
-- Web
+categories: jyeary
 tags:
 - web
 subclass: 'post tag-Web'
