@@ -13,7 +13,7 @@ language: 'en-us'
 name: 'John Yeary'
 description: "A Caffeinated Java Developer."
 
-short_url: 'jyeary.github.io'
+short_url: 'jyeary.github.io/'
 google_analytics: UA-4194623-5
 disqus: jyeary
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
