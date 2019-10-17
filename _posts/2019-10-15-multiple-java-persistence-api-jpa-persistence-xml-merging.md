@@ -1,6 +1,7 @@
 ---
 layout: post
 cover: 'assets/images/boats-canoes-daytime-2907206.jpg'
+logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 comments: true

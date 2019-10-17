@@ -1,6 +1,7 @@
 ---
 layout: post
 cover: 'assets/images/bird-birds-black-and-white-681447.jpg'
+logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 comments: true

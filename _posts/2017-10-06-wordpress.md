@@ -1,6 +1,7 @@
 ---
 layout: post
 cover: 'assets/images/beverage-book-caffeine-2846814.jpg'
+logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 comments: true
