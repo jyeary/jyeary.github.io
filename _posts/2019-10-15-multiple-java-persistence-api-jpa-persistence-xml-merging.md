@@ -4,7 +4,7 @@ cover: 'assets/images/boats-canoes-daytime-2907206.jpg'
 logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
-comments: true
+disqus: true
 date: 2019-10-15 15:50:47+00:00
 title: Multiple Java Persistence API (JPA) persistence.xml Merging
 categories: jyeary
@@ -23,7 +23,7 @@ The original idea came from Fabrizio Giudici so I can not claim this as my own. 
 # Code
 
 The code will work on Java 8, but the changes in later versions of Java around class loading may prevent us from using this clever trick.
-   ```java
+```java
     package com.bluelotussoftware.persistence;
     
     import java.io.IOException;
