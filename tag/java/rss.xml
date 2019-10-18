@@ -5,7 +5,7 @@
    
       <title>jyeary.github.io/</title>
    
-   <link>http://localhost:4000</link>
+   <link>http://0.0.0.0:4000</link>
    <description>A Caffeinated Java Developer.</description>
    <language>en-us</language>
    <managingEditor> </managingEditor>
