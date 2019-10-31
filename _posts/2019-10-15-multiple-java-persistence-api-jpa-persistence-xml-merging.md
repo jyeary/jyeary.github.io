@@ -309,7 +309,7 @@ The implementation is simply a matter of doing a switch on the ``ClassLoader`` a
             // We must set the Classloader to use our loader BEFORE calling Persistence.Persistence.createEntityManagerFactory()
             Thread.currentThread().setContextClassLoader(cl);
     
-            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("emample-pu");
+            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("example-pu");
     
             //Reset the classloader
             Thread.currentThread().setContextClassLoader(contextClassLoader);
