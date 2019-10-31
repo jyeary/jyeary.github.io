@@ -46,13 +46,13 @@ plugins: [jekyll-paginate]
 # or "master" otherwise
 #safe: false
 #lsi: false
-#username: jekyller
-#repo: jasper
-#branch: master
+username: jyeary
+repo: jyeary.github.io
+branch: 3.0.0
 #relative_source: ../jasper/
-#destination: _site/
-#production_url:  https://jekyller.github.io/jasper/
-#source_url:  https://github.com/jekyller/jasper/
+destination: _site/
+production_url: https://jyeary.github.io/
+source_url: https://github.com/jyeary/jyeary.github.io
 
 exclude:
   - README.md
@@ -62,6 +62,6 @@ exclude:
   - changelog.md
   - "*.Rmd"
   - vendor
-  - .travis.yml
+  - travis.yml
   - node_modules
   - .git
