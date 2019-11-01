@@ -2,9 +2,9 @@
 
 This blog is a port of Ghost's default theme [Casper](https://github.com/tryghost/casper) for Jekyll inspired by [Kasper](https://github.com/rosario/kasper).
 
-[![Build Status](https://travis-ci.org/jekyller/jasper.svg?branch=master)](https://travis-ci.org/jekyller/jasper)
-[![Ruby](https://img.shields.io/badge/ruby-2.5.2-blue.svg?style=flat)](http://travis-ci.org/jekyller/jasper)
-[![Jekyll](https://img.shields.io/badge/jekyll-3.6.2-blue.svg?style=flat)](http://travis-ci.org/jekyller/jasper)
+[![Build Status](https://travis-ci.com/jyeary/jyeary.github.io.svg?branch=3.0.0)](https://travis-ci.org/jyeary/jyeary.github.io)
+[![Ruby](https://img.shields.io/badge/ruby-2.5.2-blue.svg?style=flat)](https://travis-ci.org/jyeary/jyeary.github.io)
+[![Jekyll](https://img.shields.io/badge/jekyll-3.6.2-blue.svg?style=flat)](https://travis-ci.org/jyeary/jyeary.github.io)
 
 
 ## How to use it
