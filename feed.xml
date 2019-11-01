@@ -8,6 +8,21 @@
     
       
       <item>
+        <title>Blog Migration</title>
+        
+          <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+</description>
+        
+        <pubDate>Fri, 01 Nov 2019 00:00:00 +0000</pubDate>
+        <link>
+        /2019-11-01-blog-migration</link>
+        <guid isPermaLink="true">/2019-11-01-blog-migration</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Multiple Java Persistence API (JPA) persistence.xml Merging</title>
         
           <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
