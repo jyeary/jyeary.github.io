@@ -62,6 +62,6 @@ exclude:
   - changelog.md
   - "*.Rmd"
   - vendor
-  - travis.yml
+  - .travis.yml
   - node_modules
   - .git
