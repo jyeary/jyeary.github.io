@@ -1,26 +1,7 @@
 language: ruby
-
 install:
-  # Install binary pandoc from Rstudio
-  # To use Pandoc, uncomment the following
-  # - export PATH="$HOME/pandoc:$PATH"
-  # - mkdir $HOME/pandoc
-  # - curl -O https://s3.amazonaws.com/rstudio-buildtools/pandoc-1.12.3.zip
-  # - unzip -j pandoc-1.12.3.zip pandoc-1.12.3/linux/debian/x86_64/pandoc
-  #     -d $HOME/pandoc
-  # - chmod +x $HOME/pandoc/pandoc
-  # - pandoc --version
-
-  # Install Jekyll and dependencies
   - bundle install
-
 script: bundle exec rake site:deploy --quiet
-
 env:
   global:
-    secure: "uSG1ha+Uu2TjgoVJcwqdz3swCUkWmPvn1uLXw9Jg6A9+vvkCfffB8/MBIzd6GT04Q8+P3mpt2jZE+0KHJ6GAaqGtcIB+tT/os0VzT8mMbq9qEeU/5Egj3OqZx/saDuNN/gvRcpvf5lHXNIPOowG+YtgFRG+UQGP8Nb7YZ5myvoVQxSizHP1p8weuow9oWktlDcmGJhC9ddqogVEf3uD3vLiQi7tMXSfEgQMZvhtdeKdJ/NpEyhjnN1j4iRBcw4NMYZOYtlW2xAXnZn5VHKXGKWo7H1F79dPgej/LVfZ9ZosufnjGTWMPjEqEGs9HDl3RyDM8J0HL9v1R/AWfpg4y6WhbP1ku3+4frVUBW5sXSNknAKX4HdzV3E8BkVmeGuLaugU/WHmVjGa3T01EdbLqzTz9XwD5gRpGokAIDbOaFZXC2N3NGd00ifTDBqscsrBq4/NJXfBQ4F9gNdHtfjs2ghSN42gXjCHDc92nc+AiUjJ1+6YwLAEEtzbGTgnkEJIZvGag4vfar2DlcAW178Nzh8Zp8C2C7XpSdiW/mxrmDD0pVQtjh6e2TWg2g/dz1AMxlzEPBF6/i1DTm5qCfh74Eu26pgqF5OfOSenttl6EyFpFnXVp4eoICbK0Iii4t1M6pDitPdj0SGmR/2zbQ5RLu5COnjCMDrSQovxxSzhG0aA="
-
-# Generate your secure token with the travis gem:
-# get Github token from your Travis CI profile page
-# gem install travis
-# travis encrypt 'GIT_NAME="YOUR_USERNAME" GIT_EMAIL="YOUR_EMAIL" GH_TOKEN=YOUR_TOKEN'
+    secure: E7bCS6KL1WylGsEHcMEBrcAi78ggunjqEh2eY5GUuj83hiPh1pEDF3mjyyfE3XbokAt6fB8z9glWYjHjB6MF6z34Y76wEMbHnMWix5WWvT4yLg6fBh3p6PnrYFxX2MzzY8Rb3Fz248PhkvJDSJSJfWjE6ZqlMsnMFn9OqL4KWHUKS0dEs6NXzSMVDfkKentGM9cAVoLUyeMJED/O1/PkStvFEq9GibluV+YO3H3LNjhsbqBdagxFJW5XZoj69YShjJoyn+B0/wl74Tv3dGiAhFHwZn0qsR+SuxCNQQ6soOivu7wvVscYaewUfDtSV+TXbaE2UnjHG6tjcYTRl0eK/9NdoiLCazmq6oNOaEffi3SsN3vTCPoa68+5aQuFeyF9+flOn5p7qVHN2NnWDXG/wA23IarVdT1KZvBdhUtwM26+iRym/qIkwJb21AIXeMCBdoOyGDZqTDJHeR9ICecE/T9L3676aZMFOpOu5J43K9IbPgMQr5FAxt/8XW5MIl4FttrjZJHaIALVIpq4suqrHqPwRNt7d6BvutU82Hrjjcyd+SSNs2m2nlfTPlCJyHh2wWtBgRIPoUpPmKHArnpiNm+g8uO7uf/3b8q6BVp6kzWc/UF8Gb/Kfz9eLUPiLqKd5s6UEUxfX4Ug1p9Utxnpm0wIBTnN27oKp6Ehvdvccd0=
