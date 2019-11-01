@@ -48,7 +48,7 @@ plugins: [jekyll-paginate]
 #lsi: false
 username: jyeary
 repo: jyeary.github.io
-branch: master
+branch: 3.0.0
 #relative_source: ../jasper/
 destination: _site/
 production_url: https://jyeary.github.io/
