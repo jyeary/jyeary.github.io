@@ -4,7 +4,7 @@ cover: 'assets/images/bank-cash-cent-164552.jpg'
 logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
-comments: true
+disqus: true
 date: 2019-11-01 00:00:00+00:00
 title: Blog Migration
 categories: jyeary
