@@ -582,6 +582,57 @@
 	  ]]></description>
 	</item>
 
+	<item>
+	  <title>SPAMC and Java</title>
+	  <link>//2018-09-20-spamc-and-java</link>
+	  <author></author>
+	  <pubDate>2018-09-20T20:45:12+00:00</pubDate>
+	  <guid>//2018-09-20-spamc-and-java</guid>
+	  <description><![CDATA[
+	     <h2 id="introduction">Introduction</h2>
+
+<p>I was tasked with trying to find a quick way to test if a SpamAssassin server was running. The idea was that we needed to not only check it, but if there was a framework out there that would make it simple.</p>
+
+<p>In fact, we had developed our own framework over time by various developers with different approaches. However, I would like to replace it with something that will work for us that was designed from the bottom up as an implementation of SPAMC for Java. I thought it might be something I would end up writing, but alas I found one that is well written and easy to use.</p>
+
+<h2 id="spamc">spamc</h2>
+
+<p><a href="https://github.com/alphabox/spamc">spamc</a> written by Daniel Mecsei at Alphabox does the job. It is an F/OSS framework that makes communicating with SpamAssassin extremely easy. The Github project has an example that I won’t repeat here, but trust me, it is easy to implement and use.</p>
+
+<h2 id="as-for-me">As for me…</h2>
+
+<p>I needed to test the service and wrote a quick implementation that worked something like this.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">example</span><span class="o">.</span><span class="na">spamc</span><span class="o">.</span><span class="na">client</span><span class="o">;</span>
+    
+    <span class="kn">import</span> <span class="nn">hu.alphabox.spamc.SAClient</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">hu.alphabox.spamc.SACommand</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">hu.alphabox.spamc.SARequest</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">hu.alphabox.spamc.SAResponse</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+    <span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">junit</span><span class="o">.</span><span class="na">Assert</span><span class="o">.*;</span>
+    
+    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">SPAMCTest</span> <span class="o">{</span>
+    
+        <span class="kd">public</span> <span class="nf">SPAMCTest</span><span class="o">()</span> <span class="o">{</span>
+        <span class="o">}</span>
+    
+        <span class="nd">@Test</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testPong</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+            <span class="n">SARequest</span> <span class="n">saRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SARequest</span><span class="o">();</span>
+            <span class="n">saRequest</span><span class="o">.</span><span class="na">setCommand</span><span class="o">(</span><span class="n">SACommand</span><span class="o">.</span><span class="na">PING</span><span class="o">);</span>
+            <span class="n">saRequest</span><span class="o">.</span><span class="na">setMessage</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+            <span class="n">SAClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SAClient</span><span class="o">(</span><span class="s">"localhost"</span><span class="o">,</span> <span class="mi">783</span><span class="o">);</span>
+            <span class="n">SAResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">sendRequest</span><span class="o">(</span><span class="n">saRequest</span><span class="o">);</span>
+            <span class="n">String</span> <span class="n">expected</span> <span class="o">=</span> <span class="s">"SPAMD/1.5 0 PONG\r\n"</span><span class="o">;</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getHeaders</span><span class="o">());</span>
+            <span class="n">assertEquals</span><span class="o">(</span><span class="n">expected</span><span class="o">,</span> <span class="n">response</span><span class="o">.</span><span class="na">getHeaders</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
 
 </channel>
 </rss>
