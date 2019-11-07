@@ -4,7 +4,7 @@ cover: 'assets/images/architecture-staircase-stairs-3043349.jpg'
 logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
-comments: true
+disqus: true
 date: 2015-04-02 00:00:00+00:00
 title: A new Blogging Platform with Github Pages
 categories: jyeary

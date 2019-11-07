@@ -4,7 +4,7 @@ cover: 'assets/images/pexels-photo-784261.jpg'
 logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
-comments: true
+disqus: true
 date: 2018-11-09 19:59:47+00:00
 title: Simplifying Command Line Processing
 categories: jyeary

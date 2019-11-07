@@ -4,7 +4,7 @@ cover: 'assets/images/bird-birds-black-and-white-681447.jpg'
 logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
-comments: true
+disqus: true
 date: 2019-03-27 15:25:39+00:00
 title: JS Equality Table
 categories: jyeary
