@@ -168,14 +168,14 @@
         <span class="o">}</span>
     
         <span class="nd">@Test</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testPong</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-            <span class="n">SARequest</span> <span class="n">saRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SARequest</span><span class="o">();</span>
-            <span class="n">saRequest</span><span class="o">.</span><span class="na">setCommand</span><span class="o">(</span><span class="n">SACommand</span><span class="o">.</span><span class="na">PING</span><span class="o">);</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testPong</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+            <span class="nc">SARequest</span> <span class="n">saRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SARequest</span><span class="o">();</span>
+            <span class="n">saRequest</span><span class="o">.</span><span class="na">setCommand</span><span class="o">(</span><span class="nc">SACommand</span><span class="o">.</span><span class="na">PING</span><span class="o">);</span>
             <span class="n">saRequest</span><span class="o">.</span><span class="na">setMessage</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
-            <span class="n">SAClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SAClient</span><span class="o">(</span><span class="s">"localhost"</span><span class="o">,</span> <span class="mi">783</span><span class="o">);</span>
-            <span class="n">SAResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">sendRequest</span><span class="o">(</span><span class="n">saRequest</span><span class="o">);</span>
-            <span class="n">String</span> <span class="n">expected</span> <span class="o">=</span> <span class="s">"SPAMD/1.5 0 PONG\r\n"</span><span class="o">;</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getHeaders</span><span class="o">());</span>
+            <span class="nc">SAClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SAClient</span><span class="o">(</span><span class="s">"localhost"</span><span class="o">,</span> <span class="mi">783</span><span class="o">);</span>
+            <span class="nc">SAResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">sendRequest</span><span class="o">(</span><span class="n">saRequest</span><span class="o">);</span>
+            <span class="nc">String</span> <span class="n">expected</span> <span class="o">=</span> <span class="s">"SPAMD/1.5 0 PONG\r\n"</span><span class="o">;</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getHeaders</span><span class="o">());</span>
             <span class="n">assertEquals</span><span class="o">(</span><span class="n">expected</span><span class="o">,</span> <span class="n">response</span><span class="o">.</span><span class="na">getHeaders</span><span class="o">());</span>
         <span class="o">}</span>
     <span class="o">}</span>

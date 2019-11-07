@@ -167,86 +167,86 @@
      */</span>
     <span class="kd">public</span> <span class="kd">class</span> <span class="nc">CLI</span> <span class="o">{</span>
     
-        <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Options</span> <span class="n">OPTIONS</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Options</span> <span class="no">OPTIONS</span><span class="o">;</span>
     
         <span class="kd">static</span> <span class="o">{</span>
-            <span class="n">OPTIONS</span> <span class="o">=</span> <span class="n">CLI</span><span class="o">.</span><span class="na">createOptions</span><span class="o">();</span>
+            <span class="no">OPTIONS</span> <span class="o">=</span> <span class="no">CLI</span><span class="o">.</span><span class="na">createOptions</span><span class="o">();</span>
         <span class="o">}</span>
     
-        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
     
-            <span class="n">CommandLineParser</span> <span class="n">commandLineParser</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultParser</span><span class="o">();</span>
+            <span class="nc">CommandLineParser</span> <span class="n">commandLineParser</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DefaultParser</span><span class="o">();</span>
     
             <span class="k">try</span> <span class="o">{</span>
-                <span class="n">CommandLine</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">commandLineParser</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">OPTIONS</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+                <span class="nc">CommandLine</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">commandLineParser</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="no">OPTIONS</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
     
                 <span class="k">if</span> <span class="o">(</span><span class="n">cmd</span><span class="o">.</span><span class="na">getOptions</span><span class="o">().</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="n">CLI</span><span class="o">.</span><span class="na">help</span><span class="o">();</span>
+                    <span class="no">CLI</span><span class="o">.</span><span class="na">help</span><span class="o">();</span>
                     <span class="k">return</span><span class="o">;</span>
                 <span class="o">}</span>
     
                 <span class="k">if</span> <span class="o">(</span><span class="n">cmd</span><span class="o">.</span><span class="na">hasOption</span><span class="o">(</span><span class="sc">'v'</span><span class="o">))</span> <span class="o">{</span>
-                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Product Version: 1.0.0"</span><span class="o">);</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Product Version: 1.0.0"</span><span class="o">);</span>
                 <span class="o">}</span>
     
                 <span class="k">if</span><span class="o">(</span><span class="n">cmd</span><span class="o">.</span><span class="na">hasOption</span><span class="o">(</span><span class="sc">'i'</span><span class="o">))</span> <span class="o">{</span>
-                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Starting interactive mode."</span><span class="o">);</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Starting interactive mode."</span><span class="o">);</span>
                 <span class="o">}</span>
     
                 <span class="k">if</span><span class="o">(</span><span class="n">cmd</span><span class="o">.</span><span class="na">hasOption</span><span class="o">(</span><span class="s">"start"</span><span class="o">))</span> <span class="o">{</span>
-                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Starting application"</span><span class="o">);</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Starting application"</span><span class="o">);</span>
                 <span class="o">}</span>
     
                 <span class="k">if</span><span class="o">(</span><span class="n">cmd</span><span class="o">.</span><span class="na">hasOption</span><span class="o">(</span><span class="s">"stop"</span><span class="o">))</span> <span class="o">{</span>
-                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Stopping application"</span><span class="o">);</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Stopping application"</span><span class="o">);</span>
                 <span class="o">}</span>
     
     
-            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">AlreadySelectedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">CLI</span><span class="o">.</span><span class="na">help</span><span class="o">();</span>
-                <span class="n">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">CLI</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">()).</span><span class="na">log</span><span class="o">(</span><span class="n">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
-            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ParseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">CLI</span><span class="o">.</span><span class="na">help</span><span class="o">();</span>
-                <span class="n">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">CLI</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">()).</span><span class="na">log</span><span class="o">(</span><span class="n">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">AlreadySelectedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="no">CLI</span><span class="o">.</span><span class="na">help</span><span class="o">();</span>
+                <span class="nc">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="no">CLI</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">()).</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ParseException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="no">CLI</span><span class="o">.</span><span class="na">help</span><span class="o">();</span>
+                <span class="nc">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="no">CLI</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getName</span><span class="o">()).</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
             <span class="o">}</span>
         <span class="o">}</span>
     
         <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">help</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">HelpFormatter</span> <span class="n">formatter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HelpFormatter</span><span class="o">();</span>
-            <span class="n">formatter</span><span class="o">.</span><span class="na">printHelp</span><span class="o">(</span><span class="s">"CLI"</span><span class="o">,</span> <span class="n">OPTIONS</span><span class="o">);</span>
+            <span class="nc">HelpFormatter</span> <span class="n">formatter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HelpFormatter</span><span class="o">();</span>
+            <span class="n">formatter</span><span class="o">.</span><span class="na">printHelp</span><span class="o">(</span><span class="s">"CLI"</span><span class="o">,</span> <span class="no">OPTIONS</span><span class="o">);</span>
         <span class="o">}</span>
     
-        <span class="kd">private</span> <span class="kd">static</span> <span class="n">Options</span> <span class="nf">createOptions</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">Options</span> <span class="n">options</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Options</span><span class="o">();</span>
+        <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Options</span> <span class="nf">createOptions</span><span class="o">()</span> <span class="o">{</span>
+            <span class="nc">Options</span> <span class="n">options</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Options</span><span class="o">();</span>
     
-            <span class="n">OptionGroup</span> <span class="n">mode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">OptionGroup</span><span class="o">();</span>
+            <span class="nc">OptionGroup</span> <span class="n">mode</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">OptionGroup</span><span class="o">();</span>
     
-            <span class="n">Option</span> <span class="n">help</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Option</span><span class="o">(</span><span class="s">"help"</span><span class="o">,</span> <span class="s">"Help"</span><span class="o">);</span>
+            <span class="nc">Option</span> <span class="n">help</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Option</span><span class="o">(</span><span class="s">"help"</span><span class="o">,</span> <span class="s">"Help"</span><span class="o">);</span>
     
-            <span class="n">Option</span> <span class="n">interactive</span> <span class="o">=</span> <span class="n">Option</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span><span class="s">"i"</span><span class="o">)</span>
+            <span class="nc">Option</span> <span class="n">interactive</span> <span class="o">=</span> <span class="nc">Option</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span><span class="s">"i"</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">longOpt</span><span class="o">(</span><span class="s">"interactive"</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">desc</span><span class="o">(</span><span class="s">"Starts the processor in interactive mode."</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">build</span><span class="o">();</span>
     
-            <span class="n">Option</span> <span class="n">start</span> <span class="o">=</span> <span class="n">Option</span><span class="o">.</span><span class="na">builder</span><span class="o">().</span><span class="na">longOpt</span><span class="o">(</span><span class="s">"start"</span><span class="o">)</span>
+            <span class="nc">Option</span> <span class="n">start</span> <span class="o">=</span> <span class="nc">Option</span><span class="o">.</span><span class="na">builder</span><span class="o">().</span><span class="na">longOpt</span><span class="o">(</span><span class="s">"start"</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">desc</span><span class="o">(</span><span class="s">"Start the application."</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">build</span><span class="o">();</span>
     
-            <span class="n">Option</span> <span class="n">stop</span> <span class="o">=</span> <span class="n">Option</span><span class="o">.</span><span class="na">builder</span><span class="o">().</span><span class="na">longOpt</span><span class="o">(</span><span class="s">"stop"</span><span class="o">)</span>
+            <span class="nc">Option</span> <span class="n">stop</span> <span class="o">=</span> <span class="nc">Option</span><span class="o">.</span><span class="na">builder</span><span class="o">().</span><span class="na">longOpt</span><span class="o">(</span><span class="s">"stop"</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">desc</span><span class="o">(</span><span class="s">"Stop the application."</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">build</span><span class="o">();</span>
     
-            <span class="n">Option</span> <span class="n">properties</span> <span class="o">=</span> <span class="n">Option</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span><span class="s">"p"</span><span class="o">)</span>
+            <span class="nc">Option</span> <span class="n">properties</span> <span class="o">=</span> <span class="nc">Option</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span><span class="s">"p"</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">longOpt</span><span class="o">(</span><span class="s">"properties"</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">desc</span><span class="o">(</span><span class="s">"List all properties"</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">build</span><span class="o">();</span>
     
-            <span class="n">Option</span> <span class="n">quit</span> <span class="o">=</span> <span class="n">Option</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span><span class="s">"q"</span><span class="o">)</span>
+            <span class="nc">Option</span> <span class="n">quit</span> <span class="o">=</span> <span class="nc">Option</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span><span class="s">"q"</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">longOpt</span><span class="o">(</span><span class="s">"quit"</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">desc</span><span class="o">(</span><span class="s">"Quit the application."</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">build</span><span class="o">();</span>
     
-            <span class="n">Option</span> <span class="n">version</span> <span class="o">=</span> <span class="n">Option</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span><span class="s">"v"</span><span class="o">)</span>
+            <span class="nc">Option</span> <span class="n">version</span> <span class="o">=</span> <span class="nc">Option</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span><span class="s">"v"</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">longOpt</span><span class="o">(</span><span class="s">"version"</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">desc</span><span class="o">(</span><span class="s">"The current version of the application."</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">build</span><span class="o">();</span>
@@ -305,14 +305,14 @@
         <span class="nd">@Parameter</span><span class="o">(</span><span class="n">names</span> <span class="o">=</span> <span class="o">{</span><span class="s">"-p"</span><span class="o">,</span> <span class="s">"--properties"</span><span class="o">},</span> <span class="n">description</span> <span class="o">=</span> <span class="s">"List all of the configured properties."</span><span class="o">)</span>
         <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">props</span><span class="o">;</span>
     
-        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
     
-            <span class="n">JCommanderCLI</span> <span class="n">clic</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JCommanderCLI</span><span class="o">();</span>
-            <span class="n">JCommander</span> <span class="n">jc</span> <span class="o">=</span> <span class="n">JCommander</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
+            <span class="nc">JCommanderCLI</span> <span class="n">clic</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JCommanderCLI</span><span class="o">();</span>
+            <span class="nc">JCommander</span> <span class="n">jc</span> <span class="o">=</span> <span class="nc">JCommander</span><span class="o">.</span><span class="na">newBuilder</span><span class="o">()</span>
                     <span class="o">.</span><span class="na">addObject</span><span class="o">(</span><span class="n">clic</span><span class="o">)</span>
                     <span class="o">.</span><span class="na">build</span><span class="o">();</span>
             <span class="n">jc</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
-            <span class="n">jc</span><span class="o">.</span><span class="na">setProgramName</span><span class="o">(</span><span class="n">JCommanderCLI</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getCanonicalName</span><span class="o">());</span>
+            <span class="n">jc</span><span class="o">.</span><span class="na">setProgramName</span><span class="o">(</span><span class="nc">JCommanderCLI</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getCanonicalName</span><span class="o">());</span>
     
             <span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
                 <span class="n">jc</span><span class="o">.</span><span class="na">usage</span><span class="o">();</span>
@@ -325,19 +325,19 @@
         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
     
             <span class="k">if</span> <span class="o">(</span><span class="n">version</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"CLICommander version 1.0.0"</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"CLICommander version 1.0.0"</span><span class="o">);</span>
             <span class="o">}</span>
     
             <span class="k">if</span> <span class="o">(</span><span class="n">interactive</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Starting interactive mode."</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Starting interactive mode."</span><span class="o">);</span>
             <span class="o">}</span>
     
             <span class="k">if</span> <span class="o">(</span><span class="n">start</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Starting application"</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Starting application"</span><span class="o">);</span>
             <span class="o">}</span>
     
             <span class="k">if</span> <span class="o">(</span><span class="n">stop</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Stopping application"</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Stopping application"</span><span class="o">);</span>
             <span class="o">}</span>
         <span class="o">}</span>
     <span class="o">}</span>
