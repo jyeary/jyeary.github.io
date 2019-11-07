@@ -7,7 +7,7 @@ paginate: 5
 language: 'en-us'
 
 # Set the host to 0.0.0.0 for use on containers.
-# host: 0.0.0.0
+#host: 0.0.0.0
 
 # Website info
 name: 'John Yeary'
@@ -23,7 +23,9 @@ baseurl: /
 permalink: :year-:month-:day-:title
 
 # gems and other configs
-plugins: [jekyll-paginate]
+plugins: 
+  - jekyll-paginate
+  - jekyll-sitemap
 
 # Additional settings available on the front-matter
 # Site logo in the index.html (as in demo.ghost.io)
