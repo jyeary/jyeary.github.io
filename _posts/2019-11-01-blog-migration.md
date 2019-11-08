@@ -41,6 +41,7 @@ Next, I would make sure that you understand what the templates do and how they a
 In my case I chose to use [Jasper](https://github.com/jekyller/jasper) for my templates. This template uses plugins to generate additional functionality on the pages, as a result it can not be used directly for generating my pages from Github. In this case, I am using [Travis CI](https://travis-ci.com/) to build the the pages and push the changes from a development branch to the `master` branch since this is the branch which is used to deploy the pages. In my case it is only merging the `_site` data.
 
 ## Migrating Existing Pages
+
 There are a number of mechanisms to import existing blog formats into Jekyll. They can be found on the [Jekyll Import Documentation](https://import.jekyllrb.com/docs/home/). I am migrating from Wordpress so I tried a couple of different mechanisms. Although, it mentions the Wordpress.com importers for use with the online site, I found them to be useful on the self-hosted variety I was using. The best one after trying them all was [Exitwp](https://github.com/thomasf/exitwp).
 
 I found that not just one tool worked for me, and I am going to have to use multiple results and merge them to get the pages migrated. 
