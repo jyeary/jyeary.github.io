@@ -13,10 +13,10 @@
    
 	<item>
 	  <title>Blog Migration</title>
-	  <link>//2019-11-01-blog-migration</link>
+	  <link>//2019-11-01-blog-migration.html</link>
 	  <author></author>
 	  <pubDate>2019-11-01T00:00:00+00:00</pubDate>
-	  <guid>//2019-11-01-blog-migration</guid>
+	  <guid>//2019-11-01-blog-migration.html</guid>
 	  <description><![CDATA[
 	     <h2 id="introduction">Introduction</h2>
 
@@ -47,10 +47,10 @@
 
 	<item>
 	  <title>Multiple Java Persistence API (JPA) persistence.xml Merging</title>
-	  <link>//2019-10-15-multiple-java-persistence-api-jpa-persistence-xml-merging</link>
+	  <link>//2019-10-15-multiple-java-persistence-api-jpa-persistence-xml-merging.html</link>
 	  <author></author>
 	  <pubDate>2019-10-15T15:50:47+00:00</pubDate>
-	  <guid>//2019-10-15-multiple-java-persistence-api-jpa-persistence-xml-merging</guid>
+	  <guid>//2019-10-15-multiple-java-persistence-api-jpa-persistence-xml-merging.html</guid>
 	  <description><![CDATA[
 	     <h2 id="introduction">Introduction</h2>
 
@@ -368,10 +368,10 @@
 
 	<item>
 	  <title>JS Equality Table</title>
-	  <link>//2019-03-27-js-equality-table</link>
+	  <link>//2019-03-27-js-equality-table.html</link>
 	  <author></author>
 	  <pubDate>2019-03-27T15:25:39+00:00</pubDate>
-	  <guid>//2019-03-27-js-equality-table</guid>
+	  <guid>//2019-03-27-js-equality-table.html</guid>
 	  <description><![CDATA[
 	     <p>It seems I am always looking for the difference between <strong>==</strong> and <strong>===</strong>.  I was looking at a response to a question on Stackoverflow when I found this gem. I am publishing it here in case anyone else needs a graphical explanation.</p>
 
@@ -382,10 +382,10 @@
 
 	<item>
 	  <title>Simplifying Command Line Processing</title>
-	  <link>//2018-11-09-simplifying-command-line-processing</link>
+	  <link>//2018-11-09-simplifying-command-line-processing.html</link>
 	  <author></author>
 	  <pubDate>2018-11-09T19:59:47+00:00</pubDate>
-	  <guid>//2018-11-09-simplifying-command-line-processing</guid>
+	  <guid>//2018-11-09-simplifying-command-line-processing.html</guid>
 	  <description><![CDATA[
 	     <h2 id="introduction">Introduction</h2>
 
@@ -632,10 +632,10 @@
 
 	<item>
 	  <title>SPAMC and Java</title>
-	  <link>//2018-09-20-spamc-and-java</link>
+	  <link>//2018-09-20-spamc-and-java.html</link>
 	  <author></author>
 	  <pubDate>2018-09-20T20:45:12+00:00</pubDate>
-	  <guid>//2018-09-20-spamc-and-java</guid>
+	  <guid>//2018-09-20-spamc-and-java.html</guid>
 	  <description><![CDATA[
 	     <h2 id="introduction">Introduction</h2>
 
@@ -683,10 +683,10 @@
 
 	<item>
 	  <title>Wordpress</title>
-	  <link>//2017-10-06-wordpress</link>
+	  <link>//2017-10-06-wordpress.html</link>
 	  <author></author>
 	  <pubDate>2017-10-06T00:00:00+00:00</pubDate>
-	  <guid>//2017-10-06-wordpress</guid>
+	  <guid>//2017-10-06-wordpress.html</guid>
 	  <description><![CDATA[
 	     <p>I found Wordpress easier to use for my needs. The jekyll solution works for a lot of people, but I found that converting a Blogger blog to it was more difficult. If you are interested in my personal blog, please click on the links on the main page for my blogs.</p>
 
@@ -695,10 +695,10 @@
 
 	<item>
 	  <title>A new Blogging Platform with Github Pages</title>
-	  <link>//2015-04-02-a-new-blog-site</link>
+	  <link>//2015-04-02-a-new-blog-site.html</link>
 	  <author></author>
 	  <pubDate>2015-04-02T00:00:00+00:00</pubDate>
-	  <guid>//2015-04-02-a-new-blog-site</guid>
+	  <guid>//2015-04-02-a-new-blog-site.html</guid>
 	  <description><![CDATA[
 	     <p>I am looking at exporting my pages from Blogger to a platform where I can have more control over the layout. If this <em>endeavor</em>
 works, I will look at moving my crown jewel from Blogger too.</p>
