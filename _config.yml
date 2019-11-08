@@ -15,12 +15,12 @@ description: "A Caffeinated Java Developer."
 
 short_url: 'johnyeary.com/'
 google_analytics: UA-4194623-5
-disqus: https-wordpress-bluelotus-rhcloud-com
+disqus: john-yeary
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
 baseurl: /
 
 # Permalinks
-permalink: :year-:month-:day-:title
+permalink: :year-:month-:day-:title:output_ext
 
 # gems and other configs
 plugins: 
