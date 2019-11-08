@@ -34,4 +34,13 @@ The first step in getting started in creating, or migrating a blog is to find a 
 
 I chose a template based on the popular [ghost](https://ghost.org/blog/) platform called [Jasper](https://github.com/jekyller/jasper). There is another version called [Jasper 2](https://github.com/jekyller/jasper2), but I found the original Jasper version more my style.
 
-The nice thing about choosing to use an open source template is that you are free to modify it to match your needs. This was not insurmountable in Wordpress, but much more challenging. I was also in fear of the template being upgraded that would make me have to figure out what changed, and if anything was broken.
+The nice thing about choosing to use an open source template is that you are free to modify it to match your needs. This was not insurmountable in Wordpress, but much more challenging. I was also in fear of the template being upgraded that would make me have to figure out what changed, and if anything was broken. Since we are using a source control system (git) and we can control our own destiny with regards to upgrades, then the worries about template changes from Wordpress are no longer an issue.
+
+Next, I would make sure that you understand what the templates do and how they are configured. The [Jekyll Quickstart](https://jekyllrb.com/docs/) is very good. It will give you a great foundation on how Jekyll generates the pages, and displays them.
+
+In my case I chose to use [Jasper](https://github.com/jekyller/jasper) for my templates. This template uses plugins to generate additional functionality on the pages, as a result it can not be used directly for generating my pages from Github. In this case, I am using [Travis CI](https://travis-ci.com/) to build the the pages and push the changes from a development branch to the `master` branch since this is the branch which is used to deploy the pages. In my case it is only merging the `_site` data.
+
+## Migrating Existing Pages
+There are a number of mechanisms to import existing blog formats into Jekyll. They can be found on the [Jekyll Import Documentation](https://import.jekyllrb.com/docs/home/). I am migrating from Wordpress so I tried a couple of different mechanisms. Although, it mentions the Wordpress.com importers for use with the online site, I found them to be useful on the self-hosted variety I was using. The best one after trying them all was [Exitwp](https://github.com/thomasf/exitwp).
+
+I found that not just one tool worked for me, and I am going to have to use multiple results and merge them to get the pages migrated. 
