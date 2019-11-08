@@ -13,6 +13,7 @@ language: 'en-us'
 name: 'John Yeary'
 description: "A Caffeinated Java Developer."
 
+url: https://johnyeary.com
 short_url: 'johnyeary.com/'
 google_analytics: UA-4194623-5
 disqus: john-yeary
