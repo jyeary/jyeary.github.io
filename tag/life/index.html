@@ -26,7 +26,7 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="https://johnyeary.com//page2/" />
+        <link rel="canonical" href="https://johnyeary.com//tag/life/" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
@@ -34,13 +34,13 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="John Yeary" />
     <meta property="og:description" content="A Caffeinated Java Developer." />
-    <meta property="og:url" content="https://johnyeary.com//page2/" />
+    <meta property="og:url" content="https://johnyeary.com//tag/life/" />
     <meta property="og:image" content="/assets/images/cover4.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="John Yeary" />
     <meta name="twitter:description" content="A Caffeinated Java Developer." />
-    <meta name="twitter:url" content="https://johnyeary.com//page2/" />
+    <meta name="twitter:url" content="https://johnyeary.com//tag/life/" />
     <meta name="twitter:image:src" content="/assets/images/cover4.jpg" />
 
     <script type="application/ld+json">
@@ -49,7 +49,7 @@
     "@type": "Website",
     "publisher": "John Yeary",
     "name": "John Yeary",
-    "url": "https://johnyeary.com//page2/",
+    "url": "https://johnyeary.com//tag/life/",
     "image": "/assets/images/cover4.jpg",
     "description": "A Caffeinated Java Developer."
 }
@@ -60,7 +60,7 @@
 
 
 </head>
-<body class="paged archive-template nav-closed">
+<body class="tag-template nav-closed">
 
     <!-- The blog navigation links -->
     <div class="nav">
@@ -69,13 +69,13 @@
         <span class="hidden">Close</span>
     </a>
     <ul>
-        <li class="nav-home  nav-current" role="presentation"><a href="/">Home</a></li>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
         <!--
         <li class="nav-about " role="presentation"><a href="/about">About</a></li>
         -->
         <li class="nav-java " role="presentation"><a href="/tag/java">Java</a></li>
         <li class="nav-web " role="presentation"><a href="/tag/web">Web</a></li>
-        <li class="nav-web " role="presentation"><a href="/tag/life">Web</a></li>
+        <li class="nav-web  nav-current" role="presentation"><a href="/tag/life">Web</a></li>
         <li class="nav-author " role="presentation"><a href="/author/jyeary">John Yeary</a></li>
         <!--
         <li class="nav-speeches " role="presentation"><a href="/tag/speeches">Speeches</a></li>
@@ -95,12 +95,14 @@
     <div class="site-wrapper">
 
         <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
-        <!-- < default -->
+        <!-- dynamically overriding backgrounds for tags as well as descriptions -->
+
+
+<!-- default -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<!-- The big featured header  -->
-<header class="main-header "
-        style="background-image: url(/assets/images/cover4.jpg) ">
+<!-- If we have a tag cover, display that - else blog cover - else nothing -->
+<header class="main-header tag-head " style="background-image: url(/assets/images/cover4.jpg) ">
     <nav class="main-nav overlay clearfix">
         <a class="blog-logo" href="/"><img src="/assets/images/logo.jpg" alt="Blog Logo" /></a>
         
@@ -109,11 +111,14 @@
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">John Yeary</h1>
-            <h2 class="page-description">A Caffeinated Java Developer.</h2>
+            <h1 class="page-title">Life</h1>
+            <h2 class="page-description">
+            
+			    A 1-post collection
+            
+            </h2>
         </div>
     </div>
-    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
 </header>
 
 <!-- The main content area on the homepage -->
@@ -125,11 +130,7 @@
         
             <nav class="pagination" role="pagination">
     
-        
-            <a class="newer-posts" href="/" title="Previous Page">&laquo; Newer Posts</a>
-        
-    
-    <span class="page-number"> Page 2 of 2 </span>
+    <span class="page-number"> Page 1 of 1 </span>
      
 </nav>
         
@@ -139,10 +140,10 @@
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/2018-11-09-simplifying-command-line-processing.html">Simplifying Command Line Processing</a></h2>
+            <h2 class="post-title"><a href="/2020-01-01-resolution.html">Resolutions</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>Introduction I like many of you have spent many hours using Apache Commons CLI to create command line options. It does a great job. As the... <a class="read-more" href="/2018-11-09-simplifying-command-line-processing.html">&raquo;</a></p>
+            <p>Do Achievable Things! Every year most people make resolutions to do things like lose weight, eat more at home, travel, etc. After some period of time... <a class="read-more" href="/2020-01-01-resolution.html">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             
@@ -160,104 +161,11 @@
                 on
                 
                     
-                       <a href='/tag/java'>Java</a>
+                       <a href='/tag/life'>Life</a>
                     
                 
             
-            <time class="post-date" datetime="2018-11-09">09 Nov 2018</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/2018-09-20-spamc-and-java.html">SPAMC and Java</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>Introduction I was tasked with trying to find a quick way to test if a SpamAssassin server was running. The idea was that we needed to... <a class="read-more" href="/2018-09-20-spamc-and-java.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-
-                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/jyeary'>John Yeary</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/java'>Java</a>
-                    
-                
-            
-            <time class="post-date" datetime="2018-09-20">20 Sep 2018</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/2017-10-06-wordpress.html">Wordpress</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>I found Wordpress easier to use for my needs. The jekyll solution works for a lot of people, but I found that converting a Blogger blog... <a class="read-more" href="/2017-10-06-wordpress.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-
-                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/jyeary'>John Yeary</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/web'>Web</a>
-                    
-                
-            
-            <time class="post-date" datetime="2017-10-06">06 Oct 2017</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/2015-04-02-a-new-blog-site.html">A new Blogging Platform with Github Pages</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>I am looking at exporting my pages from Blogger to a platform where I can have more control over the layout. If this endeavor works, I... <a class="read-more" href="/2015-04-02-a-new-blog-site.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-
-                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/jyeary'>John Yeary</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/web'>Web</a>
-                    
-                
-            
-            <time class="post-date" datetime="2015-04-02">02 Apr 2015</time>
+            <time class="post-date" datetime="2020-01-01">01 Jan 2020</time>
         </footer>
     </article>
     
@@ -266,11 +174,7 @@
     
         <nav class="pagination" role="pagination">
     
-        
-            <a class="newer-posts" href="/" title="Previous Page">&laquo; Newer Posts</a>
-        
-    
-    <span class="page-number"> Page 2 of 2 </span>
+    <span class="page-number"> Page 1 of 1 </span>
      
 </nav>
     
