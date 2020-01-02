@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>John Yeary</title>
+    <title>Author</title>
     <meta name="description" content="A Caffeinated Java Developer." />
 
     <!-- Mobile Meta -->
@@ -27,21 +27,21 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="https://johnyeary.com//page3/" />
+        <link rel="canonical" href="https://johnyeary.com//author/jyeary/page4/" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="John Yeary" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="John Yeary" />
+    <meta property="og:title" content="Author" />
     <meta property="og:description" content="A Caffeinated Java Developer." />
-    <meta property="og:url" content="https://johnyeary.com//page3/" />
+    <meta property="og:url" content="https://johnyeary.com//author/jyeary/page4/" />
     <meta property="og:image" content="/assets/images/cover4.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="John Yeary" />
+    <meta name="twitter:title" content="Author" />
     <meta name="twitter:description" content="A Caffeinated Java Developer." />
-    <meta name="twitter:url" content="https://johnyeary.com//page3/" />
+    <meta name="twitter:url" content="https://johnyeary.com//author/jyeary/page4/" />
     <meta name="twitter:image:src" content="/assets/images/cover4.jpg" />
 
     <script type="application/ld+json">
@@ -49,8 +49,8 @@
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "John Yeary",
-    "name": "John Yeary",
-    "url": "https://johnyeary.com//page3/",
+    "name": "Author",
+    "url": "https://johnyeary.com//author/jyeary/page4/",
     "image": "/assets/images/cover4.jpg",
     "description": "A Caffeinated Java Developer."
 }
@@ -70,7 +70,7 @@
         <span class="hidden">Close</span>
     </a>
     <ul>
-        <li class="nav-home  nav-current" role="presentation"><a href="/">Home</a></li>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
         <!--
         <li class="nav-about " role="presentation"><a href="/about">About</a></li>
         -->
@@ -79,7 +79,7 @@
         <li class="nav-military " role="presentation"><a href="/tag/military">Military</a></li>
         <li class="nav-national-security " role="presentation"><a href="/tag/national-security">National Security</a></li>
         <li class="nav-web " role="presentation"><a href="/tag/web">Web</a></li>
-        <li class="nav-author " role="presentation"><a href="/author/jyeary">John Yeary</a></li>
+        <li class="nav-author  nav-current" role="presentation"><a href="/author/jyeary">John Yeary</a></li>
         <!--
         <li class="nav-speeches " role="presentation"><a href="/tag/speeches">Speeches</a></li>
         <li class="nav-fiction " role="presentation"><a href="/tag/fiction">Fiction</a></li>
@@ -98,45 +98,64 @@
     <div class="site-wrapper">
 
         <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
-        <!-- < default -->
+        <!-- < default}} -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<!-- The big featured header  -->
-<header class="main-header "
-        style="background-image: url(/assets/images/cover4.jpg) ">
-    <nav class="main-nav overlay clearfix">
-        <a class="blog-logo" href="/"><img src="/assets/images/logo.jpg" alt="Blog Logo" /></a>
+<!-- The big featured header -->
+
+<!-- Everything inside the #author tags pulls data from the author -->
+<!-- #author  -->
+    <header class="main-header author-head " style="background-image: url(/assets/images/cover4.jpg) ">
+        <nav class="main-nav overlay clearfix">
+            <a class="blog-logo" href="/"><img src="/assets/images/logo.jpg" alt="Blog Logo" /></a>
+            
+                <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+            
+        </nav>
+    </header>
+
+    <section class="author-profile inner">
         
-            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+            
+                
+                <figure class="author-image">
+                    <div class="img" style="background-image: url(/assets/images/jyeary.jpg)"><span class="hidden">John Yeary's Picture</span></div>
+                </figure>
+                
+                <h1 class="author-title">John Yeary</h1>
+                
+                    <div style="display:inline; text-align: justify; text-justify: inter-word;">
+                        <h2 class="author-bio">Caffeinated Java Programmer, and Principal Software Engineer at Orange Bees.</h2>
+                    </div>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location">Greenville, South Carolina, USA</span>
+                    <span class="author-link icon-link"><a href="https://johnyeary.com/author/jyeary/">johnyeary.com</a></span>
+                    <!-- <span class="author-stats"><i class="icon-stats"></i> [[plural ../pagination.total empty='No posts' singular='% post' plural='% posts']]</span> -->
+                    <span class="author-stats"><i class="icon-stats"></i>20 posts</span>
+                </div>
+            
         
-    </nav>
-    <div class="vertical">
-        <div class="main-header-content inner">
-            <h1 class="page-title">John Yeary</h1>
-            <h2 class="page-description">A Caffeinated Java Developer.</h2>
-        </div>
-    </div>
-    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
-</header>
+    </section>
+<!-- /author -->
 
 <!-- The main content area on the homepage -->
 <main id="content" class="content" role="main">
 
-    <!-- The tag below includes the post loop - partials/loop.hbs -->
+    <!-- The tag below includes the post loop - partials/loop.hbs  -->
         <!-- Previous/next page links - only displayed on page 2+ -->
     <div class="extra-pagination inner">
         
             <nav class="pagination" role="pagination">
     
         
-            <a class="newer-posts" href="/page2/" title="Previous Page">&laquo; Newer Posts</a>
+            <a class="newer-posts" href="/author/jyeary/page3/" title="Previous Page">&laquo; Newer Posts</a>
       
     
-    <span class="page-number"> Page 3 of 4 </span>
-     
-        <a class="older-posts" href="/page4/" title="Next Page">Older Posts &raquo;</a>
-     
+    <span class="page-number"> Page 4 of 4 </span>
+    
 </nav>
+
         
     </div>
 
@@ -144,10 +163,10 @@
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/2011-07-10-moonshine-jelly.html">Moonshine Jelly</a></h2>
+            <h2 class="post-title"><a href="/2009-09-14-censorship-in-asia.html">Censorship in Asia</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>Moonshine Jelly There are few things that I must say are quite entertaining about living in South Carolina. I went into a restaurant/general store in Pumpkintown,... <a class="read-more" href="/2011-07-10-moonshine-jelly.html">&raquo;</a></p>
+            <p>I read a very good article this morning on the growing censorship of the Internet and blogging in Asia. The article: Web Censoring Widens Across Southeast Asia... <a class="read-more" href="/2009-09-14-censorship-in-asia.html">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             
@@ -165,73 +184,7 @@
                 on
                 
                     
-                       <a href='/tag/life'>Life</a>
-                    
-                
-            
-            <time class="post-date" datetime="2011-07-10">10 Jul 2011</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/2009-10-16-volume-of-a-pizza.html">Volume of a Pizza</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>The general equation for the volume of a cylindrical object is noted by the following equation. If a pizza has a radius of z and a... <a class="read-more" href="/2009-10-16-volume-of-a-pizza.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-
-                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/jyeary'>John Yeary</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/life'>Life</a>
-                    
-                
-            
-            <time class="post-date" datetime="2009-10-16">16 Oct 2009</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/2009-09-14-reflections.html">Reflections</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>
-    
-    Reflections
-
- <a class="read-more" href="/2009-09-14-reflections.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-
-                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/jyeary'>John Yeary</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/life'>Life</a>
+                       <a href='/tag/national-security'>National-security</a>
                     
                 
             
@@ -241,10 +194,10 @@
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/2009-09-14-five-lined-skink-eating-a-fly.html">Five Lined Skink Eating a Fly</a></h2>
+            <h2 class="post-title"><a href="/2009-09-14-decisive-force-in-afganistan.html">Decisive Force in Afganistan</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>I went to lunch today and saw this really neat Five Lined Skink who caught a fly. The fly is sticking out of its mouth. Five... <a class="read-more" href="/2009-09-14-five-lined-skink-eating-a-fly.html">&raquo;</a></p>
+            <p>I read the op-ed piece in the Wall Street Journal by Lindsey Graham, Joesph Lieberman, and John McCain today called Only Decisive Force Can Prevail in... <a class="read-more" href="/2009-09-14-decisive-force-in-afganistan.html">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             
@@ -262,7 +215,7 @@
                 on
                 
                     
-                       <a href='/tag/life'>Life</a>
+                       <a href='/tag/national-security'>National-security</a>
                     
                 
             
@@ -272,16 +225,41 @@
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/2009-09-14-wacker-and-lasalle-bridge-lights-in-chicago.html">Wacker and LaSalle Bridge Lights in Chicago</a></h2>
+            <h2 class="post-title"><a href="/2009-04-20-u-k-national-id-card-and-real-id.html">U.K. National ID Card and Real ID</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>
+            <p>IBM and CSC were awarded the contract by the U.K. Identity and Passport Service for creating biometric enhanced IDs. The goal is to provide a safe... <a class="read-more" href="/2009-04-20-u-k-national-id-card-and-real-id.html">&raquo;</a></p>
+        </section>
+        <footer class="post-meta">
+            
+                
+
+                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
+                <!-- author -->
+                <a href='/author/jyeary'>John Yeary</a>
+
+                
+            
+
+            <!-- [[tags prefix=" on "]] -->
+            
+                on
+                
+                    
+                       <a href='/tag/national-security'>National-security</a>
+                    
+                
+            
+            <time class="post-date" datetime="2009-04-20">20 Apr 2009</time>
+        </footer>
+    </article>
     
-    Bridge Lights in Chicago
-
-
-
- <a class="read-more" href="/2009-09-14-wacker-and-lasalle-bridge-lights-in-chicago.html">&raquo;</a></p>
+    <article class="post">
+        <header class="post-header">
+            <h2 class="post-title"><a href="/2009-04-13-everyone-should-pay-income-taxes.html">Everyone Should Pay Income Taxes</a></h2>
+        </header>
+        <section class="post-excerpt">
+            <p>I read a really great op ed in The Wall Street Journal from Ari Fleischer today. The piece is entitled the same as my blog title:... <a class="read-more" href="/2009-04-13-everyone-should-pay-income-taxes.html">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             
@@ -303,7 +281,38 @@
                     
                 
             
-            <time class="post-date" datetime="2009-09-14">14 Sep 2009</time>
+            <time class="post-date" datetime="2009-04-13">13 Apr 2009</time>
+        </footer>
+    </article>
+    
+    <article class="post">
+        <header class="post-header">
+            <h2 class="post-title"><a href="/2009-04-13-the-grid-and-spies.html">The Grid and Spies</a></h2>
+        </header>
+        <section class="post-excerpt">
+            <p>The Wall Street Journal published a front page article on 8 April 2009 entitled Electricity Grid in U.S. Penetrated By Spies It is a chilling report... <a class="read-more" href="/2009-04-13-the-grid-and-spies.html">&raquo;</a></p>
+        </section>
+        <footer class="post-meta">
+            
+                
+
+                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
+                <!-- author -->
+                <a href='/author/jyeary'>John Yeary</a>
+
+                
+            
+
+            <!-- [[tags prefix=" on "]] -->
+            
+                on
+                
+                    
+                       <a href='/tag/national-security'>National-security</a>
+                    
+                
+            
+            <time class="post-date" datetime="2009-04-13">13 Apr 2009</time>
         </footer>
     </article>
     
@@ -313,14 +322,13 @@
         <nav class="pagination" role="pagination">
     
         
-            <a class="newer-posts" href="/page2/" title="Previous Page">&laquo; Newer Posts</a>
+            <a class="newer-posts" href="/author/jyeary/page3/" title="Previous Page">&laquo; Newer Posts</a>
       
     
-    <span class="page-number"> Page 3 of 4 </span>
-     
-        <a class="older-posts" href="/page4/" title="Next Page">Older Posts &raquo;</a>
-     
+    <span class="page-number"> Page 4 of 4 </span>
+    
 </nav>
+
     
 
 

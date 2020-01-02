@@ -27,7 +27,7 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="https://johnyeary.com//page3/" />
+        <link rel="canonical" href="https://johnyeary.com//tag/life/page2/" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
@@ -35,13 +35,13 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="John Yeary" />
     <meta property="og:description" content="A Caffeinated Java Developer." />
-    <meta property="og:url" content="https://johnyeary.com//page3/" />
+    <meta property="og:url" content="https://johnyeary.com//tag/life/page2/" />
     <meta property="og:image" content="/assets/images/cover4.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="John Yeary" />
     <meta name="twitter:description" content="A Caffeinated Java Developer." />
-    <meta name="twitter:url" content="https://johnyeary.com//page3/" />
+    <meta name="twitter:url" content="https://johnyeary.com//tag/life/page2/" />
     <meta name="twitter:image:src" content="/assets/images/cover4.jpg" />
 
     <script type="application/ld+json">
@@ -50,7 +50,7 @@
     "@type": "Website",
     "publisher": "John Yeary",
     "name": "John Yeary",
-    "url": "https://johnyeary.com//page3/",
+    "url": "https://johnyeary.com//tag/life/page2/",
     "image": "/assets/images/cover4.jpg",
     "description": "A Caffeinated Java Developer."
 }
@@ -70,12 +70,12 @@
         <span class="hidden">Close</span>
     </a>
     <ul>
-        <li class="nav-home  nav-current" role="presentation"><a href="/">Home</a></li>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
         <!--
         <li class="nav-about " role="presentation"><a href="/about">About</a></li>
         -->
         <li class="nav-java " role="presentation"><a href="/tag/java">Java</a></li>
-        <li class="nav-life " role="presentation"><a href="/tag/life">Life</a></li>
+        <li class="nav-life  nav-current" role="presentation"><a href="/tag/life">Life</a></li>
         <li class="nav-military " role="presentation"><a href="/tag/military">Military</a></li>
         <li class="nav-national-security " role="presentation"><a href="/tag/national-security">National Security</a></li>
         <li class="nav-web " role="presentation"><a href="/tag/web">Web</a></li>
@@ -98,12 +98,14 @@
     <div class="site-wrapper">
 
         <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
-        <!-- < default -->
+        <!-- dynamically overriding backgrounds for tags as well as descriptions -->
+
+
+<!-- default -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<!-- The big featured header  -->
-<header class="main-header "
-        style="background-image: url(/assets/images/cover4.jpg) ">
+<!-- If we have a tag cover, display that - else blog cover - else nothing -->
+<header class="main-header tag-head " style="background-image: url(/assets/images/brown-landscape-under-grey-sky-3244513.jpg) ">
     <nav class="main-nav overlay clearfix">
         <a class="blog-logo" href="/"><img src="/assets/images/logo.jpg" alt="Blog Logo" /></a>
         
@@ -112,11 +114,14 @@
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">John Yeary</h1>
-            <h2 class="page-description">A Caffeinated Java Developer.</h2>
+            <h1 class="page-title">Life</h1>
+            <h2 class="page-description">
+            
+                The search for meaning.
+            
+            </h2>
         </div>
     </div>
-    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
 </header>
 
 <!-- The main content area on the homepage -->
@@ -129,115 +134,16 @@
             <nav class="pagination" role="pagination">
     
         
-            <a class="newer-posts" href="/page2/" title="Previous Page">&laquo; Newer Posts</a>
-      
+            <a class="newer-posts" href="/tag/life" title="Previous Page">&laquo; Newer Posts</a>
+        
     
-    <span class="page-number"> Page 3 of 4 </span>
-     
-        <a class="older-posts" href="/page4/" title="Next Page">Older Posts &raquo;</a>
+    <span class="page-number"> Page 2 of 2 </span>
      
 </nav>
         
     </div>
 
     <!-- This is the post loop - each post will be output using this markup -->
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/2011-07-10-moonshine-jelly.html">Moonshine Jelly</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>Moonshine Jelly There are few things that I must say are quite entertaining about living in South Carolina. I went into a restaurant/general store in Pumpkintown,... <a class="read-more" href="/2011-07-10-moonshine-jelly.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-
-                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/jyeary'>John Yeary</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/life'>Life</a>
-                    
-                
-            
-            <time class="post-date" datetime="2011-07-10">10 Jul 2011</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/2009-10-16-volume-of-a-pizza.html">Volume of a Pizza</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>The general equation for the volume of a cylindrical object is noted by the following equation. If a pizza has a radius of z and a... <a class="read-more" href="/2009-10-16-volume-of-a-pizza.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-
-                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/jyeary'>John Yeary</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/life'>Life</a>
-                    
-                
-            
-            <time class="post-date" datetime="2009-10-16">16 Oct 2009</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/2009-09-14-reflections.html">Reflections</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>
-    
-    Reflections
-
- <a class="read-more" href="/2009-09-14-reflections.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-
-                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/jyeary'>John Yeary</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/life'>Life</a>
-                    
-                
-            
-            <time class="post-date" datetime="2009-09-14">14 Sep 2009</time>
-        </footer>
-    </article>
     
     <article class="post">
         <header class="post-header">
@@ -307,18 +213,47 @@
         </footer>
     </article>
     
+    <article class="post">
+        <header class="post-header">
+            <h2 class="post-title"><a href="/2009-04-13-everyone-should-pay-income-taxes.html">Everyone Should Pay Income Taxes</a></h2>
+        </header>
+        <section class="post-excerpt">
+            <p>I read a really great op ed in The Wall Street Journal from Ari Fleischer today. The piece is entitled the same as my blog title:... <a class="read-more" href="/2009-04-13-everyone-should-pay-income-taxes.html">&raquo;</a></p>
+        </section>
+        <footer class="post-meta">
+            
+                
+
+                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
+                <!-- author -->
+                <a href='/author/jyeary'>John Yeary</a>
+
+                
+            
+
+            <!-- [[tags prefix=" on "]] -->
+            
+                on
+                
+                    
+                       <a href='/tag/life'>Life</a>
+                    
+                
+            
+            <time class="post-date" datetime="2009-04-13">13 Apr 2009</time>
+        </footer>
+    </article>
+    
 
     <!-- Previous/next page links - displayed on every page -->
     
         <nav class="pagination" role="pagination">
     
         
-            <a class="newer-posts" href="/page2/" title="Previous Page">&laquo; Newer Posts</a>
-      
+            <a class="newer-posts" href="/tag/life" title="Previous Page">&laquo; Newer Posts</a>
+        
     
-    <span class="page-number"> Page 3 of 4 </span>
-     
-        <a class="older-posts" href="/page4/" title="Next Page">Older Posts &raquo;</a>
+    <span class="page-number"> Page 2 of 2 </span>
      
 </nav>
     
