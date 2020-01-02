@@ -10,12 +10,19 @@ current: tag
 <!-- dynamically overriding backgrounds for tags as well as descriptions -->
 {% if page.url contains 'java' %}
    {% assign tag_description='The best programming language ever invented.' %}
+{% elsif page.url contains 'life' %}
+   {% assign new_cover='assets/images/brown-landscape-under-grey-sky-3244513.jpg' %}
+   {% assign tag_description='The search for meaning.' %}
+{% elsif page.url contains 'military' %}
+   {% assign new_cover='assets/images/vp-10.jpg' %}
+   {% assign tag_description='We have met the enemy and they are ours. - Oliver Hazard Perry' %}
+{% elsif page.url contains 'national-security' %}  
+   {% assign new_cover='assets/images/AmericanFlagBanner.jpg' %}
+   {% assign tag_description='We sleep safely at night because rough men stand ready to visit violence on those who would harm us." - Sir Winston Churchill' %}
+   {% assign new_title='National Security' %}
 {% elsif page.url contains 'web' %}
     {% assign new_cover='assets/images/spider-web-with-drops-of-water-1477835.jpg' %}
     {% assign tag_description='Web design...mystical voodoo.' %}
-{% elsif page.url contains 'life' %}
-    {% assign new_cover='assets/images/brown-landscape-under-grey-sky-3244513.jpg' %}
-    {% assign tag_description='The search for meaning.' %}
 {% endif %}
 
 <!-- default -->
@@ -31,7 +38,7 @@ current: tag
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">{{ page.tag | capitalize }}</h1>
+            <h1 class="page-title">{% if new_title %}{{new_title}}{% else %}{{ page.tag | capitalize }}{% endif %}</h1>
             <h2 class="page-description">
             {% if tag_description %}
                 {{ tag_description }}
