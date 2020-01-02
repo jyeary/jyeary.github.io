@@ -117,6 +117,20 @@
 	</item>
 
 	<item>
+	  <title>Code Publishing</title>
+	  <link>//2017-10-06-code-publishing.html</link>
+	  <author></author>
+	  <pubDate>2017-10-06T20:30:26+00:00</pubDate>
+	  <guid>//2017-10-06-code-publishing.html</guid>
+	  <description><![CDATA[
+	     <p>I have so much code on my machine. All sorts of experiments, examples, etc. I am trying to publish it all so that I can clean up my computer. I think a lot of it could be helpful to others to boot.</p>
+
+<p>Keep an eye on my technology blog <a href="https://javaevangelist.blogspot.com">Java Evangelist John Yeary</a> for code contributions.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Wordpress</title>
 	  <link>//2017-10-06-wordpress.html</link>
 	  <author></author>
