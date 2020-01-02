@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://johnyeary.com/2009-04-13-the-grid-and-spies.html</loc>
+<lastmod>2009-04-13T18:32:00+00:00</lastmod>
+</url>
+<url>
+<loc>https://johnyeary.com/2009-04-13-everyone-should-pay-income-taxes.html</loc>
+<lastmod>2009-04-13T20:45:00+00:00</lastmod>
+</url>
+<url>
 <loc>https://johnyeary.com/2015-04-02-a-new-blog-site.html</loc>
 <lastmod>2015-04-02T00:00:00+00:00</lastmod>
 </url>
@@ -43,13 +51,16 @@
 <loc>https://johnyeary.com/about/</loc>
 </url>
 <url>
+<loc>https://johnyeary.com/tag/national-security/</loc>
+</url>
+<url>
+<loc>https://johnyeary.com/tag/life/</loc>
+</url>
+<url>
 <loc>https://johnyeary.com/tag/web/</loc>
 </url>
 <url>
 <loc>https://johnyeary.com/tag/java/</loc>
-</url>
-<url>
-<loc>https://johnyeary.com/tag/life/</loc>
 </url>
 <url>
 <loc>https://johnyeary.com/author/jyeary/</loc>
@@ -58,6 +69,12 @@
 <loc>https://johnyeary.com/author/jyeary/page2/</loc>
 </url>
 <url>
+<loc>https://johnyeary.com/author/jyeary/page3/</loc>
+</url>
+<url>
 <loc>https://johnyeary.com/page2/</loc>
+</url>
+<url>
+<loc>https://johnyeary.com/page3/</loc>
 </url>
 </urlset>
