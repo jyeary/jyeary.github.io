@@ -11,7 +11,7 @@ categories: jyeary
 tags: life
 subclass: 'post tag-life'
 ---
-{% include image.html url='http://3.bp.blogspot.com/-S75DOlBQM3k/Thm5NfH3j-I/AAAAAAAABP0/bm72BYu4eTg/s1600/MoonshineJelly.jpg' caption='Moonshine Jelly' %}
+{% include image.html url='/assets/images/MoonshineJelly.jpg' caption='Moonshine Jelly' %}
 
 There are few things that I must say are quite entertaining about living
 in South Carolina. I went into a restaurant/general store in

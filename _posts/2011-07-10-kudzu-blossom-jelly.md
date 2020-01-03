@@ -11,7 +11,7 @@ categories: jyeary
 tags: life
 subclass: 'post tag-life'
 ---
-{% include image.html url='http://2.bp.blogspot.com/-snDESWOqKbI/Thm9hl5c7WI/AAAAAAAABP8/QXIJK60E7is/s1600/KudzuBlossomJelly.jpg' caption='Kudzu Blossom Jelly' %}
+{% include image.html url='/assets/images/KudzuBlossomJelly.jpg' caption='Kudzu Blossom Jelly' %}
 
 In my last post on [Moonshine Jelly]({% post_url 2011-07-10-moonshine-jelly%}). I mentioned a neat general store where you can get some unusual food. While I was there, I purchased some Kudzu Blossom Jelly.
 
