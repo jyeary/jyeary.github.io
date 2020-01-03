@@ -764,6 +764,22 @@ this month. Once I am back to being healthy, I will achieve this goal.</p>
 	</item>
 
 	<item>
+	  <title>Apache Archiva on Docker</title>
+	  <link>//2018-03-09-apache-archiva-on-docker.html</link>
+	  <author></author>
+	  <pubDate>2018-03-09T21:12:28+00:00</pubDate>
+	  <guid>//2018-03-09-apache-archiva-on-docker.html</guid>
+	  <description><![CDATA[
+	     <p>I tried Apache Archiva in a Docker container this evening. I was hoping that it would be a good alternative to Nexus. Once I got it running in the container I realized that it really does not support all the features that I use in Nexus.</p>
+
+<p>The container I used (I won’t bash the author) kept wanting to only publish on 0.0.0.0/8080 even though I was telling it to use the host IP address on 8080. After getting it up and running, I decided not to try and fix it though.</p>
+
+<p>I wanted to play with it for a couple of hours, and I concluded that it would not work for me. There is a lot of promise though. I will come back and examine it at a later time.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Code Publishing</title>
 	  <link>//2017-10-06-code-publishing.html</link>
 	  <author></author>
@@ -785,49 +801,6 @@ this month. Once I am back to being healthy, I will achieve this goal.</p>
 	  <guid>//2017-10-06-wordpress.html</guid>
 	  <description><![CDATA[
 	     <p>I found Wordpress easier to use for my needs. The jekyll solution works for a lot of people, but I found that converting a Blogger blog to it was more difficult. If you are interested in my personal blog, please click on the links on the main page for my blogs.</p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>Nuclear Deterrent</title>
-	  <link>//2015-07-18-nuclear-deterrent.html</link>
-	  <author></author>
-	  <pubDate>2015-07-18T12:24:00+00:00</pubDate>
-	  <guid>//2015-07-18-nuclear-deterrent.html</guid>
-	  <description><![CDATA[
-	     <p>The article <a href="http://www.wsj.com/articles/the-fading-u-s-nuclear-deterrent-1436739871">The Fading U.S. Nuclear
-Deterrent</a>
-in the Wall Street Journal by VADM Monroe should be an eye opener and
-another wake-up call for the U.S policy makers. Admiral Monroe is in a
-expert position to comment on the aging U.S. nuclear arsenal and forces.
-Considering the long lead time for the upgrade of these forces, the time
-is now to act. Our political and military leadership need to take the
-steps necessary to begin the modernization process of our nuclear
-forces.</p>
-
-<p>Russia has recently made it known that they are proceeding with an
-upgrade of their forces. China, Pakistan, India, North Korea are making
-advances in their arsenals. North Korea is particularly troubling since
-they are so unstable. They may not be able to hit Washington, but a
-strike against California would be devastating.</p>
-
-<p>I am not a fan of a number of President Obama’s policies, but the freeze
-on the DoE National Nuclear Security Administration (NNSA) R\&amp;D must
-released. It was an critical failure on the part of the administration
-of Mr. Obama to allow our nuclear forces to degrade.</p>
-
-<p>This time in history like many that have preceded it has shown that the
-good intentions of nations can not be relied on. “The war to end all
-wars” ended in 1918, and only 21 years later began WW II. The United
-Nations was founded in 1945 to promote peace and unity among member
-nations. This was followed by the Cold War that lasted until 1991. This
-is not the time to turn our warheads into fuel rods. This is the time to
-ensure that we can negotiate with our potential adversaries on high
-ground.</p>
-
-<p>Contact your elected representatives and let them know you want them to
-support our military forces with modern equipment, and programs.</p>
 
 	  ]]></description>
 	</item>

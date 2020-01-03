@@ -113,6 +113,21 @@
     
       
       <item>
+        <title>Apache Archiva on Docker</title>
+        
+          <description>&lt;p&gt;I tried Apache Archiva in a Docker container this evening. I was hoping that it would be a good alternative to Nexus. Once I got it running in the container I realized that it really does not support all the features that I use in Nexus.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 09 Mar 2018 21:12:28 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2018-03-09-apache-archiva-on-docker.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2018-03-09-apache-archiva-on-docker.html</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Code Publishing</title>
         
           <description>&lt;p&gt;I have so much code on my machine. All sorts of experiments, examples, etc. I am trying to publish it all so that I can clean up my computer. I think a lot of it could be helpful to others to boot.&lt;/p&gt;
@@ -200,10 +215,28 @@ works, I will look at moving my crown jewel from Blogger too.&lt;/p&gt;
     
       
       <item>
+        <title>Pulled Pork</title>
+        
+          <description>&lt;figure class=&quot;image&quot;&gt;
+    &lt;img src=&quot;/assets/images/HomemadePulledPork.jpg&quot; alt=&quot;Pulled Pork&quot; /&gt;
+    &lt;figcaption&gt;Pulled Pork&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+</description>
+        
+        <pubDate>Sun, 10 Jul 2011 12:34:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2011-07-10-pulled-pork.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2011-07-10-pulled-pork.html</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Kudzu Blossom Jelly</title>
         
           <description>&lt;figure class=&quot;image&quot;&gt;
-    &lt;img src=&quot;http://2.bp.blogspot.com/-snDESWOqKbI/Thm9hl5c7WI/AAAAAAAABP8/QXIJK60E7is/s1600/KudzuBlossomJelly.jpg&quot; alt=&quot;Kudzu Blossom Jelly&quot; /&gt;
+    &lt;img src=&quot;/assets/images/KudzuBlossomJelly.jpg&quot; alt=&quot;Kudzu Blossom Jelly&quot; /&gt;
     &lt;figcaption&gt;Kudzu Blossom Jelly&lt;/figcaption&gt;
 &lt;/figure&gt;
 
@@ -221,7 +254,7 @@ works, I will look at moving my crown jewel from Blogger too.&lt;/p&gt;
         <title>Moonshine Jelly</title>
         
           <description>&lt;figure class=&quot;image&quot;&gt;
-    &lt;img src=&quot;http://3.bp.blogspot.com/-S75DOlBQM3k/Thm5NfH3j-I/AAAAAAAABP0/bm72BYu4eTg/s1600/MoonshineJelly.jpg&quot; alt=&quot;Moonshine Jelly&quot; /&gt;
+    &lt;img src=&quot;/assets/images/MoonshineJelly.jpg&quot; alt=&quot;Moonshine Jelly&quot; /&gt;
     &lt;figcaption&gt;Moonshine Jelly&lt;/figcaption&gt;
 &lt;/figure&gt;
 
