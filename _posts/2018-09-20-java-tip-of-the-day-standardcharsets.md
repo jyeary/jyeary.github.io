@@ -26,8 +26,9 @@ projects, e.g. Apache Commons XXX.
 
 Yesterday, I was looking at a unit test and saw the following:
 
+```java
     StandardCharsets.UTF_8.name();
-
+```
 I paused and asked myself what is that? When I opened it in NetBeans, I
 realized that I had missed a piece of code from Java 7 that could make
 my life easier.
@@ -63,7 +64,6 @@ Though this may not bring about world peace, or even get you a cup of
 coffee, it is a nice little piece of code when you need it in a pinch.
 
 ```java 
-try (ByteArrayOutputStream baos = ...) {
-    System.out.println(baos.toString(StandardCharsets.UTF_8.name()));
+try (ByteArrayOutputStream baos = ...) { System.out.println(baos.toString(StandardCharsets.UTF_8.name()));
 }
 ```
