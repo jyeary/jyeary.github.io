@@ -187,6 +187,56 @@
     
       
       <item>
+        <title>Migration to Google</title>
+        
+          <description>&lt;p&gt;Well the task is done. I tried a number of Wordpress blogging solutions as turnkey alternatives to the deployment on Openshift 2. The most promising seemed like it would be Bitnami’s Wordpress offering. I was wrong. I encountered nothing but permissions issues trying to get it to work. I finally settled on the Official Wordpress image on Google to run as  a VM on Google Compute Engine.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 30 Sep 2017 12:37:04 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2017-09-30-migration-to-google.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2017-09-30-migration-to-google.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>It Figures...</title>
+        
+          <description>&lt;p&gt;Well I got a nice surprise from OpenShift a couple of days ago. The
+OpenShift 2 is end of life, and will be shut down at the end of
+September. I migrated over to OpenShift from Blogger only to have it
+pulled out from under me. They provide a means to migrate to OpenShift
+3, but it has a “Resource Hibernation” periods as noted below.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 01 Sep 2017 10:23:17 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2017-09-01-it-figures.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2017-09-01-it-figures.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Wordpress on OpenShift 2</title>
+        
+          <description>&lt;p&gt;This is my attempt to get Wordpress running on OpenShift 2 using 2 gears. I would like to migrate my personal blog for John Yeary from Blogger to another blogging platform so that I have more control of the
+layout, and appearance. So I backed up the data from Blogger and used the import tool and it seems to have worked more amazingly than I could have imagined.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 10 Aug 2017 17:14:30 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2017-08-10-hello-world.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2017-08-10-hello-world.html</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Military Lending Act Regulation Expansion</title>
         
           <description>&lt;p&gt;I wanted to take a moment to thank the Obama Administration for their rule changes with regards to the Military Lending Act of 2006. The new regulations make it harder for lenders (let’s call them poachers) from charging outrageously high interest rates to our men and women who serve this country.&lt;/p&gt;

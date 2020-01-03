@@ -159,6 +159,85 @@
 	</item>
 
 	<item>
+	  <title>Migration to Google</title>
+	  <link>//2017-09-30-migration-to-google.html</link>
+	  <author></author>
+	  <pubDate>2017-09-30T12:37:04+00:00</pubDate>
+	  <guid>//2017-09-30-migration-to-google.html</guid>
+	  <description><![CDATA[
+	     <p>Well the task is done. I tried a number of Wordpress blogging solutions as turnkey alternatives to the deployment on Openshift 2. The most promising seemed like it would be Bitnami’s Wordpress offering. I was wrong. I encountered nothing but permissions issues trying to get it to work. I finally settled on the Official Wordpress image on Google to run as  a VM on Google Compute Engine.</p>
+
+<p>You are witnessing the fruit of my migration from Openshift 2 to Google.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>It Figures...</title>
+	  <link>//2017-09-01-it-figures.html</link>
+	  <author></author>
+	  <pubDate>2017-09-01T10:23:17+00:00</pubDate>
+	  <guid>//2017-09-01-it-figures.html</guid>
+	  <description><![CDATA[
+	     <p>Well I got a nice surprise from OpenShift a couple of days ago. The
+OpenShift 2 is end of life, and will be shut down at the end of
+September. I migrated over to OpenShift from Blogger only to have it
+pulled out from under me. They provide a means to migrate to OpenShift
+3, but it has a “Resource Hibernation” periods as noted below.</p>
+
+<blockquote>
+  <p>Your project resources sleep after 30 minutes of inactivity, and must
+sleep 18 hours in a 72 hour period.</p>
+</blockquote>
+
+<p>The resource hibernation is not really a good fit for anyone using it
+for blogging, or much of anything unless it is just pure testing. This
+weekend I will need to see about migrating again, but this time perhaps
+to Google Cloud.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Wordpress on OpenShift 2</title>
+	  <link>//2017-08-10-hello-world.html</link>
+	  <author></author>
+	  <pubDate>2017-08-10T17:14:30+00:00</pubDate>
+	  <guid>//2017-08-10-hello-world.html</guid>
+	  <description><![CDATA[
+	     <p>This is my attempt to get Wordpress running on OpenShift 2 using 2 gears. I would like to migrate my personal blog for John Yeary from Blogger to another blogging platform so that I have more control of the
+layout, and appearance. So I backed up the data from Blogger and used the import tool and it seems to have worked more amazingly than I could have imagined.</p>
+
+<p>Connecting to the MySQL database on the gear requires a little more finesse since it is not exposed publicly. Great for security, but not so great for getting remote access. I used the <code class="highlighter-rouge">rhc
+port-forward</code> command to accomplish the task.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rhc port-forward -a &lt;application-name&gt;
+</code></pre></div></div>
+
+<p>Here are the items that I see remaining:</p>
+
+<ul>
+  <li><del>Perform the same operations on a test blog, and see if blogger
+will forward requests correctly.</del></li>
+  <li><del>Check permlinks to ensure that they still work.</del></li>
+  <li><del>Setup SSL.</del></li>
+  <li><del>Move media from the gear to cloud storage.</del></li>
+  <li><del>Backup and restore database.</del></li>
+  <li><del>Install Wordpress on another platform and use a newer version of
+MySQL to see if there are any issues.</del></li>
+  <li><del>Add Google Adsense to see if they work.</del></li>
+  <li><del>Test Amazon Associate links.</del></li>
+  <li><del>Update Amazon Associates links.</del></li>
+  <li><del>Add SSO Login API for Disqus</del></li>
+  <li><del>Fix broken links on posts.</del></li>
+</ul>
+
+<p>So far it has worked. The blog is running on a 2 gears with a load balancer. I have migrated the blog. I still need to Adsense, and update Amazon Associates links.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>A new Blogging Platform with Github Pages</title>
 	  <link>//2015-04-02-a-new-blog-site.html</link>
 	  <author></author>
