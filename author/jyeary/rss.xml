@@ -764,6 +764,75 @@ this month. Once I am back to being healthy, I will achieve this goal.</p>
 	</item>
 
 	<item>
+	  <title>Java Tip of the Day: StandardCharsets</title>
+	  <link>//2018-09-20-java-tip-of-the-day-standardcharsets.html</link>
+	  <author></author>
+	  <pubDate>2018-09-20T12:00:33+00:00</pubDate>
+	  <guid>//2018-09-20-java-tip-of-the-day-standardcharsets.html</guid>
+	  <description><![CDATA[
+	     <h2 id="introduction">Introduction</h2>
+
+<p>It is important to look at other people’s code. It often gives us
+insight into undiscovered content and ideas that we can put into our own
+toolbox of code.</p>
+
+<p>We do a lot of the same coding over and over on different projects.
+Often because we don’t have a common framework to share between
+projects, or we don’t want to include a framework into a project just to
+use one, or two classes from it. It is often better to find code which
+is part of Java itself, or a must have framework that is included in our
+projects, e.g. Apache Commons XXX.</p>
+
+<p>Yesterday, I was looking at a unit test and saw the following:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nc">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">.</span><span class="na">name</span><span class="o">();</span>
+</code></pre></div></div>
+<p>I paused and asked myself what is that? When I opened it in NetBeans, I
+realized that I had missed a piece of code from Java 7 that could make
+my life easier.</p>
+
+<p>I often find that I am using a String to set the value for “UTF-8”, or
+setting the Charset and wrapping it to catch any exceptions. Some</p>
+
+<h2 id="standardcharsets">StandardCharsets</h2>
+
+<p>This
+<a href="https://docs.oracle.com/javase/10/docs/api/java/nio/charset/StandardCharsets.html">StandardCharsets</a>
+class is in the JRE starting with Java 7 and as noted in the Javadoc:</p>
+
+<blockquote>
+  <p>Constant definitions for the standard Charsets. These charsets are
+guaranteed to be available on every implementation of the Java
+platform.</p>
+</blockquote>
+
+<p>Now you can skip having to create your own code and use the standard
+Java class which is guaranteed to exist.</p>
+
+<blockquote>
+  <p>$ jshell | Welcome to JShell – Version 10.0.2 | For an introduction
+type: /help intro</p>
+
+  <p>jshell&gt; import java.nio.charset.StandardCharsets;</p>
+
+  <p>jshell&gt; System.out.println(StandardCharsets.UTF_8.name());</p>
+
+  <p>UTF-8</p>
+</blockquote>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Though this may not bring about world peace, or even get you a cup of
+coffee, it is a nice little piece of code when you need it in a pinch.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="o">(</span><span class="nc">ByteArrayOutputStream</span> <span class="n">baos</span> <span class="o">=</span> <span class="o">...)</span> <span class="o">{</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">baos</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="nc">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">.</span><span class="na">name</span><span class="o">()));</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Patriotism</title>
 	  <link>//2018-07-04-patriotism.html</link>
 	  <author></author>
@@ -835,20 +904,6 @@ this month. Once I am back to being healthy, I will achieve this goal.</p>
 <p>The container I used (I won’t bash the author) kept wanting to only publish on 0.0.0.0/8080 even though I was telling it to use the host IP address on 8080. After getting it up and running, I decided not to try and fix it though.</p>
 
 <p>I wanted to play with it for a couple of hours, and I concluded that it would not work for me. There is a lot of promise though. I will come back and examine it at a later time.</p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>Code Publishing</title>
-	  <link>//2017-10-06-code-publishing.html</link>
-	  <author></author>
-	  <pubDate>2017-10-06T20:30:26+00:00</pubDate>
-	  <guid>//2017-10-06-code-publishing.html</guid>
-	  <description><![CDATA[
-	     <p>I have so much code on my machine. All sorts of experiments, examples, etc. I am trying to publish it all so that I can clean up my computer. I think a lot of it could be helpful to others to boot.</p>
-
-<p>Keep an eye on my technology blog <a href="https://javaevangelist.blogspot.com">Java Evangelist John Yeary</a> for code contributions.</p>
 
 	  ]]></description>
 	</item>

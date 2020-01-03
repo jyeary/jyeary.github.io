@@ -93,6 +93,10 @@
 <lastmod>2018-07-04T13:48:50+00:00</lastmod>
 </url>
 <url>
+<loc>https://johnyeary.com/2018-09-20-java-tip-of-the-day-standardcharsets.html</loc>
+<lastmod>2018-09-20T12:00:33+00:00</lastmod>
+</url>
+<url>
 <loc>https://johnyeary.com/2018-09-20-spamc-and-java.html</loc>
 <lastmod>2018-09-20T20:45:12+00:00</lastmod>
 </url>
@@ -154,6 +158,9 @@
 <loc>https://johnyeary.com/tag/java/</loc>
 </url>
 <url>
+<loc>https://johnyeary.com/tag/java/page2/</loc>
+</url>
+<url>
 <loc>https://johnyeary.com/author/jyeary/</loc>
 </url>
 <url>
@@ -172,6 +179,9 @@
 <loc>https://johnyeary.com/author/jyeary/page6/</loc>
 </url>
 <url>
+<loc>https://johnyeary.com/author/jyeary/page7/</loc>
+</url>
+<url>
 <loc>https://johnyeary.com/page2/</loc>
 </url>
 <url>
@@ -185,5 +195,8 @@
 </url>
 <url>
 <loc>https://johnyeary.com/page6/</loc>
+</url>
+<url>
+<loc>https://johnyeary.com/page7/</loc>
 </url>
 </urlset>
