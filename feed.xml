@@ -10,7 +10,7 @@
       <item>
         <title>Convert Server Certificate and Key into PKCS#12, and Java Keystore (JKS)</title>
         
-          <description>&lt;p&gt;##&lt;/p&gt;
+          <description>&lt;p&gt;I was looking for simple instructions on how to convert a certificate to a keystore. Here is my simplified version.&lt;/p&gt;
 
 </description>
         
