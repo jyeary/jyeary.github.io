@@ -12,6 +12,53 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>Convert Server Certificate and Key into PKCS#12, and Java Keystore (JKS)</title>
+	  <link>//2020-03-13-import-pkcs12-keystore.html</link>
+	  <author></author>
+	  <pubDate>2020-03-13T12:00:00+00:00</pubDate>
+	  <guid>//2020-03-13-import-pkcs12-keystore.html</guid>
+	  <description><![CDATA[
+	     <p>##</p>
+
+<p>I was looking for simple instructions on how to convert a certificate to a keystore. Here is my simplified version.</p>
+
+<ol>
+  <li>Build the certificate chain into a single file.</li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat </span>server.pem intermediate.pem root.pem <span class="o">&gt;</span> import.pem
+</code></pre></div></div>
+
+<ol>
+  <li>Convert the private key and merged certificate files into a PKCS12 file.</li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl pkcs12 <span class="nt">-export</span> <span class="nt">-in</span> import.pem <span class="nt">-inkey</span> server.key <span class="nt">-name</span> serverHostName <span class="o">&gt;</span> server.p12
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <p>Import the PKCS12 file into Java Keystore (JKS).</p>
+
+    <p><strong>Note:</strong> Java 9 changed the default Java Keystore to PKCS#12. The following is only required for Java 8, or applications that have JKS dependency. See <a href="http://openjdk.java.net/jeps/229">JEP 229: Create PKCS12 Keystores by Default</a></p>
+  </li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>keytool <span class="nt">-importkeystore</span> <span class="nt">-srckeystore</span> server.p12 <span class="nt">-destkeystore</span> keystore.jks <span class="nt">-srcstoretype</span> pkcs12 <span class="nt">-alias</span> serverHostName 
+</code></pre></div></div>
+
+<h3 id="notes">Notes</h3>
+
+<p>If you are using PKCS#12 as your keystore, edit the <code class="highlighter-rouge">JAVA_HOME/jre/lib/security/java.security</code> file and change the default keystore type as shown below:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Default keystore type.
+keystore.type=pkcs12
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Resolutions</title>
 	  <link>//2020-01-01-resolution.html</link>
 	  <author></author>
@@ -888,22 +935,6 @@ coffee, it is a nice little piece of code when you need it in a pinch.</p>
 <h3 id="final-thoughts">Final Thoughts</h3>
 
 <p>On the 4th, when you are enjoying your overcooked hotdog, hoist up your sun burned hand, and toast a cold beer to these brave citizens that gave you the freedom you have today.</p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>Apache Archiva on Docker</title>
-	  <link>//2018-03-09-apache-archiva-on-docker.html</link>
-	  <author></author>
-	  <pubDate>2018-03-09T21:12:28+00:00</pubDate>
-	  <guid>//2018-03-09-apache-archiva-on-docker.html</guid>
-	  <description><![CDATA[
-	     <p>I tried Apache Archiva in a Docker container this evening. I was hoping that it would be a good alternative to Nexus. Once I got it running in the container I realized that it really does not support all the features that I use in Nexus.</p>
-
-<p>The container I used (I won’t bash the author) kept wanting to only publish on 0.0.0.0/8080 even though I was telling it to use the host IP address on 8080. After getting it up and running, I decided not to try and fix it though.</p>
-
-<p>I wanted to play with it for a couple of hours, and I concluded that it would not work for me. There is a lot of promise though. I will come back and examine it at a later time.</p>
 
 	  ]]></description>
 	</item>

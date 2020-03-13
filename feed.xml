@@ -8,6 +8,21 @@
     
       
       <item>
+        <title>Convert Server Certificate and Key into PKCS#12, and Java Keystore (JKS)</title>
+        
+          <description>&lt;p&gt;##&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 13 Mar 2020 12:00:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2020-03-13-import-pkcs12-keystore.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2020-03-13-import-pkcs12-keystore.html</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Resolutions</title>
         
           <description>&lt;h1 id=&quot;do-achievable-things&quot;&gt;Do Achievable Things!&lt;/h1&gt;
