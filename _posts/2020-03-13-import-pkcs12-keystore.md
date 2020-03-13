@@ -11,7 +11,6 @@ categories: jyeary
 tags: java
 subclass: 'post tag-java'
 ---
-## 
 
 I was looking for simple instructions on how to convert a certificate to a keystore. Here is my simplified version.
 
