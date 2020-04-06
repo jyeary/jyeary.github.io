@@ -247,7 +247,7 @@ DEPENDENCIES
   jekyll (~> 3.8.5)
   jekyll-paginate (~> 1.1.0)
   jekyll-sitemap (~> 1.4.0)
-  rake (~> 13.0.1)
+  rake (~> 13.0)
 
 BUNDLED WITH
    2.1.4
