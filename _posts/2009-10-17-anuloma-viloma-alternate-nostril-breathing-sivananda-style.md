@@ -1,6 +1,6 @@
 ---
 layout: post
-cover: 'assets/images/photo-of-person-standing-on-temple-2659475.jpg'
+cover: 'assets/images/adventure-balance-balanced-balancing-7640.jpg'
 logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
