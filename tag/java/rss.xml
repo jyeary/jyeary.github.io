@@ -669,6 +669,120 @@ keystore.type=pkcs12
 	</item>
 
 	<item>
+	  <title>JAX-WS on Tomcat</title>
+	  <link>//2018-11-09-jax-ws-on-tomcat.html</link>
+	  <author></author>
+	  <pubDate>2018-11-09T11:18:37+00:00</pubDate>
+	  <guid>//2018-11-09-jax-ws-on-tomcat.html</guid>
+	  <description><![CDATA[
+	     <h3 id="introduction">Introduction</h3>
+
+<p>I was recently tasked with looking into an issue on Embedded Apache Tomcat 8 where a JAX-WS service was installed. It looks like the services were originally written for Java 5 and JAX-WS 2.1. Before making any changes to the existing implementation, I wanted to check on the latest versions and see what might be different and cause a conflict. I know that the JRE includes later versions of JAX-WS and thought that might be the source of the issue. It turns out that it was not. It was something completely different. However, the exploration into how to make JAX-WS work on Embedded Apache Tomcat 8 was still worth publishing.</p>
+
+<h3 id="embedded-tomcat">Embedded Tomcat</h3>
+
+<p>I have a number of projects on Github for Apache Tomcat. They can be found in the list below:</p>
+<ul>
+  <li><a href="https://github.com/jyeary/tomcat-8-jaxws">tomcat-8-jaxws</a> - This example.</li>
+  <li><a href="https://github.com/jyeary/tomcat-8-embedded">tomcat-8-embedded</a></li>
+  <li><a href="https://github.com/jyeary/tomcat-9-embedded">tomcat-9-embedded</a></li>
+  <li><a href="https://github.com/bluelotussoftware/tomcat-security-valves">tomcat-security-valves</a> - If you are using embedded Tomcat and you want to be secure, you should look at these valves. They are also published on Maven Central and available in Maven.</li>
+</ul>
+
+<p>The code for our example using JAX-WS will be using a war file with a simple JAX-WS service that returns the current date.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bluelotussoftware</span><span class="o">.</span><span class="na">tomcat</span><span class="o">.</span><span class="na">embedded</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.ServletException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.catalina.Host</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.catalina.LifecycleException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.catalina.startup.Tomcat</span><span class="o">;</span>
+
+<span class="cm">/**
+ * An Example Embedded Apache Tomcat with an JAX-WS service 
+ *
+ * @author John Yeary &lt;jyeary@bluelotussoftware.com&gt;
+ * @version 1.0.0
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Main method.
+     *
+     * @param args command line arguments passed to the application. Currently unused.
+     * @throws LifecycleException If a life cycle exception occurs.
+     * @throws InterruptedException If the application is interrupted while waiting for requests.
+     * @throws ServletException If the servlet handling the response has an exception.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+            <span class="kd">throws</span> <span class="nc">LifecycleException</span><span class="o">,</span> <span class="nc">InterruptedException</span><span class="o">,</span> <span class="nc">ServletException</span> <span class="o">{</span>
+        <span class="nc">Tomcat</span> <span class="n">tomcat</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tomcat</span><span class="o">();</span>
+        <span class="n">tomcat</span><span class="o">.</span><span class="na">setPort</span><span class="o">(</span><span class="mi">8080</span><span class="o">);</span>
+        <span class="n">tomcat</span><span class="o">.</span><span class="na">setBaseDir</span><span class="o">(</span><span class="s">"target/tomcat"</span><span class="o">);</span>
+        <span class="nc">Host</span> <span class="n">host</span> <span class="o">=</span> <span class="n">tomcat</span><span class="o">.</span><span class="na">getHost</span><span class="o">();</span>
+        <span class="n">host</span><span class="o">.</span><span class="na">setAppBase</span><span class="o">(</span><span class="s">"."</span><span class="o">);</span>
+        <span class="n">host</span><span class="o">.</span><span class="na">setAutoDeploy</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">host</span><span class="o">.</span><span class="na">setDeployOnStartup</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="nc">File</span> <span class="n">ws</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"src/test/resources/simple-jaxws-1.0.0.war"</span><span class="o">);</span>
+        <span class="n">tomcat</span><span class="o">.</span><span class="na">addWebapp</span><span class="o">(</span><span class="n">host</span><span class="o">,</span> <span class="s">""</span><span class="o">,</span> <span class="n">ws</span><span class="o">.</span><span class="na">getAbsolutePath</span><span class="o">());</span>
+        <span class="n">tomcat</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="n">tomcat</span><span class="o">.</span><span class="na">getServer</span><span class="o">().</span><span class="na">await</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This will start the application when you run it on (http://localhost:8080) and sets the default application to the base directory. It is very simple to setup and use.</p>
+
+<h3 id="simpleservice">SimpleService</h3>
+
+<p>The service that is exposed can be found in the <a href="https://github.com/jyeary/simple-jaxws">simple-jaxws</a> project. It requires a couple of files like <em>sun-javaws.xml</em> and the actual service. Since the application is running on a Servlet 3.0+ based server it does not require a <em>web.xml</em> file.</p>
+
+<h4 id="sun-javawsxml">sun-javaws.xml</h4>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;endpoints</span> <span class="na">version=</span><span class="s">"2.0"</span> <span class="na">xmlns=</span><span class="s">"http://java.sun.com/xml/ns/jax-ws/ri/runtime"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;endpoint</span> <span class="na">implementation=</span><span class="s">"com.bluelotussoftware.example.Simple"</span> <span class="na">name=</span><span class="s">"SimpleService"</span> <span class="na">url-pattern=</span><span class="s">"/*"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/endpoints&gt;</span>
+</code></pre></div></div>
+
+<h4 id="simplejava">Simple.java</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bluelotussoftware</span><span class="o">.</span><span class="na">example</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.jws.WebMethod</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.jws.WebService</span><span class="o">;</span>
+
+<span class="cm">/**
+ * A simple service that returns the current date when called.
+ *
+ * @author&lt;a href="mailto:jyeary@bluelotussoftware.com"&gt;John Yeary&lt;/a&gt;
+ * @version 1.0.0
+ */</span>
+<span class="nd">@WebService</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Simple</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * This operation returns the current date when it was run.
+     *
+     * @return current date.
+     */</span>
+    <span class="nd">@WebMethod</span><span class="o">(</span><span class="n">operationName</span> <span class="o">=</span> <span class="s">"getCurrentDate"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Date</span> <span class="nf">getCurrentDate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Date</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="summary">Summary</h3>
+
+<p>Implementing a JAX-WS service on embedded Apache Tomcat is simple to do. Using this techique will allow you to write unit tests (integration tests) that can improve your code quality.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>SPAMC and Java</title>
 	  <link>//2018-09-20-spamc-and-java.html</link>
 	  <author></author>
@@ -789,15 +903,144 @@ coffee, it is a nice little piece of code when you need it in a pinch.</p>
 	</item>
 
 	<item>
-	  <title>Code Publishing</title>
-	  <link>//2017-10-06-code-publishing.html</link>
+	  <title>j2html framework</title>
+	  <link>//2018-09-15-j2html-framework.html</link>
 	  <author></author>
-	  <pubDate>2017-10-06T20:30:26+00:00</pubDate>
-	  <guid>//2017-10-06-code-publishing.html</guid>
+	  <pubDate>2018-09-15T15:50:14+00:00</pubDate>
+	  <guid>//2018-09-15-j2html-framework.html</guid>
 	  <description><![CDATA[
-	     <p>I have so much code on my machine. All sorts of experiments, examples, etc. I am trying to publish it all so that I can clean up my computer. I think a lot of it could be helpful to others to boot.</p>
+	     <p>I had my first exposure to this fun and easy to use framework in Java Magazine - <a href="http://www.javamagazine.mozaicreader.com/JulyAugust2018/facebook#&amp;pageSet=27&amp;page=0&amp;contentItem=0&quot;">j2html: An HTML5 Generator Library</a>. I have to say that it is slick and easy for the most part. The more HTML you use… the more complex it becomes. However, if you need to output an error page, a login page on the fly, or simple pages to display information, this framework is hard to beat.</p>
 
-<p>Keep an eye on my technology blog <a href="https://javaevangelist.blogspot.com">Java Evangelist John Yeary</a> for code contributions.</p>
+<p>This example is from Java Magazine… You really need to read the well written article.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">example</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">j2html</span><span class="o">.</span><span class="na">TagCreator</span><span class="o">.*;</span>
+<span class="kn">import</span> <span class="nn">j2html.tags.Tag</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example3</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">output</span> <span class="o">=</span> <span class="n">form</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">withMethod</span><span class="o">(</span><span class="s">"post"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">with</span><span class="o">(</span>
+        <span class="n">genericInput</span><span class="o">(</span><span class="s">"text"</span><span class="o">,</span> <span class="s">"username"</span><span class="o">,</span> <span class="s">"Enter your Username"</span><span class="o">),</span>
+        <span class="n">genericInput</span><span class="o">(</span><span class="s">"password"</span><span class="o">,</span> <span class="s">"password"</span><span class="o">,</span> <span class="s">"Enter your password"</span><span class="o">),</span>
+        <span class="n">submitButton</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">renderFormatted</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">output</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Tag</span> <span class="nf">genericInput</span><span class="o">(</span><span class="nc">String</span> <span class="n">type</span><span class="o">,</span> <span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">String</span> <span class="n">placeholder</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">input</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">withType</span><span class="o">(</span><span class="n">type</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">withId</span><span class="o">(</span><span class="n">name</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">withPlaceholder</span><span class="o">(</span><span class="n">placeholder</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">isRequired</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Tag</span> <span class="nf">submitButton</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">button</span><span class="o">(</span><span class="s">"Login"</span><span class="o">).</span><span class="na">withType</span><span class="o">(</span><span class="s">"submit"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>A login page done programmatically. How slick is that? Read the article and share the love.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Netty and JAX-RS (Jersey)</title>
+	  <link>//2018-09-15-netty-and-jax-rs-jersey.html</link>
+	  <author></author>
+	  <pubDate>2018-09-15T15:21:52+00:00</pubDate>
+	  <guid>//2018-09-15-netty-and-jax-rs-jersey.html</guid>
+	  <description><![CDATA[
+	     <h3 id="introduction">Introduction</h3>
+
+<p>Netty and Jersey are a great combination for providing RESTful web services based on JAX-RS. Netty is designed for high-throughput, and Jersey is designed for ease of use. The example application below is an attempt to make demonstrate how to use these powerful technologies in short order.</p>
+
+<h3 id="code">Code</h3>
+
+<p>The following class can be re-used in your personal projects in in a simple manner.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bluelotussoftware</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">io.netty.channel.Channel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.URI</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.glassfish.jersey.netty.connector.NettyConnectorProvider</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.glassfish.jersey.netty.httpserver.NettyHttpContainerProvider</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.glassfish.jersey.server.ResourceConfig</span><span class="o">;</span>
+
+<span class="cm">/**
+ * A basic implementation of {@link NettyConnectorProvider} providing HTTP and HTTP/2 servers for the {@link URI} and
+ * resource classes provided.
+ *
+ * @author John Yeary &amp;lt;jyeary@bluelotussoftware.com&amp;gt;
+ * @version 1.0.0
+ */</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">NettyServerProviders</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Initializes a {@link NettyHttpContainerProvider} using the provided {@link URI} and resource classes with HTTP
+     * 1.1.
+     *
+     * @param baseURI The base URI to connect to the server.
+     * @param classes The resource classes to provide serve using this provider.
+     * @return A initialized Netty {@link Channel}.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Channel</span> <span class="nf">initializeNettyHttpServer</span><span class="o">(</span><span class="kd">final</span> <span class="nc">String</span> <span class="n">baseURI</span><span class="o">,</span> <span class="kd">final</span> <span class="nc">Class</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;?&amp;</span><span class="n">gt</span><span class="o">;...</span> <span class="n">classes</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="nc">ResourceConfig</span> <span class="n">rc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ResourceConfig</span><span class="o">(</span><span class="n">classes</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">NettyHttpContainerProvider</span><span class="o">.</span><span class="na">createServer</span><span class="o">(</span><span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">baseURI</span><span class="o">),</span> <span class="n">rc</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Initializes a {@link NettyHttpContainerProvider} using the provided {@link URI} and resource classes with HTTP/2.
+     *
+     * @param baseURI The base URI to connect to the server.
+     * @param classes The resource classes to provide serve using this provider.
+     * @return A initialized Netty {@link Channel}.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Channel</span> <span class="nf">initializeNettyHttp2Server</span><span class="o">(</span><span class="kd">final</span> <span class="nc">String</span> <span class="n">baseURI</span><span class="o">,</span> <span class="kd">final</span> <span class="nc">Class</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;?&amp;</span><span class="n">gt</span><span class="o">;...</span> <span class="n">classes</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="nc">ResourceConfig</span> <span class="n">rc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ResourceConfig</span><span class="o">(</span><span class="n">classes</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">NettyHttpContainerProvider</span><span class="o">.</span><span class="na">createHttp2Server</span><span class="o">(</span><span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">baseURI</span><span class="o">),</span> <span class="n">rc</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The implementation is just as easy.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="nc">Channel</span> <span class="n">httpServer</span> <span class="o">=</span> <span class="nc">NettyServerProviders</span><span class="o">.</span><span class="na">initializeNettyHttpServer</span><span class="o">(</span><span class="no">BASE_URI_HTTP</span><span class="o">,</span> <span class="nc">HelloResource</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>As you can see, we are providing it with a single resource class called <strong>HelloResource.class</strong>. However, the <strong>NettyServerProviders.class</strong> accepts an array of resource classses, so you can simply just add them as necessary,e.g.,<code class="highlighter-rouge">final Channel httpServer = NettyServerProviders.initializeNettyHttpServer(BASE_URI_HTTP, HelloResource.class, Resource2.class, Resource3.class, Resource4.class);</code></p>
+
+<h3 id="project">Project</h3>
+
+<p>The application can be downloaded from Github here: <a href="https://github.com/jyeary/jersey-netty-service">jersey-netty-service</a>.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Useful Java Frameworks</title>
+	  <link>//2018-09-07-useful-java-frameworks.html</link>
+	  <author></author>
+	  <pubDate>2018-09-07T10:18:30+00:00</pubDate>
+	  <guid>//2018-09-07-useful-java-frameworks.html</guid>
+	  <description><![CDATA[
+	     <p>I am providing a list of really cool and easy to use frameworks to make your coding easier in Java. I will keep updating this as I move along. Here are a few to get you started.</p>
+
+<h3 id="frameworks">Frameworks</h3>
+
+<ul>
+  <li><a href="https://projectlombok.org/">Project Lombok</a> - This framework makes it easier to create classes and focus on the important parts of the code. It removes a significant amount of plumbing and makes it easier to read your code.</li>
+  <li><a href="http://jcommander.org/">JCommander</a> - The project quote says it all… <strong>“Because life is too short to parse command line parameters”</strong>. This is an alternative to using <a href="https://commons.apache.org/proper/commons-cli/">Apache Commons CLI</a> that is much easier to implement and use. It is annotation based.</li>
+  <li><a href="http://www.vavr.io/">vavr</a> - A framework that assists in using Collections API in a more useful and functional way.</li>
+  <li><a href="https://j2html.com/">j2html</a> - A <strong>“Fast and fluent Java HTML5 builder”</strong>. Very nicely implemented and easy to use.</li>
+  <li><a href="https://github.com/json-path/JsonPath">JsonPath</a> - A Java DSL for reading JSON documents. This makes processing JSON documents easy. It can be used in conjunction with Gson and Jackson to do JSON-Object mapping.</li>
+</ul>
+
 
 	  ]]></description>
 	</item>

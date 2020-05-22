@@ -752,6 +752,120 @@ this month. Once I am back to being healthy, I will achieve this goal.</p>
 	</item>
 
 	<item>
+	  <title>JAX-WS on Tomcat</title>
+	  <link>//2018-11-09-jax-ws-on-tomcat.html</link>
+	  <author></author>
+	  <pubDate>2018-11-09T11:18:37+00:00</pubDate>
+	  <guid>//2018-11-09-jax-ws-on-tomcat.html</guid>
+	  <description><![CDATA[
+	     <h3 id="introduction">Introduction</h3>
+
+<p>I was recently tasked with looking into an issue on Embedded Apache Tomcat 8 where a JAX-WS service was installed. It looks like the services were originally written for Java 5 and JAX-WS 2.1. Before making any changes to the existing implementation, I wanted to check on the latest versions and see what might be different and cause a conflict. I know that the JRE includes later versions of JAX-WS and thought that might be the source of the issue. It turns out that it was not. It was something completely different. However, the exploration into how to make JAX-WS work on Embedded Apache Tomcat 8 was still worth publishing.</p>
+
+<h3 id="embedded-tomcat">Embedded Tomcat</h3>
+
+<p>I have a number of projects on Github for Apache Tomcat. They can be found in the list below:</p>
+<ul>
+  <li><a href="https://github.com/jyeary/tomcat-8-jaxws">tomcat-8-jaxws</a> - This example.</li>
+  <li><a href="https://github.com/jyeary/tomcat-8-embedded">tomcat-8-embedded</a></li>
+  <li><a href="https://github.com/jyeary/tomcat-9-embedded">tomcat-9-embedded</a></li>
+  <li><a href="https://github.com/bluelotussoftware/tomcat-security-valves">tomcat-security-valves</a> - If you are using embedded Tomcat and you want to be secure, you should look at these valves. They are also published on Maven Central and available in Maven.</li>
+</ul>
+
+<p>The code for our example using JAX-WS will be using a war file with a simple JAX-WS service that returns the current date.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bluelotussoftware</span><span class="o">.</span><span class="na">tomcat</span><span class="o">.</span><span class="na">embedded</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.servlet.ServletException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.catalina.Host</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.catalina.LifecycleException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.catalina.startup.Tomcat</span><span class="o">;</span>
+
+<span class="cm">/**
+ * An Example Embedded Apache Tomcat with an JAX-WS service 
+ *
+ * @author John Yeary &lt;jyeary@bluelotussoftware.com&gt;
+ * @version 1.0.0
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Main method.
+     *
+     * @param args command line arguments passed to the application. Currently unused.
+     * @throws LifecycleException If a life cycle exception occurs.
+     * @throws InterruptedException If the application is interrupted while waiting for requests.
+     * @throws ServletException If the servlet handling the response has an exception.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
+            <span class="kd">throws</span> <span class="nc">LifecycleException</span><span class="o">,</span> <span class="nc">InterruptedException</span><span class="o">,</span> <span class="nc">ServletException</span> <span class="o">{</span>
+        <span class="nc">Tomcat</span> <span class="n">tomcat</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tomcat</span><span class="o">();</span>
+        <span class="n">tomcat</span><span class="o">.</span><span class="na">setPort</span><span class="o">(</span><span class="mi">8080</span><span class="o">);</span>
+        <span class="n">tomcat</span><span class="o">.</span><span class="na">setBaseDir</span><span class="o">(</span><span class="s">"target/tomcat"</span><span class="o">);</span>
+        <span class="nc">Host</span> <span class="n">host</span> <span class="o">=</span> <span class="n">tomcat</span><span class="o">.</span><span class="na">getHost</span><span class="o">();</span>
+        <span class="n">host</span><span class="o">.</span><span class="na">setAppBase</span><span class="o">(</span><span class="s">"."</span><span class="o">);</span>
+        <span class="n">host</span><span class="o">.</span><span class="na">setAutoDeploy</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">host</span><span class="o">.</span><span class="na">setDeployOnStartup</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="nc">File</span> <span class="n">ws</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"src/test/resources/simple-jaxws-1.0.0.war"</span><span class="o">);</span>
+        <span class="n">tomcat</span><span class="o">.</span><span class="na">addWebapp</span><span class="o">(</span><span class="n">host</span><span class="o">,</span> <span class="s">""</span><span class="o">,</span> <span class="n">ws</span><span class="o">.</span><span class="na">getAbsolutePath</span><span class="o">());</span>
+        <span class="n">tomcat</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="n">tomcat</span><span class="o">.</span><span class="na">getServer</span><span class="o">().</span><span class="na">await</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This will start the application when you run it on (http://localhost:8080) and sets the default application to the base directory. It is very simple to setup and use.</p>
+
+<h3 id="simpleservice">SimpleService</h3>
+
+<p>The service that is exposed can be found in the <a href="https://github.com/jyeary/simple-jaxws">simple-jaxws</a> project. It requires a couple of files like <em>sun-javaws.xml</em> and the actual service. Since the application is running on a Servlet 3.0+ based server it does not require a <em>web.xml</em> file.</p>
+
+<h4 id="sun-javawsxml">sun-javaws.xml</h4>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;endpoints</span> <span class="na">version=</span><span class="s">"2.0"</span> <span class="na">xmlns=</span><span class="s">"http://java.sun.com/xml/ns/jax-ws/ri/runtime"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;endpoint</span> <span class="na">implementation=</span><span class="s">"com.bluelotussoftware.example.Simple"</span> <span class="na">name=</span><span class="s">"SimpleService"</span> <span class="na">url-pattern=</span><span class="s">"/*"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/endpoints&gt;</span>
+</code></pre></div></div>
+
+<h4 id="simplejava">Simple.java</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bluelotussoftware</span><span class="o">.</span><span class="na">example</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.jws.WebMethod</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.jws.WebService</span><span class="o">;</span>
+
+<span class="cm">/**
+ * A simple service that returns the current date when called.
+ *
+ * @author&lt;a href="mailto:jyeary@bluelotussoftware.com"&gt;John Yeary&lt;/a&gt;
+ * @version 1.0.0
+ */</span>
+<span class="nd">@WebService</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Simple</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * This operation returns the current date when it was run.
+     *
+     * @return current date.
+     */</span>
+    <span class="nd">@WebMethod</span><span class="o">(</span><span class="n">operationName</span> <span class="o">=</span> <span class="s">"getCurrentDate"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">Date</span> <span class="nf">getCurrentDate</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Date</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="summary">Summary</h3>
+
+<p>Implementing a JAX-WS service on embedded Apache Tomcat is simple to do. Using this techique will allow you to write unit tests (integration tests) that can improve your code quality.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>SPAMC and Java</title>
 	  <link>//2018-09-20-spamc-and-java.html</link>
 	  <author></author>
@@ -867,66 +981,6 @@ coffee, it is a nice little piece of code when you need it in a pinch.</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="o">(</span><span class="nc">ByteArrayOutputStream</span> <span class="n">baos</span> <span class="o">=</span> <span class="o">...)</span> <span class="o">{</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">baos</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="nc">StandardCharsets</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">.</span><span class="na">name</span><span class="o">()));</span>
 <span class="o">}</span>
 </code></pre></div></div>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>Patriotism</title>
-	  <link>//2018-07-04-patriotism.html</link>
-	  <author></author>
-	  <pubDate>2018-07-04T13:48:50+00:00</pubDate>
-	  <guid>//2018-07-04-patriotism.html</guid>
-	  <description><![CDATA[
-	     <h3 id="independence-day">Independence Day…</h3>
-
-<p>I think most Americans will celebrate with food, fireworks, and perhaps some beverages (adult or otherwise. The historical context is lost to many.</p>
-
-<p>Beer and barbecues have made this a classic for summer. Most families plan holidays around this date and it has become one less day of vacation charged against them for the year.</p>
-
-<p>Let me tell you a little story of Dave and Goliath. On July 2nd, 1776, a group of what we would later call “Patriots” decided to declare independence from Great Britain. Two days later, the rebellion was on. The delegates from the 13 colonies signed the Declaration of Independence. Thirteen colonies against “The Empire”; like I said David vs. Goliath.</p>
-
-<p>Fortunately for a number of events at the time, and the distance of the colonies from Britain, our fledgling rebellion had a chance. Today we know that was more than a mere chance, but to our Founding Fathers it was as likely to fail as succeed. Failure they understood would have them hanging from trees and gallows across the colonies. It meant that their families would be punished, and their fortunes ruined. This was a huge risk.</p>
-
-<h3 id="the-birth-of-a-nation">The Birth of a Nation</h3>
-
-<p>Fortunately, our Founding Fathers had a number of things going for them that made them more than just rebellious traitors. They were on the whole very bright, well educated, thoughtful, introspective, and surprisingly forward thinking. These men, who form a well known circle in American thinking, were Thomas Jefferson, John Adams, and Benjamin Franklin. Thomas Jefferson being the primary author of the Declaration of Independence is considered with a special regards.</p>
-
-<p>The preceding conflicts in 1775 and subsequent American Revolution made The Declaration of Independence more than just ink on paper; it cost real lives. It was really America’s first civil war. Remember we were all citizens of the crown. There were friends and family on both sides of this conflict just as in the later Civil War.</p>
-
-<p>Success and luck on the battlefield with the assistance of the French turned the paper tiger of ink to the reality we have today.</p>
-
-<p>Let me ask you a question for your own reflection. Would you be willing to sacrifice your life, and more importantly that of your families for an idea? An untested, and unproven idea to say the least.</p>
-
-<h3 id="what-does-it-mean-to-be-patriotic">What does it mean to be patriotic?</h3>
-
-<p>It means believing in the rule of law. It means that if you don’t like the laws: change them. There is a place for civil disobedience, but in the context of a legal framework.</p>
-
-<p>It means exercising your right to vote. If you don’t vote, you have disenfranchised yourself. You can complain about your politicians, it is your right to do so. However if you didn’t vote, you are responsible for your own fate.</p>
-
-<p>It means challenging your government. We have become complacent in accepting double speak from our elected officials. Why do politicians need spokespeople? Shouldn’t they be able to tell you what they think? You should hold them suspect for having public relations and spokespeople. It means they are interested in public perception and not public action.</p>
-
-<p>We honor our soldiers and sailors. We should. However, uniformed members of Immigration and Customs Enforcement (ICE) should be deserving of our respect as well. They are trying to do their jobs in a volatile and heated political environment. The majority of them, like members of our uniformed services, are good and decent people with very difficult jobs. Don’t deride a person’s job if you wouldn’t be willing to do it yourself. <strong>Think garbage man</strong>.</p>
-
-<p>It means standing for our flag even if you are angry with your government. It is a symbol of <strong>YOUR</strong> freedom and an ideal that many people before and after you will make the ultimate sacrifice to ensure.</p>
-
-<p>It is <strong>OUR</strong> Constitution that gives you rights. Consider it on the basis of Life, Liberty, and the Pursuit of Happiness, and keep it close to your buxom. Read it yourself.</p>
-
-<p>I am sure many of you can offer your own suggestions of what it means to be patriotic.</p>
-
-<h3 id="historical-interest">Historical Interest</h3>
-
-<ul>
-  <li>John Adams told his wife Abigail that July 2nd would be celebrated as the day of independence. He refused to accept the 4th as the date, and would not celebrate it.</li>
-  <li>Thomas Jefferson and John Adams died on July 4th 1826. Fifty years to the date of the signing of The Declaration of Independence.</li>
-  <li>The first celebrations were mock funerals of King George III.</li>
-  <li>It became a Federal Holiday in 1870. Seventy-One years later, it became a paid holiday for Federal employees in 1941. This was just before our entrance into another war in which we were Allies with our former colonial rulers.</li>
-  <li>At the end of the American Revolution, there were two primary political parties: Federalist and humorously today: Democratic-Republicans. We could only hope for such a middle of the isle centrist ruling coalition today.</li>
-</ul>
-
-<h3 id="final-thoughts">Final Thoughts</h3>
-
-<p>On the 4th, when you are enjoying your overcooked hotdog, hoist up your sun burned hand, and toast a cold beer to these brave citizens that gave you the freedom you have today.</p>
 
 	  ]]></description>
 	</item>

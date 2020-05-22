@@ -117,6 +117,126 @@
 	</item>
 
 	<item>
+	  <title>j2html framework</title>
+	  <link>//2018-09-15-j2html-framework.html</link>
+	  <author></author>
+	  <pubDate>2018-09-15T15:50:14+00:00</pubDate>
+	  <guid>//2018-09-15-j2html-framework.html</guid>
+	  <description><![CDATA[
+	     <p>I had my first exposure to this fun and easy to use framework in Java Magazine - <a href="http://www.javamagazine.mozaicreader.com/JulyAugust2018/facebook#&amp;pageSet=27&amp;page=0&amp;contentItem=0&quot;">j2html: An HTML5 Generator Library</a>. I have to say that it is slick and easy for the most part. The more HTML you use… the more complex it becomes. However, if you need to output an error page, a login page on the fly, or simple pages to display information, this framework is hard to beat.</p>
+
+<p>This example is from Java Magazine… You really need to read the well written article.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">example</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">j2html</span><span class="o">.</span><span class="na">TagCreator</span><span class="o">.*;</span>
+<span class="kn">import</span> <span class="nn">j2html.tags.Tag</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example3</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">output</span> <span class="o">=</span> <span class="n">form</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">withMethod</span><span class="o">(</span><span class="s">"post"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">with</span><span class="o">(</span>
+        <span class="n">genericInput</span><span class="o">(</span><span class="s">"text"</span><span class="o">,</span> <span class="s">"username"</span><span class="o">,</span> <span class="s">"Enter your Username"</span><span class="o">),</span>
+        <span class="n">genericInput</span><span class="o">(</span><span class="s">"password"</span><span class="o">,</span> <span class="s">"password"</span><span class="o">,</span> <span class="s">"Enter your password"</span><span class="o">),</span>
+        <span class="n">submitButton</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">renderFormatted</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">output</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Tag</span> <span class="nf">genericInput</span><span class="o">(</span><span class="nc">String</span> <span class="n">type</span><span class="o">,</span> <span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">String</span> <span class="n">placeholder</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">input</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">withType</span><span class="o">(</span><span class="n">type</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">withId</span><span class="o">(</span><span class="n">name</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">withPlaceholder</span><span class="o">(</span><span class="n">placeholder</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">isRequired</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Tag</span> <span class="nf">submitButton</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">button</span><span class="o">(</span><span class="s">"Login"</span><span class="o">).</span><span class="na">withType</span><span class="o">(</span><span class="s">"submit"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>A login page done programmatically. How slick is that? Read the article and share the love.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Netty and JAX-RS (Jersey)</title>
+	  <link>//2018-09-15-netty-and-jax-rs-jersey.html</link>
+	  <author></author>
+	  <pubDate>2018-09-15T15:21:52+00:00</pubDate>
+	  <guid>//2018-09-15-netty-and-jax-rs-jersey.html</guid>
+	  <description><![CDATA[
+	     <h3 id="introduction">Introduction</h3>
+
+<p>Netty and Jersey are a great combination for providing RESTful web services based on JAX-RS. Netty is designed for high-throughput, and Jersey is designed for ease of use. The example application below is an attempt to make demonstrate how to use these powerful technologies in short order.</p>
+
+<h3 id="code">Code</h3>
+
+<p>The following class can be re-used in your personal projects in in a simple manner.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bluelotussoftware</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">io.netty.channel.Channel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.URI</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.glassfish.jersey.netty.connector.NettyConnectorProvider</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.glassfish.jersey.netty.httpserver.NettyHttpContainerProvider</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.glassfish.jersey.server.ResourceConfig</span><span class="o">;</span>
+
+<span class="cm">/**
+ * A basic implementation of {@link NettyConnectorProvider} providing HTTP and HTTP/2 servers for the {@link URI} and
+ * resource classes provided.
+ *
+ * @author John Yeary &amp;lt;jyeary@bluelotussoftware.com&amp;gt;
+ * @version 1.0.0
+ */</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">NettyServerProviders</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Initializes a {@link NettyHttpContainerProvider} using the provided {@link URI} and resource classes with HTTP
+     * 1.1.
+     *
+     * @param baseURI The base URI to connect to the server.
+     * @param classes The resource classes to provide serve using this provider.
+     * @return A initialized Netty {@link Channel}.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Channel</span> <span class="nf">initializeNettyHttpServer</span><span class="o">(</span><span class="kd">final</span> <span class="nc">String</span> <span class="n">baseURI</span><span class="o">,</span> <span class="kd">final</span> <span class="nc">Class</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;?&amp;</span><span class="n">gt</span><span class="o">;...</span> <span class="n">classes</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="nc">ResourceConfig</span> <span class="n">rc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ResourceConfig</span><span class="o">(</span><span class="n">classes</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">NettyHttpContainerProvider</span><span class="o">.</span><span class="na">createServer</span><span class="o">(</span><span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">baseURI</span><span class="o">),</span> <span class="n">rc</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Initializes a {@link NettyHttpContainerProvider} using the provided {@link URI} and resource classes with HTTP/2.
+     *
+     * @param baseURI The base URI to connect to the server.
+     * @param classes The resource classes to provide serve using this provider.
+     * @return A initialized Netty {@link Channel}.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Channel</span> <span class="nf">initializeNettyHttp2Server</span><span class="o">(</span><span class="kd">final</span> <span class="nc">String</span> <span class="n">baseURI</span><span class="o">,</span> <span class="kd">final</span> <span class="nc">Class</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;?&amp;</span><span class="n">gt</span><span class="o">;...</span> <span class="n">classes</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="nc">ResourceConfig</span> <span class="n">rc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ResourceConfig</span><span class="o">(</span><span class="n">classes</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">NettyHttpContainerProvider</span><span class="o">.</span><span class="na">createHttp2Server</span><span class="o">(</span><span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">baseURI</span><span class="o">),</span> <span class="n">rc</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The implementation is just as easy.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="nc">Channel</span> <span class="n">httpServer</span> <span class="o">=</span> <span class="nc">NettyServerProviders</span><span class="o">.</span><span class="na">initializeNettyHttpServer</span><span class="o">(</span><span class="no">BASE_URI_HTTP</span><span class="o">,</span> <span class="nc">HelloResource</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>As you can see, we are providing it with a single resource class called <strong>HelloResource.class</strong>. However, the <strong>NettyServerProviders.class</strong> accepts an array of resource classses, so you can simply just add them as necessary,e.g.,<code class="highlighter-rouge">final Channel httpServer = NettyServerProviders.initializeNettyHttpServer(BASE_URI_HTTP, HelloResource.class, Resource2.class, Resource3.class, Resource4.class);</code></p>
+
+<h3 id="project">Project</h3>
+
+<p>The application can be downloaded from Github here: <a href="https://github.com/jyeary/jersey-netty-service">jersey-netty-service</a>.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Apache Archiva on Docker</title>
 	  <link>//2018-03-09-apache-archiva-on-docker.html</link>
 	  <author></author>
@@ -194,57 +314,6 @@ sleep 18 hours in a 72 hour period.</p>
 for blogging, or much of anything unless it is just pure testing. This
 weekend I will need to see about migrating again, but this time perhaps
 to Google Cloud.</p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>Wordpress on OpenShift 2</title>
-	  <link>//2017-08-10-hello-world.html</link>
-	  <author></author>
-	  <pubDate>2017-08-10T17:14:30+00:00</pubDate>
-	  <guid>//2017-08-10-hello-world.html</guid>
-	  <description><![CDATA[
-	     <p>This is my attempt to get Wordpress running on OpenShift 2 using 2 gears. I would like to migrate my personal blog for John Yeary from Blogger to another blogging platform so that I have more control of the
-layout, and appearance. So I backed up the data from Blogger and used the import tool and it seems to have worked more amazingly than I could have imagined.</p>
-
-<p>Connecting to the MySQL database on the gear requires a little more finesse since it is not exposed publicly. Great for security, but not so great for getting remote access. I used the <code class="highlighter-rouge">rhc port-forward</code> command to accomplish the task.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rhc port-forward -a &lt;application-name&gt;
-</code></pre></div></div>
-
-<p>Here are the items that I see remaining:</p>
-
-<ul>
-  <li><del>Perform the same operations on a test blog, and see if blogger will forward requests correctly.</del></li>
-  <li><del>Check permlinks to ensure that they still work.</del></li>
-  <li><del>Setup SSL.</del></li>
-  <li><del>Move media from the gear to cloud storage.</del></li>
-  <li><del>Backup and restore database.</del></li>
-  <li><del>Install Wordpress on another platform and use a newer version of MySQL to see if there are any issues.</del></li>
-  <li><del>Add Google Adsense to see if they work.</del></li>
-  <li><del>Test Amazon Associate links.</del></li>
-  <li><del>Update Amazon Associates links.</del></li>
-  <li><del>Add SSO Login API for Disqus</del></li>
-  <li><del>Fix broken links on posts.</del></li>
-</ul>
-
-<p>So far it has worked. The blog is running on a 2 gears with a load balancer. I have migrated the blog. I still need to Adsense, and update Amazon Associates links.</p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>A new Blogging Platform with Github Pages</title>
-	  <link>//2015-04-02-a-new-blog-site.html</link>
-	  <author></author>
-	  <pubDate>2015-04-02T00:00:00+00:00</pubDate>
-	  <guid>//2015-04-02-a-new-blog-site.html</guid>
-	  <description><![CDATA[
-	     <p>I am looking at exporting my pages from Blogger to a platform where I can have more control over the layout. If this <em>endeavor</em>
-works, I will look at moving my crown jewel from Blogger too.</p>
-
-<p>I want to explore how difficult it is to get this setup and working effectively.</p>
 
 	  ]]></description>
 	</item>

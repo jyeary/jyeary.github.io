@@ -113,6 +113,21 @@
     
       
       <item>
+        <title>JAX-WS on Tomcat</title>
+        
+          <description>&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+
+</description>
+        
+        <pubDate>Fri, 09 Nov 2018 11:18:37 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2018-11-09-jax-ws-on-tomcat.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2018-11-09-jax-ws-on-tomcat.html</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>SPAMC and Java</title>
         
           <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
@@ -138,6 +153,51 @@
         <link>
         https://johnyeary.com/2018-09-20-java-tip-of-the-day-standardcharsets.html</link>
         <guid isPermaLink="true">https://johnyeary.com/2018-09-20-java-tip-of-the-day-standardcharsets.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>j2html framework</title>
+        
+          <description>&lt;p&gt;I had my first exposure to this fun and easy to use framework in Java Magazine - &lt;a href=&quot;http://www.javamagazine.mozaicreader.com/JulyAugust2018/facebook#&amp;amp;pageSet=27&amp;amp;page=0&amp;amp;contentItem=0&amp;quot;&quot;&gt;j2html: An HTML5 Generator Library&lt;/a&gt;. I have to say that it is slick and easy for the most part. The more HTML you use… the more complex it becomes. However, if you need to output an error page, a login page on the fly, or simple pages to display information, this framework is hard to beat.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 15 Sep 2018 15:50:14 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2018-09-15-j2html-framework.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2018-09-15-j2html-framework.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Netty and JAX-RS (Jersey)</title>
+        
+          <description>&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+
+</description>
+        
+        <pubDate>Sat, 15 Sep 2018 15:21:52 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2018-09-15-netty-and-jax-rs-jersey.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2018-09-15-netty-and-jax-rs-jersey.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Useful Java Frameworks</title>
+        
+          <description>&lt;p&gt;I am providing a list of really cool and easy to use frameworks to make your coding easier in Java. I will keep updating this as I move along. Here are a few to get you started.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 07 Sep 2018 10:18:30 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2018-09-07-useful-java-frameworks.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2018-09-07-useful-java-frameworks.html</guid>
       </item>
       
     
@@ -247,6 +307,21 @@ layout, and appearance. So I backed up the data from Blogger and used the import
         <link>
         https://johnyeary.com/2017-08-10-hello-world.html</link>
         <guid isPermaLink="true">https://johnyeary.com/2017-08-10-hello-world.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Boeing Tanker KC-46 Cleared by Pentagon</title>
+        
+          <description>&lt;p&gt;The controversial Boeing KC-46 Refueling Tanker has finally cleared the Pentagon’s testing and contract awarding process on the 15th of August 2016. The U.S. Air Force will issue the initial contract within the next 30 days to begin the construction of 19 KC-46 aircraft.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 18 Aug 2016 17:44:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2016-08-18-boeing-tanker-kc-46-cleared-by-pentagon.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2016-08-18-boeing-tanker-kc-46-cleared-by-pentagon.html</guid>
       </item>
       
     
