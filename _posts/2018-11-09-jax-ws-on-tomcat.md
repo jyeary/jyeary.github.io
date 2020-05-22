@@ -1,6 +1,6 @@
 ---
 layout: post
-cover: 'assets/images/pexels-photo-279844.jpg'
+cover: 'assets/images/pexels-photo-1209925.jpg'
 logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
