@@ -24,12 +24,17 @@ For option **2)** you will need to set up travis-ci for your personal fork. Brie
 
 ### Docker
 
-You can pull the source from the repository using any branch, but the default (master) and then do the following to build and test it befor deploying.
+You can pull the source from the repository using any branch, but the default (master) and then do the following to build and test it before deploying.
 
 ```
-docker container run -it -p 4000:4000 -v $PWD:/blog ruby:2.6.6 /bin/bash
+docker container run -it --rm -p 4000:4000 -v $PWD:/blog ruby:2.6.6 /bin/bash
 ```
-
+```
+cd /blog && \
+gem install bundler jekyll && \
+bundle install && \
+bundle exec jekyll serve
+```
 
 ### Author pages
 
