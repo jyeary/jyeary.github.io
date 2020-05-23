@@ -14,7 +14,7 @@ subclass: 'post tag-java'
 ## Introduction
 I was cleaning up my hard drive when I came across another simple and easy to use SMTP client using plain Java (no frameworks required). This was written originally written in 2004 with just some minor updates prior to publishing here.
 
-# Code
+## Code
 
 ```java
 /*
