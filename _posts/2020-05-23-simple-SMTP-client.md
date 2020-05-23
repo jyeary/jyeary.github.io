@@ -5,7 +5,7 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
-date: 2020-05-023 00:00:00+00:00
+date: 2020-05-23 00:00:00+00:00
 title: Simple SMTP Client
 categories: jyeary
 tags: java
