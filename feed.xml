@@ -8,6 +8,22 @@
     
       
       <item>
+        <title>Simple SMTP Client</title>
+        
+          <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;I was cleaning up my hard drive when I came across another simple and easy to use SMTP client using plain Java (no frameworks required). This was written originally written in 2004 with just some minor updates prior to publishing here.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 23 May 2020 00:00:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2020-05-23-simple-SMTP-client.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2020-05-23-simple-SMTP-client.html</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Apache FTP Client... A Found Surprise</title>
         
           <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;

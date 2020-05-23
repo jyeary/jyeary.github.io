@@ -12,6 +12,376 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>Simple SMTP Client</title>
+	  <link>//2020-05-23-simple-SMTP-client.html</link>
+	  <author></author>
+	  <pubDate>2020-05-23T00:00:00+00:00</pubDate>
+	  <guid>//2020-05-23-simple-SMTP-client.html</guid>
+	  <description><![CDATA[
+	     <h2 id="introduction">Introduction</h2>
+<p>I was cleaning up my hard drive when I came across another simple and easy to use SMTP client using plain Java (no frameworks required). This was written originally written in 2004 with just some minor updates prior to publishing here.</p>
+
+<h1 id="code">Code</h1>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
+ * SimpleTextMessage.java
+ *
+ * Created on August 7, 2004, 7:46 PM
+ */</span>
+
+<span class="cm">/*
+ * Copyright (C) 2004 JavaNetwork, LLC. All Rights Reserved.
+ * Copyright (C) 2004-2020 Blue Lotus Holdings, LLC. All Rights Reserved.
+ *
+ * This software is provided "AS IS," without a warranty of any kind. ALL
+ * EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES,
+ * INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. Blue Lotus Software AND
+ * ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES OR LIABILITIES
+ * SUFFERED BY LICENSEE AS A RESULT OF  OR RELATING TO USE, MODIFICATION
+ * OR DISTRIBUTION OF THE SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL
+ * Blue Lotus Software OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR
+ * FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE
+ * DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY,
+ * ARISING OUT OF THE USE OF OR INABILITY TO USE SOFTWARE, EVEN IF Blue Lotus Software HAS
+ * BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ *
+ * You acknowledge that Software is not designed, licensed or intended
+ * for use in the design, construction, operation or maintenance of any
+ * nuclear facility.
+ */</span>
+
+<span class="kn">package</span> <span class="n">net</span><span class="o">.</span><span class="na">javanetwork</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">smtp</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.sun.mail.smtp.SMTPAddressSucceededException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.sun.mail.smtp.SMTPMessage</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.sun.mail.smtp.SMTPSendFailedException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.sun.mail.smtp.SMTPTransport</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Properties</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.activation.DataHandler</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.mail.Message</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.mail.MessagingException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.mail.Session</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.mail.internet.InternetAddress</span><span class="o">;</span>
+
+<span class="cm">/**
+ * @author John Yeary
+ * @version 0.1
+ */</span>
+
+<span class="cm">/**
+ * Creates a simple single part RFC822 text message.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleTextMessage</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">auth</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">user</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">smtphost</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">InternetAddress</span> <span class="n">from</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">cc</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">bcc</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">subject</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">message</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Properties</span> <span class="n">props</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">SMTPMessage</span> <span class="n">msg</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">SMTPTransport</span> <span class="n">t</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">DataHandler</span> <span class="n">dh</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+    <span class="cm">/**
+     * Constructs a new instance of SimpleTextMessage with the specified SMTP
+     * mail server that requires user authorization. It also has a flag to turn
+     * on verbose output (default is false).
+     *
+     * @param smtphost SMTP mail host
+     * @param user user name for authorization
+     * @param password password
+     * @param from sender
+     * @param to recipient addresses
+     * @param subject subject
+     * @param message text of the message
+     * @param verbose boolean flag to turn on verbose output
+     */</span>
+    <span class="kd">public</span> <span class="nf">SimpleTextMessage</span><span class="o">(</span><span class="nc">String</span> <span class="n">smtphost</span><span class="o">,</span> <span class="nc">String</span> <span class="n">user</span><span class="o">,</span> <span class="nc">String</span> <span class="n">password</span><span class="o">,</span> <span class="nc">InternetAddress</span> <span class="n">from</span><span class="o">,</span>
+            <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span><span class="o">,</span> <span class="nc">String</span> <span class="n">subject</span><span class="o">,</span> <span class="nc">String</span> <span class="n">message</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">smtphost</span> <span class="o">=</span> <span class="n">smtphost</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">user</span> <span class="o">=</span> <span class="n">user</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">password</span> <span class="o">=</span> <span class="n">password</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">from</span> <span class="o">=</span> <span class="n">from</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">to</span> <span class="o">=</span> <span class="n">to</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">subject</span> <span class="o">=</span> <span class="n">subject</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">message</span> <span class="o">=</span> <span class="n">message</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">verbose</span> <span class="o">=</span> <span class="n">verbose</span><span class="o">;</span>
+
+        <span class="n">auth</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+
+        <span class="n">props</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">getProperties</span><span class="o">();</span>
+        <span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"mail.smtp.host"</span><span class="o">,</span> <span class="n">smtphost</span><span class="o">);</span>
+        <span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"mail.smtp.sendpartial"</span><span class="o">,</span> <span class="nc">Boolean</span><span class="o">.</span><span class="na">TRUE</span><span class="o">);</span>
+        <span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"mail.smtp.dsn.notify"</span><span class="o">,</span> <span class="s">"SUCCESS,FAILURE"</span><span class="o">);</span>
+        <span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"mail.smtp.dsn.ret"</span><span class="o">,</span> <span class="s">"FULL"</span><span class="o">);</span>
+        <span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"mail.smtp.reportsuccess"</span><span class="o">,</span> <span class="nc">Boolean</span><span class="o">.</span><span class="na">TRUE</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Constructs a new instance of SimpleTextMessage with the specified SMTP
+     * mail server that requires user authorization. It also has a flag to turn
+     * on verbose output (default is false).
+     *
+     * @param smtphost SMTP mail host
+     * @param user user name for authorization
+     * @param password password
+     * @param from sender
+     * @param to recipient addresses
+     * @param cc carbon copy recipient addresses
+     * @param subject subject
+     * @param message text of the message
+     * @param verbose boolean flag to turn on verbose output
+     */</span>
+    <span class="kd">public</span> <span class="nf">SimpleTextMessage</span><span class="o">(</span><span class="nc">String</span> <span class="n">smtphost</span><span class="o">,</span> <span class="nc">String</span> <span class="n">user</span><span class="o">,</span> <span class="nc">String</span> <span class="n">password</span><span class="o">,</span> <span class="nc">InternetAddress</span> <span class="n">from</span><span class="o">,</span>
+            <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span><span class="o">,</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">cc</span><span class="o">,</span> <span class="nc">String</span> <span class="n">subject</span><span class="o">,</span> <span class="nc">String</span> <span class="n">message</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">smtphost</span><span class="o">,</span> <span class="n">user</span><span class="o">,</span> <span class="n">password</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span> <span class="n">subject</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">verbose</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">cc</span> <span class="o">=</span> <span class="n">cc</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Constructs a new instance of SimpleTextMessage with the specified SMTP
+     * mail server that requires user authorization. It also has a flag to turn
+     * on verbose output (default is false).
+     *
+     * @param smtphost SMTP mail host
+     * @param user user name for authorization
+     * @param password password
+     * @param from sender
+     * @param to recipient addresses
+     * @param cc carbon copy recipient addresses
+     * @param bcc blind carbon copy recipient addresses
+     * @param subject subject
+     * @param message text of the message
+     * @param auth
+     * @param verbose boolean flag to turn on verbose output
+     */</span>
+    <span class="kd">public</span> <span class="nf">SimpleTextMessage</span><span class="o">(</span><span class="nc">String</span> <span class="n">smtphost</span><span class="o">,</span> <span class="nc">String</span> <span class="n">user</span><span class="o">,</span> <span class="nc">String</span> <span class="n">password</span><span class="o">,</span> <span class="nc">InternetAddress</span> <span class="n">from</span><span class="o">,</span>
+            <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span><span class="o">,</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">cc</span><span class="o">,</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">bcc</span><span class="o">,</span> <span class="nc">String</span> <span class="n">subject</span><span class="o">,</span> <span class="nc">String</span> <span class="n">message</span><span class="o">,</span>
+            <span class="kt">boolean</span> <span class="n">auth</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">smtphost</span><span class="o">,</span> <span class="n">user</span><span class="o">,</span> <span class="n">password</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span> <span class="n">cc</span><span class="o">,</span> <span class="n">subject</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">verbose</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">bcc</span> <span class="o">=</span> <span class="n">bcc</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Constructs a new instance of SimpleTextMessage with the specified SMTP
+     * mail server that requires user authorization. It also has a flag to turn
+     * on verbose output (default is false).
+     *
+     * @param smtphost SMTP mail host
+     * @param user user name for authorization
+     * @param password password
+     * @param from sender
+     * @param to recipient addresses
+     * @param bcc blind carbon copy recipient addresses
+     * @param subject subject
+     * @param message text of the message
+     * @param auth
+     * @param verbose boolean flag to turn on verbose output
+     */</span>
+    <span class="kd">public</span> <span class="nf">SimpleTextMessage</span><span class="o">(</span><span class="nc">String</span> <span class="n">smtphost</span><span class="o">,</span> <span class="nc">String</span> <span class="n">user</span><span class="o">,</span> <span class="nc">String</span> <span class="n">password</span><span class="o">,</span> <span class="nc">InternetAddress</span> <span class="n">from</span><span class="o">,</span>
+            <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span><span class="o">,</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">bcc</span><span class="o">,</span> <span class="nc">String</span> <span class="n">subject</span><span class="o">,</span> <span class="nc">String</span> <span class="n">message</span><span class="o">,</span>
+            <span class="kt">boolean</span> <span class="n">auth</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">smtphost</span><span class="o">,</span> <span class="n">user</span><span class="o">,</span> <span class="n">password</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span> <span class="n">subject</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">verbose</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">bcc</span> <span class="o">=</span> <span class="n">bcc</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Constructs a new instance of SimpleTextMessage with the specified SMTP
+     * mail server that does not require user authorization. It also has a flag
+     * to turn on verbose output (default is false).
+     *
+     * @param smtphost SMTP mail host
+     * @param from sender
+     * @param to recipient addresses
+     * @param subject subject
+     * @param message text of the message
+     * @param verbose boolean flag to turn on verbose output
+     */</span>
+    <span class="kd">public</span> <span class="nf">SimpleTextMessage</span><span class="o">(</span><span class="nc">String</span> <span class="n">smtphost</span><span class="o">,</span> <span class="nc">InternetAddress</span> <span class="n">from</span><span class="o">,</span>
+            <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span><span class="o">,</span> <span class="nc">String</span> <span class="n">subject</span><span class="o">,</span> <span class="nc">String</span> <span class="n">message</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">smtphost</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span> <span class="n">subject</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">verbose</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Constructs a new instance of SimpleTextMessage with the specified SMTP
+     * mail server that does not require user authorization. It also has a flag
+     * to turn on verbose output (default is false).
+     *
+     * @param smtphost SMTP mail host
+     * @param from sender
+     * @param to recipient addresses
+     * @param cc carbon copy recipient addresses
+     * @param subject subject
+     * @param message text of the message
+     * @param verbose boolean flag to turn on verbose output
+     */</span>
+    <span class="kd">public</span> <span class="nf">SimpleTextMessage</span><span class="o">(</span><span class="nc">String</span> <span class="n">smtphost</span><span class="o">,</span> <span class="nc">InternetAddress</span> <span class="n">from</span><span class="o">,</span>
+            <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span><span class="o">,</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">cc</span><span class="o">,</span> <span class="nc">String</span> <span class="n">subject</span><span class="o">,</span> <span class="nc">String</span> <span class="n">message</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">smtphost</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span> <span class="n">subject</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">verbose</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">cc</span> <span class="o">=</span> <span class="n">cc</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Constructs a new instance of SimpleTextMessage with the specified SMTP
+     * mail server that does not require user authorization. It also has a flag
+     * to turn on verbose output (default is false).
+     *
+     * @param smtphost SMTP mail host
+     * @param from sender
+     * @param to recipient addresses
+     * @param cc carbon copy recipient addresses
+     * @param bcc blind carbon copy recipient addresses
+     * @param subject subject
+     * @param message text of the message
+     * @param verbose boolean flag to turn on verbose output
+     */</span>
+    <span class="kd">public</span> <span class="nf">SimpleTextMessage</span><span class="o">(</span><span class="nc">String</span> <span class="n">smtphost</span><span class="o">,</span> <span class="nc">InternetAddress</span> <span class="n">from</span><span class="o">,</span>
+            <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span><span class="o">,</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">cc</span><span class="o">,</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">bcc</span><span class="o">,</span> <span class="nc">String</span> <span class="n">subject</span><span class="o">,</span> <span class="nc">String</span> <span class="n">message</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">smtphost</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span> <span class="n">cc</span><span class="o">,</span> <span class="n">subject</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">verbose</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">bcc</span> <span class="o">=</span> <span class="n">bcc</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Constructs a new instance of SimpleTextMessage with the specified SMTP
+     * mail server that does not require user authorization. It also has a flag
+     * to turn on verbose output (default is false).
+     *
+     * @param smtphost SMTP mail host
+     * @param from sender
+     * @param to recipient addresses
+     * @param bcc blind carbon copy recipient addresses
+     * @param subject subject
+     * @param message text of the message
+     * @param verbose boolean flag to turn on verbose output
+     */</span>
+    <span class="kd">public</span> <span class="nf">SimpleTextMessage</span><span class="o">(</span><span class="nc">String</span> <span class="n">smtphost</span><span class="o">,</span> <span class="nc">InternetAddress</span> <span class="n">from</span><span class="o">,</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span><span class="o">,</span> <span class="nc">String</span> <span class="n">subject</span><span class="o">,</span>
+            <span class="nc">String</span> <span class="n">message</span><span class="o">,</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">bcc</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">smtphost</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">bcc</span><span class="o">,</span> <span class="n">subject</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">verbose</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Constructs a new instance of SimpleTextMessage with the specified SMTP
+     * mail server that does not require user authorization. verbose output is
+     * disabled.
+     *
+     * @param smtphost SMTP mail host
+     * @param from sender
+     * @param to recipient addresses
+     * @param subject subject
+     * @param message text of the message
+     *
+     */</span>
+    <span class="kd">public</span> <span class="nf">SimpleTextMessage</span><span class="o">(</span><span class="nc">String</span> <span class="n">smtphost</span><span class="o">,</span> <span class="nc">InternetAddress</span> <span class="n">from</span><span class="o">,</span>
+            <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span><span class="o">,</span> <span class="nc">String</span> <span class="n">subject</span><span class="o">,</span> <span class="nc">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">smtphost</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span> <span class="n">subject</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Create a simple SMTP text/plain message and send it.
+     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">create</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">Session</span> <span class="n">session</span> <span class="o">=</span> <span class="nc">Session</span><span class="o">.</span><span class="na">getDefaultInstance</span><span class="o">(</span><span class="n">props</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SMTPMessage</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
+            <span class="n">msg</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">"X-Mailer"</span><span class="o">,</span> <span class="s">"JavaNetwork SimpleTextMessage MUA 0.1"</span><span class="o">);</span>
+            <span class="n">msg</span><span class="o">.</span><span class="na">setFrom</span><span class="o">(</span><span class="n">from</span><span class="o">);</span>
+            <span class="n">msg</span><span class="o">.</span><span class="na">setRecipients</span><span class="o">(</span><span class="nc">Message</span><span class="o">.</span><span class="na">RecipientType</span><span class="o">.</span><span class="na">TO</span><span class="o">,</span> <span class="n">to</span><span class="o">);</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">cc</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">cc</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">msg</span><span class="o">.</span><span class="na">setRecipients</span><span class="o">(</span><span class="nc">Message</span><span class="o">.</span><span class="na">RecipientType</span><span class="o">.</span><span class="na">CC</span><span class="o">,</span> <span class="n">cc</span><span class="o">);</span>
+            <span class="o">}</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">bcc</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">bcc</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">msg</span><span class="o">.</span><span class="na">setRecipients</span><span class="o">(</span><span class="nc">Message</span><span class="o">.</span><span class="na">RecipientType</span><span class="o">.</span><span class="na">BCC</span><span class="o">,</span> <span class="n">bcc</span><span class="o">);</span>
+            <span class="o">}</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">subject</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">subject</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">msg</span><span class="o">.</span><span class="na">setSubject</span><span class="o">(</span><span class="n">subject</span><span class="o">);</span>
+            <span class="o">}</span>
+
+            <span class="n">msg</span><span class="o">.</span><span class="na">setSentDate</span><span class="o">(</span><span class="k">new</span> <span class="nc">Date</span><span class="o">());</span>
+            <span class="n">dh</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataHandler</span><span class="o">(</span><span class="n">message</span><span class="o">,</span> <span class="s">"text/plain"</span><span class="o">);</span>
+            <span class="n">msg</span><span class="o">.</span><span class="na">setDataHandler</span><span class="o">(</span><span class="n">dh</span><span class="o">);</span>
+
+            <span class="c1">// Set the SMTP transport to use the current session</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="o">(</span><span class="nc">SMTPTransport</span><span class="o">)</span> <span class="n">session</span><span class="o">.</span><span class="na">getTransport</span><span class="o">(</span><span class="s">"smtp"</span><span class="o">);</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">setReportSuccess</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span> <span class="c1">// report successfully sent message as SMTPSendSucceededException</span>
+
+            <span class="c1">// Check for SMTP server authorization requirements</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">auth</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">t</span><span class="o">.</span><span class="na">connect</span><span class="o">(</span><span class="n">smtphost</span><span class="o">,</span> <span class="n">user</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">t</span><span class="o">.</span><span class="na">connect</span><span class="o">();</span>
+            <span class="o">}</span>
+            <span class="c1">// Extract all of the recipients from the message and send</span>
+            <span class="nc">SMTPTransport</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">msg</span><span class="o">,</span> <span class="n">msg</span><span class="o">.</span><span class="na">getAllRecipients</span><span class="o">());</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"All Messages Sent"</span><span class="o">);</span>
+
+        <span class="cm">/* It appears that the SMTPSendSuccededException and SMTPSendFailedExceptions are never
+         * returned from the SMTP host. Further investigation is necessary as to why this does not
+         * happen. The code is left "as is" until a solution is determined. The order of the exceptions
+         * may need to be changed to chain the SMTPSendSuccededException from the SMTPSendFailedException.
+         */</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">SMTPAddressSucceededException</span> <span class="n">sse</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">sse</span><span class="o">.</span><span class="na">getNextException</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sse</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"SUCCEEDED"</span><span class="o">);</span>
+
+                <span class="k">if</span> <span class="o">(</span><span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Address: "</span> <span class="o">+</span> <span class="n">sse</span><span class="o">.</span><span class="na">getAddress</span><span class="o">());</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Command: "</span> <span class="o">+</span> <span class="n">sse</span><span class="o">.</span><span class="na">getCommand</span><span class="o">());</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Return Code: "</span> <span class="o">+</span> <span class="n">sse</span><span class="o">.</span><span class="na">getReturnCode</span><span class="o">());</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Response: "</span> <span class="o">+</span> <span class="n">sse</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Message:"</span><span class="o">);</span>
+                    <span class="k">try</span> <span class="o">{</span>
+                        <span class="n">msg</span><span class="o">.</span><span class="na">writeTo</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">);</span>
+                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="o">|</span> <span class="nc">MessagingException</span> <span class="n">ignored</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">SMTPSendFailedException</span> <span class="n">sfe</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">sfe</span><span class="o">.</span><span class="na">getNextException</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sfe</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"FAILED"</span><span class="o">);</span>
+
+                <span class="k">if</span> <span class="o">(</span><span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Command: "</span> <span class="o">+</span> <span class="n">sfe</span><span class="o">.</span><span class="na">getCommand</span><span class="o">());</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Return Code: "</span> <span class="o">+</span> <span class="n">sfe</span><span class="o">.</span><span class="na">getReturnCode</span><span class="o">());</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Response: "</span> <span class="o">+</span> <span class="n">sfe</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">MessagingException</span> <span class="n">me</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Messaging exception!"</span><span class="o">);</span>
+            <span class="n">me</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">);</span>
+
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="c1">// Close connection</span>
+                <span class="n">t</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">MessagingException</span> <span class="n">ignored</span><span class="o">)</span> <span class="o">{</span>
+            <span class="o">}</span> <span class="c1">//Already Closed</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Apache FTP Client... A Found Surprise</title>
 	  <link>//2020-05-22-apache-ftp-client.html</link>
 	  <author></author>
@@ -1259,80 +1629,6 @@ coffee, it is a nice little piece of code when you need it in a pinch.</p>
 <span class="o">}</span>
 </code></pre></div></div>
 <p>A login page done programmatically. How slick is that? Read the article and share the love.</p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>Netty and JAX-RS (Jersey)</title>
-	  <link>//2018-09-15-netty-and-jax-rs-jersey.html</link>
-	  <author></author>
-	  <pubDate>2018-09-15T15:21:52+00:00</pubDate>
-	  <guid>//2018-09-15-netty-and-jax-rs-jersey.html</guid>
-	  <description><![CDATA[
-	     <h3 id="introduction">Introduction</h3>
-
-<p>Netty and Jersey are a great combination for providing RESTful web services based on JAX-RS. Netty is designed for high-throughput, and Jersey is designed for ease of use. The example application below is an attempt to make demonstrate how to use these powerful technologies in short order.</p>
-
-<h3 id="code">Code</h3>
-
-<p>The following class can be re-used in your personal projects in in a simple manner.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bluelotussoftware</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">io.netty.channel.Channel</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.net.URI</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.glassfish.jersey.netty.connector.NettyConnectorProvider</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.glassfish.jersey.netty.httpserver.NettyHttpContainerProvider</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.glassfish.jersey.server.ResourceConfig</span><span class="o">;</span>
-
-<span class="cm">/**
- * A basic implementation of {@link NettyConnectorProvider} providing HTTP and HTTP/2 servers for the {@link URI} and
- * resource classes provided.
- *
- * @author John Yeary &amp;lt;jyeary@bluelotussoftware.com&amp;gt;
- * @version 1.0.0
- */</span>
-<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">NettyServerProviders</span> <span class="o">{</span>
-
-    <span class="cm">/**
-     * Initializes a {@link NettyHttpContainerProvider} using the provided {@link URI} and resource classes with HTTP
-     * 1.1.
-     *
-     * @param baseURI The base URI to connect to the server.
-     * @param classes The resource classes to provide serve using this provider.
-     * @return A initialized Netty {@link Channel}.
-     */</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Channel</span> <span class="nf">initializeNettyHttpServer</span><span class="o">(</span><span class="kd">final</span> <span class="nc">String</span> <span class="n">baseURI</span><span class="o">,</span> <span class="kd">final</span> <span class="nc">Class</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;?&amp;</span><span class="n">gt</span><span class="o">;...</span> <span class="n">classes</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">final</span> <span class="nc">ResourceConfig</span> <span class="n">rc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ResourceConfig</span><span class="o">(</span><span class="n">classes</span><span class="o">);</span>
-        <span class="k">return</span> <span class="nc">NettyHttpContainerProvider</span><span class="o">.</span><span class="na">createServer</span><span class="o">(</span><span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">baseURI</span><span class="o">),</span> <span class="n">rc</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="cm">/**
-     * Initializes a {@link NettyHttpContainerProvider} using the provided {@link URI} and resource classes with HTTP/2.
-     *
-     * @param baseURI The base URI to connect to the server.
-     * @param classes The resource classes to provide serve using this provider.
-     * @return A initialized Netty {@link Channel}.
-     */</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Channel</span> <span class="nf">initializeNettyHttp2Server</span><span class="o">(</span><span class="kd">final</span> <span class="nc">String</span> <span class="n">baseURI</span><span class="o">,</span> <span class="kd">final</span> <span class="nc">Class</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;?&amp;</span><span class="n">gt</span><span class="o">;...</span> <span class="n">classes</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">final</span> <span class="nc">ResourceConfig</span> <span class="n">rc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ResourceConfig</span><span class="o">(</span><span class="n">classes</span><span class="o">);</span>
-        <span class="k">return</span> <span class="nc">NettyHttpContainerProvider</span><span class="o">.</span><span class="na">createHttp2Server</span><span class="o">(</span><span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">baseURI</span><span class="o">),</span> <span class="n">rc</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
-    <span class="o">}</span>
-
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>The implementation is just as easy.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="nc">Channel</span> <span class="n">httpServer</span> <span class="o">=</span> <span class="nc">NettyServerProviders</span><span class="o">.</span><span class="na">initializeNettyHttpServer</span><span class="o">(</span><span class="no">BASE_URI_HTTP</span><span class="o">,</span> <span class="nc">HelloResource</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
-</code></pre></div></div>
-
-<p>As you can see, we are providing it with a single resource class called <strong>HelloResource.class</strong>. However, the <strong>NettyServerProviders.class</strong> accepts an array of resource classses, so you can simply just add them as necessary,e.g.,<code class="highlighter-rouge">final Channel httpServer = NettyServerProviders.initializeNettyHttpServer(BASE_URI_HTTP, HelloResource.class, Resource2.class, Resource3.class, Resource4.class);</code></p>
-
-<h3 id="project">Project</h3>
-
-<p>The application can be downloaded from Github here: <a href="https://github.com/jyeary/jersey-netty-service">jersey-netty-service</a>.</p>
 
 	  ]]></description>
 	</item>
