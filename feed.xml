@@ -8,6 +8,22 @@
     
       
       <item>
+        <title>Apache FTP Client... A Found Surprise</title>
+        
+          <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;I was cleaning up my hard drive this Memorial Day weekend when I found a bunch of code I wrote many years ago. It is funny how hindsight is 20/20. The old code examples I found were in some cases awful by today’s standards. At the time, I thought it looked pretty good. I guess as we celebrate 25 years of Java and me coding it, we should look at some code from dusty days past.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 22 May 2020 00:00:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2020-05-22-apache-ftp-client.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2020-05-22-apache-ftp-client.html</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Convert Server Certificate and Key into PKCS#12, and Java Keystore (JKS)</title>
         
           <description>&lt;p&gt;I was looking for simple instructions on how to convert a certificate to a keystore. Here is my simplified version.&lt;/p&gt;
