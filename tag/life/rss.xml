@@ -231,25 +231,23 @@ try such a treat.</p>
 	</item>
 
 	<item>
-	  <title>Volume of a Pizza</title>
-	  <link>//2009-10-16-volume-of-a-pizza.html</link>
+	  <title>iPod Disk Scan</title>
+	  <link>//2009-12-14-ipod-disk-scan.html</link>
 	  <author></author>
-	  <pubDate>2009-10-16T10:58:00+00:00</pubDate>
-	  <guid>//2009-10-16-volume-of-a-pizza.html</guid>
+	  <pubDate>2009-12-14T16:07:00+00:00</pubDate>
+	  <guid>//2009-12-14-ipod-disk-scan.html</guid>
 	  <description><![CDATA[
-	     <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+	     <p>I was looking through some old notes on my computer and found these notes on how to scan the disk on your iPod (1st and 2nd generation).</p>
 
-<p>The general equation for the volume of a cylindrical object is noted by
-the following equation.</p>
+<p>The iPod has the ability to scan its hard drive for errors and repair some of those errors. If you suspect your iPod’s drive has issues, try scanning the disk.</p>
+<ol>
+  <li>Make sure the iPod is plugged, or is charged.</li>
+  <li>To do so, reset the iPod, and when you see the Apple logo, press and hold the Previous, Next, Select, and Menu buttons.</li>
+</ol>
 
-<script type="math/tex; mode=display">v = \pi r^2h</script>
+<p><strong>Note:</strong> An animated icon of a disc will appear along with a progress bar.</p>
 
-<p><img src="/assets/images/volume.gif" alt="" /></p>
-
-<p>If a pizza has a radius of <strong>z</strong> and a height of <strong>a</strong>, then the volume
-of a pizza can be determined by the following equation:</p>
-
-<script type="math/tex; mode=display">p_v = pi * z * z * a</script>
+<p>This test can take a long period of time (15-30 minutes).</p>
 
 	  ]]></description>
 	</item>

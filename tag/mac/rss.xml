@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>johnyeary.com/</title>
+   
+   <link>https://johnyeary.com</link>
+   <description>A Caffeinated Java Developer.</description>
+   <language>en-us</language>
+   <managingEditor> </managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>How to Repair plist files on OS X</title>
+	  <link>//2009-12-14-how-to-repair-plist-files-on-os-x.html</link>
+	  <author></author>
+	  <pubDate>2009-12-14T17:17:00+00:00</pubDate>
+	  <guid>//2009-12-14-how-to-repair-plist-files-on-os-x.html</guid>
+	  <description><![CDATA[
+	     <p>To repair Preferences (.plist) files use the following command:</p>
+
+<h3 id="user-preferences">User Preferences</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo plutil –s ~/Library/Preferences/*.plist
+</code></pre></div></div>
+
+<h3 id="system-preferences">System Preferences</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo plutil –s /Library/Preferences/*.plist
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>
