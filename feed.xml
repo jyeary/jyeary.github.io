@@ -599,6 +599,42 @@ works, I will look at moving my crown jewel from Blogger too.&lt;/p&gt;
     
       
       <item>
+        <title>Tip: Redirect Output to a tty (UNIX/Solaris/Linux/OS X)</title>
+        
+          <description>&lt;p&gt;Redirect ouptut to tty using the following command:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;script -a /dev/null | tee /dev/pts/XXX
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Where XXX is the &lt;code class=&quot;highlighter-rouge&quot;&gt;tty&lt;/code&gt; target&lt;/p&gt;
+</description>
+        
+        <pubDate>Thu, 24 Dec 2009 14:39:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2009-12-24-tip-redirect-output-to-a-tty-unixsolarislinuxos-x.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2009-12-24-tip-redirect-output-to-a-tty-unixsolarislinuxos-x.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Four Paths of Yoga</title>
+        
+          <description>&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Karma&lt;/strong&gt; – Active Path (service to others)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Jnana&lt;/strong&gt; – Philosophical Path (often the hardest)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Raja&lt;/strong&gt; – Scientific Path (Ashtanga)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Bhakti&lt;/strong&gt; – Devotional Path&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        
+        <pubDate>Thu, 24 Dec 2009 14:35:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2009-12-24-four-paths-of-yoga.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2009-12-24-four-paths-of-yoga.html</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>OS X Startup Commands</title>
         
           <description>&lt;table&gt;

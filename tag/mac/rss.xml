@@ -12,6 +12,21 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>Tip: Redirect Output to a tty (UNIX/Solaris/Linux/OS X)</title>
+	  <link>//2009-12-24-tip-redirect-output-to-a-tty-unixsolarislinuxos-x.html</link>
+	  <author></author>
+	  <pubDate>2009-12-24T14:39:00+00:00</pubDate>
+	  <guid>//2009-12-24-tip-redirect-output-to-a-tty-unixsolarislinuxos-x.html</guid>
+	  <description><![CDATA[
+	     <p>Redirect ouptut to tty using the following command:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>script -a /dev/null | tee /dev/pts/XXX
+</code></pre></div></div>
+<p>Where XXX is the <code class="highlighter-rouge">tty</code> target</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>OS X Startup Commands</title>
 	  <link>//2009-12-20-os-x-startup-commands.html</link>
 	  <author></author>
