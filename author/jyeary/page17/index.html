@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>John Yeary</title>
+    <title>Author</title>
     <meta name="description" content="A Caffeinated Java Developer." />
 
     <!-- Mobile Meta -->
@@ -27,21 +27,21 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="https://johnyeary.com//tag/life/page5/" />
+        <link rel="canonical" href="https://johnyeary.com//author/jyeary/page17/" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="John Yeary" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="John Yeary" />
+    <meta property="og:title" content="Author" />
     <meta property="og:description" content="A Caffeinated Java Developer." />
-    <meta property="og:url" content="https://johnyeary.com//tag/life/page5/" />
+    <meta property="og:url" content="https://johnyeary.com//author/jyeary/page17/" />
     <meta property="og:image" content="/assets/images/cover4.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="John Yeary" />
+    <meta name="twitter:title" content="Author" />
     <meta name="twitter:description" content="A Caffeinated Java Developer." />
-    <meta name="twitter:url" content="https://johnyeary.com//tag/life/page5/" />
+    <meta name="twitter:url" content="https://johnyeary.com//author/jyeary/page17/" />
     <meta name="twitter:image:src" content="/assets/images/cover4.jpg" />
 
     <script type="application/ld+json">
@@ -49,8 +49,8 @@
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "John Yeary",
-    "name": "John Yeary",
-    "url": "https://johnyeary.com//tag/life/page5/",
+    "name": "Author",
+    "url": "https://johnyeary.com//author/jyeary/page17/",
     "image": "/assets/images/cover4.jpg",
     "description": "A Caffeinated Java Developer."
 }
@@ -75,7 +75,7 @@
         <li class="nav-about " role="presentation"><a href="/about">About</a></li>
         -->
         <li class="nav-java " role="presentation"><a href="/tag/java">Java</a></li>
-        <li class="nav-life  nav-current" role="presentation"><a href="/tag/life">Life</a></li>
+        <li class="nav-life " role="presentation"><a href="/tag/life">Life</a></li>
         <li class="nav-mac " role="presentation"><a href="/tag/mac">Mac</a></li>
         <li class="nav-merchant-marine " role="presentation"><a href="/tag/merchant-marine">Merchant Marine</a></li>
         <li class="nav-military " role="presentation"><a href="/tag/military">Military</a></li>
@@ -83,7 +83,7 @@
         <li class="nav-unix " role="presentation"><a href="/tag/unix">UNIX</a></li>
         <li class="nav-web " role="presentation"><a href="/tag/web">Web</a></li>
         <li class="nav-yoga " role="presentation"><a href="/tag/yoga">Yoga</a></li>
-        <li class="nav-author " role="presentation"><a href="/author/jyeary">John Yeary</a></li>
+        <li class="nav-author  nav-current" role="presentation"><a href="/author/jyeary">John Yeary</a></li>
         <!--
         <li class="nav-speeches " role="presentation"><a href="/tag/speeches">Speeches</a></li>
         <li class="nav-fiction " role="presentation"><a href="/tag/fiction">Fiction</a></li>
@@ -102,83 +102,70 @@
     <div class="site-wrapper">
 
         <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
-        <!-- dynamically overriding backgrounds for tags as well as descriptions -->
-
-
-<!-- default -->
+        <!-- < default}} -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<!-- If we have a tag cover, display that - else blog cover - else nothing -->
-<header class="main-header tag-head " style="background-image: url(/assets/images/brown-landscape-under-grey-sky-3244513.jpg) ">
-    <nav class="main-nav overlay clearfix">
-        <a class="blog-logo" href="/"><img src="/assets/images/logo.jpg" alt="Blog Logo" /></a>
-        
-            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
-        
-    </nav>
-    <div class="vertical">
-        <div class="main-header-content inner">
-            <h1 class="page-title">Life</h1>
-            <h2 class="page-description">
+<!-- The big featured header -->
+
+<!-- Everything inside the #author tags pulls data from the author -->
+<!-- #author  -->
+    <header class="main-header author-head " style="background-image: url(/assets/images/cover4.jpg) ">
+        <nav class="main-nav overlay clearfix">
+            <a class="blog-logo" href="/"><img src="/assets/images/logo.jpg" alt="Blog Logo" /></a>
             
-                The search for meaning.
+                <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
             
-            </h2>
-        </div>
-    </div>
-</header>
+        </nav>
+    </header>
+
+    <section class="author-profile inner">
+        
+            
+                
+                <figure class="author-image">
+                    <div class="img" style="background-image: url(/assets/images/jyeary.jpg)"><span class="hidden">John Yeary's Picture</span></div>
+                </figure>
+                
+                <h1 class="author-title">John Yeary</h1>
+                
+                    <div style="display:inline; text-align: justify; text-justify: inter-word;">
+                        <h2 class="author-bio">Caffeinated Java Programmer, and Principal Software Engineer at Orange Bees. My opinions are my own.</h2>
+                    </div>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location">Greenville, South Carolina, USA</span>
+                    <span class="author-link icon-link"><a href="https://johnyeary.com/author/jyeary/">johnyeary.com</a></span>
+                    <!-- <span class="author-stats"><i class="icon-stats"></i> [[plural ../pagination.total empty='No posts' singular='% post' plural='% posts']]</span> -->
+                    <span class="author-stats"><i class="icon-stats"></i>87 posts</span>
+                </div>
+            
+        
+    </section>
+<!-- /author -->
 
 <!-- The main content area on the homepage -->
 <main id="content" class="content" role="main">
 
-    <!-- The tag below includes the post loop - partials/loop.hbs -->
+    <!-- The tag below includes the post loop - partials/loop.hbs  -->
         <!-- Previous/next page links - only displayed on page 2+ -->
     <div class="extra-pagination inner">
         
             <nav class="pagination" role="pagination">
     
         
-            <a class="newer-posts" href="/tag/life/page4/" title="Previous Page">&laquo; Newer Posts</a>
+            <a class="newer-posts" href="/author/jyeary/page16/" title="Previous Page">&laquo; Newer Posts</a>
       
     
-    <span class="page-number"> Page 5 of 5 </span>
-     
+    <span class="page-number"> Page 17 of 18 </span>
+    
+        <a class="older-posts" href="/author/jyeary/page18/" title="Next Page">Older Posts &raquo;</a>
+    
 </nav>
+
         
     </div>
 
     <!-- This is the post loop - each post will be output using this markup -->
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/2009-09-14-five-lined-skink-eating-a-fly.html">Five Lined Skink Eating a Fly</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>I went to lunch today and saw this really neat Five Lined Skink who caught a fly. The fly is sticking out of its mouth. Five... <a class="read-more" href="/2009-09-14-five-lined-skink-eating-a-fly.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-
-                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/jyeary'>John Yeary</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/life'>Life</a>
-                    
-                
-            
-            <time class="post-date" datetime="2009-09-14">14 Sep 2009</time>
-        </footer>
-    </article>
     
     <article class="post">
         <header class="post-header">
@@ -219,6 +206,99 @@
     
     <article class="post">
         <header class="post-header">
+            <h2 class="post-title"><a href="/2009-09-14-censorship-in-asia.html">Censorship in Asia</a></h2>
+        </header>
+        <section class="post-excerpt">
+            <p>I read a very good article this morning on the growing censorship of the Internet and blogging in Asia. The article: Web Censoring Widens Across Southeast Asia... <a class="read-more" href="/2009-09-14-censorship-in-asia.html">&raquo;</a></p>
+        </section>
+        <footer class="post-meta">
+            
+                
+
+                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
+                <!-- author -->
+                <a href='/author/jyeary'>John Yeary</a>
+
+                
+            
+
+            <!-- [[tags prefix=" on "]] -->
+            
+                on
+                
+                    
+                       <a href='/tag/national-security'>National-security</a>
+                    
+                
+            
+            <time class="post-date" datetime="2009-09-14">14 Sep 2009</time>
+        </footer>
+    </article>
+    
+    <article class="post">
+        <header class="post-header">
+            <h2 class="post-title"><a href="/2009-09-14-decisive-force-in-afganistan.html">Decisive Force in Afganistan</a></h2>
+        </header>
+        <section class="post-excerpt">
+            <p>I read the op-ed piece in the Wall Street Journal by Lindsey Graham, Joesph Lieberman, and John McCain today called Only Decisive Force Can Prevail in... <a class="read-more" href="/2009-09-14-decisive-force-in-afganistan.html">&raquo;</a></p>
+        </section>
+        <footer class="post-meta">
+            
+                
+
+                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
+                <!-- author -->
+                <a href='/author/jyeary'>John Yeary</a>
+
+                
+            
+
+            <!-- [[tags prefix=" on "]] -->
+            
+                on
+                
+                    
+                       <a href='/tag/national-security'>National-security</a>
+                    
+                
+            
+            <time class="post-date" datetime="2009-09-14">14 Sep 2009</time>
+        </footer>
+    </article>
+    
+    <article class="post">
+        <header class="post-header">
+            <h2 class="post-title"><a href="/2009-04-20-u-k-national-id-card-and-real-id.html">U.K. National ID Card and Real ID</a></h2>
+        </header>
+        <section class="post-excerpt">
+            <p>IBM and CSC were awarded the contract by the U.K. Identity and Passport Service for creating biometric enhanced IDs. The goal is to provide a safe... <a class="read-more" href="/2009-04-20-u-k-national-id-card-and-real-id.html">&raquo;</a></p>
+        </section>
+        <footer class="post-meta">
+            
+                
+
+                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
+                <!-- author -->
+                <a href='/author/jyeary'>John Yeary</a>
+
+                
+            
+
+            <!-- [[tags prefix=" on "]] -->
+            
+                on
+                
+                    
+                       <a href='/tag/national-security'>National-security</a>
+                    
+                
+            
+            <time class="post-date" datetime="2009-04-20">20 Apr 2009</time>
+        </footer>
+    </article>
+    
+    <article class="post">
+        <header class="post-header">
             <h2 class="post-title"><a href="/2009-04-13-everyone-should-pay-income-taxes.html">Everyone Should Pay Income Taxes</a></h2>
         </header>
         <section class="post-excerpt">
@@ -248,49 +328,21 @@
         </footer>
     </article>
     
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/0010-02-16-steppenwolf-by-hermann-hesse.html">Steppenwolf by Hermann Hesse</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>I read the novel Steppenwolf by Hermann Hesse last night and today. I was truly inspired by its wonderful use of the English language. This is... <a class="read-more" href="/0010-02-16-steppenwolf-by-hermann-hesse.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-
-                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/jyeary'>John Yeary</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/life'>Life</a>
-                    
-                
-            
-            <time class="post-date" datetime="0010-02-16">16 Feb 0010</time>
-        </footer>
-    </article>
-    
 
     <!-- Previous/next page links - displayed on every page -->
     
         <nav class="pagination" role="pagination">
     
         
-            <a class="newer-posts" href="/tag/life/page4/" title="Previous Page">&laquo; Newer Posts</a>
+            <a class="newer-posts" href="/author/jyeary/page16/" title="Previous Page">&laquo; Newer Posts</a>
       
     
-    <span class="page-number"> Page 5 of 5 </span>
-     
+    <span class="page-number"> Page 17 of 18 </span>
+    
+        <a class="older-posts" href="/author/jyeary/page18/" title="Next Page">Older Posts &raquo;</a>
+    
 </nav>
+
     
 
 
