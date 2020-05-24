@@ -31,6 +31,84 @@
 	  ]]></description>
 	</item>
 
+	<item>
+	  <title>Translating Line Feeds for Mac OS X, UNIX, and Windows</title>
+	  <link>//2009-12-14-translating-line-feeds-for-mac-os-x-unix-and-windows.html</link>
+	  <author></author>
+	  <pubDate>2009-12-14T17:15:00+00:00</pubDate>
+	  <guid>//2009-12-14-translating-line-feeds-for-mac-os-x-unix-and-windows.html</guid>
+	  <description><![CDATA[
+	     <p>I have been asked to show how to translate line feeds between Mac, UNIX, and Windows. This comes up often so here is one way using PERL which was designed to do just what we need.</p>
+<ol>
+  <li>How to translate Mac OS file linefeed to UNIX linefeeds:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/r/n/g' file_with_mac_linefeeds.txt
+</code></pre></div>    </div>
+  </li>
+  <li>How to translate UNIX file linefeeds to Mac OS linefeeds:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/n/r/g' file_with_unix_linefeeds.txt
+</code></pre></div>    </div>
+  </li>
+  <li>Translate a Windows file linefeeds to UNIX linefeeds:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/rn/n/g' file_with_win_linefeeds.txt
+</code></pre></div>    </div>
+  </li>
+  <li>Translate Windows file linefeeds to Mac OS linefeeds:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/rn/r/g' file_with_win_linefeeds.txt
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>I hope this is a real time saver. Let me know!</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Loading /etc/hosts into NetInfo (OS X 10.4 Leopard)</title>
+	  <link>//2009-12-14-loading-etchosts-into-netinfo-os-x-10-4-leopard.html</link>
+	  <author></author>
+	  <pubDate>2009-12-14T16:32:00+00:00</pubDate>
+	  <guid>//2009-12-14-loading-etchosts-into-netinfo-os-x-10-4-leopard.html</guid>
+	  <description><![CDATA[
+	     <p>You can load your <strong>/etc/hosts</strong> file into NetInfoManager’s database using the following command:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>niload -m hosts &lt; /etc/hosts
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>OS X Account Settings Panther and Leopard (10.3/10.4)</title>
+	  <link>//2009-12-14-os-x-account-settings-panther-and-leopard-10-310-4.html</link>
+	  <author></author>
+	  <pubDate>2009-12-14T16:28:00+00:00</pubDate>
+	  <guid>//2009-12-14-os-x-account-settings-panther-and-leopard-10-310-4.html</guid>
+	  <description><![CDATA[
+	     <h3 id="os-x-103">OS X (10.3)</h3>
+<p>Accounts will not appear in the account list unless UID values are above 500.</p>
+
+<h3 id="os-x-104">OS X (10.4)</h3>
+
+<h4 id="to-hide-an-account">To hide an account:</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo defaults write /Library/Preferences/com.apple.loginwindow HiddenUsersList -array-add account1
+</code></pre></div></div>
+<p>This will hide the user names, but has the side effect of adding a login called <strong>Other</strong>.</p>
+
+<h4 id="to-prevent-the-other-login-from-appearing-use">To prevent the Other login from appearing use:</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWOTHERUSERS_MANAGED -bool false
+</code></pre></div></div>
+
+<h3 id="unhide-accounts">Unhide Accounts</h3>
+<p>To unhide all the names you may have previously hidden, you could execute the following from the command line.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo defaults delete /Library/Preferences/com.apple.loginwindow HiddenUsersList
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
 
 </channel>
 </rss>

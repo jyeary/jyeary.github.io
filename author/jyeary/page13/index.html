@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>John Yeary</title>
+    <title>Author</title>
     <meta name="description" content="A Caffeinated Java Developer." />
 
     <!-- Mobile Meta -->
@@ -27,21 +27,21 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="https://johnyeary.com//page9/" />
+        <link rel="canonical" href="https://johnyeary.com//author/jyeary/page13/" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="John Yeary" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="John Yeary" />
+    <meta property="og:title" content="Author" />
     <meta property="og:description" content="A Caffeinated Java Developer." />
-    <meta property="og:url" content="https://johnyeary.com//page9/" />
+    <meta property="og:url" content="https://johnyeary.com//author/jyeary/page13/" />
     <meta property="og:image" content="/assets/images/cover4.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="John Yeary" />
+    <meta name="twitter:title" content="Author" />
     <meta name="twitter:description" content="A Caffeinated Java Developer." />
-    <meta name="twitter:url" content="https://johnyeary.com//page9/" />
+    <meta name="twitter:url" content="https://johnyeary.com//author/jyeary/page13/" />
     <meta name="twitter:image:src" content="/assets/images/cover4.jpg" />
 
     <script type="application/ld+json">
@@ -49,8 +49,8 @@
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "John Yeary",
-    "name": "John Yeary",
-    "url": "https://johnyeary.com//page9/",
+    "name": "Author",
+    "url": "https://johnyeary.com//author/jyeary/page13/",
     "image": "/assets/images/cover4.jpg",
     "description": "A Caffeinated Java Developer."
 }
@@ -70,7 +70,7 @@
         <span class="hidden">Close</span>
     </a>
     <ul>
-        <li class="nav-home  nav-current" role="presentation"><a href="/">Home</a></li>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
         <!--
         <li class="nav-about " role="presentation"><a href="/about">About</a></li>
         -->
@@ -81,7 +81,7 @@
         <li class="nav-national-security " role="presentation"><a href="/tag/national-security">National Security</a></li>
         <li class="nav-web " role="presentation"><a href="/tag/web">Web</a></li>
         <li class="nav-yoga " role="presentation"><a href="/tag/yoga">Yoga</a></li>
-        <li class="nav-author " role="presentation"><a href="/author/jyeary">John Yeary</a></li>
+        <li class="nav-author  nav-current" role="presentation"><a href="/author/jyeary">John Yeary</a></li>
         <!--
         <li class="nav-speeches " role="presentation"><a href="/tag/speeches">Speeches</a></li>
         <li class="nav-fiction " role="presentation"><a href="/tag/fiction">Fiction</a></li>
@@ -100,45 +100,64 @@
     <div class="site-wrapper">
 
         <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
-        <!-- < default -->
+        <!-- < default}} -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<!-- The big featured header  -->
-<header class="main-header "
-        style="background-image: url(/assets/images/cover4.jpg) ">
-    <nav class="main-nav overlay clearfix">
-        <a class="blog-logo" href="/"><img src="/assets/images/logo.jpg" alt="Blog Logo" /></a>
+<!-- The big featured header -->
+
+<!-- Everything inside the #author tags pulls data from the author -->
+<!-- #author  -->
+    <header class="main-header author-head " style="background-image: url(/assets/images/cover4.jpg) ">
+        <nav class="main-nav overlay clearfix">
+            <a class="blog-logo" href="/"><img src="/assets/images/logo.jpg" alt="Blog Logo" /></a>
+            
+                <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+            
+        </nav>
+    </header>
+
+    <section class="author-profile inner">
         
-            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+            
+                
+                <figure class="author-image">
+                    <div class="img" style="background-image: url(/assets/images/jyeary.jpg)"><span class="hidden">John Yeary's Picture</span></div>
+                </figure>
+                
+                <h1 class="author-title">John Yeary</h1>
+                
+                    <div style="display:inline; text-align: justify; text-justify: inter-word;">
+                        <h2 class="author-bio">Caffeinated Java Programmer, and Principal Software Engineer at Orange Bees. My opinions are my own.</h2>
+                    </div>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location">Greenville, South Carolina, USA</span>
+                    <span class="author-link icon-link"><a href="https://johnyeary.com/author/jyeary/">johnyeary.com</a></span>
+                    <!-- <span class="author-stats"><i class="icon-stats"></i> [[plural ../pagination.total empty='No posts' singular='% post' plural='% posts']]</span> -->
+                    <span class="author-stats"><i class="icon-stats"></i>62 posts</span>
+                </div>
+            
         
-    </nav>
-    <div class="vertical">
-        <div class="main-header-content inner">
-            <h1 class="page-title">John Yeary</h1>
-            <h2 class="page-description">A Caffeinated Java Developer.</h2>
-        </div>
-    </div>
-    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
-</header>
+    </section>
+<!-- /author -->
 
 <!-- The main content area on the homepage -->
 <main id="content" class="content" role="main">
 
-    <!-- The tag below includes the post loop - partials/loop.hbs -->
+    <!-- The tag below includes the post loop - partials/loop.hbs  -->
         <!-- Previous/next page links - only displayed on page 2+ -->
     <div class="extra-pagination inner">
         
             <nav class="pagination" role="pagination">
     
         
-            <a class="newer-posts" href="/page8/" title="Previous Page">&laquo; Newer Posts</a>
+            <a class="newer-posts" href="/author/jyeary/page12/" title="Previous Page">&laquo; Newer Posts</a>
       
     
-    <span class="page-number"> Page 9 of 13 </span>
-     
-        <a class="older-posts" href="/page10/" title="Next Page">Older Posts &raquo;</a>
-     
+    <span class="page-number"> Page 13 of 13 </span>
+    
 </nav>
+
         
     </div>
 
@@ -146,41 +165,10 @@
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/2009-12-14-os-x-account-settings-panther-and-leopard-10-310-4.html">OS X Account Settings Panther and Leopard (10.3/10.4)</a></h2>
+            <h2 class="post-title"><a href="/2009-04-13-everyone-should-pay-income-taxes.html">Everyone Should Pay Income Taxes</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>OS X (10.3) Accounts will not appear in the account list unless UID values are above 500. OS X (10.4) To hide an account: sudo defaults... <a class="read-more" href="/2009-12-14-os-x-account-settings-panther-and-leopard-10-310-4.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-
-                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/jyeary'>John Yeary</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/mac'>Mac</a>
-                    
-                
-            
-            <time class="post-date" datetime="2009-12-14">14 Dec 2009</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/2009-12-14-ipod-disk-scan.html">iPod Disk Scan</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>I was looking through some old notes on my computer and found these notes on how to scan the disk on your iPod (1st and 2nd... <a class="read-more" href="/2009-12-14-ipod-disk-scan.html">&raquo;</a></p>
+            <p>I read a really great op ed in The Wall Street Journal from Ari Fleischer today. The piece is entitled the same as my blog title:... <a class="read-more" href="/2009-04-13-everyone-should-pay-income-taxes.html">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             
@@ -202,16 +190,16 @@
                     
                 
             
-            <time class="post-date" datetime="2009-12-14">14 Dec 2009</time>
+            <time class="post-date" datetime="2009-04-13">13 Apr 2009</time>
         </footer>
     </article>
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/2009-10-27-fda-ban-on-clove-cigarettes-and-cigars.html">FDA Ban on Clove Cigarettes and Cigars</a></h2>
+            <h2 class="post-title"><a href="/2009-04-13-the-grid-and-spies.html">The Grid and Spies</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>I was reading The Wall Street Journal® To the FDA, This Indonesian Smoke Is Close but No Cigar about a ban by the FDA on clove... <a class="read-more" href="/2009-10-27-fda-ban-on-clove-cigarettes-and-cigars.html">&raquo;</a></p>
+            <p>The Wall Street Journal published a front page article on 8 April 2009 entitled Electricity Grid in U.S. Penetrated By Spies It is a chilling report... <a class="read-more" href="/2009-04-13-the-grid-and-spies.html">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             
@@ -229,73 +217,11 @@
                 on
                 
                     
-                       <a href='/tag/life'>Life</a>
+                       <a href='/tag/national-security'>National-security</a>
                     
                 
             
-            <time class="post-date" datetime="2009-10-27">27 Oct 2009</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/2009-10-17-the-seven-spiritual-laws-of-yoga-days-of-the-week.html">The Seven Spiritual Laws of Yoga - Days of the week</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>The seven spiritual laws and the days of the week for reflection. The book Seven Spiritual Laws of Yoga defines the laws as follows: Sunday - ... <a class="read-more" href="/2009-10-17-the-seven-spiritual-laws-of-yoga-days-of-the-week.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-
-                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/jyeary'>John Yeary</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/yoga'>Yoga</a>
-                    
-                
-            
-            <time class="post-date" datetime="2009-10-17">17 Oct 2009</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/2009-10-17-eight-limbs-of-yoga.html">Eight Limbs of Yoga</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>Yama Niyama Asana Pranayama Pratyahara Dharana Dhyana Samadhi Yamas (abstentions) – truth, non-violence, control of sexual energy, non-stealing, and non-covetousness. Niyamas (observances) – austerities, purity, contentment,... <a class="read-more" href="/2009-10-17-eight-limbs-of-yoga.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-
-                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/jyeary'>John Yeary</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/yoga'>Yoga</a>
-                    
-                
-            
-            <time class="post-date" datetime="2009-10-17">17 Oct 2009</time>
+            <time class="post-date" datetime="2009-04-13">13 Apr 2009</time>
         </footer>
     </article>
     
@@ -305,14 +231,13 @@
         <nav class="pagination" role="pagination">
     
         
-            <a class="newer-posts" href="/page8/" title="Previous Page">&laquo; Newer Posts</a>
+            <a class="newer-posts" href="/author/jyeary/page12/" title="Previous Page">&laquo; Newer Posts</a>
       
     
-    <span class="page-number"> Page 9 of 13 </span>
-     
-        <a class="older-posts" href="/page10/" title="Next Page">Older Posts &raquo;</a>
-     
+    <span class="page-number"> Page 13 of 13 </span>
+    
 </nav>
+
     
 
 

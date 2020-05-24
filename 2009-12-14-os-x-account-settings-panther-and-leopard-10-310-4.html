@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>iPod Disk Scan</title>
+    <title>OS X Account Settings Panther and Leopard (10.3/10.4)</title>
     <meta name="description" content="A Caffeinated Java Developer." />
 
     <!-- Mobile Meta -->
@@ -27,31 +27,31 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="https://johnyeary.com//2009-12-14-ipod-disk-scan.html" />
+        <link rel="canonical" href="https://johnyeary.com//2009-12-14-os-x-account-settings-panther-and-leopard-10-310-4.html" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="John Yeary" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="iPod Disk Scan" />
+    <meta property="og:title" content="OS X Account Settings Panther and Leopard (10.3/10.4)" />
     <meta property="og:description" content="A Caffeinated Java Developer." />
-    <meta property="og:url" content="https://johnyeary.com//2009-12-14-ipod-disk-scan.html" />
-    <meta property="og:image" content="/assets/images/brown-landscape-under-grey-sky-3244513.jpg" />
+    <meta property="og:url" content="https://johnyeary.com//2009-12-14-os-x-account-settings-panther-and-leopard-10-310-4.html" />
+    <meta property="og:image" content="/assets/images/abstract-apple-art-black-and-white-434346.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="iPod Disk Scan" />
+    <meta name="twitter:title" content="OS X Account Settings Panther and Leopard (10.3/10.4)" />
     <meta name="twitter:description" content="A Caffeinated Java Developer." />
-    <meta name="twitter:url" content="https://johnyeary.com//2009-12-14-ipod-disk-scan.html" />
-    <meta name="twitter:image:src" content="/assets/images/brown-landscape-under-grey-sky-3244513.jpg" />
+    <meta name="twitter:url" content="https://johnyeary.com//2009-12-14-os-x-account-settings-panther-and-leopard-10-310-4.html" />
+    <meta name="twitter:image:src" content="/assets/images/abstract-apple-art-black-and-white-434346.jpg" />
 
     <script type="application/ld+json">
 {
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "John Yeary",
-    "name": "iPod Disk Scan",
-    "url": "https://johnyeary.com//2009-12-14-ipod-disk-scan.html",
-    "image": "/assets/images/brown-landscape-under-grey-sky-3244513.jpg",
+    "name": "OS X Account Settings Panther and Leopard (10.3/10.4)",
+    "url": "https://johnyeary.com//2009-12-14-os-x-account-settings-panther-and-leopard-10-310-4.html",
+    "image": "/assets/images/abstract-apple-art-black-and-white-434346.jpg",
     "description": "A Caffeinated Java Developer."
 }
     </script>
@@ -108,7 +108,7 @@
 <!-- Everything inside the #post tags pulls data from the post -->
 <!-- #post -->
 
-<header class="main-header post-head " style="background-image: url(/assets/images/brown-landscape-under-grey-sky-3244513.jpg) ">
+<header class="main-header post-head " style="background-image: url(/assets/images/abstract-apple-art-black-and-white-434346.jpg) ">
     <nav class="main-nav  overlay  clearfix">
         <a class="blog-logo" href="/"><img src="/assets/images/logo.jpg" alt="Blog Logo" /></a>
         
@@ -119,10 +119,10 @@
 
 <main class="content" role="main">
 
-    <article class="post tag-life">
+    <article class="post tag-mac">
 
         <header class="post-header">
-            <h1 class="post-title">iPod Disk Scan</h1>
+            <h1 class="post-title">OS X Account Settings Panther and Leopard (10.3/10.4)</h1>
             <section class="post-meta">
             <!-- <a href='/'></a> -->
 
@@ -137,7 +137,7 @@
                 on
                 
                     
-                       <a href='/tag/life'>Life</a>
+                       <a href='/tag/mac'>Mac</a>
                     
                 
                 
@@ -146,17 +146,27 @@
 
         <section class="post-content">
 
-            <p>I was looking through some old notes on my computer and found these notes on how to scan the disk on your iPod (1st and 2nd generation).</p>
+            <h3 id="os-x-103">OS X (10.3)</h3>
+<p>Accounts will not appear in the account list unless UID values are above 500.</p>
 
-<p>The iPod has the ability to scan its hard drive for errors and repair some of those errors. If you suspect your iPod’s drive has issues, try scanning the disk.</p>
-<ol>
-  <li>Make sure the iPod is plugged, or is charged.</li>
-  <li>To do so, reset the iPod, and when you see the Apple logo, press and hold the Previous, Next, Select, and Menu buttons.</li>
-</ol>
+<h3 id="os-x-104">OS X (10.4)</h3>
 
-<p><strong>Note:</strong> An animated icon of a disc will appear along with a progress bar.</p>
+<h4 id="to-hide-an-account">To hide an account:</h4>
 
-<p>This test can take a long period of time (15-30 minutes).</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo defaults write /Library/Preferences/com.apple.loginwindow HiddenUsersList -array-add account1
+</code></pre></div></div>
+<p>This will hide the user names, but has the side effect of adding a login called <strong>Other</strong>.</p>
+
+<h4 id="to-prevent-the-other-login-from-appearing-use">To prevent the Other login from appearing use:</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWOTHERUSERS_MANAGED -bool false
+</code></pre></div></div>
+
+<h3 id="unhide-accounts">Unhide Accounts</h3>
+<p>To unhide all the names you may have previously hidden, you could execute the following from the command line.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo defaults delete /Library/Preferences/com.apple.loginwindow HiddenUsersList
+</code></pre></div></div>
 
 
         </section>
@@ -189,16 +199,16 @@
 
                     <section class="share">
                         <h4>Share this post</h4>
-                        <a class="icon-twitter" href="https://twitter.com/share?text=iPod Disk Scan&amp;url=https://johnyeary.com/2009-12-14-ipod-disk-scan.html"
+                        <a class="icon-twitter" href="https://twitter.com/share?text=OS X Account Settings Panther and Leopard (10.3/10.4)&amp;url=https://johnyeary.com/2009-12-14-os-x-account-settings-panther-and-leopard-10-310-4.html"
                             onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                             <span class="hidden">Twitter</span>
                         </a>
-                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://johnyeary.com/2009-12-14-ipod-disk-scan.html"
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://johnyeary.com/2009-12-14-os-x-account-settings-panther-and-leopard-10-310-4.html"
                             onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                             <span class="hidden">Facebook</span>
                         </a>
                         <!--
-                        <a class="icon-google-plus" href="https://plus.google.com/share?url=https://johnyeary.com2009-12-14-ipod-disk-scan.html"
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=https://johnyeary.com2009-12-14-os-x-account-settings-panther-and-leopard-10-310-4.html"
                            onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                             <span class="hidden">Google+</span>
                         </a>
@@ -220,20 +230,20 @@
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/abstract-apple-art-black-and-white-434346.jpg)" href="/2009-12-14-os-x-account-settings-panther-and-leopard-10-310-4.html">
+        <a class="read-next-story " style="background-image: url(/assets/images/abstract-apple-art-black-and-white-434346.jpg)" href="/2009-12-14-loading-etchosts-into-netinfo-os-x-10-4-leopard.html">
             <section class="post">
-                <h2>OS X Account Settings Panther and Leopard (10.3/10.4)</h2>
-                <p>### OS X (10.3) Accounts will not appear in the account list unless UID values...</p>
+                <h2>Loading /etc/hosts into NetInfo (OS X 10.4 Leopard)</h2>
+                <p>You can load your **/etc/hosts** file into NetInfoManager's database using the following command: ``` niload...</p>
             </section>
         </a>
     
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/assets/images/brown-landscape-under-grey-sky-3244513.jpg)" href="/2009-10-27-fda-ban-on-clove-cigarettes-and-cigars.html">
+        <a class="read-next-story prev " style="background-image: url(/assets/images/brown-landscape-under-grey-sky-3244513.jpg)" href="/2009-12-14-ipod-disk-scan.html">
             <section class="post">
-                <h2>FDA Ban on Clove Cigarettes and Cigars</h2>
-                <p>I was reading The Wall Street Journal® To the FDA, This Indonesian Smoke Is Close...</p>
+                <h2>iPod Disk Scan</h2>
+                <p>I was looking through some old notes on my computer and found these notes on...</p>
             </section>
         </a>
     
