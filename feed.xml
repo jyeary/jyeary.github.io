@@ -599,6 +599,79 @@ works, I will look at moving my crown jewel from Blogger too.&lt;/p&gt;
     
       
       <item>
+        <title>OS X Startup Commands</title>
+        
+          <description>&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Keystroke&lt;/td&gt;
+      &lt;td&gt;Description&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;X&lt;/td&gt;
+      &lt;td&gt;Start OS X in Forced Mode&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;+  +  +&lt;/td&gt;
+      &lt;td&gt;Bypass primary startup volume and seek a different startup volume (such as a CD or external disk).&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;C&lt;/td&gt;
+      &lt;td&gt;Start up from a CD that has a system folder.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;N&lt;/td&gt;
+      &lt;td&gt;Attempt to start up from a compatible network server (NetBoot).&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;R&lt;/td&gt;
+      &lt;td&gt;Force PowerBook screen reset.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;T&lt;/td&gt;
+      &lt;td&gt;Start up in FireWire Target Disk Mode.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;Start up in Safe Boot Mode. Temporarily disable login items and non-essential kernel extension files (Mac OS X 10.2 and later).&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;⇧&lt;/td&gt;
+      &lt;td&gt;(held until second restart) Boots into “Safe Boot” mode, which runs Disk First Aid. The system will restart on completion.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;⌘ + V&lt;/td&gt;
+      &lt;td&gt;Start up in Verbose Mode.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;⌘ + S&lt;/td&gt;
+      &lt;td&gt;Start up in Single-User Mode. The results in UNIX command line.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;Boot into Open Firmware.Select a boot device.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;⌘ + ⌥ + P + R&lt;/td&gt;
+      &lt;td&gt;Reset Parameter RAM (PRAM) and non-volatile RAM (NVRAM).&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;(mouse button clicked and held)&lt;/td&gt;
+      &lt;td&gt;Eject (internal) removable media.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</description>
+        
+        <pubDate>Sun, 20 Dec 2009 20:25:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2009-12-20-os-x-startup-commands.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2009-12-20-os-x-startup-commands.html</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>How to Repair plist files on OS X</title>
         
           <description>&lt;p&gt;To repair Preferences (.plist) files use the following command:&lt;/p&gt;
