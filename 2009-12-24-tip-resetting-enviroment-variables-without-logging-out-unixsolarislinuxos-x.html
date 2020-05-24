@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>Tip: Redirect Output to a tty (UNIX/Solaris/Linux/OS X)</title>
+    <title>Tip: Resetting Enviroment Variables without Logging Out (UNIX/Solaris/Linux/OS X)</title>
     <meta name="description" content="A Caffeinated Java Developer." />
 
     <!-- Mobile Meta -->
@@ -27,21 +27,21 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="https://johnyeary.com//2009-12-24-tip-redirect-output-to-a-tty-unixsolarislinuxos-x.html" />
+        <link rel="canonical" href="https://johnyeary.com//2009-12-24-tip-resetting-enviroment-variables-without-logging-out-unixsolarislinuxos-x.html" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="John Yeary" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Tip: Redirect Output to a tty (UNIX/Solaris/Linux/OS X)" />
+    <meta property="og:title" content="Tip: Resetting Enviroment Variables without Logging Out (UNIX/Solaris/Linux/OS X)" />
     <meta property="og:description" content="A Caffeinated Java Developer." />
-    <meta property="og:url" content="https://johnyeary.com//2009-12-24-tip-redirect-output-to-a-tty-unixsolarislinuxos-x.html" />
+    <meta property="og:url" content="https://johnyeary.com//2009-12-24-tip-resetting-enviroment-variables-without-logging-out-unixsolarislinuxos-x.html" />
     <meta property="og:image" content="/assets/images/cover1.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Tip: Redirect Output to a tty (UNIX/Solaris/Linux/OS X)" />
+    <meta name="twitter:title" content="Tip: Resetting Enviroment Variables without Logging Out (UNIX/Solaris/Linux/OS X)" />
     <meta name="twitter:description" content="A Caffeinated Java Developer." />
-    <meta name="twitter:url" content="https://johnyeary.com//2009-12-24-tip-redirect-output-to-a-tty-unixsolarislinuxos-x.html" />
+    <meta name="twitter:url" content="https://johnyeary.com//2009-12-24-tip-resetting-enviroment-variables-without-logging-out-unixsolarislinuxos-x.html" />
     <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
 
     <script type="application/ld+json">
@@ -49,8 +49,8 @@
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "John Yeary",
-    "name": "Tip: Redirect Output to a tty (UNIX/Solaris/Linux/OS X)",
-    "url": "https://johnyeary.com//2009-12-24-tip-redirect-output-to-a-tty-unixsolarislinuxos-x.html",
+    "name": "Tip: Resetting Enviroment Variables without Logging Out (UNIX/Solaris/Linux/OS X)",
+    "url": "https://johnyeary.com//2009-12-24-tip-resetting-enviroment-variables-without-logging-out-unixsolarislinuxos-x.html",
     "image": "/assets/images/cover1.jpg",
     "description": "A Caffeinated Java Developer."
 }
@@ -123,7 +123,7 @@
     <article class="post tag-mac tag-unix">
 
         <header class="post-header">
-            <h1 class="post-title">Tip: Redirect Output to a tty (UNIX/Solaris/Linux/OS X)</h1>
+            <h1 class="post-title">Tip: Resetting Enviroment Variables without Logging Out (UNIX/Solaris/Linux/OS X)</h1>
             <section class="post-meta">
             <!-- <a href='/'></a> -->
 
@@ -151,10 +151,12 @@
 
         <section class="post-content">
 
-            <p>Redirect ouptut to tty using the following command:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>script -a /dev/null | tee /dev/pts/XXX
+            <p>To reset environment variable changes in bash without logging out</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source ~/.profile
 </code></pre></div></div>
-<p>Where XXX is the <code class="highlighter-rouge">tty</code> target</p>
+<p>Confirm changes by:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set | grep &lt;changed parameter&gt;
+</code></pre></div></div>
 
 
         </section>
@@ -187,16 +189,16 @@
 
                     <section class="share">
                         <h4>Share this post</h4>
-                        <a class="icon-twitter" href="https://twitter.com/share?text=Tip: Redirect Output to a tty (UNIX/Solaris/Linux/OS X)&amp;url=https://johnyeary.com/2009-12-24-tip-redirect-output-to-a-tty-unixsolarislinuxos-x.html"
+                        <a class="icon-twitter" href="https://twitter.com/share?text=Tip: Resetting Enviroment Variables without Logging Out (UNIX/Solaris/Linux/OS X)&amp;url=https://johnyeary.com/2009-12-24-tip-resetting-enviroment-variables-without-logging-out-unixsolarislinuxos-x.html"
                             onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                             <span class="hidden">Twitter</span>
                         </a>
-                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://johnyeary.com/2009-12-24-tip-redirect-output-to-a-tty-unixsolarislinuxos-x.html"
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://johnyeary.com/2009-12-24-tip-resetting-enviroment-variables-without-logging-out-unixsolarislinuxos-x.html"
                             onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                             <span class="hidden">Facebook</span>
                         </a>
                         <!--
-                        <a class="icon-google-plus" href="https://plus.google.com/share?url=https://johnyeary.com2009-12-24-tip-redirect-output-to-a-tty-unixsolarislinuxos-x.html"
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=https://johnyeary.com2009-12-24-tip-resetting-enviroment-variables-without-logging-out-unixsolarislinuxos-x.html"
                            onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                             <span class="hidden">Google+</span>
                         </a>
@@ -211,8 +213,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     var disqus_shortname = 'john-yeary'; // required: replace example with your forum shortname
-    var disqus_identifier = '/2009-12-24-tip-redirect-output-to-a-tty-unixsolarislinuxos-x.html';
-    var disqus_url = 'https://johnyeary.com/2009-12-24-tip-redirect-output-to-a-tty-unixsolarislinuxos-x.html';
+    var disqus_identifier = '/2009-12-24-tip-resetting-enviroment-variables-without-logging-out-unixsolarislinuxos-x.html';
+    var disqus_url = 'https://johnyeary.com/2009-12-24-tip-resetting-enviroment-variables-without-logging-out-unixsolarislinuxos-x.html';
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function () {
@@ -237,20 +239,20 @@
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/abstract-apple-art-black-and-white-434346.jpg)" href="/2009-12-24-tip-xdmcp-using-cygwin-unixsolarislinuxos-x.html">
+        <a class="read-next-story no-cover" href="/2009-12-24-tip-x-window-display-on-localhost-from-remote-system-unixsolarislinuxos-x.html">
             <section class="post">
-                <h2>Tip: XDMCP using Cygwin (UNIX/Solaris/Linux/OS X)</h2>
-                <p>XDMCP to a UNIX system using [cygwin](http://www.cygwin.com/) on Windows. ``` XWin.exe -kb :0 -query [hostname...</p>
+                <h2>Tip: X-Window Display on localhost from Remote system (UNIX/Solaris/Linux/OS X)</h2>
+                <p>X-Window display on local host with known hostname or IP address: 1. Confirm remote host...</p>
             </section>
         </a>
     
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/assets/images/adventure-balance-balanced-balancing-7640.jpg)" href="/2009-12-24-four-paths-of-yoga.html">
+        <a class="read-next-story prev " style="background-image: url(/assets/images/abstract-apple-art-black-and-white-434346.jpg)" href="/2009-12-24-tip-xdmcp-using-cygwin-unixsolarislinuxos-x.html">
             <section class="post">
-                <h2>Four Paths of Yoga</h2>
-                <p>Karma – Active Path (service to others) Jnana – Philosophical Path (often the hardest) Raja...</p>
+                <h2>Tip: XDMCP using Cygwin (UNIX/Solaris/Linux/OS X)</h2>
+                <p>XDMCP to a UNIX system using cygwin on Windows. XWin.exe -kb :0 -query [hostname or...</p>
             </section>
         </a>
     

@@ -599,6 +599,138 @@ works, I will look at moving my crown jewel from Blogger too.&lt;/p&gt;
     
       
       <item>
+        <title>Winged Warfare</title>
+        
+          <description>&lt;p&gt;I finished the autobiographical book by Lt. Col. William Bishop. As I noted in my last blog post, this is a great read for anyone who is a history buff, or an air warfare aficionado. It is interesting that some of the same air warfare rules of WW I are still applicable today.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 07 Mar 2010 15:27:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2010-03-07-winged-warfare.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2010-03-07-winged-warfare.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Winged Warfare</title>
+        
+          <description>&lt;p&gt;I flew for many years on P-3 Orion patrol planes for the US Navy. I had this dream of being like Lieutenant (Left-ten-ant) Colonel William A. Bishop. OK, I will humor you with who he is since it is currently the Olympic Games going on, and he is a Canadian hero.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 19 Feb 2010 05:32:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2010-02-19-winged-warfare-2.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2010-02-19-winged-warfare-2.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Ground Up by Michael Idov</title>
+        
+          <description>&lt;p&gt;So that people don’t think I am sleeping on the job. I read and finished Ground Up yesterday. Wow! Compared to Hermann Hesse this is for idiots who read the New York Times Bestsellers lists. OK, I know that was harsh. However, I have found fashion does not “Trump” substance in ALL cases. I know that was a bit harsher.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 19 Feb 2010 05:23:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2010-02-19-ground-up-by-michael-idov.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2010-02-19-ground-up-by-michael-idov.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>First Men in the Moon by H.G. Wells</title>
+        
+          <description>&lt;p&gt;I read the novel First Men in the Moon by H.G. Wells this weekend. It is really neat to read a novel of such fantastic proportions. The novel was written well before our first trip to the moon, and contains a lot of scientific conjecture from the 1890s and early 1900s.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Mon, 15 Feb 2010 15:09:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2010-02-15-first-men-in-the-moon-by-h-g-wells.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2010-02-15-first-men-in-the-moon-by-h-g-wells.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Tip: How to Use a Sequence as the Default Value on a Coumn (Oracle)</title>
+        
+          <description>&lt;p&gt;You first must create the sequence you want to use to add the identity value for the column. Then replace the values in highlighted below appropriately for your environment.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 13 Jan 2010 22:08:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2010-01-13-tip-how-to-use-a-sequence-as-the-default-value-on-a-coumn-oracle.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2010-01-13-tip-how-to-use-a-sequence-as-the-default-value-on-a-coumn-oracle.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Tip: X-Window Display on localhost from Remote system (UNIX/Solaris/Linux/OS X)</title>
+        
+          <description>&lt;p&gt;X-Window display on local host with known hostname or IP address:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Confirm remote host has Xaccess configured to allow remote connections.
+  &lt;strong&gt;Note:&lt;/strong&gt;The file is located in /etc/dt/conf/ on Solaris 9&lt;/li&gt;
+  &lt;li&gt;Type on the local host:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  X -query &amp;lt;hostname or IP address&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        
+        <pubDate>Thu, 24 Dec 2009 14:53:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2009-12-24-tip-x-window-display-on-localhost-from-remote-system-unixsolarislinuxos-x.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2009-12-24-tip-x-window-display-on-localhost-from-remote-system-unixsolarislinuxos-x.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Tip: Resetting Enviroment Variables without Logging Out (UNIX/Solaris/Linux/OS X)</title>
+        
+          <description>&lt;p&gt;To reset environment variable changes in bash without logging out&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;source ~/.profile
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Confirm changes by:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set | grep &amp;lt;changed parameter&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        
+        <pubDate>Thu, 24 Dec 2009 14:47:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2009-12-24-tip-resetting-enviroment-variables-without-logging-out-unixsolarislinuxos-x.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2009-12-24-tip-resetting-enviroment-variables-without-logging-out-unixsolarislinuxos-x.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Tip: XDMCP using Cygwin (UNIX/Solaris/Linux/OS X)</title>
+        
+          <description>&lt;p&gt;XDMCP to a UNIX system using &lt;a href=&quot;http://www.cygwin.com/&quot;&gt;cygwin&lt;/a&gt; on Windows.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;XWin.exe -kb :0 -query [hostname or ip address]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        
+        <pubDate>Thu, 24 Dec 2009 14:43:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2009-12-24-tip-xdmcp-using-cygwin-unixsolarislinuxos-x.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2009-12-24-tip-xdmcp-using-cygwin-unixsolarislinuxos-x.html</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Tip: Redirect Output to a tty (UNIX/Solaris/Linux/OS X)</title>
         
           <description>&lt;p&gt;Redirect ouptut to tty using the following command:&lt;/p&gt;
@@ -1207,6 +1339,21 @@ country, but on this opinion piece I am not sure I can agree completely.&lt;/p&g
         <link>
         https://johnyeary.com/2009-04-13-the-grid-and-spies.html</link>
         <guid isPermaLink="true">https://johnyeary.com/2009-04-13-the-grid-and-spies.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Steppenwolf by Hermann Hesse</title>
+        
+          <description>&lt;p&gt;I read the novel Steppenwolf by Hermann Hesse last night and today. I was truly inspired by its wonderful use of the English language. This is of course via proxy since it was originally written in German in 1927, and translated later (1929) to English.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 16 Feb 0010 01:23:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/0010-02-16-steppenwolf-by-hermann-hesse.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/0010-02-16-steppenwolf-by-hermann-hesse.html</guid>
       </item>
       
     

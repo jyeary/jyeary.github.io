@@ -12,6 +12,57 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>Tip: X-Window Display on localhost from Remote system (UNIX/Solaris/Linux/OS X)</title>
+	  <link>//2009-12-24-tip-x-window-display-on-localhost-from-remote-system-unixsolarislinuxos-x.html</link>
+	  <author></author>
+	  <pubDate>2009-12-24T14:53:00+00:00</pubDate>
+	  <guid>//2009-12-24-tip-x-window-display-on-localhost-from-remote-system-unixsolarislinuxos-x.html</guid>
+	  <description><![CDATA[
+	     <p>X-Window display on local host with known hostname or IP address:</p>
+<ol>
+  <li>Confirm remote host has Xaccess configured to allow remote connections.
+  <strong>Note:</strong>The file is located in /etc/dt/conf/ on Solaris 9</li>
+  <li>Type on the local host:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  X -query &lt;hostname or IP address&gt;
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Tip: Resetting Enviroment Variables without Logging Out (UNIX/Solaris/Linux/OS X)</title>
+	  <link>//2009-12-24-tip-resetting-enviroment-variables-without-logging-out-unixsolarislinuxos-x.html</link>
+	  <author></author>
+	  <pubDate>2009-12-24T14:47:00+00:00</pubDate>
+	  <guid>//2009-12-24-tip-resetting-enviroment-variables-without-logging-out-unixsolarislinuxos-x.html</guid>
+	  <description><![CDATA[
+	     <p>To reset environment variable changes in bash without logging out</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source ~/.profile
+</code></pre></div></div>
+<p>Confirm changes by:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set | grep &lt;changed parameter&gt;
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Tip: XDMCP using Cygwin (UNIX/Solaris/Linux/OS X)</title>
+	  <link>//2009-12-24-tip-xdmcp-using-cygwin-unixsolarislinuxos-x.html</link>
+	  <author></author>
+	  <pubDate>2009-12-24T14:43:00+00:00</pubDate>
+	  <guid>//2009-12-24-tip-xdmcp-using-cygwin-unixsolarislinuxos-x.html</guid>
+	  <description><![CDATA[
+	     <p>XDMCP to a UNIX system using <a href="http://www.cygwin.com/">cygwin</a> on Windows.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>XWin.exe -kb :0 -query [hostname or ip address]
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Tip: Redirect Output to a tty (UNIX/Solaris/Linux/OS X)</title>
 	  <link>//2009-12-24-tip-redirect-output-to-a-tty-unixsolarislinuxos-x.html</link>
 	  <author></author>
