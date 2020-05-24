@@ -14,7 +14,6 @@ subclass: 'post tag-yoga'
 A variation of the alternate nostril breathing technique. This pranayama technique has a quieting effect, and reduces mental turbulence. The ultimate effect of this technique is to quietly reduce the mind to becoming a witness to the process, and make the breathing effortless.
 
 **Note:** Make sure that the nasal passages are clear before beginning. Using a neti pot to clean the sinuses is a method to ensure that the nasal passages are cleansed.
- 	
   1. Close the right nostril. Exhale through the left, and inhale on a count of 4. 	
   2. Close off both nostrils, and retain the breath for a count of 16.
   3. Keep the left nostril closed, and exhale through the right nostril for a count of 8.

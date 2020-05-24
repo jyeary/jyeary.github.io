@@ -12,7 +12,6 @@ tags: yoga
 subclass: 'post tag-yoga' 
 ---
 A technique for practicing Bhastrika. This is an energizing and cleansing breathing technique.  
-
   1. Start by relaxing the shoulders and taking slow, deep, abdominal breaths.
   2. Exhale completely.
   3. Start deep forceful inhalations and exhalations at one second per cycle through the nose.
