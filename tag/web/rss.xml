@@ -392,6 +392,147 @@ Click OK.
 	</item>
 
 	<item>
+	  <title>CFSSL Cloudflare SSL</title>
+	  <link>//2018-05-25-cfssl-cloudflare-ssl.html</link>
+	  <author></author>
+	  <pubDate>2018-05-25T15:30:39+00:00</pubDate>
+	  <guid>//2018-05-25-cfssl-cloudflare-ssl.html</guid>
+	  <description><![CDATA[
+	     <p>A normal devops activity is installing certificates on your servers. However, most servers if used internally don’t need an official CA signed certificate for normal operations. Especially when dealing with development machines, or testing. So why pay the man… when you can be the man! Be your own CA!</p>
+
+<h3 id="cloudflare-ssl-cfssl">Cloudflare SSL (cfssl)</h3>
+<p>Cloudflare open-sourced their cfssl software under a BSD license. It is written in go, and offers a number of great features. However, like any number of open-source projects, it lacks really good documentation. The software works great once you get it figured out. Let me try to show you how I set up my configuration.</p>
+
+<h4 id="bootstrap-instructions">Bootstrap Instructions</h4>
+<ol>
+  <li>Create a Certificate Authority (CA) Certificate Signing Request (CSR). This is the file used to generate our CA name, keys, and generate our own CSR (if we want it signed by another CA). Here is an example <strong>ca_csr.json</strong>.
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"CN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal CA"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"algo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rsa"</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2048</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+   </span><span class="nl">"C"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"L"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Greenville"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"O"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Charlie Company"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"OU"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPS"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"ST"</span><span class="p">:</span><span class="w"> </span><span class="s2">"South Carolina"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>Generate your public and private keys, and a CSR for signing by a third party if necessary.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl gencert -initca csr_ca.json | cfssljson -bare ca
+</code></pre></div>    </div>
+  </li>
+  <li>Create your configuration file <strong>ca_config.json</strong>. My version differs from the first reference listed below. You will need to provide your own key. Here is an online resource to generate one: <a href="https://www.random.org/bytes/">Random Byte Generator</a>
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"signing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"default"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="nl">"auth_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"key1"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8760h"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"usages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+       </span><span class="s2">"signing"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"key encipherment"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"server auth"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"cert sign"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"crl sign"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"client auth"</span><span class="w">
+     </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"auth_keys"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"key1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;</span><span class="mi">16</span><span class="w"> </span><span class="err">byte</span><span class="w"> </span><span class="err">hex</span><span class="w"> </span><span class="err">API</span><span class="w"> </span><span class="err">key</span><span class="w"> </span><span class="err">here&gt;</span><span class="w"> </span><span class="p">,</span><span class="w">
+   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"standard"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>Start your server:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl serve -ca-key ca-key.pem -ca ca.pem -config config_ca.json
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="generating-and-signing-certificates">Generating and Signing Certificates</h3>
+<p><strong>Note:</strong> The server name in this example is called <em>groot</em>, as in, <em>I am Groot!</em> from the movie <em>Guardians of the Galaxy</em>.</p>
+
+<ol>
+  <li>Create Create a <strong>csr_client.json</strong>. This contains the information for the server for which we want create a certificate.
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"CN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"groot.example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"hosts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="s2">"iamgroot.example.com"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"*.example.com"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"algo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rsa"</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2048</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+   </span><span class="nl">"C"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"L"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Greenville"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"O"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Charlie Company"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"OU"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPS"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"ST"</span><span class="p">:</span><span class="w"> </span><span class="s2">"South Carolina"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>Create a <strong>config_client.json</strong>. This contains the information required to connect to our new server.
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"signing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"default"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="nl">"auth_remote"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="nl">"auth_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"key1"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"remote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"caserver"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"auth_keys"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"key1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;16 byte hex API key here. Same key as server.&gt;"</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"standard"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"remotes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"caserver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>The command below will generate the key (<strong>groot-key.pem</strong>), and CSR (<strong>groot.csr</strong>). Then it will use the provided configuration to contact the server and return the signed certificate. The certificate will be called <strong>groot.pem</strong>.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl gencert -config config_client.json csr_client.json | cfssljson -bare groot
+</code></pre></div>    </div>
+  </li>
+  <li>(ALTERNATIVE) If you already have a CSR, you can request that the server sign it. This will provide a certificate called <strong>groot.pem</strong>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl sign -config config_client.json groot.csr | cfssljson -bare groot
+</code></pre></div>    </div>
+  </li>
+  <li>(ALTERNATIVE) If you need additional host names, e.g, Subject Alternative Name (SAN), you can use the following command substituting hostnames below with comma separated values.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl sign -config config_client.json -hostname=quill.example.com,ronan.example.com,kree.example.com groot.csr | cfssljson -bare groot
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="references">References</h3>
+<ul>
+  <li><a href="https://blog.cloudflare.com/how-to-build-your-own-public-key-infrastructure/">How to build your own public key infrastructure</a></li>
+  <li><a href="https://github.com/cloudflare/cfssl">cloudflare/cfssl</a></li>
+  <li><a href="https://github.com/cloudflare/cfssl/issues/566">steps in bootstrap.txt not working #566</a></li>
+</ul>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>NGINX Mercurial Proxy on Windows</title>
 	  <link>//2018-05-18-nginx-mercurial-proxy-on-windows.html</link>
 	  <author></author>
@@ -611,22 +752,6 @@ REM The configuration below will start the service on all addresses on the machi
 <p>The ffeldhaus/wireshark version worked flawlessly. It uses <a href="https://xpra.org/">Xpra</a> to expose Wireshark via a browser. It was slick. Once I copied the file to the wireshark container, it opened easily in the browser. The featured image in the blog is my actual data. <code class="highlighter-rouge">docker cp webserver.pcap wireshark:/</code></p>
 
 <p>So when you are doing any of the labs, take a moment to consider other technologies and don’t necessarily settle on the approach that the course is offering you.</p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>Apache Archiva on Docker</title>
-	  <link>//2018-03-09-apache-archiva-on-docker.html</link>
-	  <author></author>
-	  <pubDate>2018-03-09T21:12:28+00:00</pubDate>
-	  <guid>//2018-03-09-apache-archiva-on-docker.html</guid>
-	  <description><![CDATA[
-	     <p>I tried Apache Archiva in a Docker container this evening. I was hoping that it would be a good alternative to Nexus. Once I got it running in the container I realized that it really does not support all the features that I use in Nexus.</p>
-
-<p>The container I used (I won’t bash the author) kept wanting to only publish on 0.0.0.0/8080 even though I was telling it to use the host IP address on 8080. After getting it up and running, I decided not to try and fix it though.</p>
-
-<p>I wanted to play with it for a couple of hours, and I concluded that it would not work for me. There is a lot of promise though. I will come back and examine it at a later time.</p>
 
 	  ]]></description>
 	</item>

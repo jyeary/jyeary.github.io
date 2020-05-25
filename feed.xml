@@ -301,6 +301,21 @@
     
       
       <item>
+        <title>CFSSL Cloudflare SSL</title>
+        
+          <description>&lt;p&gt;A normal devops activity is installing certificates on your servers. However, most servers if used internally don’t need an official CA signed certificate for normal operations. Especially when dealing with development machines, or testing. So why pay the man… when you can be the man! Be your own CA!&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 25 May 2018 15:30:39 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2018-05-25-cfssl-cloudflare-ssl.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2018-05-25-cfssl-cloudflare-ssl.html</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Disabling and Enabling Hyper-V on Windows</title>
         
           <description>&lt;p&gt;I needed to be able to run VMWare and VirtualBox from my Windows 10 Pro machine. This machine also has Docker on it. The issue is that you can only have one Hypervisor working at a time. So Docker &lt;strong&gt;OR&lt;/strong&gt; VirtualBox and VMWare. A temporary solution is to disable the Hyper-V using the following commands. Once this disabled, you can run VirtualBox and VMWare.&lt;/p&gt;
