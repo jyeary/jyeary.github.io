@@ -309,6 +309,21 @@
     
       
       <item>
+        <title>American Horror Story - Cult</title>
+        
+          <description>&lt;p&gt;I know it is in its 7th season, but I watched the first episode of season 7 tonight on FX. I was not scared, but I will say that it was creepy if not predictable in a horrible way. I will tune in next week to watch the second episode in the series. I really don’t want to give anything away.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 07 Sep 2017 02:03:55 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2017-09-07-american-horror-story-cult.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2017-09-07-american-horror-story-cult.html</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>It Figures...</title>
         
           <description>&lt;p&gt;Well I got a nice surprise from OpenShift a couple of days ago. The
@@ -323,6 +338,66 @@ pulled out from under me. They provide a means to migrate to OpenShift
         <link>
         https://johnyeary.com/2017-09-01-it-figures.html</link>
         <guid isPermaLink="true">https://johnyeary.com/2017-09-01-it-figures.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>WordPress Plugin: Disqus Comment System</title>
+        
+          <description>&lt;p&gt;One of the biggest challenges with blogging is the management of comments. The readers may show appreciation, or challenge your post. In both cases, you want to be able to publish the comments with as little moderation as possible. The problem we face in the Internet Society are trolls. Yes, you have all seen them, they post anonymously, post vulgar remarks, or try to bait you into a public discussion of their negative commentary. So how do you manage it?&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 17 Aug 2017 23:15:42 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2017-08-17-wordpress-plugin-disqus-comment-system.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2017-08-17-wordpress-plugin-disqus-comment-system.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>WordPress Plugin: AdSense Integration WP QUADS</title>
+        
+          <description>&lt;p&gt;I was looking for an easy to implement plugin for management of Google Adsense. The &lt;a href=&quot;https://wordpress.org/plugins/quick-adsense-reloaded/&quot;&gt;AdSense Integration WP QUADS&lt;/a&gt; plugin is free and has some pay options, but for me at the moment, the free part works just fine.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 17 Aug 2017 23:04:05 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2017-08-17-wordpress-plugin-adsense-integration-wp-quads.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2017-08-17-wordpress-plugin-adsense-integration-wp-quads.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>WordPress Plugin: Blogger Importer</title>
+        
+          <description>&lt;p&gt;I can’t say enough about how impressed I am with the &lt;a href=&quot;https://wordpress.org/plugins/blogger-importer/&quot;&gt;Blogger Importer&lt;/a&gt; plugin from WordPress. If you are trying to convince someone to move from one blogging platform to another, you need to provide awesome migration tools. This tool worked amazingly. &lt;strong&gt;I didn’t have one glitch.&lt;/strong&gt; It worked on the first try, and it worked multiple times on the first try (I tried a number of cloud platforms, and deployments).&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 15 Aug 2017 02:46:32 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2017-08-15-wordpress-plugin-blogger-importer.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2017-08-15-wordpress-plugin-blogger-importer.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>WordPress Plugin: Better Search and Replace by Delicious Brains</title>
+        
+          <description>&lt;p&gt;I want to take some time to point out some of the plugins that I have installed on my blog and used as part of migration from Blogger to WordPress. In my post &lt;a href=&quot;https://35.190.128.70/2017/08/online-broken-link-checker-tool-for-seo/&quot;&gt;Online Broken Link Checker Tool for SEO&lt;/a&gt; article, I mentioned how to track down broken links. Well once you have them, you can go to the pages and manually change them, or if possible you can change them en masse. This is particularly true if a site changes from something like &lt;strong&gt;example.com/abc/test&lt;/strong&gt; to &lt;strong&gt;example.com/test&lt;/strong&gt;. The links will work if you just remove the abc part of the URI. I encountered a lot of these for changes done at Informationweek and some of the other news media outlets. This is one of those cases where they didn’t follow good practices with regards to permalinks.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 15 Aug 2017 02:28:36 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2017-08-15-wordpress-plugin-better-search-and-replace-by-delicious-brains.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2017-08-15-wordpress-plugin-better-search-and-replace-by-delicious-brains.html</guid>
       </item>
       
     
