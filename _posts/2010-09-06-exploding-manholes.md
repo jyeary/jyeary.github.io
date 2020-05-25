@@ -11,8 +11,7 @@ categories: jyeary
 tags: life
 subclass: 'post tag-life'
 ---
-
-[![Manhole Cover Designs: Urban Industrial Artworks under Our Feet](https://farm4.staticflickr.com/3603/3718921415_477dea162e.jpg)](https://www.flickr.com/photos/cultcase/3718921415/in/photolist-6ECrLK)
+!['Manhole Cover Designs: Urban Industrial Artworks under Our Feet'](assets/images/3718921415_477dea162e.jpg)
 
 I just read an article in [CIO Magazine](http://www.cio.com/) in the section called finish. The article is called "Don't Blow Your Top". The short article details some of the work being done by [Columbia University](http://www.columbia.edu/) and [ConEd](http://www.coned.com/) to detect potential issues in the underground utility spaces like the build-up of explosive gasses.
 
