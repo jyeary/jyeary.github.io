@@ -237,6 +237,385 @@
 	</item>
 
 	<item>
+	  <title>Mercurial on IIS</title>
+	  <link>//2018-06-29-mercurial-on-iis.html</link>
+	  <author></author>
+	  <pubDate>2018-06-29T22:10:25+00:00</pubDate>
+	  <guid>//2018-06-29-mercurial-on-iis.html</guid>
+	  <description><![CDATA[
+	     <h3 id="introduction">Introduction</h3>
+<p>I was recently tasked with updating our Mercurial repository at work. The original repository and configuration using Apache had been in place for years without issues generally. The latest Apache versions for Windows are provided by third parties and not from Apache Foundation anymore.</p>
+
+<p>When I looked at the configuration we were using, the Python FastCGI modules were very old and had not been updated in years. In fairness, they didn’t need to be for our application, but there were no updates for the latest Apache HTTPD server. The existing third party versions of Apache didn’t include the required libraries for the old modules. I didn’t want to install everything required to compile a new version of Apache for our environment. This would add application maintenance overhead to me to maintain and update it. So what were my alternatives?</p>
+
+<p>Since the application was already running on a Windows server, I decided to see if I could implement it on Windows without having to migrate to a Linux server. Although migrating to Linux, or UNIX would have been my preference, it was not available to me. The solution was to try to use IIS to serve up the application. Specifically, I had a set of requirements:</p>
+<ol>
+  <li>Windows AD authentication.</li>
+  <li>Mercurial needed to be available via HTTPS.</li>
+  <li>Latest version of Mercurial</li>
+  <li>Simple implementation</li>
+  <li>Easy maintenance</li>
+</ol>
+
+<p>The ease of maintenance would be normal Windows server updates. The implementation should be sufficiently simple that a new ops, or engineer could be assigned the task of updating it, or maintaining it.</p>
+
+<p>Since Mercurial is popular, I thought finding some details on deploying Mercurial on IIS would be simple. I found some blog posts and wiki pages on it, but they were very old. Nothing was up-to-date. So I decided to write my own post with details I gathered from multiple blog posts and references.</p>
+
+<h3 id="python">Python</h3>
+<p>Install Python. I installed the <strong>python-2.7.15.amd64.msi</strong> on the server accepting the defaults except I also added Python to the path as shown below.</p>
+
+<p><img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/PythonInstall.png" alt="Python Install" /></p>
+
+<h3 id="mercurial">Mercurial</h3>
+<p>Install Mercurial. I installed <strong>mercurial-4.6.1.win-amd64-py2.7.msi</strong> which will install it into the Python installation.</p>
+
+<p>Once the installation is complete open a command prompt or Powershell and type <em>hg</em>. It should display a list of commands available.</p>
+
+<h3 id="iis">IIS</h3>
+<p>Install/activate IIS. We need to insure that CGI is enabled for wfastcgi.</p>
+<ol>
+  <li>Open <strong>Server Manager</strong></li>
+  <li>Go to <strong>Add Roles and Features</strong>. Scroll down and select <strong>Web Server (IIS)</strong> and <strong>Next</strong>. Continue <strong>Next</strong> until you reach <em>Role Services</em>. 
+  <img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/AddRemoveIIS.png" alt="Add Remove IIS" /></li>
+  <li>(OPTIONAL) Under <strong>Performance</strong>, select <em>Dynamic Content Compression</em>.</li>
+  <li>(OPTIONAL) Under <strong>Security</strong>, select any mechanism you want to use to allow users to connect. I selected <em>Basic Authentication</em> and <em>Windows Authentication</em>. Click <strong>Next</strong>.
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/RoleSevices.png" alt="Roles Services" /></li>
+  <li>Check options and click <strong>Install</strong>.</li>
+  <li>Once the install completes, we need to go back to <strong>Add Roles and Features</strong>. This time navigate to <em>Application Development</em> and select <em>CGI</em>.
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/CGIEnabled.png" alt="CGI Enabled" /></li>
+</ol>
+
+<h3 id="python-fastcgi-implementation-wfastcgi">Python FastCGI implementation (wfastcgi)</h3>
+<p>I looked for an implementation that would provide the sufficient capabilities to serve up the pages quickly with little overhead. I looked at a number of implementations. I was looking at wfastcgi and noticed that it was created and maintained by Microsoft. Bonus!</p>
+
+<ol>
+  <li>Using a command prompt or Powershell. type the following:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install wfastcgi
+</code></pre></div>    </div>
+  </li>
+  <li>Once <em>pip</em> finshes installing <em>wfastcgi</em>, run the following command to enable <em>wfastcgi</em>.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wfastcgi-enable     
+</code></pre></div>    </div>
+    <p><img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/pipInstall.png" alt="pip install" /></p>
+  </li>
+  <li>After enabling <em>wfastcgi</em>, we can refresh our IIS Application Server Manager instance and we will have a new IIS management category called <strong>FastCGI Settings</strong>. Just confirm its presence we will attend to it shortly.</li>
+  <li>Next go to Sites in IIS Admin and ensure that you have the <em>Default Website</em> stopped.</li>
+  <li>Right-click and <strong>Add Website</strong>. This will bring up a form to configure. I set my settings as shown below. You may change them to meet your needs.
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/AddWebsite.png" alt="Add Website" /></li>
+  <li>Set the website bindings as shown below:
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/SiteBindings.png" alt="Site Bindings" /></li>
+</ol>
+
+<h3 id="final-configuration">Final Configuration</h3>
+<ol>
+  <li>Copy the <strong>C:\Python27\Lib\site-packages\wfastcgi.py</strong> to the root directory of your new site. In my case it is the <em>C:\inetpub\hg</em> directory.</li>
+  <li>Place the following script in the root directory and name it <strong>hgweb.py</strong>:
+    <div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">config</span> = <span class="s2">"hgweb.config"</span>
+<span class="n">from</span> <span class="n">mercurial</span> <span class="n">import</span> <span class="n">demandimport</span>; <span class="n">demandimport</span>.<span class="n">enable</span>()
+<span class="n">from</span> <span class="n">mercurial</span>.<span class="n">hgweb</span> <span class="n">import</span> <span class="n">hgweb</span>
+<span class="n">application</span> = <span class="n">hgweb</span>(<span class="n">config</span>)
+</code></pre></div>    </div>
+  </li>
+  <li>Create a <strong>hgweb.config</strong> file and place it in the root directory. If you use the script below, please make sure you have a path to your repositories set. You can use the instructions available in Mercurial to reconfigure it later. Here is an example:
+    <div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[<span class="n">web</span>]
+<span class="n">encoding</span> = <span class="n">UTF</span>-<span class="m">8</span>
+<span class="n">allow_push</span> = *
+<span class="n">push_ssl</span> = <span class="n">False</span>
+<span class="n">allow_archive</span> = <span class="n">gz</span> <span class="n">zip</span> <span class="n">bz2</span>
+<span class="n">descend</span> = <span class="n">True</span>
+<span class="n">collapse</span> = <span class="n">True</span>
+<span class="n">style</span>=<span class="n">gitweb</span>
+[<span class="n">paths</span>]
+/ = <span class="n">C</span>:\<span class="n">repos</span>\*
+</code></pre></div>    </div>
+    <p><strong>NOTE:</strong> This method of listing repositories can be very slow if there are a number of repositories. It is better to list them individually.</p>
+  </li>
+  <li>Go to the IIS Admin <strong>Sites</strong> and select your Mercurial site. Go to <strong>Handler Mappings</strong>.</li>
+  <li>Click <strong>Add Module Mapping</strong> and provide the following details:
+    <ul>
+      <li><strong>Request Path:</strong> *</li>
+      <li><strong>Module:</strong> FastCgiModule</li>
+      <li><strong>Executable:</strong> C:\Python27\python.exe|C:\inetpub\hg\wfastcgi.py
+<strong>WARNING:</strong> There can not be any spaces between the values and the pipe (|) character otherwise it won’t work and you will be hating life trying to figure out why its not working.</li>
+      <li><strong>Name:</strong> hg-wfastcgi
+Continue to the next step below.</li>
+    </ul>
+  </li>
+  <li>Click on <em>Request Restrictions</em> button.
+    <ul>
+      <li><strong>Mapping</strong> » Uncheck checkbox <strong>Invoke handler only if request mapped to</strong>.</li>
+      <li><strong>Verbs:</strong> » <em>All Verbs</em> radio button selected.</li>
+      <li><strong>Access:</strong> » <em>Script</em>  radio button selected.
+Click OK.
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/HandlerMapping.png" alt="Handler Mapping" /></li>
+    </ul>
+  </li>
+  <li>Click OK. This will prompt you to create an application to handle the requests. <strong>Important</strong> Click *Yes**.
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/CreateApplicationHandler.png" alt="Create Application Handler" /></li>
+  <li>Configuring <em>wfastcgi</em> to respond to Mercurial requests. Go to the IIS Admin <em>FastCGI Settings</em> page.
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/FastCGISettings01.png" alt="FastCGI Settings Default" /></li>
+  <li>You should see the newly created handler at the bottom of the list. Click <strong>Edit</strong> which will bring up the form window. If it doesn’t exist, then you will need to <strong>Add Application</strong>. Fill in the following:
+    <ul>
+      <li><strong>Full Path:</strong> <em>C:\Python27\python.exe</em> (Only required if adding application)</li>
+      <li><strong>Arguments:</strong> <em>C:\inetpub\hg\wfastcgi.py</em> (Only required if adding application)</li>
+      <li><strong>General » Max Instances:</strong> 10</li>
+      <li><strong>Process Model » Activity Timeout:</strong> 300</li>
+      <li><strong>Process Model » Idle Timeout:</strong> 600</li>
+      <li><strong>Process Model » Request Timeout:</strong> 600</li>
+      <li><strong>General » Environment Variables:</strong> You will be adding the following environment variables:</li>
+      <li><strong>Name:</strong> <em>PYTHONPATH</em> <strong>Value:</strong> <em>C:\inetpub\hg</em></li>
+      <li><strong>Name:</strong> <em>WSGI_HANDLER</em> <strong>Value:</strong> <em>hgweb.application</em><br />
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/FastCGISettings02.png" alt="FastCGI Settings Updated" />
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/PYTHONPATH.png" alt="PYTHONPATH Environment Setting" />
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/WSGI_HANDLER.png" alt="WSGI_HANDLER Environment Setting" /></li>
+    </ul>
+  </li>
+  <li>Restart the web server and you should be in business. Open a browser and go to the address of the machine and you should see any repositories that are listed in your <strong>hgweb.config</strong> file.
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/Success.png" alt="Mercurial on IIS" /></li>
+</ol>
+
+<h3 id="security">Security</h3>
+<p>The application is not configured with authentication at this point. If you decide to use AD, you will need to configure IIS for the site to use AD. If you choose to use authentication, don’t forget to modify the <strong>hgweb.config</strong> file to <em>allow_push</em> for the users that should be allowed to push changes to the repository.</p>
+
+<h3 id="references">References</h3>
+<ul>
+  <li><a href="http://nick.txtcc.com/index.php/other/910">Setting up a Mercurial server under IIS7 on Windows Server 2008 R2</a></li>
+  <li><a href="http://blog.vishalon.net/running-mercurial-2-x-web-server-on-iis-7-5">Running Mercurial 2.x Web server on IIS 7.5</a></li>
+  <li><a href="http://www.jeremyskinner.co.uk/mercurial-on-iis7/">Setting up a Mercurial server under IIS7 on Windows Server 2008 R2</a></li>
+  <li><a href="https://pypi.org/project/wfastcgi/">wfastcgi 3.0.0</a></li>
+  <li><a href="https://medium.com/@bilalbayasut/deploying-python-web-app-flask-in-windows-server-iis-using-fastcgi-6c1873ae0ad8">Deploying Python web app (Flask) in Windows Server (IIS) using FastCGI</a></li>
+  <li><a href="https://www.mercurial-scm.org/wiki/PublishingRepositories#hgweb">3.2. Getting the hgweb script</a></li>
+  <li><a href="https://gist.github.com/bparaj/ac8dd5c35a15a7633a268e668f4d2c94">Python Flask on IIS with wfastcgi</a></li>
+</ul>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>NGINX Mercurial Proxy on Windows</title>
+	  <link>//2018-05-18-nginx-mercurial-proxy-on-windows.html</link>
+	  <author></author>
+	  <pubDate>2018-05-18T03:02:30+00:00</pubDate>
+	  <guid>//2018-05-18-nginx-mercurial-proxy-on-windows.html</guid>
+	  <description><![CDATA[
+	     <p>In my previous article I explained how to setup <a href="/2018-05-16-mercurial-4-5-as-a-windows-service.html">Mercurial 4.5+ as a Windows Service</a>. In this article we will expand on that configuration, and use NGINX to proxy to the service.</p>
+
+<p><strong>Note:</strong> This is supposed to make the service faster. However in my testing, I found it slower. This does allow you to use other functionality like LDAP, and AD authentication which is not available to our Mercurial service.</p>
+
+<h3 id="requirements">Requirements</h3>
+<ul>
+  <li>Install Mercurial as a Windows Service as detailed in this article :  <a href="/2018-05-16-mercurial-4-5-as-a-windows-service.html">Mercurial 4.5+ as a Windows Service</a>.</li>
+  <li>Download <a href="http://nginx.org/en/download.html">NGINX for Windows</a>. The current version at the time of this article is 1.13.12.</li>
+  <li><a href="https://github.com/kohsuke/winsw/releases">winsw-v2.1.2</a> (Please select the version according to .Net version installed on your platform).</li>
+</ul>
+
+<h3 id="installation">Installation</h3>
+<ol>
+  <li>I am partial to installing the nginx server by unzipping the file to  <em>C:\nginx-1.13.12</em>. This helps us to avoid any path related issues.</li>
+  <li>Next, we will install the WinSW file to the nginx directory.</li>
+  <li>Rename the WinSW executable to <code class="highlighter-rouge">nginx-service.exe</code>.</li>
+  <li>Create an XML file called <strong>nginx-service.xml</strong>. Modify it as shown below.</li>
+  <li>Run <code class="highlighter-rouge">nginx-service.exe install</code> to install the service</li>
+  <li>The <em>conf/nginx.conf</em> needs to be modified to point to our mercurial service. You will need to modify <code class="highlighter-rouge">server_name</code> and <code class="highlighter-rouge">listen</code> to match your environment. Please see the example below.</li>
+  <li>The Mercurial service we installed earlier is set to startup and listen on all IP interfaces by default (0.0.0.0). We want to modify this to bind to localhost. This will prevent the service from being exposed except through our NGINX. This is accomplished by changing the line in the <code class="highlighter-rouge">hg-service.bat</code> to the following: <code class="highlighter-rouge">"C:\Python27\Scripts\hg.exe" serve --address localhost --web-conf C:\hg\hgweb.config</code></li>
+  <li>Start the service and enjoy.</li>
+</ol>
+
+<h4 id="nginx-servicexml">nginx-service.xml</h4>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;service&gt;</span>
+    <span class="nt">&lt;id&gt;</span>nginx<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;name&gt;</span>nginx<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;</span>nginx web server.<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;depend&gt;</span>hg-serve<span class="nt">&lt;/depend&gt;</span>
+    <span class="nt">&lt;executable&gt;</span>nginx.exe<span class="nt">&lt;/executable&gt;</span>
+    <span class="nt">&lt;stopexecutable&gt;</span>nginx.exe<span class="nt">&lt;/stopexecutable&gt;</span>
+    <span class="nt">&lt;stopargument&gt;</span>-s<span class="nt">&lt;/stopargument&gt;</span>
+    <span class="nt">&lt;stopargument&gt;</span>quit<span class="nt">&lt;/stopargument&gt;</span> 
+    <span class="nt">&lt;logmode&gt;</span>rotate<span class="nt">&lt;/logmode&gt;</span>
+    <span class="nt">&lt;logpath&gt;</span>C:\nginx-1.13.12\logs<span class="nt">&lt;/logpath&gt;</span>
+<span class="nt">&lt;/service&gt;</span>
+</code></pre></div></div>
+
+<h4 id="nginxconf">nginx.conf</h4>
+<p>We need to add a location to the file to proxy the connection to our Mercurial service.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>worker_processes 1;
+events {
+    worker_connections 1024;
+}
+
+http {
+    include mime.types;
+    default_type application/octet-stream;
+    sendfile on;
+    keepalive_timeout 65;
+
+    server {
+        listen 8080;
+        server_name 10.0.2.15;
+
+    location / {
+        proxy_pass http://localhost:8000;
+        }
+
+        error_page 500 502 503 504  /50x.html;
+        location = /50x.html {
+            root html;
+        }
+    }
+
+#    server {
+#        listen 443 ssl;
+#        server_name 10.0.2.15;
+
+#        ssl_certificate server.pem;
+#        ssl_certificate_key server.key;
+
+#        ssl_session_cache shared:SSL:1m;
+#        ssl_session_timeout 5m;
+
+#        ssl_ciphers HIGH:!aNULL:!MD5;
+#        ssl_prefer_server_ciphers on;
+
+#   location / {
+#       proxy_pass http://localhost:8000;
+#       }
+#   }
+}
+</code></pre></div></div>
+
+<p><img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/05/nginx-mercurial-services-running.jpg" alt="Mercurial on NGINX" /></p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Mercurial 4.5+ as a Windows Service</title>
+	  <link>//2018-05-16-mercurial-4-5-as-a-windows-service.html</link>
+	  <author></author>
+	  <pubDate>2018-05-16T20:49:59+00:00</pubDate>
+	  <guid>//2018-05-16-mercurial-4-5-as-a-windows-service.html</guid>
+	  <description><![CDATA[
+	     <h3 id="requirements">Requirements:</h3>
+<ul>
+  <li><a href="https://www.python.org/downloads/release/python-2715/">Python 2.7.15</a></li>
+  <li><a href="https://www.mercurial-scm.org/downloads">Mercurial 4.5.3</a> (source install)</li>
+  <li><a href="https://github.com/kohsuke/winsw/releases">winsw-v2.1.2</a> (Please select the version according to .Net version installed on your platform)</li>
+</ul>
+
+<h3 id="python">Python</h3>
+<p>I used the MSI installer for Python. It works perfectly fine, and can be used in a headless environment like Windows Server Core if you need to install it in a headless environment.</p>
+
+<h3 id="mercurial">Mercurial</h3>
+<p>I used the Mercurial source install. This places the software within the Python installation. This makes it easier for applications to find it. If you use an installer like the Windows MSI, it will place the application in a different location such as <code class="highlighter-rouge">C\Program Files</code></p>
+
+<p>I needed to be able to create a Windows Service for Mercurial. Unfortunately, there is no built-in functionality in the Mercurial Downloads, not even for Windows installers (.msi) files. This is not the end of the world. There are commercial products that you can purchase to accomplish this. In my day job, we have such a contract for one of those products. In the world of open source though we expect that we are not the first person to encounter such an issue. Fortunately, there is a great project called <a href="https://github.com/kohsuke/winsw">WinSW</a>. Kohsuke one of the original authors of Jenkins developed this code for use in that project, and released it for public consumption.</p>
+
+<h3 id="winsw">WinSW</h3>
+<p><a href="https://github.com/kohsuke/winsw">WinSW</a> is one of the easiest software applications to use to make Windows services. You download the application, and rename it to whatever you  like. In this example, I used <code class="highlighter-rouge">hg-service.exe</code> since that made the most sense to me. The configuration file that is used must match the name of the service. That makes a lot of sense too. The WinSW software examines its own name, and looks for a configuration file with the same name and an .xml extension. You can see this in the example below.</p>
+
+<p><img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/05/files.png" alt="Mercurial files" /></p>
+
+<h3 id="installation-and-configuration">Installation and Configuration</h3>
+<ol>
+  <li>Create a directory called <code class="highlighter-rouge">hg-service</code>.</li>
+  <li>Add the <a href="https://github.com/kohsuke/winsw">winsw</a> file of your choice based on your .NET framework.</li>
+  <li>Rename the winsw file to <code class="highlighter-rouge">hg-service.exe</code>.</li>
+  <li>Add a blank <code class="highlighter-rouge">hg-service.xml</code> file. We will add details to it in a moment.</li>
+  <li>Add a blank <code class="highlighter-rouge">hg-service.bat</code> file. We will add details to it in a moment.</li>
+</ol>
+
+<h4 id="hg-servicebat">hg-service.bat</h4>
+
+<p>Copy the following into the <code class="highlighter-rouge">hg-service.bat</code> file.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@echo off
+<span class="k">if</span> <span class="s2">"%1"</span><span class="o">==</span><span class="s2">"start"</span> <span class="o">(</span>goto :start<span class="o">)</span>
+:stop
+taskkill /F /IM hg.exe /T
+goto :end
+:start
+REM <span class="s2">"C:</span><span class="se">\P</span><span class="s2">ython27</span><span class="se">\S</span><span class="s2">cripts</span><span class="se">\h</span><span class="s2">g.exe"</span> serve <span class="nt">--address</span> localhost <span class="nt">--port</span> 8000 <span class="nt">--web-conf</span> C:<span class="se">\h</span>g<span class="se">\h</span>gweb.config
+REM The configuration below will start the service on all addresses on the machine 0.0.0.0 on port 8000 by default
+<span class="s2">"C:</span><span class="se">\P</span><span class="s2">ython27</span><span class="se">\S</span><span class="s2">cripts</span><span class="se">\h</span><span class="s2">g.exe"</span> serve <span class="nt">--web-conf</span> C:<span class="se">\h</span>g<span class="se">\h</span>gweb.config
+:end
+</code></pre></div></div>
+<h4 id="hg-servicexml">hg-service.xml</h4>
+<p>Copy the following into the <code class="highlighter-rouge">hg-service.xml</code> file. The details should be self-explanatory. If you need more details on the configuration file, please look at this post: <a href="https://github.com/kohsuke/winsw/blob/master/doc/xmlConfigFile.md">WinSW XML Configuration File</a></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;service&gt;</span>
+    <span class="nt">&lt;id&gt;</span>hg-serve<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;name&gt;</span>Mercurial<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;description&gt;</span>Mercurial Web Server.<span class="nt">&lt;/description&gt;</span>
+    <span class="nt">&lt;executable&gt;</span>cmd.exe<span class="nt">&lt;/executable&gt;</span>
+    <span class="nt">&lt;startargument&gt;</span>/c<span class="nt">&lt;/startargument&gt;</span>
+    <span class="nt">&lt;startargument&gt;</span>C:\hg\hg-service.bat<span class="nt">&lt;/startargument&gt;</span>
+    <span class="nt">&lt;startargument&gt;</span>start<span class="nt">&lt;/startargument&gt;</span>
+    <span class="nt">&lt;stopexecutable&gt;</span>cmd.exe<span class="nt">&lt;/stopexecutable&gt;</span>
+    <span class="nt">&lt;stopargument&gt;</span>/c<span class="nt">&lt;/stopargument&gt;</span>
+    <span class="nt">&lt;stopargument&gt;</span>C:\hg\hg-service.bat<span class="nt">&lt;/stopargument&gt;</span>
+    <span class="nt">&lt;stopargument&gt;</span>stop<span class="nt">&lt;/stopargument&gt;</span>
+    <span class="nt">&lt;logmode&gt;</span>rotate<span class="nt">&lt;/logmode&gt;</span>
+    <span class="nt">&lt;logpath&gt;</span>C:\hg\logs<span class="nt">&lt;/logpath&gt;</span>
+<span class="nt">&lt;/service&gt;</span>
+</code></pre></div></div>
+<h4 id="hgwebconfig">hgweb.config</h4>
+<p>Finally we need a configuration file that contains information about the repositories we want to serve. Here is an example configuration.</p>
+<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">[web]</span>
+<span class="py">encoding</span> <span class="p">=</span> <span class="s">UTF-8</span>
+<span class="py">allow_push</span> <span class="p">=</span> <span class="s">*</span>
+<span class="py">push_ssl</span> <span class="p">=</span> <span class="s">false</span>
+<span class="py">contact</span> <span class="p">=</span> <span class="s">John Yeary</span>
+<span class="py">allow_archive</span> <span class="p">=</span> <span class="s">gz zip bz2</span>
+<span class="py">descend</span> <span class="p">=</span> <span class="s">True</span>
+<span class="py">collapse</span> <span class="p">=</span> <span class="s">True</span>
+<span class="py">style</span><span class="p">=</span><span class="s">gitweb</span>
+
+<span class="nn">[paths]</span>
+<span class="c"># Directory Search (Slow)
+#/ = C:\repos\*
+</span><span class="py">foo</span> <span class="p">=</span> <span class="s">C:</span><span class="se">\r</span><span class="s">epos</span><span class="se">\f</span><span class="s">oo</span>
+</code></pre></div></div>
+
+<p>This completes our installation as a service. As you can see our <strong>Foo</strong> is being served…</p>
+<figure class="image">
+    <img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/05/ServiceRunning.png" alt="Mercurial Service Running" />
+    <figcaption>Mercurial Service Running</figcaption>
+</figure>
+
+<figure class="image">
+    <img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/05/FooMagick.png" alt="Mercurial Directory Listing" />
+    <figcaption>Mercurial Directory Listing</figcaption>
+</figure>
+
+<p>The configuration files for this project are located here: <strong><a href="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/05/hg-service.zip">hg-service.zip</a></strong></p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Qwiklabs Network Performance Testing Lab</title>
+	  <link>//2018-03-13-qwiklabs-network-performance-testing-lab.html</link>
+	  <author></author>
+	  <pubDate>2018-03-13T20:03:54+00:00</pubDate>
+	  <guid>//2018-03-13-qwiklabs-network-performance-testing-lab.html</guid>
+	  <description><![CDATA[
+	     <p>I completed the Qwiklabs Network Performance Testing Lab for Google Cloud Networking. In the lab, they mention using <a href="https://www.wireshark.org/">Wireshark</a>, or <a href="https://www.cloudshark.org/">CloudShark</a> to examine the <code class="highlighter-rouge">webserver.pcap</code> file that is generated from the <code class="highlighter-rouge">tcpdump</code> command. They have you copy the file to a bucket and copy it from the bucket.</p>
+
+<p>This is not necessary.</p>
+
+<p>Once the file is copied to the cloud console, you can use the download option to download the file to your local machine from the cloud console. Once the file is on your local machine, you have options for viewing it. I personally didn’t want to sign-up for CloudShark, and I didn’t want to install Wireshark just to examine one file in a lab. I do use Wireshark on some machines at work, but installing it on my Mac, or Windows 10 Pro machine seemed like a waste of time and space.</p>
+
+<p>I decided to look on the Docker Hub and found a project <a href="https://hub.docker.com/r/ffeldhaus/wireshark/">ffeldhaus/wireshark</a> that seemed to meet my needs. The other wireshark versions required X-Windows to be installed which would not work on a Windows 10 Pro platform.</p>
+
+<p>The ffeldhaus/wireshark version worked flawlessly. It uses <a href="https://xpra.org/">Xpra</a> to expose Wireshark via a browser. It was slick. Once I copied the file to the wireshark container, it opened easily in the browser. The featured image in the blog is my actual data. <code class="highlighter-rouge">docker cp webserver.pcap wireshark:/</code></p>
+
+<p>So when you are doing any of the labs, take a moment to consider other technologies and don’t necessarily settle on the approach that the course is offering you.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Apache Archiva on Docker</title>
 	  <link>//2018-03-09-apache-archiva-on-docker.html</link>
 	  <author></author>
@@ -248,72 +627,6 @@
 <p>The container I used (I won’t bash the author) kept wanting to only publish on 0.0.0.0/8080 even though I was telling it to use the host IP address on 8080. After getting it up and running, I decided not to try and fix it though.</p>
 
 <p>I wanted to play with it for a couple of hours, and I concluded that it would not work for me. There is a lot of promise though. I will come back and examine it at a later time.</p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>Code Publishing</title>
-	  <link>//2017-10-06-code-publishing.html</link>
-	  <author></author>
-	  <pubDate>2017-10-06T20:30:26+00:00</pubDate>
-	  <guid>//2017-10-06-code-publishing.html</guid>
-	  <description><![CDATA[
-	     <p>I have so much code on my machine. All sorts of experiments, examples, etc. I am trying to publish it all so that I can clean up my computer. I think a lot of it could be helpful to others to boot.</p>
-
-<p>Keep an eye on my technology blog <a href="https://javaevangelist.blogspot.com">Java Evangelist John Yeary</a> for code contributions.</p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>Wordpress</title>
-	  <link>//2017-10-06-wordpress.html</link>
-	  <author></author>
-	  <pubDate>2017-10-06T00:00:00+00:00</pubDate>
-	  <guid>//2017-10-06-wordpress.html</guid>
-	  <description><![CDATA[
-	     <p>I found Wordpress easier to use for my needs. The jekyll solution works for a lot of people, but I found that converting a Blogger blog to it was more difficult. If you are interested in my personal blog, please click on the links on the main page for my blogs.</p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>Migration to Google</title>
-	  <link>//2017-09-30-migration-to-google.html</link>
-	  <author></author>
-	  <pubDate>2017-09-30T12:37:04+00:00</pubDate>
-	  <guid>//2017-09-30-migration-to-google.html</guid>
-	  <description><![CDATA[
-	     <p>Well the task is done. I tried a number of Wordpress blogging solutions as turnkey alternatives to the deployment on Openshift 2. The most promising seemed like it would be Bitnami’s Wordpress offering. I was wrong. I encountered nothing but permissions issues trying to get it to work. I finally settled on the Official Wordpress image on Google to run as  a VM on Google Compute Engine.</p>
-
-<p>You are witnessing the fruit of my migration from Openshift 2 to Google.</p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>It Figures...</title>
-	  <link>//2017-09-01-it-figures.html</link>
-	  <author></author>
-	  <pubDate>2017-09-01T10:23:17+00:00</pubDate>
-	  <guid>//2017-09-01-it-figures.html</guid>
-	  <description><![CDATA[
-	     <p>Well I got a nice surprise from OpenShift a couple of days ago. The
-OpenShift 2 is end of life, and will be shut down at the end of
-September. I migrated over to OpenShift from Blogger only to have it
-pulled out from under me. They provide a means to migrate to OpenShift
-3, but it has a “Resource Hibernation” periods as noted below.</p>
-
-<blockquote>
-  <p>Your project resources sleep after 30 minutes of inactivity, and must
-sleep 18 hours in a 72 hour period.</p>
-</blockquote>
-
-<p>The resource hibernation is not really a good fit for anyone using it
-for blogging, or much of anything unless it is just pure testing. This
-weekend I will need to see about migrating again, but this time perhaps
-to Google Cloud.</p>
 
 	  ]]></description>
 	</item>

@@ -97,6 +97,34 @@ this month. Once I am back to being healthy, I will achieve this goal.</p>
 	</item>
 
 	<item>
+	  <title>Disabling and Enabling Hyper-V on Windows</title>
+	  <link>//2018-05-18-disabling-and-enabling-hyper-v-on-windows.html</link>
+	  <author></author>
+	  <pubDate>2018-05-18T03:20:22+00:00</pubDate>
+	  <guid>//2018-05-18-disabling-and-enabling-hyper-v-on-windows.html</guid>
+	  <description><![CDATA[
+	     <p>I needed to be able to run VMWare and VirtualBox from my Windows 10 Pro machine. This machine also has Docker on it. The issue is that you can only have one Hypervisor working at a time. So Docker <strong>OR</strong> VirtualBox and VMWare. A temporary solution is to disable the Hyper-V using the following commands. Once this disabled, you can run VirtualBox and VMWare.</p>
+
+<h3 id="disable">Disable</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bcdedit /set hypervisorlaunchtype off
+</code></pre></div></div>
+<p>Reboot machine.</p>
+
+<h3 id="enable">Enable</h3>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bcdedit /set hypervisorlaunchtype auto
+</code></pre></div></div>
+<p>Reboot machine.</p>
+
+<h3 id="long-term-solution">Long Term Solution</h3>
+
+<p>A long-term solution using alternate boot commands is what I ended up using. The details can be found in this article: <a href="https://nickjanetakis.com/blog/docker-tip-13-get-docker-for-windows-and-virtualbox-working-together">Docker Tip #13: Get Docker for Windows and VirtualBox Working Together</a>.</p>
+
+<p>This is for someone like me who switches more frequently than a casual user.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>American Horror Story - Cult</title>
 	  <link>//2017-09-07-american-horror-story-cult.html</link>
 	  <author></author>
@@ -222,28 +250,6 @@ this month. Once I am back to being healthy, I will achieve this goal.</p>
 	     <p>I see that Lego is trying to develop a new material replacement for the iconic ABS plastic blocks it uses in its products. They used 77,000 metric tonnes of petroleum based ABS plastic to manufacture 60 million bricks in 2014. Apparently the challenge is to use a replacement material that will have the same color and characteristics as existing bricks. This will be no small challenge. I applaud their efforts, and I hope they are successful.</p>
 
 <p>However, I am not sure if that is as important as reducing the reliance on ABS plastic. Fruity Pebbles went all natural and removed the artificial colors. Yes, the colors are more natural and muted, but I like them better than radioactive yellow and magenta and biohazard red anyway. Perhaps they can make some corn stalk all natural blocks and test the market waters. I imagine today they would be well received.</p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>LGBT and Military Service</title>
-	  <link>//2015-07-18-lgbt-and-military-service.html</link>
-	  <author></author>
-	  <pubDate>2015-07-18T18:50:00+00:00</pubDate>
-	  <guid>//2015-07-18-lgbt-and-military-service.html</guid>
-	  <description><![CDATA[
-	     <p>I understand that there has been a change in DoD policy to allow current transgender soldiers and sailors to remain in the service without fear of being discharged. We have come a great distance from my days as a sailor in the 1980s and 1990s.</p>
-
-<p>I was once opposed to the service of homosexuals in the military. This was more pronounced before I served with the best military in the world. There were individuals whom I served with who were gay, or lesbian. We all knew who they were, but they remained silent. The “Don’t Ask, Don’t Tell” policy became the rule under which we operated.</p>
-
-<p>I have no issue with a person’s personal sexual choices. After serving with men and women of all stripes, I came to understand that if you can do the job and you have my six, I don’t care what you do on your time. I had an AO2 lesbian female on my weapons loading team who was worth more than 4 of the men I had on the team. I couldn’t have been more proud of her service, and dedication. I am glad she was part of my team, and I hope she would allow me the same honors.</p>
-
-<p>My acceptance of LGBT soldiers and sailors should be taken with a grain of salt. I don’t believe that the US military should be in a position to pay for gender reassignment, or other therapies like hormones. Those are personal issues, and do not need to be paid for by taxpayers.</p>
-
-<p>I also don’t believe that our Chaplain Corps should be faced with acceptance of LGBT members if this is in opposition to their religious beliefs. In other words, don’t force a Christian Chaplain to perform a gay wedding if he is opposed on religious grounds.</p>
-
-<p>Honor. Courage. Commitment.</p>
 
 	  ]]></description>
 	</item>

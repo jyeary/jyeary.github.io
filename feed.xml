@@ -102,7 +102,7 @@
       <item>
         <title>Multiple Java Persistence API (JPA) persistence.xml Merging</title>
         
-          <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+          <description>&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
 
 </description>
         
@@ -155,6 +155,25 @@
         <link>
         https://johnyeary.com/2018-11-09-jax-ws-on-tomcat.html</link>
         <guid isPermaLink="true">https://johnyeary.com/2018-11-09-jax-ws-on-tomcat.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Infor Email Marketing Installation on Docker</title>
+        
+          <description>&lt;h3 id=&quot;centos-open-source-rhel&quot;&gt;Centos (Open Source RHEL)&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker pull centos:7&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker run -d -it --name email-marketing -p 8080:8080 -p 8443:8443 -p 1527:1527 -p 25:25 -p 113:113 -p 443:443 -p 80:80 -p 8085:8085 -p 44385:44385 centos:7&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        
+        <pubDate>Fri, 19 Oct 2018 16:23:09 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2018-10-19-infor-email-marketing-installation-on-docker.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2018-10-19-infor-email-marketing-installation-on-docker.html</guid>
       </item>
       
     
@@ -245,6 +264,118 @@
         <link>
         https://johnyeary.com/2018-07-04-patriotism.html</link>
         <guid isPermaLink="true">https://johnyeary.com/2018-07-04-patriotism.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Mercurial on IIS</title>
+        
+          <description>&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;I was recently tasked with updating our Mercurial repository at work. The original repository and configuration using Apache had been in place for years without issues generally. The latest Apache versions for Windows are provided by third parties and not from Apache Foundation anymore.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 29 Jun 2018 22:10:25 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2018-06-29-mercurial-on-iis.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2018-06-29-mercurial-on-iis.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Apache Commons IO Directory Copying</title>
+        
+          <description>&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;I was having an issue with some code in a very large project, and I wasn’t sure if it was my approach, or if it was a code issue. I think we have all been there before. I decided to check my approach. Well it turns out the approach was correct, but an unrelated piece of code was the issue.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 29 Jun 2018 15:45:23 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2018-06-29-apache-commons-io-directory-copying.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2018-06-29-apache-commons-io-directory-copying.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Disabling and Enabling Hyper-V on Windows</title>
+        
+          <description>&lt;p&gt;I needed to be able to run VMWare and VirtualBox from my Windows 10 Pro machine. This machine also has Docker on it. The issue is that you can only have one Hypervisor working at a time. So Docker &lt;strong&gt;OR&lt;/strong&gt; VirtualBox and VMWare. A temporary solution is to disable the Hyper-V using the following commands. Once this disabled, you can run VirtualBox and VMWare.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 18 May 2018 03:20:22 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2018-05-18-disabling-and-enabling-hyper-v-on-windows.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2018-05-18-disabling-and-enabling-hyper-v-on-windows.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>NGINX Mercurial Proxy on Windows</title>
+        
+          <description>&lt;p&gt;In my previous article I explained how to setup &lt;a href=&quot;/2018-05-16-mercurial-4-5-as-a-windows-service.html&quot;&gt;Mercurial 4.5+ as a Windows Service&lt;/a&gt;. In this article we will expand on that configuration, and use NGINX to proxy to the service.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 18 May 2018 03:02:30 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2018-05-18-nginx-mercurial-proxy-on-windows.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2018-05-18-nginx-mercurial-proxy-on-windows.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Mercurial 4.5+ as a Windows Service</title>
+        
+          <description>&lt;h3 id=&quot;requirements&quot;&gt;Requirements:&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.python.org/downloads/release/python-2715/&quot;&gt;Python 2.7.15&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.mercurial-scm.org/downloads&quot;&gt;Mercurial 4.5.3&lt;/a&gt; (source install)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/kohsuke/winsw/releases&quot;&gt;winsw-v2.1.2&lt;/a&gt; (Please select the version according to .Net version installed on your platform)&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        
+        <pubDate>Wed, 16 May 2018 20:49:59 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2018-05-16-mercurial-4-5-as-a-windows-service.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2018-05-16-mercurial-4-5-as-a-windows-service.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Qwiklabs Network Performance Testing Lab</title>
+        
+          <description>&lt;p&gt;I completed the Qwiklabs Network Performance Testing Lab for Google Cloud Networking. In the lab, they mention using &lt;a href=&quot;https://www.wireshark.org/&quot;&gt;Wireshark&lt;/a&gt;, or &lt;a href=&quot;https://www.cloudshark.org/&quot;&gt;CloudShark&lt;/a&gt; to examine the &lt;code class=&quot;highlighter-rouge&quot;&gt;webserver.pcap&lt;/code&gt; file that is generated from the &lt;code class=&quot;highlighter-rouge&quot;&gt;tcpdump&lt;/code&gt; command. They have you copy the file to a bucket and copy it from the bucket.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 13 Mar 2018 20:03:54 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2018-03-13-qwiklabs-network-performance-testing-lab.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2018-03-13-qwiklabs-network-performance-testing-lab.html</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Postfix smtp-source command</title>
+        
+          <description>&lt;p&gt;I was looking at some ideas for re-implementing an SMTP server that I work on for my day job. As I was reading about a &lt;a href=&quot;https://netty.io/index.html&quot;&gt;netty&lt;/a&gt; example implementation called &lt;a href=&quot;https://github.com/brightcode/smtpd&quot;&gt;smptd&lt;/a&gt; on github. I saw something very interesting. He was testing his code using a command from &lt;a href=&quot;http://www.postfix.org&quot;&gt;Postfix&lt;/a&gt; called &lt;a href=&quot;http://www.postfix.org/smtp-source.1.html&quot;&gt;smtp-source&lt;/a&gt;. I was immediately interested. I pulled his example code and updated it for a newer version of netty (3.10.6) and started it up. I then pulled an &lt;a href=&quot;https://hub.docker.com/_/ubuntu/&quot;&gt;Ubuntu&lt;/a&gt; image from &lt;a href=&quot;https://hub.docker.com&quot;&gt;Docker Hub&lt;/a&gt; and started it up. Once it was started, I used apt-get to install Postfix. The result was that I had my own little test environment up in about 5 minutes. So I tested the code from the smtpd project on my Windows 10 Pro machine (&lt;a href=&quot;http://www8.hp.com/us/en/campaigns/pavilion-wave/overview.html&quot;&gt;HP Pavillion Wave&lt;/a&gt; for those who are interested) using the smtp-source command from a Docker container. Here were my results.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 11 Mar 2018 17:47:09 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2018-03-11-postfix-smtp-source-command.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2018-03-11-postfix-smtp-source-command.html</guid>
       </item>
       
     
