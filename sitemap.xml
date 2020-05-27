@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://johnyeary.com/0010-02-16-steppenwolf-by-hermann-hesse.html</loc>
-<lastmod>0010-02-16T01:23:00+00:00</lastmod>
-</url>
-<url>
 <loc>https://johnyeary.com/2009-04-13-the-grid-and-spies.html</loc>
 <lastmod>2009-04-13T18:32:00+00:00</lastmod>
 </url>
@@ -135,6 +131,10 @@
 <url>
 <loc>https://johnyeary.com/2010-02-15-first-men-in-the-moon-by-h-g-wells.html</loc>
 <lastmod>2010-02-15T15:09:00+00:00</lastmod>
+</url>
+<url>
+<loc>https://johnyeary.com/2010-02-16-steppenwolf-by-hermann-hesse.html</loc>
+<lastmod>2010-02-16T01:23:00+00:00</lastmod>
 </url>
 <url>
 <loc>https://johnyeary.com/2010-02-19-ground-up-by-michael-idov.html</loc>
@@ -571,6 +571,15 @@
 <loc>https://johnyeary.com/about/</loc>
 </url>
 <url>
+<loc>https://johnyeary.com/tag/national-security/</loc>
+</url>
+<url>
+<loc>https://johnyeary.com/tag/national-security/page2/</loc>
+</url>
+<url>
+<loc>https://johnyeary.com/tag/national-security/page3/</loc>
+</url>
+<url>
 <loc>https://johnyeary.com/tag/life/</loc>
 </url>
 <url>
@@ -602,15 +611,6 @@
 </url>
 <url>
 <loc>https://johnyeary.com/tag/life/page11/</loc>
-</url>
-<url>
-<loc>https://johnyeary.com/tag/national-security/</loc>
-</url>
-<url>
-<loc>https://johnyeary.com/tag/national-security/page2/</loc>
-</url>
-<url>
-<loc>https://johnyeary.com/tag/national-security/page3/</loc>
 </url>
 <url>
 <loc>https://johnyeary.com/tag/yoga/</loc>
