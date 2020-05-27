@@ -8,6 +8,38 @@
     
       
       <item>
+        <title>Blog Migration Completed</title>
+        
+          <description>&lt;p&gt;I finally finished migrating my blog from Wordpress to GitHub pages over the Memorial Day weekend. I started the process when I was in Maine at the end of 2019. I now find myself almost six months into 2020 and finally completed the migration.&lt;/p&gt;
+
+&lt;p&gt;The significant advantage of Wordpress is its ease of use to get started. However, trying to maintain a database, and upgrades made it a chore. I was also hosting it on Google Cloud. That meant I was responsible for maintainence and security. I also had the additional expense of paying for the VM and data storage.&lt;/p&gt;
+
+&lt;p&gt;GitHub makes a compelling choice. This is particularly true since I write my pages in Markdown, and it is a first class citizen on GitHub. I had issues everytime I upgraded Wordpress with the plugin(s) I was using to do Markdown on it. This was part of the maintenance headache that I decided to remedy.&lt;/p&gt;
+
+&lt;p&gt;Today I am writing my post on &lt;a href=&quot;https://dillinger.io/&quot;&gt;Dillinger&lt;/a&gt; running in a Docker container. I will save the post to my github repo, and push it. &lt;a href=&quot;https://travis-ci.com/&quot;&gt;Travis CI&lt;/a&gt; will pull the updates, and build the pages and push them back to GitHub on the master branch.&lt;/p&gt;
+
+&lt;p&gt;I know that seems like a lot of additional work, but it really is not. I can also test my &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; pages locally using a Docker container to do the building to see what the final product is going to look like.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker container run &lt;span class=&quot;nt&quot;&gt;-it&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 4000:4000 &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$PWD&lt;/span&gt;:/blog ruby:2.6.6 /bin/bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Where the $PWD is the checked out blog. I set up an alias called &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-blog&lt;/code&gt; in zsh to run the container. Once the container is started, I go to the &lt;code class=&quot;highlighter-rouge&quot;&gt;/blog&lt;/code&gt; directory and run the following:&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /blog &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;bundler jekyll &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;That completes my local environment to blog until I am sure I like it and commit.&lt;/p&gt;
+</description>
+        
+        <pubDate>Tue, 26 May 2020 20:34:34 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2020-05-26-blog-migration-complete.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2020-05-26-blog-migration-complete.html</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Simple SMTP Client</title>
         
           <description>&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;

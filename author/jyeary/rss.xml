@@ -12,6 +12,36 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>Blog Migration Completed</title>
+	  <link>//2020-05-26-blog-migration-complete.html</link>
+	  <author></author>
+	  <pubDate>2020-05-26T20:34:34+00:00</pubDate>
+	  <guid>//2020-05-26-blog-migration-complete.html</guid>
+	  <description><![CDATA[
+	     <p>I finally finished migrating my blog from Wordpress to GitHub pages over the Memorial Day weekend. I started the process when I was in Maine at the end of 2019. I now find myself almost six months into 2020 and finally completed the migration.</p>
+
+<p>The significant advantage of Wordpress is its ease of use to get started. However, trying to maintain a database, and upgrades made it a chore. I was also hosting it on Google Cloud. That meant I was responsible for maintainence and security. I also had the additional expense of paying for the VM and data storage.</p>
+
+<p>GitHub makes a compelling choice. This is particularly true since I write my pages in Markdown, and it is a first class citizen on GitHub. I had issues everytime I upgraded Wordpress with the plugin(s) I was using to do Markdown on it. This was part of the maintenance headache that I decided to remedy.</p>
+
+<p>Today I am writing my post on <a href="https://dillinger.io/">Dillinger</a> running in a Docker container. I will save the post to my github repo, and push it. <a href="https://travis-ci.com/">Travis CI</a> will pull the updates, and build the pages and push them back to GitHub on the master branch.</p>
+
+<p>I know that seems like a lot of additional work, but it really is not. I can also test my <a href="https://jekyllrb.com/">Jekyll</a> pages locally using a Docker container to do the building to see what the final product is going to look like.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container run <span class="nt">-it</span> <span class="nt">--rm</span> <span class="nt">-p</span> 4000:4000 <span class="nt">-v</span> <span class="nv">$PWD</span>:/blog ruby:2.6.6 /bin/bash
+</code></pre></div></div>
+<p>Where the $PWD is the checked out blog. I set up an alias called <code class="highlighter-rouge">docker-blog</code> in zsh to run the container. Once the container is started, I go to the <code class="highlighter-rouge">/blog</code> directory and run the following:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /blog <span class="o">&amp;&amp;</span> <span class="se">\</span>
+gem <span class="nb">install </span>bundler jekyll <span class="o">&amp;&amp;</span> <span class="se">\</span>
+bundle <span class="nb">install</span> <span class="o">&amp;&amp;</span> <span class="se">\</span>
+bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+<p>That completes my local environment to blog until I am sure I like it and commit.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Simple SMTP Client</title>
 	  <link>//2020-05-23-simple-SMTP-client.html</link>
 	  <author></author>
@@ -1432,120 +1462,6 @@ this month. Once I am back to being healthy, I will achieve this goal.</p>
   &lt;version&gt;1.72&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre></div></div>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>JAX-WS on Tomcat</title>
-	  <link>//2018-11-09-jax-ws-on-tomcat.html</link>
-	  <author></author>
-	  <pubDate>2018-11-09T11:18:37+00:00</pubDate>
-	  <guid>//2018-11-09-jax-ws-on-tomcat.html</guid>
-	  <description><![CDATA[
-	     <h3 id="introduction">Introduction</h3>
-
-<p>I was recently tasked with looking into an issue on Embedded Apache Tomcat 8 where a JAX-WS service was installed. It looks like the services were originally written for Java 5 and JAX-WS 2.1. Before making any changes to the existing implementation, I wanted to check on the latest versions and see what might be different and cause a conflict. I know that the JRE includes later versions of JAX-WS and thought that might be the source of the issue. It turns out that it was not. It was something completely different. However, the exploration into how to make JAX-WS work on Embedded Apache Tomcat 8 was still worth publishing.</p>
-
-<h3 id="embedded-tomcat">Embedded Tomcat</h3>
-
-<p>I have a number of projects on Github for Apache Tomcat. They can be found in the list below:</p>
-<ul>
-  <li><a href="https://github.com/jyeary/tomcat-8-jaxws">tomcat-8-jaxws</a> - This example.</li>
-  <li><a href="https://github.com/jyeary/tomcat-8-embedded">tomcat-8-embedded</a></li>
-  <li><a href="https://github.com/jyeary/tomcat-9-embedded">tomcat-9-embedded</a></li>
-  <li><a href="https://github.com/bluelotussoftware/tomcat-security-valves">tomcat-security-valves</a> - If you are using embedded Tomcat and you want to be secure, you should look at these valves. They are also published on Maven Central and available in Maven.</li>
-</ul>
-
-<p>The code for our example using JAX-WS will be using a war file with a simple JAX-WS service that returns the current date.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bluelotussoftware</span><span class="o">.</span><span class="na">tomcat</span><span class="o">.</span><span class="na">embedded</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.servlet.ServletException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.catalina.Host</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.catalina.LifecycleException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.apache.catalina.startup.Tomcat</span><span class="o">;</span>
-
-<span class="cm">/**
- * An Example Embedded Apache Tomcat with an JAX-WS service 
- *
- * @author John Yeary &lt;jyeary@bluelotussoftware.com&gt;
- * @version 1.0.0
- */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
-
-    <span class="cm">/**
-     * Main method.
-     *
-     * @param args command line arguments passed to the application. Currently unused.
-     * @throws LifecycleException If a life cycle exception occurs.
-     * @throws InterruptedException If the application is interrupted while waiting for requests.
-     * @throws ServletException If the servlet handling the response has an exception.
-     */</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>
-            <span class="kd">throws</span> <span class="nc">LifecycleException</span><span class="o">,</span> <span class="nc">InterruptedException</span><span class="o">,</span> <span class="nc">ServletException</span> <span class="o">{</span>
-        <span class="nc">Tomcat</span> <span class="n">tomcat</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tomcat</span><span class="o">();</span>
-        <span class="n">tomcat</span><span class="o">.</span><span class="na">setPort</span><span class="o">(</span><span class="mi">8080</span><span class="o">);</span>
-        <span class="n">tomcat</span><span class="o">.</span><span class="na">setBaseDir</span><span class="o">(</span><span class="s">"target/tomcat"</span><span class="o">);</span>
-        <span class="nc">Host</span> <span class="n">host</span> <span class="o">=</span> <span class="n">tomcat</span><span class="o">.</span><span class="na">getHost</span><span class="o">();</span>
-        <span class="n">host</span><span class="o">.</span><span class="na">setAppBase</span><span class="o">(</span><span class="s">"."</span><span class="o">);</span>
-        <span class="n">host</span><span class="o">.</span><span class="na">setAutoDeploy</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-        <span class="n">host</span><span class="o">.</span><span class="na">setDeployOnStartup</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-        <span class="nc">File</span> <span class="n">ws</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"src/test/resources/simple-jaxws-1.0.0.war"</span><span class="o">);</span>
-        <span class="n">tomcat</span><span class="o">.</span><span class="na">addWebapp</span><span class="o">(</span><span class="n">host</span><span class="o">,</span> <span class="s">""</span><span class="o">,</span> <span class="n">ws</span><span class="o">.</span><span class="na">getAbsolutePath</span><span class="o">());</span>
-        <span class="n">tomcat</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-        <span class="n">tomcat</span><span class="o">.</span><span class="na">getServer</span><span class="o">().</span><span class="na">await</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p>This will start the application when you run it on (http://localhost:8080) and sets the default application to the base directory. It is very simple to setup and use.</p>
-
-<h3 id="simpleservice">SimpleService</h3>
-
-<p>The service that is exposed can be found in the <a href="https://github.com/jyeary/simple-jaxws">simple-jaxws</a> project. It requires a couple of files like <em>sun-javaws.xml</em> and the actual service. Since the application is running on a Servlet 3.0+ based server it does not require a <em>web.xml</em> file.</p>
-
-<h4 id="sun-javawsxml">sun-javaws.xml</h4>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
-<span class="nt">&lt;endpoints</span> <span class="na">version=</span><span class="s">"2.0"</span> <span class="na">xmlns=</span><span class="s">"http://java.sun.com/xml/ns/jax-ws/ri/runtime"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;endpoint</span> <span class="na">implementation=</span><span class="s">"com.bluelotussoftware.example.Simple"</span> <span class="na">name=</span><span class="s">"SimpleService"</span> <span class="na">url-pattern=</span><span class="s">"/*"</span><span class="nt">/&gt;</span>
-<span class="nt">&lt;/endpoints&gt;</span>
-</code></pre></div></div>
-
-<h4 id="simplejava">Simple.java</h4>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bluelotussoftware</span><span class="o">.</span><span class="na">example</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.jws.WebMethod</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">javax.jws.WebService</span><span class="o">;</span>
-
-<span class="cm">/**
- * A simple service that returns the current date when called.
- *
- * @author&lt;a href="mailto:jyeary@bluelotussoftware.com"&gt;John Yeary&lt;/a&gt;
- * @version 1.0.0
- */</span>
-<span class="nd">@WebService</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Simple</span> <span class="o">{</span>
-
-    <span class="cm">/**
-     * This operation returns the current date when it was run.
-     *
-     * @return current date.
-     */</span>
-    <span class="nd">@WebMethod</span><span class="o">(</span><span class="n">operationName</span> <span class="o">=</span> <span class="s">"getCurrentDate"</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="nc">Date</span> <span class="nf">getCurrentDate</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">Date</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h3 id="summary">Summary</h3>
-
-<p>Implementing a JAX-WS service on embedded Apache Tomcat is simple to do. Using this techique will allow you to write unit tests (integration tests) that can improve your code quality.</p>
 
 	  ]]></description>
 	</item>
