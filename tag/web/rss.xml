@@ -12,6 +12,144 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>cfssl Intermediate and Client Certificates</title>
+	  <link>//2020-05-26-cfssl-update.html</link>
+	  <author></author>
+	  <pubDate>2020-05-26T21:13:48+00:00</pubDate>
+	  <guid>//2020-05-26-cfssl-update.html</guid>
+	  <description><![CDATA[
+	     <h3 id="introduction">Introduction</h3>
+<p>In a previous blog post <a href="/2018-05-25-cfssl-cloudflare-ssl.html">CFSSL Cloudflare SSL</a> I discussed how to setup <code class="highlighter-rouge">cfssl</code> as a Certification Authority (CA) for issuing your own certificates. This becomes increasingly important in the world of containers. Especially when those containers are on internal networks, and VPCs where getting a <a href="https://letsencrypt.org/">Let’s Encrypt</a> certificate is not possible, or desirable.</p>
+
+<h3 id="new-and-improved">New and Improved</h3>
+<p>I was looking for a way to set up intermediate and client certificates. I was looking for ideas on how to setup the CA to handle these additional certificates. I found a post by Johannes Tegnér<sup>1</sup>. I liked his layout idea which I slighly modified below.</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/CA
+    /root
+    /intermediate
+        /production
+        /development
+    /certs
+</code></pre></div></div>
+<p>I tried his using the files he provided, but I believe that <code class="highlighter-rouge">cfssl</code> was updated between his post and today. As a result, the <code class="highlighter-rouge">config.json</code> files would not work without slight modifications. Here is my <code class="highlighter-rouge">config.json</code> for intermediate certificates. This file goes in the <code class="highlighter-rouge">intermediate</code> directory.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "signing": {
+        "default": {
+            "expiry": "720h",
+            "usages": [
+                "signing",
+                "key encipherment",
+                "cert sign",
+                "crl sign"
+            ]
+        },
+        "profiles": {
+            "development": {
+                "ca_constraint": {
+                    "is_ca": true,
+                    "max_path_len": 0,
+                    "max_path_len_zero": true
+                },
+                "expiry": "2160h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+                    "cert sign",
+                    "crl sign"
+                ]
+            },
+            "production": {
+                "ca_constraint": {
+                    "is_ca": true,
+                    "max_path_len": 0,
+                    "max_path_len_zero": true
+                },
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+                    "cert sign",
+                    "crl sign",
+                    "server auth",
+                    "client auth"
+                ]
+            }
+        }
+    }
+}
+</code></pre></div></div>
+<p>The intermediate certificates can be created with the following commands without using the network configuration in my previous blog post.</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>CA/intermediate/development
+cfssl genkey <span class="nt">-initca</span> ../intermediate.json | cfssljson <span class="nt">-bare</span> development
+cfssl sign <span class="nt">-ca</span> ../../root/ca.pem <span class="nt">-ca-key</span> ../../root/ca-key.pem <span class="nt">--config</span> ../config.json <span class="nt">-profile</span> development  development.csr | cfssljson <span class="nt">-bare</span> development 
+</code></pre></div></div>
+<p>Here is my <code class="highlighter-rouge">config.json</code> for different usage profiles for the final certificates.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "signing": {
+        "default": {
+            "expiry": "43800h"
+        },
+        "profiles": {
+            "client": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "digital signature",
+                    "key encipherment",
+                    "client auth"
+                ]
+            },
+            "peer": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "digital signature",
+                    "key encipherment",
+                    "client auth",
+                    "server auth"
+                ]
+            },
+            "server": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "digital signing",
+                    "key encipherment",
+                    "server auth"
+                ]
+            }
+        }
+    }
+}
+</code></pre></div></div>
+<p>The final step for my purposes was generating the client certs.
+Here is my <code class="highlighter-rouge">client.json</code> file which is the same as Johannes’ file. His explanation is worth quoting.</p>
+<blockquote>
+  <p>When it comes to the client certificate, we don’t set any hosts, as we want to be able to
+connect to the services without having to care about the clients current host. It’s okay 
+to do though, if you want to!</p>
+</blockquote>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "CN": "Client",
+    "hosts": [
+        ""
+    ]
+}
+</code></pre></div></div>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl gencert <span class="nt">-ca</span> ../intermediate/production/production.pem <span class="nt">-ca-key</span> ../intermediate/production/production-key.pem <span class="nt">-config</span><span class="o">=</span>config.json <span class="nt">-profile</span><span class="o">=</span>client client.json | cfssljson <span class="nt">-bare</span> client
+</code></pre></div></div>
+
+<h3 id="references">References</h3>
+<ol>
+  <li><a href="https://jite.eu/2019/2/6/ca-with-cfssl/">Certificate Authority with CFSSL </a></li>
+  <li><a href="https://github.com/cloudflare/cfssl">CFSSL: Cloudflare’s PKI and TLS toolkit</a></li>
+</ol>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Blog Migration Completed</title>
 	  <link>//2020-05-26-blog-migration-complete.html</link>
 	  <author></author>
@@ -656,110 +794,6 @@ http {
 </code></pre></div></div>
 
 <p><img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/05/nginx-mercurial-services-running.jpg" alt="Mercurial on NGINX" /></p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>Mercurial 4.5+ as a Windows Service</title>
-	  <link>//2018-05-16-mercurial-4-5-as-a-windows-service.html</link>
-	  <author></author>
-	  <pubDate>2018-05-16T20:49:59+00:00</pubDate>
-	  <guid>//2018-05-16-mercurial-4-5-as-a-windows-service.html</guid>
-	  <description><![CDATA[
-	     <h3 id="requirements">Requirements:</h3>
-<ul>
-  <li><a href="https://www.python.org/downloads/release/python-2715/">Python 2.7.15</a></li>
-  <li><a href="https://www.mercurial-scm.org/downloads">Mercurial 4.5.3</a> (source install)</li>
-  <li><a href="https://github.com/kohsuke/winsw/releases">winsw-v2.1.2</a> (Please select the version according to .Net version installed on your platform)</li>
-</ul>
-
-<h3 id="python">Python</h3>
-<p>I used the MSI installer for Python. It works perfectly fine, and can be used in a headless environment like Windows Server Core if you need to install it in a headless environment.</p>
-
-<h3 id="mercurial">Mercurial</h3>
-<p>I used the Mercurial source install. This places the software within the Python installation. This makes it easier for applications to find it. If you use an installer like the Windows MSI, it will place the application in a different location such as <code class="highlighter-rouge">C\Program Files</code></p>
-
-<p>I needed to be able to create a Windows Service for Mercurial. Unfortunately, there is no built-in functionality in the Mercurial Downloads, not even for Windows installers (.msi) files. This is not the end of the world. There are commercial products that you can purchase to accomplish this. In my day job, we have such a contract for one of those products. In the world of open source though we expect that we are not the first person to encounter such an issue. Fortunately, there is a great project called <a href="https://github.com/kohsuke/winsw">WinSW</a>. Kohsuke one of the original authors of Jenkins developed this code for use in that project, and released it for public consumption.</p>
-
-<h3 id="winsw">WinSW</h3>
-<p><a href="https://github.com/kohsuke/winsw">WinSW</a> is one of the easiest software applications to use to make Windows services. You download the application, and rename it to whatever you  like. In this example, I used <code class="highlighter-rouge">hg-service.exe</code> since that made the most sense to me. The configuration file that is used must match the name of the service. That makes a lot of sense too. The WinSW software examines its own name, and looks for a configuration file with the same name and an .xml extension. You can see this in the example below.</p>
-
-<p><img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/05/files.png" alt="Mercurial files" /></p>
-
-<h3 id="installation-and-configuration">Installation and Configuration</h3>
-<ol>
-  <li>Create a directory called <code class="highlighter-rouge">hg-service</code>.</li>
-  <li>Add the <a href="https://github.com/kohsuke/winsw">winsw</a> file of your choice based on your .NET framework.</li>
-  <li>Rename the winsw file to <code class="highlighter-rouge">hg-service.exe</code>.</li>
-  <li>Add a blank <code class="highlighter-rouge">hg-service.xml</code> file. We will add details to it in a moment.</li>
-  <li>Add a blank <code class="highlighter-rouge">hg-service.bat</code> file. We will add details to it in a moment.</li>
-</ol>
-
-<h4 id="hg-servicebat">hg-service.bat</h4>
-
-<p>Copy the following into the <code class="highlighter-rouge">hg-service.bat</code> file.</p>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@echo off
-<span class="k">if</span> <span class="s2">"%1"</span><span class="o">==</span><span class="s2">"start"</span> <span class="o">(</span>goto :start<span class="o">)</span>
-:stop
-taskkill /F /IM hg.exe /T
-goto :end
-:start
-REM <span class="s2">"C:</span><span class="se">\P</span><span class="s2">ython27</span><span class="se">\S</span><span class="s2">cripts</span><span class="se">\h</span><span class="s2">g.exe"</span> serve <span class="nt">--address</span> localhost <span class="nt">--port</span> 8000 <span class="nt">--web-conf</span> C:<span class="se">\h</span>g<span class="se">\h</span>gweb.config
-REM The configuration below will start the service on all addresses on the machine 0.0.0.0 on port 8000 by default
-<span class="s2">"C:</span><span class="se">\P</span><span class="s2">ython27</span><span class="se">\S</span><span class="s2">cripts</span><span class="se">\h</span><span class="s2">g.exe"</span> serve <span class="nt">--web-conf</span> C:<span class="se">\h</span>g<span class="se">\h</span>gweb.config
-:end
-</code></pre></div></div>
-<h4 id="hg-servicexml">hg-service.xml</h4>
-<p>Copy the following into the <code class="highlighter-rouge">hg-service.xml</code> file. The details should be self-explanatory. If you need more details on the configuration file, please look at this post: <a href="https://github.com/kohsuke/winsw/blob/master/doc/xmlConfigFile.md">WinSW XML Configuration File</a></p>
-
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;service&gt;</span>
-    <span class="nt">&lt;id&gt;</span>hg-serve<span class="nt">&lt;/id&gt;</span>
-    <span class="nt">&lt;name&gt;</span>Mercurial<span class="nt">&lt;/name&gt;</span>
-    <span class="nt">&lt;description&gt;</span>Mercurial Web Server.<span class="nt">&lt;/description&gt;</span>
-    <span class="nt">&lt;executable&gt;</span>cmd.exe<span class="nt">&lt;/executable&gt;</span>
-    <span class="nt">&lt;startargument&gt;</span>/c<span class="nt">&lt;/startargument&gt;</span>
-    <span class="nt">&lt;startargument&gt;</span>C:\hg\hg-service.bat<span class="nt">&lt;/startargument&gt;</span>
-    <span class="nt">&lt;startargument&gt;</span>start<span class="nt">&lt;/startargument&gt;</span>
-    <span class="nt">&lt;stopexecutable&gt;</span>cmd.exe<span class="nt">&lt;/stopexecutable&gt;</span>
-    <span class="nt">&lt;stopargument&gt;</span>/c<span class="nt">&lt;/stopargument&gt;</span>
-    <span class="nt">&lt;stopargument&gt;</span>C:\hg\hg-service.bat<span class="nt">&lt;/stopargument&gt;</span>
-    <span class="nt">&lt;stopargument&gt;</span>stop<span class="nt">&lt;/stopargument&gt;</span>
-    <span class="nt">&lt;logmode&gt;</span>rotate<span class="nt">&lt;/logmode&gt;</span>
-    <span class="nt">&lt;logpath&gt;</span>C:\hg\logs<span class="nt">&lt;/logpath&gt;</span>
-<span class="nt">&lt;/service&gt;</span>
-</code></pre></div></div>
-<h4 id="hgwebconfig">hgweb.config</h4>
-<p>Finally we need a configuration file that contains information about the repositories we want to serve. Here is an example configuration.</p>
-<div class="language-ini highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">[web]</span>
-<span class="py">encoding</span> <span class="p">=</span> <span class="s">UTF-8</span>
-<span class="py">allow_push</span> <span class="p">=</span> <span class="s">*</span>
-<span class="py">push_ssl</span> <span class="p">=</span> <span class="s">false</span>
-<span class="py">contact</span> <span class="p">=</span> <span class="s">John Yeary</span>
-<span class="py">allow_archive</span> <span class="p">=</span> <span class="s">gz zip bz2</span>
-<span class="py">descend</span> <span class="p">=</span> <span class="s">True</span>
-<span class="py">collapse</span> <span class="p">=</span> <span class="s">True</span>
-<span class="py">style</span><span class="p">=</span><span class="s">gitweb</span>
-
-<span class="nn">[paths]</span>
-<span class="c"># Directory Search (Slow)
-#/ = C:\repos\*
-</span><span class="py">foo</span> <span class="p">=</span> <span class="s">C:</span><span class="se">\r</span><span class="s">epos</span><span class="se">\f</span><span class="s">oo</span>
-</code></pre></div></div>
-
-<p>This completes our installation as a service. As you can see our <strong>Foo</strong> is being served…</p>
-<figure class="image">
-    <img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/05/ServiceRunning.png" alt="Mercurial Service Running" />
-    <figcaption>Mercurial Service Running</figcaption>
-</figure>
-
-<figure class="image">
-    <img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/05/FooMagick.png" alt="Mercurial Directory Listing" />
-    <figcaption>Mercurial Directory Listing</figcaption>
-</figure>
-
-<p>The configuration files for this project are located here: <strong><a href="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/05/hg-service.zip">hg-service.zip</a></strong></p>
 
 	  ]]></description>
 	</item>

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>John Yeary</title>
+    <title>Author</title>
     <meta name="description" content="A Caffeinated Java Developer." />
 
     <!-- Mobile Meta -->
@@ -27,21 +27,21 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="https://johnyeary.com//page2/" />
+        <link rel="canonical" href="https://johnyeary.com//author/jyeary/page29/" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="John Yeary" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="John Yeary" />
+    <meta property="og:title" content="Author" />
     <meta property="og:description" content="A Caffeinated Java Developer." />
-    <meta property="og:url" content="https://johnyeary.com//page2/" />
+    <meta property="og:url" content="https://johnyeary.com//author/jyeary/page29/" />
     <meta property="og:image" content="/assets/images/cover4.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="John Yeary" />
+    <meta name="twitter:title" content="Author" />
     <meta name="twitter:description" content="A Caffeinated Java Developer." />
-    <meta name="twitter:url" content="https://johnyeary.com//page2/" />
+    <meta name="twitter:url" content="https://johnyeary.com//author/jyeary/page29/" />
     <meta name="twitter:image:src" content="/assets/images/cover4.jpg" />
 
     <script type="application/ld+json">
@@ -49,8 +49,8 @@
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "John Yeary",
-    "name": "John Yeary",
-    "url": "https://johnyeary.com//page2/",
+    "name": "Author",
+    "url": "https://johnyeary.com//author/jyeary/page29/",
     "image": "/assets/images/cover4.jpg",
     "description": "A Caffeinated Java Developer."
 }
@@ -70,7 +70,7 @@
         <span class="hidden">Close</span>
     </a>
     <ul>
-        <li class="nav-home  nav-current" role="presentation"><a href="/">Home</a></li>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
         <!--
         <li class="nav-about " role="presentation"><a href="/about">About</a></li>
         -->
@@ -83,7 +83,7 @@
         <li class="nav-unix " role="presentation"><a href="/tag/unix">UNIX</a></li>
         <li class="nav-web " role="presentation"><a href="/tag/web">Web</a></li>
         <li class="nav-yoga " role="presentation"><a href="/tag/yoga">Yoga</a></li>
-        <li class="nav-author " role="presentation"><a href="/author/jyeary">John Yeary</a></li>
+        <li class="nav-author  nav-current" role="presentation"><a href="/author/jyeary">John Yeary</a></li>
         <!--
         <li class="nav-speeches " role="presentation"><a href="/tag/speeches">Speeches</a></li>
         <li class="nav-fiction " role="presentation"><a href="/tag/fiction">Fiction</a></li>
@@ -102,45 +102,64 @@
     <div class="site-wrapper">
 
         <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
-        <!-- < default -->
+        <!-- < default}} -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<!-- The big featured header  -->
-<header class="main-header "
-        style="background-image: url(/assets/images/cover4.jpg) ">
-    <nav class="main-nav overlay clearfix">
-        <a class="blog-logo" href="/"><img src="/assets/images/logo.jpg" alt="Blog Logo" /></a>
+<!-- The big featured header -->
+
+<!-- Everything inside the #author tags pulls data from the author -->
+<!-- #author  -->
+    <header class="main-header author-head " style="background-image: url(/assets/images/cover4.jpg) ">
+        <nav class="main-nav overlay clearfix">
+            <a class="blog-logo" href="/"><img src="/assets/images/logo.jpg" alt="Blog Logo" /></a>
+            
+                <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+            
+        </nav>
+    </header>
+
+    <section class="author-profile inner">
         
-            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+            
+                
+                <figure class="author-image">
+                    <div class="img" style="background-image: url(/assets/images/jyeary.jpg)"><span class="hidden">John Yeary's Picture</span></div>
+                </figure>
+                
+                <h1 class="author-title">John Yeary</h1>
+                
+                    <div style="display:inline; text-align: justify; text-justify: inter-word;">
+                        <h2 class="author-bio">Caffeinated Java Programmer, and Principal Software Engineer at Orange Bees. My opinions are my own.</h2>
+                    </div>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location">Greenville, South Carolina, USA</span>
+                    <span class="author-link icon-link"><a href="https://johnyeary.com/author/jyeary/">johnyeary.com</a></span>
+                    <!-- <span class="author-stats"><i class="icon-stats"></i> [[plural ../pagination.total empty='No posts' singular='% post' plural='% posts']]</span> -->
+                    <span class="author-stats"><i class="icon-stats"></i>141 posts</span>
+                </div>
+            
         
-    </nav>
-    <div class="vertical">
-        <div class="main-header-content inner">
-            <h1 class="page-title">John Yeary</h1>
-            <h2 class="page-description">A Caffeinated Java Developer.</h2>
-        </div>
-    </div>
-    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
-</header>
+    </section>
+<!-- /author -->
 
 <!-- The main content area on the homepage -->
 <main id="content" class="content" role="main">
 
-    <!-- The tag below includes the post loop - partials/loop.hbs -->
+    <!-- The tag below includes the post loop - partials/loop.hbs  -->
         <!-- Previous/next page links - only displayed on page 2+ -->
     <div class="extra-pagination inner">
         
             <nav class="pagination" role="pagination">
     
         
-            <a class="newer-posts" href="/" title="Previous Page">&laquo; Newer Posts</a>
-        
+            <a class="newer-posts" href="/author/jyeary/page28/" title="Previous Page">&laquo; Newer Posts</a>
+      
     
-    <span class="page-number"> Page 2 of 29 </span>
-     
-        <a class="older-posts" href="/page3/" title="Next Page">Older Posts &raquo;</a>
-     
+    <span class="page-number"> Page 29 of 29 </span>
+    
 </nav>
+
         
     </div>
 
@@ -148,10 +167,10 @@
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/2020-01-01-resolution.html">Resolutions</a></h2>
+            <h2 class="post-title"><a href="/0010-02-16-steppenwolf-by-hermann-hesse.html">Steppenwolf by Hermann Hesse</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>Do Achievable Things! Every year most people make resolutions to do things like lose weight, eat more at home, travel, etc. After some period of time... <a class="read-more" href="/2020-01-01-resolution.html">&raquo;</a></p>
+            <p>I read the novel Steppenwolf by Hermann Hesse last night and today. I was truly inspired by its wonderful use of the English language. This is... <a class="read-more" href="/0010-02-16-steppenwolf-by-hermann-hesse.html">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             
@@ -173,135 +192,7 @@
                     
                 
             
-            <time class="post-date" datetime="2020-01-01">01 Jan 2020</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/2019-11-09-programming-merit-badge.html">Programming Merit Badge</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>The Next Generation of Developers This is the 4th year I have taught the Programming Merit Badge to Boy Scouts in the Southbounder District of the... <a class="read-more" href="/2019-11-09-programming-merit-badge.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-
-                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/jyeary'>John Yeary</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/web'>Web</a>,
-                    
-                
-                    
-                       <a href='/tag/java'>Java</a>
-                    
-                
-            
-            <time class="post-date" datetime="2019-11-09">09 Nov 2019</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/2019-11-01-blog-migration.html">Blog Migration</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>Introduction After a couple of years using Wordpress, I have found that constantly upgrading, broken plugins, managing a database, backups, and security certificates have brought me... <a class="read-more" href="/2019-11-01-blog-migration.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-
-                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/jyeary'>John Yeary</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/web'>Web</a>
-                    
-                
-            
-            <time class="post-date" datetime="2019-11-01">01 Nov 2019</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/2019-10-15-multiple-java-persistence-api-jpa-persistence-xml-merging.html">Multiple Java Persistence API (JPA) persistence.xml Merging</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>Introduction Java Persistence API (JPA) is a great technology for combining the power of Java and data persistence. The specification goes a long way from the... <a class="read-more" href="/2019-10-15-multiple-java-persistence-api-jpa-persistence-xml-merging.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-
-                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/jyeary'>John Yeary</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/java'>Java</a>
-                    
-                
-            
-            <time class="post-date" datetime="2019-10-15">15 Oct 2019</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/2019-03-27-js-equality-table.html">JS Equality Table</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>It seems I am always looking for the difference between == and ===. I was looking at a response to a question on Stackoverflow when I... <a class="read-more" href="/2019-03-27-js-equality-table.html">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-
-                <img class="author-thumb" src="/assets/images/jyeary.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/jyeary'>John Yeary</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/web'>Web</a>
-                    
-                
-            
-            <time class="post-date" datetime="2019-03-27">27 Mar 2019</time>
+            <time class="post-date" datetime="0010-02-16">16 Feb 0010</time>
         </footer>
     </article>
     
@@ -311,14 +202,13 @@
         <nav class="pagination" role="pagination">
     
         
-            <a class="newer-posts" href="/" title="Previous Page">&laquo; Newer Posts</a>
-        
+            <a class="newer-posts" href="/author/jyeary/page28/" title="Previous Page">&laquo; Newer Posts</a>
+      
     
-    <span class="page-number"> Page 2 of 29 </span>
-     
-        <a class="older-posts" href="/page3/" title="Next Page">Older Posts &raquo;</a>
-     
+    <span class="page-number"> Page 29 of 29 </span>
+    
 </nav>
+
     
 
 

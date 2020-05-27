@@ -8,6 +8,146 @@
     
       
       <item>
+        <title>cfssl Intermediate and Client Certificates</title>
+        
+          <description>&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;In a previous blog post &lt;a href=&quot;/2018-05-25-cfssl-cloudflare-ssl.html&quot;&gt;CFSSL Cloudflare SSL&lt;/a&gt; I discussed how to setup &lt;code class=&quot;highlighter-rouge&quot;&gt;cfssl&lt;/code&gt; as a Certification Authority (CA) for issuing your own certificates. This becomes increasingly important in the world of containers. Especially when those containers are on internal networks, and VPCs where getting a &lt;a href=&quot;https://letsencrypt.org/&quot;&gt;Let’s Encrypt&lt;/a&gt; certificate is not possible, or desirable.&lt;/p&gt;
+
+&lt;h3 id=&quot;new-and-improved&quot;&gt;New and Improved&lt;/h3&gt;
+&lt;p&gt;I was looking for a way to set up intermediate and client certificates. I was looking for ideas on how to setup the CA to handle these additional certificates. I found a post by Johannes Tegnér&lt;sup&gt;1&lt;/sup&gt;. I liked his layout idea which I slighly modified below.&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/CA
+    /root
+    /intermediate
+        /production
+        /development
+    /certs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;I tried his using the files he provided, but I believe that &lt;code class=&quot;highlighter-rouge&quot;&gt;cfssl&lt;/code&gt; was updated between his post and today. As a result, the &lt;code class=&quot;highlighter-rouge&quot;&gt;config.json&lt;/code&gt; files would not work without slight modifications. Here is my &lt;code class=&quot;highlighter-rouge&quot;&gt;config.json&lt;/code&gt; for intermediate certificates. This file goes in the &lt;code class=&quot;highlighter-rouge&quot;&gt;intermediate&lt;/code&gt; directory.&lt;/p&gt;
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+    &quot;signing&quot;: {
+        &quot;default&quot;: {
+            &quot;expiry&quot;: &quot;720h&quot;,
+            &quot;usages&quot;: [
+                &quot;signing&quot;,
+                &quot;key encipherment&quot;,
+                &quot;cert sign&quot;,
+                &quot;crl sign&quot;
+            ]
+        },
+        &quot;profiles&quot;: {
+            &quot;development&quot;: {
+                &quot;ca_constraint&quot;: {
+                    &quot;is_ca&quot;: true,
+                    &quot;max_path_len&quot;: 0,
+                    &quot;max_path_len_zero&quot;: true
+                },
+                &quot;expiry&quot;: &quot;2160h&quot;,
+                &quot;usages&quot;: [
+                    &quot;signing&quot;,
+                    &quot;key encipherment&quot;,
+                    &quot;cert sign&quot;,
+                    &quot;crl sign&quot;
+                ]
+            },
+            &quot;production&quot;: {
+                &quot;ca_constraint&quot;: {
+                    &quot;is_ca&quot;: true,
+                    &quot;max_path_len&quot;: 0,
+                    &quot;max_path_len_zero&quot;: true
+                },
+                &quot;expiry&quot;: &quot;43800h&quot;,
+                &quot;usages&quot;: [
+                    &quot;signing&quot;,
+                    &quot;key encipherment&quot;,
+                    &quot;cert sign&quot;,
+                    &quot;crl sign&quot;,
+                    &quot;server auth&quot;,
+                    &quot;client auth&quot;
+                ]
+            }
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The intermediate certificates can be created with the following commands without using the network configuration in my previous blog post.&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;CA/intermediate/development
+cfssl genkey &lt;span class=&quot;nt&quot;&gt;-initca&lt;/span&gt; ../intermediate.json | cfssljson &lt;span class=&quot;nt&quot;&gt;-bare&lt;/span&gt; development
+cfssl sign &lt;span class=&quot;nt&quot;&gt;-ca&lt;/span&gt; ../../root/ca.pem &lt;span class=&quot;nt&quot;&gt;-ca-key&lt;/span&gt; ../../root/ca-key.pem &lt;span class=&quot;nt&quot;&gt;--config&lt;/span&gt; ../config.json &lt;span class=&quot;nt&quot;&gt;-profile&lt;/span&gt; development  development.csr | cfssljson &lt;span class=&quot;nt&quot;&gt;-bare&lt;/span&gt; development 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Here is my &lt;code class=&quot;highlighter-rouge&quot;&gt;config.json&lt;/code&gt; for different usage profiles for the final certificates.&lt;/p&gt;
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+    &quot;signing&quot;: {
+        &quot;default&quot;: {
+            &quot;expiry&quot;: &quot;43800h&quot;
+        },
+        &quot;profiles&quot;: {
+            &quot;client&quot;: {
+                &quot;expiry&quot;: &quot;43800h&quot;,
+                &quot;usages&quot;: [
+                    &quot;signing&quot;,
+                    &quot;digital signature&quot;,
+                    &quot;key encipherment&quot;,
+                    &quot;client auth&quot;
+                ]
+            },
+            &quot;peer&quot;: {
+                &quot;expiry&quot;: &quot;43800h&quot;,
+                &quot;usages&quot;: [
+                    &quot;signing&quot;,
+                    &quot;digital signature&quot;,
+                    &quot;key encipherment&quot;,
+                    &quot;client auth&quot;,
+                    &quot;server auth&quot;
+                ]
+            },
+            &quot;server&quot;: {
+                &quot;expiry&quot;: &quot;43800h&quot;,
+                &quot;usages&quot;: [
+                    &quot;signing&quot;,
+                    &quot;digital signing&quot;,
+                    &quot;key encipherment&quot;,
+                    &quot;server auth&quot;
+                ]
+            }
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The final step for my purposes was generating the client certs.
+Here is my &lt;code class=&quot;highlighter-rouge&quot;&gt;client.json&lt;/code&gt; file which is the same as Johannes’ file. His explanation is worth quoting.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;When it comes to the client certificate, we don’t set any hosts, as we want to be able to
+connect to the services without having to care about the clients current host. It’s okay 
+to do though, if you want to!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+    &quot;CN&quot;: &quot;Client&quot;,
+    &quot;hosts&quot;: [
+        &quot;&quot;
+    ]
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;cfssl gencert &lt;span class=&quot;nt&quot;&gt;-ca&lt;/span&gt; ../intermediate/production/production.pem &lt;span class=&quot;nt&quot;&gt;-ca-key&lt;/span&gt; ../intermediate/production/production-key.pem &lt;span class=&quot;nt&quot;&gt;-config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;config.json &lt;span class=&quot;nt&quot;&gt;-profile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;client client.json | cfssljson &lt;span class=&quot;nt&quot;&gt;-bare&lt;/span&gt; client
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;references&quot;&gt;References&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;https://jite.eu/2019/2/6/ca-with-cfssl/&quot;&gt;Certificate Authority with CFSSL &lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/cloudflare/cfssl&quot;&gt;CFSSL: Cloudflare’s PKI and TLS toolkit&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        
+        <pubDate>Tue, 26 May 2020 21:13:48 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2020-05-26-cfssl-update.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2020-05-26-cfssl-update.html</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Blog Migration Completed</title>
         
           <description>&lt;p&gt;I finally finished migrating my blog from Wordpress to GitHub pages over the Memorial Day weekend. I started the process when I was in Maine at the end of 2019. I now find myself almost six months into 2020 and finally completed the migration.&lt;/p&gt;

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>Blog Migration Completed</title>
+    <title>cfssl Intermediate and Client Certificates</title>
     <meta name="description" content="A Caffeinated Java Developer." />
 
     <!-- Mobile Meta -->
@@ -27,31 +27,31 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="https://johnyeary.com//2020-05-26-blog-migration-complete.html" />
+        <link rel="canonical" href="https://johnyeary.com//2020-05-26-cfssl-update.html" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="John Yeary" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Blog Migration Completed" />
+    <meta property="og:title" content="cfssl Intermediate and Client Certificates" />
     <meta property="og:description" content="A Caffeinated Java Developer." />
-    <meta property="og:url" content="https://johnyeary.com//2020-05-26-blog-migration-complete.html" />
-    <meta property="og:image" content="/assets/images/cover4.jpg" />
+    <meta property="og:url" content="https://johnyeary.com//2020-05-26-cfssl-update.html" />
+    <meta property="og:image" content="/assets/images/black-and-white-photo-of-a-building-3914752.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Blog Migration Completed" />
+    <meta name="twitter:title" content="cfssl Intermediate and Client Certificates" />
     <meta name="twitter:description" content="A Caffeinated Java Developer." />
-    <meta name="twitter:url" content="https://johnyeary.com//2020-05-26-blog-migration-complete.html" />
-    <meta name="twitter:image:src" content="/assets/images/cover4.jpg" />
+    <meta name="twitter:url" content="https://johnyeary.com//2020-05-26-cfssl-update.html" />
+    <meta name="twitter:image:src" content="/assets/images/black-and-white-photo-of-a-building-3914752.jpg" />
 
     <script type="application/ld+json">
 {
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "John Yeary",
-    "name": "Blog Migration Completed",
-    "url": "https://johnyeary.com//2020-05-26-blog-migration-complete.html",
-    "image": "/assets/images/cover4.jpg",
+    "name": "cfssl Intermediate and Client Certificates",
+    "url": "https://johnyeary.com//2020-05-26-cfssl-update.html",
+    "image": "/assets/images/black-and-white-photo-of-a-building-3914752.jpg",
     "description": "A Caffeinated Java Developer."
 }
     </script>
@@ -110,7 +110,7 @@
 <!-- Everything inside the #post tags pulls data from the post -->
 <!-- #post -->
 
-<header class="main-header post-head " style="background-image: url(/assets/images/cover4.jpg) ">
+<header class="main-header post-head " style="background-image: url(/assets/images/black-and-white-photo-of-a-building-3914752.jpg) ">
     <nav class="main-nav  overlay  clearfix">
         <a class="blog-logo" href="/"><img src="/assets/images/logo.jpg" alt="Blog Logo" /></a>
         
@@ -124,7 +124,7 @@
     <article class="post tag-web">
 
         <header class="post-header">
-            <h1 class="post-title">Blog Migration Completed</h1>
+            <h1 class="post-title">cfssl Intermediate and Client Certificates</h1>
             <section class="post-meta">
             <!-- <a href='/'></a> -->
 
@@ -148,25 +148,133 @@
 
         <section class="post-content">
 
-            <p>I finally finished migrating my blog from Wordpress to GitHub pages over the Memorial Day weekend. I started the process when I was in Maine at the end of 2019. I now find myself almost six months into 2020 and finally completed the migration.</p>
+            <h3 id="introduction">Introduction</h3>
+<p>In a previous blog post <a href="/2018-05-25-cfssl-cloudflare-ssl.html">CFSSL Cloudflare SSL</a> I discussed how to setup <code class="highlighter-rouge">cfssl</code> as a Certification Authority (CA) for issuing your own certificates. This becomes increasingly important in the world of containers. Especially when those containers are on internal networks, and VPCs where getting a <a href="https://letsencrypt.org/">Let’s Encrypt</a> certificate is not possible, or desirable.</p>
 
-<p>The significant advantage of Wordpress is its ease of use to get started. However, trying to maintain a database, and upgrades made it a chore. I was also hosting it on Google Cloud. That meant I was responsible for maintainence and security. I also had the additional expense of paying for the VM and data storage.</p>
-
-<p>GitHub makes a compelling choice. This is particularly true since I write my pages in Markdown, and it is a first class citizen on GitHub. I had issues everytime I upgraded Wordpress with the plugin(s) I was using to do Markdown on it. This was part of the maintenance headache that I decided to remedy.</p>
-
-<p>Today I am writing my post on <a href="https://dillinger.io/">Dillinger</a> running in a Docker container. I will save the post to my github repo, and push it. <a href="https://travis-ci.com/">Travis CI</a> will pull the updates, and build the pages and push them back to GitHub on the master branch.</p>
-
-<p>I know that seems like a lot of additional work, but it really is not. I can also test my <a href="https://jekyllrb.com/">Jekyll</a> pages locally using a Docker container to do the building to see what the final product is going to look like.</p>
-
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container run <span class="nt">-it</span> <span class="nt">--rm</span> <span class="nt">-p</span> 4000:4000 <span class="nt">-v</span> <span class="nv">$PWD</span>:/blog ruby:2.6.6 /bin/bash
+<h3 id="new-and-improved">New and Improved</h3>
+<p>I was looking for a way to set up intermediate and client certificates. I was looking for ideas on how to setup the CA to handle these additional certificates. I found a post by Johannes Tegnér<sup>1</sup>. I liked his layout idea which I slighly modified below.</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/CA
+    /root
+    /intermediate
+        /production
+        /development
+    /certs
 </code></pre></div></div>
-<p>Where the $PWD is the checked out blog. I set up an alias called <code class="highlighter-rouge">docker-blog</code> in zsh to run the container. Once the container is started, I go to the <code class="highlighter-rouge">/blog</code> directory and run the following:</p>
-<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /blog <span class="o">&amp;&amp;</span> <span class="se">\</span>
-gem <span class="nb">install </span>bundler jekyll <span class="o">&amp;&amp;</span> <span class="se">\</span>
-bundle <span class="nb">install</span> <span class="o">&amp;&amp;</span> <span class="se">\</span>
-bundle <span class="nb">exec </span>jekyll serve
+<p>I tried his using the files he provided, but I believe that <code class="highlighter-rouge">cfssl</code> was updated between his post and today. As a result, the <code class="highlighter-rouge">config.json</code> files would not work without slight modifications. Here is my <code class="highlighter-rouge">config.json</code> for intermediate certificates. This file goes in the <code class="highlighter-rouge">intermediate</code> directory.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "signing": {
+        "default": {
+            "expiry": "720h",
+            "usages": [
+                "signing",
+                "key encipherment",
+                "cert sign",
+                "crl sign"
+            ]
+        },
+        "profiles": {
+            "development": {
+                "ca_constraint": {
+                    "is_ca": true,
+                    "max_path_len": 0,
+                    "max_path_len_zero": true
+                },
+                "expiry": "2160h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+                    "cert sign",
+                    "crl sign"
+                ]
+            },
+            "production": {
+                "ca_constraint": {
+                    "is_ca": true,
+                    "max_path_len": 0,
+                    "max_path_len_zero": true
+                },
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+                    "cert sign",
+                    "crl sign",
+                    "server auth",
+                    "client auth"
+                ]
+            }
+        }
+    }
+}
 </code></pre></div></div>
-<p>That completes my local environment to blog until I am sure I like it and commit.</p>
+<p>The intermediate certificates can be created with the following commands without using the network configuration in my previous blog post.</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>CA/intermediate/development
+cfssl genkey <span class="nt">-initca</span> ../intermediate.json | cfssljson <span class="nt">-bare</span> development
+cfssl sign <span class="nt">-ca</span> ../../root/ca.pem <span class="nt">-ca-key</span> ../../root/ca-key.pem <span class="nt">--config</span> ../config.json <span class="nt">-profile</span> development  development.csr | cfssljson <span class="nt">-bare</span> development 
+</code></pre></div></div>
+<p>Here is my <code class="highlighter-rouge">config.json</code> for different usage profiles for the final certificates.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "signing": {
+        "default": {
+            "expiry": "43800h"
+        },
+        "profiles": {
+            "client": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "digital signature",
+                    "key encipherment",
+                    "client auth"
+                ]
+            },
+            "peer": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "digital signature",
+                    "key encipherment",
+                    "client auth",
+                    "server auth"
+                ]
+            },
+            "server": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "digital signing",
+                    "key encipherment",
+                    "server auth"
+                ]
+            }
+        }
+    }
+}
+</code></pre></div></div>
+<p>The final step for my purposes was generating the client certs.
+Here is my <code class="highlighter-rouge">client.json</code> file which is the same as Johannes’ file. His explanation is worth quoting.</p>
+<blockquote>
+  <p>When it comes to the client certificate, we don’t set any hosts, as we want to be able to
+connect to the services without having to care about the clients current host. It’s okay 
+to do though, if you want to!</p>
+</blockquote>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "CN": "Client",
+    "hosts": [
+        ""
+    ]
+}
+</code></pre></div></div>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl gencert <span class="nt">-ca</span> ../intermediate/production/production.pem <span class="nt">-ca-key</span> ../intermediate/production/production-key.pem <span class="nt">-config</span><span class="o">=</span>config.json <span class="nt">-profile</span><span class="o">=</span>client client.json | cfssljson <span class="nt">-bare</span> client
+</code></pre></div></div>
+
+<h3 id="references">References</h3>
+<ol>
+  <li><a href="https://jite.eu/2019/2/6/ca-with-cfssl/">Certificate Authority with CFSSL </a></li>
+  <li><a href="https://github.com/cloudflare/cfssl">CFSSL: Cloudflare’s PKI and TLS toolkit</a></li>
+</ol>
 
 
         </section>
@@ -199,16 +307,16 @@ bundle <span class="nb">exec </span>jekyll serve
 
                     <section class="share">
                         <h4>Share this post</h4>
-                        <a class="icon-twitter" href="https://twitter.com/share?text=Blog Migration Completed&amp;url=https://johnyeary.com/2020-05-26-blog-migration-complete.html"
+                        <a class="icon-twitter" href="https://twitter.com/share?text=cfssl Intermediate and Client Certificates&amp;url=https://johnyeary.com/2020-05-26-cfssl-update.html"
                             onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                             <span class="hidden">Twitter</span>
                         </a>
-                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://johnyeary.com/2020-05-26-blog-migration-complete.html"
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://johnyeary.com/2020-05-26-cfssl-update.html"
                             onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                             <span class="hidden">Facebook</span>
                         </a>
                         <!--
-                        <a class="icon-google-plus" href="https://plus.google.com/share?url=https://johnyeary.com2020-05-26-blog-migration-complete.html"
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=https://johnyeary.com2020-05-26-cfssl-update.html"
                            onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                             <span class="hidden">Google+</span>
                         </a>
@@ -223,8 +331,8 @@ bundle <span class="nb">exec </span>jekyll serve
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     var disqus_shortname = 'john-yeary'; // required: replace example with your forum shortname
-    var disqus_identifier = '/2020-05-26-blog-migration-complete.html';
-    var disqus_url = 'https://johnyeary.com/2020-05-26-blog-migration-complete.html';
+    var disqus_identifier = '/2020-05-26-cfssl-update.html';
+    var disqus_url = 'https://johnyeary.com/2020-05-26-cfssl-update.html';
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function () {
@@ -249,20 +357,13 @@ bundle <span class="nb">exec </span>jekyll serve
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/black-and-white-photo-of-a-building-3914752.jpg)" href="/2020-05-26-cfssl-update.html">
-            <section class="post">
-                <h2>cfssl Intermediate and Client Certificates</h2>
-                <p>### Introduction In a previous blog post [CFSSL Cloudflare SSL](/2018-05-25-cfssl-cloudflare-ssl.html) I discussed how to setup...</p>
-            </section>
-        </a>
-    
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/assets/images/yellow-trees-and-brown-roof-3210189.jpg)" href="/2020-05-23-simple-SMTP-client.html">
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover4.jpg)" href="/2020-05-26-blog-migration-complete.html">
             <section class="post">
-                <h2>Simple SMTP Client</h2>
-                <p>Introduction I was cleaning up my hard drive when I came across another simple and...</p>
+                <h2>Blog Migration Completed</h2>
+                <p>I finally finished migrating my blog from Wordpress to GitHub pages over the Memorial Day...</p>
             </section>
         </a>
     
