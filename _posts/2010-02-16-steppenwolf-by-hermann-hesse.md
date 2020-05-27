@@ -5,7 +5,7 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
-date: 010-02-16 01:23:00+00:00
+date: 2010-02-16 01:23:00+00:00
 title: Steppenwolf by Hermann Hesse
 categories: jyeary
 tags: life
