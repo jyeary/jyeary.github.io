@@ -1,6 +1,6 @@
 ---
 layout: post
-cover: 'assets/images/pdp11-70.jpg'
+cover: 'assets/images/blur-bright-business-codes-207580.jpg'
 logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
