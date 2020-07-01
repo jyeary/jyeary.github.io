@@ -51,7 +51,7 @@
  * nuclear facility.
  */</span>
 
-<span class="kn">package</span> <span class="n">net</span><span class="o">.</span><span class="na">javanetwork</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">smtp</span><span class="o">;</span>
+<span class="kn">package</span> <span class="nn">net.javanetwork.mail.smtp</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">com.sun.mail.smtp.SMTPAddressSucceededException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.sun.mail.smtp.SMTPMessage</span><span class="o">;</span>
@@ -422,7 +422,7 @@
  * nuclear facility.
  */</span>
 
-<span class="kn">package</span> <span class="n">net</span><span class="o">.</span><span class="na">javanetwork</span><span class="o">.</span><span class="na">net</span><span class="o">;</span>
+<span class="kn">package</span> <span class="nn">net.javanetwork.net</span><span class="o">;</span>
 
 <span class="cm">/**
  *
@@ -664,7 +664,7 @@
 
 <p>Here is an example of how to use it.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">net</span><span class="o">.</span><span class="na">javanetwork</span><span class="o">.</span><span class="na">net</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">net.javanetwork.net</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">lombok.NoArgsConstructor</span><span class="o">;</span>
@@ -800,7 +800,7 @@ keystore.type=pkcs12
 <h3 id="code">Code</h3>
 
 <p>The code will work on Java 8, but the changes in later versions of Java around class loading may prevent us from using this clever trick.</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bluelotussoftware</span><span class="o">.</span><span class="na">persistence</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.bluelotussoftware.persistence</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
@@ -1116,7 +1116,7 @@ keystore.type=pkcs12
 
 <h2 id="clijava">CLI.java</h2>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bluelotussoftware</span><span class="o">.</span><span class="na">cli</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">package</span> <span class="nn">com.bluelotussoftware.cli</span><span class="o">;</span>
     
     <span class="kn">import</span> <span class="nn">java.util.logging.Level</span><span class="o">;</span>
     <span class="kn">import</span> <span class="nn">java.util.logging.Logger</span><span class="o">;</span>
@@ -1248,7 +1248,7 @@ keystore.type=pkcs12
 
 <h2 id="jcommanderclijava">JCommanderCLI.java</h2>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bluelotussoftware</span><span class="o">.</span><span class="na">cli</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">package</span> <span class="nn">com.bluelotussoftware.cli</span><span class="o">;</span>
     
     <span class="kn">import</span> <span class="nn">com.beust.jcommander.JCommander</span><span class="o">;</span>
     <span class="kn">import</span> <span class="nn">com.beust.jcommander.Parameter</span><span class="o">;</span>
@@ -1376,7 +1376,7 @@ keystore.type=pkcs12
 
 <p>The code for our example using JAX-WS will be using a war file with a simple JAX-WS service that returns the current date.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bluelotussoftware</span><span class="o">.</span><span class="na">tomcat</span><span class="o">.</span><span class="na">embedded</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.bluelotussoftware.tomcat.embedded</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">javax.servlet.ServletException</span><span class="o">;</span>
@@ -1433,7 +1433,7 @@ keystore.type=pkcs12
 
 <h4 id="simplejava">Simple.java</h4>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bluelotussoftware</span><span class="o">.</span><span class="na">example</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.bluelotussoftware.example</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">javax.jws.WebMethod</span><span class="o">;</span>
@@ -1545,7 +1545,7 @@ com.docker.network.driver.mtu=1500
 <h2 id="as-for-me">As for me…</h2>
 
 <p>I needed to test the service and wrote a quick implementation that worked something like this.</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">example</span><span class="o">.</span><span class="na">spamc</span><span class="o">.</span><span class="na">client</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">package</span> <span class="nn">com.example.spamc.client</span><span class="o">;</span>
     
     <span class="kn">import</span> <span class="nn">hu.alphabox.spamc.SAClient</span><span class="o">;</span>
     <span class="kn">import</span> <span class="nn">hu.alphabox.spamc.SACommand</span><span class="o">;</span>

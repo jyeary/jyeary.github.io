@@ -219,7 +219,7 @@ bundle <span class="nb">exec </span>jekyll serve
  * nuclear facility.
  */</span>
 
-<span class="kn">package</span> <span class="n">net</span><span class="o">.</span><span class="na">javanetwork</span><span class="o">.</span><span class="na">mail</span><span class="o">.</span><span class="na">smtp</span><span class="o">;</span>
+<span class="kn">package</span> <span class="nn">net.javanetwork.mail.smtp</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">com.sun.mail.smtp.SMTPAddressSucceededException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">com.sun.mail.smtp.SMTPMessage</span><span class="o">;</span>
@@ -590,7 +590,7 @@ bundle <span class="nb">exec </span>jekyll serve
  * nuclear facility.
  */</span>
 
-<span class="kn">package</span> <span class="n">net</span><span class="o">.</span><span class="na">javanetwork</span><span class="o">.</span><span class="na">net</span><span class="o">;</span>
+<span class="kn">package</span> <span class="nn">net.javanetwork.net</span><span class="o">;</span>
 
 <span class="cm">/**
  *
@@ -832,7 +832,7 @@ bundle <span class="nb">exec </span>jekyll serve
 
 <p>Here is an example of how to use it.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">net</span><span class="o">.</span><span class="na">javanetwork</span><span class="o">.</span><span class="na">net</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">net.javanetwork.net</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">lombok.NoArgsConstructor</span><span class="o">;</span>
@@ -1037,7 +1037,7 @@ this month. Once I am back to being healthy, I will achieve this goal.</p>
 <h3 id="code">Code</h3>
 
 <p>The code will work on Java 8, but the changes in later versions of Java around class loading may prevent us from using this clever trick.</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bluelotussoftware</span><span class="o">.</span><span class="na">persistence</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.bluelotussoftware.persistence</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>

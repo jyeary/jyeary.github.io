@@ -294,7 +294,7 @@ bundle <span class="nb">exec </span>jekyll serve
 	     <p>I had my first exposure to this fun and easy to use framework in Java Magazine - <a href="http://www.javamagazine.mozaicreader.com/JulyAugust2018/facebook#&amp;pageSet=27&amp;page=0&amp;contentItem=0&quot;">j2html: An HTML5 Generator Library</a>. I have to say that it is slick and easy for the most part. The more HTML you use… the more complex it becomes. However, if you need to output an error page, a login page on the fly, or simple pages to display information, this framework is hard to beat.</p>
 
 <p>This example is from Java Magazine… You really need to read the well written article.</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">example</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.example</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">static</span> <span class="n">j2html</span><span class="o">.</span><span class="na">TagCreator</span><span class="o">.*;</span>
 <span class="kn">import</span> <span class="nn">j2html.tags.Tag</span><span class="o">;</span>
@@ -345,7 +345,7 @@ bundle <span class="nb">exec </span>jekyll serve
 
 <p>The following class can be re-used in your personal projects in in a simple manner.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">bluelotussoftware</span><span class="o">;</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.bluelotussoftware</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">io.netty.channel.Channel</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.net.URI</span><span class="o">;</span>
