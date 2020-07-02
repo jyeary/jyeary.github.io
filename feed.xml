@@ -8,6 +8,21 @@
     
       
       <item>
+        <title>Spring CORS Configuration</title>
+        
+          <description>&lt;p&gt;I was working on an application today trying to setup CORS in Spring 2.1.8 (I know its an older version of Spring) and it would not work. It turns out I needed to update it to at least 2.2.0. Along the way, I was not able to find really good examples of how to setup customized handlers. Here is an example which allow simple defaults.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 02 Jul 2020 00:00:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2020-07-02-spring-cors-configuration.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2020-07-02-spring-cors-configuration.html</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>cfssl Intermediate and Client Certificates</title>
         
           <description>&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;

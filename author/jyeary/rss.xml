@@ -12,6 +12,43 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>Spring CORS Configuration</title>
+	  <link>//2020-07-02-spring-cors-configuration.html</link>
+	  <author></author>
+	  <pubDate>2020-07-02T00:00:00+00:00</pubDate>
+	  <guid>//2020-07-02-spring-cors-configuration.html</guid>
+	  <description><![CDATA[
+	     <p>I was working on an application today trying to setup CORS in Spring 2.1.8 (I know its an older version of Spring) and it would not work. It turns out I needed to update it to at least 2.2.0. Along the way, I was not able to find really good examples of how to setup customized handlers. Here is an example which allow simple defaults.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.cors.CorsConfiguration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.cors.CorsConfigurationSource</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.cors.UrlBasedCorsConfigurationSource</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.filter.CorsFilter</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ApplicationConfiguration</span>  <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nc">CorsConfigurationSource</span> <span class="nf">corsConfigurationSource</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">CorsConfiguration</span> <span class="n">configuration</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CorsConfiguration</span><span class="o">().</span><span class="na">applyPermitDefaultValues</span><span class="o">();</span>
+        <span class="nc">UrlBasedCorsConfigurationSource</span> <span class="n">source</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UrlBasedCorsConfigurationSource</span><span class="o">();</span>
+        <span class="n">source</span><span class="o">.</span><span class="na">registerCorsConfiguration</span><span class="o">(</span><span class="s">"/**"</span><span class="o">,</span> <span class="n">configuration</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">source</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">CorsFilter</span> <span class="nf">corsFilter</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">CorsFilter</span><span class="o">(</span><span class="n">corsConfigurationSource</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>cfssl Intermediate and Client Certificates</title>
 	  <link>//2020-05-26-cfssl-update.html</link>
 	  <author></author>
@@ -1336,20 +1373,6 @@ this month. Once I am back to being healthy, I will achieve this goal.</p>
 <p>The Java Persistence API (JPA) is a great technology, but has some limitations with regards to loading multiple <em>persistence.xml</em> files. We can use <code class="highlighter-rouge">Classloader</code> magic to accomplish loading multiple <em>persistence.xml</em> files.</p>
 
 <p>This code may not work as expected on later versions of Java. At the time of this writing, Java 8 is still used by most of the enterprise clients I work with.</p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>JS Equality Table</title>
-	  <link>//2019-03-27-js-equality-table.html</link>
-	  <author></author>
-	  <pubDate>2019-03-27T15:25:39+00:00</pubDate>
-	  <guid>//2019-03-27-js-equality-table.html</guid>
-	  <description><![CDATA[
-	     <p>It seems I am always looking for the difference between <strong>==</strong> and <strong>===</strong>.  I was looking at a response to a question on Stackoverflow when I found this gem. I am publishing it here in case anyone else needs a graphical explanation.</p>
-
-<p><a href="https://dorey.github.io/JavaScript-Equality-Table/">JavaScript-Equality-Table</a></p>
 
 	  ]]></description>
 	</item>
