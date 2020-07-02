@@ -1,6 +1,6 @@
 ---
 layout: post
-cover: 'assets/images/cover4.jpg'
+cover: 'assets/images/green-wheat-field-4507967.jpg'
 logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
