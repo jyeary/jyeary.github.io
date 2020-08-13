@@ -12,6 +12,44 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>Spring: How to Redirect the Context Root to Open API 3.0 (Swagger) UI</title>
+	  <link>//2020-08-13-spring-swagger-redirect.html</link>
+	  <author></author>
+	  <pubDate>2020-08-13T17:00:00+00:00</pubDate>
+	  <guid>//2020-08-13-spring-swagger-redirect.html</guid>
+	  <description><![CDATA[
+	     <p>I needed to set up my REST application to redirect users to my Open API Specification 3.0 (Swagger) UI in Spring. This can easily be accomplished by adding the following <code class="highlighter-rouge">@Controller</code> to the project.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.example.web</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Controller</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Root context redirection to OpenAPI API Specification (OAS) documentation.
+ *
+ * @author John Yeary &lt;jyeary@bluelotussoftware.com&gt;
+ * @version 1.0.0
+ */</span>
+<span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OASController</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Sets the index page mapping to point to the Swagger UI.
+     *
+     * @return A redirect to the Swagger UI.
+     */</span>
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">index</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"redirect:swagger-ui.html"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Spring CORS Configuration</title>
 	  <link>//2020-07-02-spring-cors-configuration.html</link>
 	  <author></author>
@@ -1557,57 +1595,6 @@ com.docker.network.bridge.host_binding_ipv4=0.0.0.0
 # The bridge.name be unique
 com.docker.network.bridge.name=docker1
 com.docker.network.driver.mtu=1500
-</code></pre></div></div>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>SPAMC and Java</title>
-	  <link>//2018-09-20-spamc-and-java.html</link>
-	  <author></author>
-	  <pubDate>2018-09-20T20:45:12+00:00</pubDate>
-	  <guid>//2018-09-20-spamc-and-java.html</guid>
-	  <description><![CDATA[
-	     <h2 id="introduction">Introduction</h2>
-
-<p>I was tasked with trying to find a quick way to test if a SpamAssassin server was running. The idea was that we needed to not only check it, but if there was a framework out there that would make it simple.</p>
-
-<p>In fact, we had developed our own framework over time by various developers with different approaches. However, I would like to replace it with something that will work for us that was designed from the bottom up as an implementation of SPAMC for Java. I thought it might be something I would end up writing, but alas I found one that is well written and easy to use.</p>
-
-<h2 id="spamc">spamc</h2>
-
-<p><a href="https://github.com/alphabox/spamc">spamc</a> written by Daniel Mecsei at Alphabox does the job. It is an F/OSS framework that makes communicating with SpamAssassin extremely easy. The Github project has an example that I won’t repeat here, but trust me, it is easy to implement and use.</p>
-
-<h2 id="as-for-me">As for me…</h2>
-
-<p>I needed to test the service and wrote a quick implementation that worked something like this.</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">package</span> <span class="nn">com.example.spamc.client</span><span class="o">;</span>
-    
-    <span class="kn">import</span> <span class="nn">hu.alphabox.spamc.SAClient</span><span class="o">;</span>
-    <span class="kn">import</span> <span class="nn">hu.alphabox.spamc.SACommand</span><span class="o">;</span>
-    <span class="kn">import</span> <span class="nn">hu.alphabox.spamc.SARequest</span><span class="o">;</span>
-    <span class="kn">import</span> <span class="nn">hu.alphabox.spamc.SAResponse</span><span class="o">;</span>
-    <span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
-    <span class="kn">import</span> <span class="nn">static</span> <span class="n">org</span><span class="o">.</span><span class="na">junit</span><span class="o">.</span><span class="na">Assert</span><span class="o">.*;</span>
-    
-    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">SPAMCTest</span> <span class="o">{</span>
-    
-        <span class="kd">public</span> <span class="nf">SPAMCTest</span><span class="o">()</span> <span class="o">{</span>
-        <span class="o">}</span>
-    
-        <span class="nd">@Test</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testPong</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
-            <span class="nc">SARequest</span> <span class="n">saRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SARequest</span><span class="o">();</span>
-            <span class="n">saRequest</span><span class="o">.</span><span class="na">setCommand</span><span class="o">(</span><span class="nc">SACommand</span><span class="o">.</span><span class="na">PING</span><span class="o">);</span>
-            <span class="n">saRequest</span><span class="o">.</span><span class="na">setMessage</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
-            <span class="nc">SAClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SAClient</span><span class="o">(</span><span class="s">"localhost"</span><span class="o">,</span> <span class="mi">783</span><span class="o">);</span>
-            <span class="nc">SAResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">sendRequest</span><span class="o">(</span><span class="n">saRequest</span><span class="o">);</span>
-            <span class="nc">String</span> <span class="n">expected</span> <span class="o">=</span> <span class="s">"SPAMD/1.5 0 PONG\r\n"</span><span class="o">;</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getHeaders</span><span class="o">());</span>
-            <span class="n">assertEquals</span><span class="o">(</span><span class="n">expected</span><span class="o">,</span> <span class="n">response</span><span class="o">.</span><span class="na">getHeaders</span><span class="o">());</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
 </code></pre></div></div>
 
 	  ]]></description>

@@ -8,6 +8,23 @@
     
       
       <item>
+        <title>Spring: How to Redirect the Context Root to Open API 3.0 (Swagger) UI</title>
+        
+          <description>&lt;p&gt;I needed to set up my REST application to redirect users to my Open API Specification 3.0 (Swagger) UI in Spring. This can easily be accomplished by adding the following &lt;code class=&quot;highlighter-rouge&quot;&gt;@Controller&lt;/code&gt; to the project.
+```java
+package com.example.web;&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 13 Aug 2020 17:00:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2020-08-13-spring-swagger-redirect.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2020-08-13-spring-swagger-redirect.html</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Spring CORS Configuration</title>
         
           <description>&lt;p&gt;I was working on an application today trying to setup CORS in Spring 2.1.8 (I know its an older version of Spring) and it would not work. It turns out I needed to update it to at least 2.2.0. Along the way, I was not able to find really good examples of how to setup customized handlers. Here is an example which allow simple defaults.&lt;/p&gt;
