@@ -162,19 +162,19 @@
             <p>I have been asked to show how to translate line feeds between Mac, UNIX, and Windows. This comes up often so here is one way using PERL which was designed to do just what we need.</p>
 <ol>
   <li>How to translate Mac OS file linefeed to UNIX linefeeds:
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/r/n/g' file_with_mac_linefeeds.txt
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/r/n/g' file_with_mac_linefeeds.txt
 </code></pre></div>    </div>
   </li>
   <li>How to translate UNIX file linefeeds to Mac OS linefeeds:
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/n/r/g' file_with_unix_linefeeds.txt
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/n/r/g' file_with_unix_linefeeds.txt
 </code></pre></div>    </div>
   </li>
   <li>Translate a Windows file linefeeds to UNIX linefeeds:
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/rn/n/g' file_with_win_linefeeds.txt
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/rn/n/g' file_with_win_linefeeds.txt
 </code></pre></div>    </div>
   </li>
   <li>Translate Windows file linefeeds to Mac OS linefeeds:
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/rn/r/g' file_with_win_linefeeds.txt
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/rn/r/g' file_with_win_linefeeds.txt
 </code></pre></div>    </div>
   </li>
 </ol>

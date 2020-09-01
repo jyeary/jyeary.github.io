@@ -186,7 +186,7 @@
 </span></code></pre></div>    </div>
   </li>
   <li>Generate your public and private keys, and a CSR for signing by a third party if necessary.
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl gencert -initca csr_ca.json | cfssljson -bare ca
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl gencert -initca csr_ca.json | cfssljson -bare ca
 </code></pre></div>    </div>
   </li>
   <li>Create your configuration file <strong>ca_config.json</strong>. My version differs from the first reference listed below. You will need to provide your own key. Here is an online resource to generate one: <a href="https://www.random.org/bytes/">Random Byte Generator</a>
@@ -215,7 +215,7 @@
 </span></code></pre></div>    </div>
   </li>
   <li>Start your server:
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl serve -ca-key ca-key.pem -ca ca.pem -config config_ca.json
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl serve -ca-key ca-key.pem -ca ca.pem -config config_ca.json
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -270,15 +270,15 @@
 </span></code></pre></div>    </div>
   </li>
   <li>The command below will generate the key (<strong>groot-key.pem</strong>), and CSR (<strong>groot.csr</strong>). Then it will use the provided configuration to contact the server and return the signed certificate. The certificate will be called <strong>groot.pem</strong>.
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl gencert -config config_client.json csr_client.json | cfssljson -bare groot
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl gencert -config config_client.json csr_client.json | cfssljson -bare groot
 </code></pre></div>    </div>
   </li>
   <li>(ALTERNATIVE) If you already have a CSR, you can request that the server sign it. This will provide a certificate called <strong>groot.pem</strong>
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl sign -config config_client.json groot.csr | cfssljson -bare groot
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl sign -config config_client.json groot.csr | cfssljson -bare groot
 </code></pre></div>    </div>
   </li>
   <li>(ALTERNATIVE) If you need additional host names, e.g, Subject Alternative Name (SAN), you can use the following command substituting hostnames below with comma separated values.
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl sign -config config_client.json -hostname=quill.example.com,ronan.example.com,kree.example.com groot.csr | cfssljson -bare groot
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl sign -config config_client.json -hostname=quill.example.com,ronan.example.com,kree.example.com groot.csr | cfssljson -bare groot
 </code></pre></div>    </div>
   </li>
 </ol>

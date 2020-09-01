@@ -170,27 +170,27 @@
 <p>I used the MSI installer for Python. It works perfectly fine, and can be used in a headless environment like Windows Server Core if you need to install it in a headless environment.</p>
 
 <h3 id="mercurial">Mercurial</h3>
-<p>I used the Mercurial source install. This places the software within the Python installation. This makes it easier for applications to find it. If you use an installer like the Windows MSI, it will place the application in a different location such as <code class="highlighter-rouge">C\Program Files</code></p>
+<p>I used the Mercurial source install. This places the software within the Python installation. This makes it easier for applications to find it. If you use an installer like the Windows MSI, it will place the application in a different location such as <code class="language-plaintext highlighter-rouge">C\Program Files</code></p>
 
 <p>I needed to be able to create a Windows Service for Mercurial. Unfortunately, there is no built-in functionality in the Mercurial Downloads, not even for Windows installers (.msi) files. This is not the end of the world. There are commercial products that you can purchase to accomplish this. In my day job, we have such a contract for one of those products. In the world of open source though we expect that we are not the first person to encounter such an issue. Fortunately, there is a great project called <a href="https://github.com/kohsuke/winsw">WinSW</a>. Kohsuke one of the original authors of Jenkins developed this code for use in that project, and released it for public consumption.</p>
 
 <h3 id="winsw">WinSW</h3>
-<p><a href="https://github.com/kohsuke/winsw">WinSW</a> is one of the easiest software applications to use to make Windows services. You download the application, and rename it to whatever you  like. In this example, I used <code class="highlighter-rouge">hg-service.exe</code> since that made the most sense to me. The configuration file that is used must match the name of the service. That makes a lot of sense too. The WinSW software examines its own name, and looks for a configuration file with the same name and an .xml extension. You can see this in the example below.</p>
+<p><a href="https://github.com/kohsuke/winsw">WinSW</a> is one of the easiest software applications to use to make Windows services. You download the application, and rename it to whatever you  like. In this example, I used <code class="language-plaintext highlighter-rouge">hg-service.exe</code> since that made the most sense to me. The configuration file that is used must match the name of the service. That makes a lot of sense too. The WinSW software examines its own name, and looks for a configuration file with the same name and an .xml extension. You can see this in the example below.</p>
 
 <p><img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/05/files.png" alt="Mercurial files" /></p>
 
 <h3 id="installation-and-configuration">Installation and Configuration</h3>
 <ol>
-  <li>Create a directory called <code class="highlighter-rouge">hg-service</code>.</li>
+  <li>Create a directory called <code class="language-plaintext highlighter-rouge">hg-service</code>.</li>
   <li>Add the <a href="https://github.com/kohsuke/winsw">winsw</a> file of your choice based on your .NET framework.</li>
-  <li>Rename the winsw file to <code class="highlighter-rouge">hg-service.exe</code>.</li>
-  <li>Add a blank <code class="highlighter-rouge">hg-service.xml</code> file. We will add details to it in a moment.</li>
-  <li>Add a blank <code class="highlighter-rouge">hg-service.bat</code> file. We will add details to it in a moment.</li>
+  <li>Rename the winsw file to <code class="language-plaintext highlighter-rouge">hg-service.exe</code>.</li>
+  <li>Add a blank <code class="language-plaintext highlighter-rouge">hg-service.xml</code> file. We will add details to it in a moment.</li>
+  <li>Add a blank <code class="language-plaintext highlighter-rouge">hg-service.bat</code> file. We will add details to it in a moment.</li>
 </ol>
 
 <h4 id="hg-servicebat">hg-service.bat</h4>
 
-<p>Copy the following into the <code class="highlighter-rouge">hg-service.bat</code> file.</p>
+<p>Copy the following into the <code class="language-plaintext highlighter-rouge">hg-service.bat</code> file.</p>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@echo off
 <span class="k">if</span> <span class="s2">"%1"</span><span class="o">==</span><span class="s2">"start"</span> <span class="o">(</span>goto :start<span class="o">)</span>
@@ -204,7 +204,7 @@ REM The configuration below will start the service on all addresses on the machi
 :end
 </code></pre></div></div>
 <h4 id="hg-servicexml">hg-service.xml</h4>
-<p>Copy the following into the <code class="highlighter-rouge">hg-service.xml</code> file. The details should be self-explanatory. If you need more details on the configuration file, please look at this post: <a href="https://github.com/kohsuke/winsw/blob/master/doc/xmlConfigFile.md">WinSW XML Configuration File</a></p>
+<p>Copy the following into the <code class="language-plaintext highlighter-rouge">hg-service.xml</code> file. The details should be self-explanatory. If you need more details on the configuration file, please look at this post: <a href="https://github.com/kohsuke/winsw/blob/master/doc/xmlConfigFile.md">WinSW XML Configuration File</a></p>
 
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;service&gt;</span>
     <span class="nt">&lt;id&gt;</span>hg-serve<span class="nt">&lt;/id&gt;</span>

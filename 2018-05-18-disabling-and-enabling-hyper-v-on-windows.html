@@ -162,12 +162,12 @@
             <p>I needed to be able to run VMWare and VirtualBox from my Windows 10 Pro machine. This machine also has Docker on it. The issue is that you can only have one Hypervisor working at a time. So Docker <strong>OR</strong> VirtualBox and VMWare. A temporary solution is to disable the Hyper-V using the following commands. Once this disabled, you can run VirtualBox and VMWare.</p>
 
 <h3 id="disable">Disable</h3>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bcdedit /set hypervisorlaunchtype off
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bcdedit /set hypervisorlaunchtype off
 </code></pre></div></div>
 <p>Reboot machine.</p>
 
 <h3 id="enable">Enable</h3>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bcdedit /set hypervisorlaunchtype auto
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bcdedit /set hypervisorlaunchtype auto
 </code></pre></div></div>
 <p>Reboot machine.</p>
 

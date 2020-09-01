@@ -165,15 +165,15 @@
 
             <p>I was looking at some ideas for re-implementing an SMTP server that I work on for my day job. As I was reading about a <a href="https://netty.io/index.html">netty</a> example implementation called <a href="https://github.com/brightcode/smtpd">smptd</a> on github. I saw something very interesting. He was testing his code using a command from <a href="http://www.postfix.org">Postfix</a> called <a href="http://www.postfix.org/smtp-source.1.html">smtp-source</a>. I was immediately interested. I pulled his example code and updated it for a newer version of netty (3.10.6) and started it up. I then pulled an <a href="https://hub.docker.com/_/ubuntu/">Ubuntu</a> image from <a href="https://hub.docker.com">Docker Hub</a> and started it up. Once it was started, I used apt-get to install Postfix. The result was that I had my own little test environment up in about 5 minutes. So I tested the code from the smtpd project on my Windows 10 Pro machine (<a href="http://www8.hp.com/us/en/campaigns/pavilion-wave/overview.html">HP Pavillion Wave</a> for those who are interested) using the smtp-source command from a Docker container. Here were my results.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>time smtp-source -c -d -l 32000 -m 10000 -N -s 100 10.0.1.9:2525
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>time smtp-source -c -d -l 32000 -m 10000 -N -s 100 10.0.1.9:2525
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>real 0m12.543s
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>real 0m12.543s
 user 0m0.410s
 sys 0m2.640s
 </code></pre></div></div>
 
-<p>The results were very interesting on a non-server class machine, or environment. It handled 10,000 email requests with 100 simultaneous connections in 12 seconds. I was impressed. <code class="highlighter-rouge">time</code> is a built in function on UNIX machines. The <strong>real</strong> time is the time that was used to process the requests. This was just a really good demonstration of Docker, containers, Postfix tools, and netty.</p>
+<p>The results were very interesting on a non-server class machine, or environment. It handled 10,000 email requests with 100 simultaneous connections in 12 seconds. I was impressed. <code class="language-plaintext highlighter-rouge">time</code> is a built in function on UNIX machines. The <strong>real</strong> time is the time that was used to process the requests. This was just a really good demonstration of Docker, containers, Postfix tools, and netty.</p>
 
 
         </section>

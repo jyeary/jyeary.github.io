@@ -18,7 +18,7 @@
 	  <pubDate>2020-08-13T17:00:00+00:00</pubDate>
 	  <guid>//2020-08-13-spring-swagger-redirect.html</guid>
 	  <description><![CDATA[
-	     <p>I needed to set up my REST application to redirect users to my Open API Specification 3.0 (Swagger) UI in Spring. This can easily be accomplished by adding the following <code class="highlighter-rouge">@Controller</code> to the project.</p>
+	     <p>I needed to set up my REST application to redirect users to my Open API Specification 3.0 (Swagger) UI in Spring. This can easily be accomplished by adding the following <code class="language-plaintext highlighter-rouge">@Controller</code> to the project.</p>
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.example.web</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">org.springframework.stereotype.Controller</span><span class="o">;</span>
@@ -468,7 +468,7 @@
 
 <h2 id="code">Code</h2>
 
-<p>The code was originally written for Apache <code class="highlighter-rouge">commons-net-1.3.0</code>, but it still works and not a lot has changed with Apache… or FTP for decades. Let’s look at some code. I did update some of it from its original state. I couldn’t let it pass. It may have a little Java 8+ “enhancements”.</p>
+<p>The code was originally written for Apache <code class="language-plaintext highlighter-rouge">commons-net-1.3.0</code>, but it still works and not a lot has changed with Apache… or FTP for decades. Let’s look at some code. I did update some of it from its original state. I couldn’t let it pass. It may have a little Java 8+ “enhancements”.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
  * FTPTransfer.java
@@ -801,9 +801,9 @@
 
 <h2 id="notes">Notes</h2>
 
-<p>If you are using PKCS#12 as your keystore, edit the <code class="highlighter-rouge">JAVA_HOME/jre/lib/security/java.security</code> file and change the default keystore type as shown below:</p>
+<p>If you are using PKCS#12 as your keystore, edit the <code class="language-plaintext highlighter-rouge">JAVA_HOME/jre/lib/security/java.security</code> file and change the default keystore type as shown below:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Default keystore type.
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Default keystore type.
 keystore.type=pkcs12
 </code></pre></div></div>
 
@@ -841,9 +841,9 @@ keystore.type=pkcs12
 
 <h3 id="code">Code</h3>
 
-<p>This is what the scouts are here to learn. I talk about some basics of how to code with tools like <code class="highlighter-rouge">notepad</code>, a terminal, and <code class="highlighter-rouge">javac</code>. I show them some of the pitfalls of this approach. It does not take a lot of effort to prove this point. Then I show them how to use the <a href="https://netbeans.apache.org/">Apache Netbeans IDE</a> to do development. If you are teaching programming, the clear choice is <a href="https://netbeans.apache.org/">Apache Netbeans IDE</a> for development. The hurdles to learning to use it are minimal. The scouts caught on quickly, and the few shortcut keys I taught them were used in earnest.</p>
+<p>This is what the scouts are here to learn. I talk about some basics of how to code with tools like <code class="language-plaintext highlighter-rouge">notepad</code>, a terminal, and <code class="language-plaintext highlighter-rouge">javac</code>. I show them some of the pitfalls of this approach. It does not take a lot of effort to prove this point. Then I show them how to use the <a href="https://netbeans.apache.org/">Apache Netbeans IDE</a> to do development. If you are teaching programming, the clear choice is <a href="https://netbeans.apache.org/">Apache Netbeans IDE</a> for development. The hurdles to learning to use it are minimal. The scouts caught on quickly, and the few shortcut keys I taught them were used in earnest.</p>
 
-<p>My goal was to teach them to code beyond the basic “Hello World!”. I have an example on how to calculate where <code class="highlighter-rouge">x</code> crosses the <code class="highlighter-rouge">x-axis</code> using the equation of a line: <script type="math/tex">y=mx+b</script></p>
+<p>My goal was to teach them to code beyond the basic “Hello World!”. I have an example on how to calculate where <code class="language-plaintext highlighter-rouge">x</code> crosses the <code class="language-plaintext highlighter-rouge">x-axis</code> using the equation of a line: \(y=mx+b\)</p>
 
 <h2 id="references">References</h2>
 
@@ -866,9 +866,9 @@ keystore.type=pkcs12
 	  <description><![CDATA[
 	     <h3 id="introduction">Introduction</h3>
 
-<p>Java Persistence API (JPA) is a great technology for combining the power of Java and data persistence. The specification goes a long way from the days of using EJB 1.0 for data management, but still comes with some limitations. One of them is using multiple jars that may contain <em>persistence.xml</em> files. The current limitation is that the first <em>persistence.xml</em> file that is found, is loaded by the <code class="highlighter-rouge">Classloader</code>, and the others are ignored.</p>
+<p>Java Persistence API (JPA) is a great technology for combining the power of Java and data persistence. The specification goes a long way from the days of using EJB 1.0 for data management, but still comes with some limitations. One of them is using multiple jars that may contain <em>persistence.xml</em> files. The current limitation is that the first <em>persistence.xml</em> file that is found, is loaded by the <code class="language-plaintext highlighter-rouge">Classloader</code>, and the others are ignored.</p>
 
-<p>The code below is used to get around this limitation by proxying the <code class="highlighter-rouge">Classloader</code>, scanning the jars for <em>persistence.xml</em> files and combining them into one file for the <code class="highlighter-rouge">Classloader</code> to load.</p>
+<p>The code below is used to get around this limitation by proxying the <code class="language-plaintext highlighter-rouge">Classloader</code>, scanning the jars for <em>persistence.xml</em> files and combining them into one file for the <code class="language-plaintext highlighter-rouge">Classloader</code> to load.</p>
 
 <p>The original idea came from Fabrizio Giudici so I can not claim this as my own. The code below is based on his great work. My enhancements to his code are removal of duplicate classes that may be included in the multiple <em>persistence.xml</em> files, and the use of a Random Access Memory (RAM) file system to merge the files.</p>
 
@@ -1149,7 +1149,7 @@ keystore.type=pkcs12
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>The implementation is simply a matter of doing a switch on the <code class="highlighter-rouge">ClassLoader</code> as shown below.</p>
+<p>The implementation is simply a matter of doing a switch on the <code class="language-plaintext highlighter-rouge">ClassLoader</code> as shown below.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
 
@@ -1171,7 +1171,7 @@ keystore.type=pkcs12
 </code></pre></div></div>
 <h3 id="conclusion">Conclusion</h3>
 
-<p>The Java Persistence API (JPA) is a great technology, but has some limitations with regards to loading multiple <em>persistence.xml</em> files. We can use <code class="highlighter-rouge">Classloader</code> magic to accomplish loading multiple <em>persistence.xml</em> files.</p>
+<p>The Java Persistence API (JPA) is a great technology, but has some limitations with regards to loading multiple <em>persistence.xml</em> files. We can use <code class="language-plaintext highlighter-rouge">Classloader</code> magic to accomplish loading multiple <em>persistence.xml</em> files.</p>
 
 <p>This code may not work as expected on later versions of Java. At the time of this writing, Java 8 is still used by most of the enterprise clients I work with.</p>
 
@@ -1311,7 +1311,7 @@ keystore.type=pkcs12
     <span class="o">}</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>usage: CLI
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>usage: CLI
  -help              Help
  -i,--interactive   Starts the processor in interactive mode.
  -p,--properties    List all properties
@@ -1388,7 +1388,7 @@ keystore.type=pkcs12
     <span class="o">}</span>
 </code></pre></div></div>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Usage: com.bluelotussoftware.cli.JCommanderCLI [options]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Usage: com.bluelotussoftware.cli.JCommanderCLI [options]
   Options:
     -h, --help
       Provides help to the user.
@@ -1418,7 +1418,7 @@ keystore.type=pkcs12
 
 <p>The Maven dependency can be found here:</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;dependency&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;dependency&gt;
   &lt;groupId&gt;com.beust&lt;/groupId&gt;
   &lt;artifactId&gt;jcommander&lt;/artifactId&gt;
   &lt;version&gt;1.72&lt;/version&gt;
@@ -1551,29 +1551,29 @@ keystore.type=pkcs12
 	  <description><![CDATA[
 	     <h3 id="centos-open-source-rhel">Centos (Open Source RHEL)</h3>
 <ol>
-  <li><code class="highlighter-rouge">docker pull centos:7</code></li>
-  <li><code class="highlighter-rouge">docker run -d -it --name email-marketing -p 8080:8080 -p 8443:8443 -p 1527:1527 -p 25:25 -p 113:113 -p 443:443 -p 80:80 -p 8085:8085 -p 44385:44385 centos:7</code></li>
+  <li><code class="language-plaintext highlighter-rouge">docker pull centos:7</code></li>
+  <li><code class="language-plaintext highlighter-rouge">docker run -d -it --name email-marketing -p 8080:8080 -p 8443:8443 -p 1527:1527 -p 25:25 -p 113:113 -p 443:443 -p 80:80 -p 8085:8085 -p 44385:44385 centos:7</code></li>
 </ol>
 
 <p>Here is my version of the command which sets the custom private bridge network and host name.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -d -it --name email-marketing -p 8080:8080 -p 8443:8443 -p 1527:1527 -p 25:25 -p 113:113 -p 443:443 -p 80:80 -p 8085:8085 -p 44385:44385 -h em.vm.lotus.bluelotussoftware.com  --network 10.0.3.x-bridge centos:7
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -d -it --name email-marketing -p 8080:8080 -p 8443:8443 -p 1527:1527 -p 25:25 -p 113:113 -p 443:443 -p 80:80 -p 8085:8085 -p 44385:44385 -h em.vm.lotus.bluelotussoftware.com  --network 10.0.3.x-bridge centos:7
 </code></pre></div></div>
 <ol>
-  <li>Connect to centos instance via <code class="highlighter-rouge">Exec</code> on Kitematic.</li>
-  <li><code class="highlighter-rouge">/bin/bash</code> to create a BASH prompt.</li>
-  <li>(OPTIONAL) <code class="highlighter-rouge">yum update</code>. Agree to any packages and wait for it to complete.</li>
+  <li>Connect to centos instance via <code class="language-plaintext highlighter-rouge">Exec</code> on Kitematic.</li>
+  <li><code class="language-plaintext highlighter-rouge">/bin/bash</code> to create a BASH prompt.</li>
+  <li>(OPTIONAL) <code class="language-plaintext highlighter-rouge">yum update</code>. Agree to any packages and wait for it to complete.</li>
   <li>(OPTIONAL) Restart centos instance in Kitematic.</li>
-  <li><code class="highlighter-rouge">yum install java-1.7.0</code> to install OpenJDK 7 JRE. Agree to any packages and wait for it to complete.</li>
-  <li>(ALTERNATIVE) If you want to install the OpenJDK 7 (JDK), use this command instead <code class="highlighter-rouge">yum install java-1.7.0-openjdk-devel</code></li>
-  <li><code class="highlighter-rouge">java -version</code> should indicate something similar to this:
+  <li><code class="language-plaintext highlighter-rouge">yum install java-1.7.0</code> to install OpenJDK 7 JRE. Agree to any packages and wait for it to complete.</li>
+  <li>(ALTERNATIVE) If you want to install the OpenJDK 7 (JDK), use this command instead <code class="language-plaintext highlighter-rouge">yum install java-1.7.0-openjdk-devel</code></li>
+  <li><code class="language-plaintext highlighter-rouge">java -version</code> should indicate something similar to this:
     <blockquote>
       <p>java version “1.7.0_181”
 OpenJDK Runtime Environment (rhel-2.6.14.5.el7-x86_64 u181-b00)
 OpenJDK 64-Bit Server VM (build 24.181-b00, mixed mode)</p>
     </blockquote>
   </li>
-  <li>Copy the Email Marketing <code class="highlighter-rouge">install.bin</code> file to the centos instance using <code class="highlighter-rouge">docker cp install.bin email-marketing:/</code>.</li>
+  <li>Copy the Email Marketing <code class="language-plaintext highlighter-rouge">install.bin</code> file to the centos instance using <code class="language-plaintext highlighter-rouge">docker cp install.bin email-marketing:/</code>.</li>
   <li>Install Email Marketing using the defaults. Don’t install SSL since we don’t have a certificate yet.</li>
   <li>Start the outgoing service and configure DNS.
     <blockquote>
@@ -1581,13 +1581,13 @@ OpenJDK 64-Bit Server VM (build 24.181-b00, mixed mode)</p>
 environment this should already be set for your machine, e.g. <em>usgvdjyeary01.em.infor.com</em>.</p>
     </blockquote>
   </li>
-  <li>Copy the <em>keystore.jks</em> file to the server which contains the key we will use for SSL/TLS. <code class="highlighter-rouge">docker cp keystore.jks email-marketing:/root/INFOR/EM/config</code></li>
+  <li>Copy the <em>keystore.jks</em> file to the server which contains the key we will use for SSL/TLS. <code class="language-plaintext highlighter-rouge">docker cp keystore.jks email-marketing:/root/INFOR/EM/config</code></li>
   <li>Modify the configuration on the server to use your keystore and configure SSL/TLS. Ensure if you are using a self-signed certificate, that you install the certificate in the trusted keystore (cacerts) which is located in <strong>/etc/alternatives/jre/lib/security</strong></li>
 </ol>
 
 <h3 id="private-network">Private Network</h3>
 <p>I set up a private network (VLAN) for my environment in Docker. I did this to make it easier to setup DNS (bind). Listed below are some parameters you will need for a private network.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Set the default_bridge to false unless you want this to be your default network.
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Set the default_bridge to false unless you want this to be your default network.
 com.docker.network.bridge.default_bridge=false
 com.docker.network.bridge.enable_icc=true
 com.docker.network.bridge.enable_ip_masquerade=true

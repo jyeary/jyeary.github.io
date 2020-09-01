@@ -19,7 +19,7 @@
 	  <guid>//2020-05-26-cfssl-update.html</guid>
 	  <description><![CDATA[
 	     <h3 id="introduction">Introduction</h3>
-<p>In a previous blog post <a href="/2018-05-25-cfssl-cloudflare-ssl.html">CFSSL Cloudflare SSL</a> I discussed how to setup <code class="highlighter-rouge">cfssl</code> as a Certification Authority (CA) for issuing your own certificates. This becomes increasingly important in the world of containers. Especially when those containers are on internal networks, and VPCs where getting a <a href="https://letsencrypt.org/">Let’s Encrypt</a> certificate is not possible, or desirable.</p>
+<p>In a previous blog post <a href="/2018-05-25-cfssl-cloudflare-ssl.html">CFSSL Cloudflare SSL</a> I discussed how to setup <code class="language-plaintext highlighter-rouge">cfssl</code> as a Certification Authority (CA) for issuing your own certificates. This becomes increasingly important in the world of containers. Especially when those containers are on internal networks, and VPCs where getting a <a href="https://letsencrypt.org/">Let’s Encrypt</a> certificate is not possible, or desirable.</p>
 
 <h3 id="new-and-improved">New and Improved</h3>
 <p>I was looking for a way to set up intermediate and client certificates. I was looking for ideas on how to setup the CA to handle these additional certificates. I found a post by Johannes Tegnér<sup>1</sup>. I liked his layout idea which I slighly modified below.</p>
@@ -30,7 +30,7 @@
         /development
     /certs
 </code></pre></div></div>
-<p>I tried his using the files he provided, but I believe that <code class="highlighter-rouge">cfssl</code> was updated between his post and today. As a result, the <code class="highlighter-rouge">config.json</code> files would not work without slight modifications. Here is my <code class="highlighter-rouge">config.json</code> for intermediate certificates. This file goes in the <code class="highlighter-rouge">intermediate</code> directory.</p>
+<p>I tried his using the files he provided, but I believe that <code class="language-plaintext highlighter-rouge">cfssl</code> was updated between his post and today. As a result, the <code class="language-plaintext highlighter-rouge">config.json</code> files would not work without slight modifications. Here is my <code class="language-plaintext highlighter-rouge">config.json</code> for intermediate certificates. This file goes in the <code class="language-plaintext highlighter-rouge">intermediate</code> directory.</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
     "signing": {
         "default": {
@@ -82,7 +82,7 @@
 cfssl genkey <span class="nt">-initca</span> ../intermediate.json | cfssljson <span class="nt">-bare</span> development
 cfssl sign <span class="nt">-ca</span> ../../root/ca.pem <span class="nt">-ca-key</span> ../../root/ca-key.pem <span class="nt">--config</span> ../config.json <span class="nt">-profile</span> development  development.csr | cfssljson <span class="nt">-bare</span> development 
 </code></pre></div></div>
-<p>Here is my <code class="highlighter-rouge">config.json</code> for different usage profiles for the final certificates.</p>
+<p>Here is my <code class="language-plaintext highlighter-rouge">config.json</code> for different usage profiles for the final certificates.</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
     "signing": {
         "default": {
@@ -122,7 +122,7 @@ cfssl sign <span class="nt">-ca</span> ../../root/ca.pem <span class="nt">-ca-ke
 }
 </code></pre></div></div>
 <p>The final step for my purposes was generating the client certs.
-Here is my <code class="highlighter-rouge">client.json</code> file which is the same as Johannes’ file. His explanation is worth quoting.</p>
+Here is my <code class="language-plaintext highlighter-rouge">client.json</code> file which is the same as Johannes’ file. His explanation is worth quoting.</p>
 <blockquote>
   <p>When it comes to the client certificate, we don’t set any hosts, as we want to be able to
 connect to the services without having to care about the clients current host. It’s okay 
@@ -168,7 +168,7 @@ to do though, if you want to!</p>
 
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container run <span class="nt">-it</span> <span class="nt">--rm</span> <span class="nt">-p</span> 4000:4000 <span class="nt">-v</span> <span class="nv">$PWD</span>:/blog ruby:2.6.6 /bin/bash
 </code></pre></div></div>
-<p>Where the $PWD is the checked out blog. I set up an alias called <code class="highlighter-rouge">docker-blog</code> in zsh to run the container. Once the container is started, I go to the <code class="highlighter-rouge">/blog</code> directory and run the following:</p>
+<p>Where the $PWD is the checked out blog. I set up an alias called <code class="language-plaintext highlighter-rouge">docker-blog</code> in zsh to run the container. Once the container is started, I go to the <code class="language-plaintext highlighter-rouge">/blog</code> directory and run the following:</p>
 <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /blog <span class="o">&amp;&amp;</span> <span class="se">\</span>
 gem <span class="nb">install </span>bundler jekyll <span class="o">&amp;&amp;</span> <span class="se">\</span>
 bundle <span class="nb">install</span> <span class="o">&amp;&amp;</span> <span class="se">\</span>
@@ -210,9 +210,9 @@ bundle <span class="nb">exec </span>jekyll serve
 
 <h3 id="code">Code</h3>
 
-<p>This is what the scouts are here to learn. I talk about some basics of how to code with tools like <code class="highlighter-rouge">notepad</code>, a terminal, and <code class="highlighter-rouge">javac</code>. I show them some of the pitfalls of this approach. It does not take a lot of effort to prove this point. Then I show them how to use the <a href="https://netbeans.apache.org/">Apache Netbeans IDE</a> to do development. If you are teaching programming, the clear choice is <a href="https://netbeans.apache.org/">Apache Netbeans IDE</a> for development. The hurdles to learning to use it are minimal. The scouts caught on quickly, and the few shortcut keys I taught them were used in earnest.</p>
+<p>This is what the scouts are here to learn. I talk about some basics of how to code with tools like <code class="language-plaintext highlighter-rouge">notepad</code>, a terminal, and <code class="language-plaintext highlighter-rouge">javac</code>. I show them some of the pitfalls of this approach. It does not take a lot of effort to prove this point. Then I show them how to use the <a href="https://netbeans.apache.org/">Apache Netbeans IDE</a> to do development. If you are teaching programming, the clear choice is <a href="https://netbeans.apache.org/">Apache Netbeans IDE</a> for development. The hurdles to learning to use it are minimal. The scouts caught on quickly, and the few shortcut keys I taught them were used in earnest.</p>
 
-<p>My goal was to teach them to code beyond the basic “Hello World!”. I have an example on how to calculate where <code class="highlighter-rouge">x</code> crosses the <code class="highlighter-rouge">x-axis</code> using the equation of a line: <script type="math/tex">y=mx+b</script></p>
+<p>My goal was to teach them to code beyond the basic “Hello World!”. I have an example on how to calculate where <code class="language-plaintext highlighter-rouge">x</code> crosses the <code class="language-plaintext highlighter-rouge">x-axis</code> using the equation of a line: \(y=mx+b\)</p>
 
 <h2 id="references">References</h2>
 
@@ -259,7 +259,7 @@ bundle <span class="nb">exec </span>jekyll serve
 
 <p>Next, I would make sure that you understand what the templates do and how they are configured. The <a href="https://jekyllrb.com/docs/">Jekyll Quickstart</a> is very good. It will give you a great foundation on how Jekyll generates the pages, and displays them.</p>
 
-<p>In my case I chose to use <a href="https://github.com/jekyller/jasper">Jasper</a> for my templates. This template uses plugins to generate additional functionality on the pages, as a result it can not be used directly for generating my pages from Github. In this case, I am using <a href="https://travis-ci.com/">Travis CI</a> to build the the pages and push the changes from a development branch to the <code class="highlighter-rouge">master</code> branch since this is the branch which is used to deploy the pages. In my case it is only merging the <code class="highlighter-rouge">_site</code> data.</p>
+<p>In my case I chose to use <a href="https://github.com/jekyller/jasper">Jasper</a> for my templates. This template uses plugins to generate additional functionality on the pages, as a result it can not be used directly for generating my pages from Github. In this case, I am using <a href="https://travis-ci.com/">Travis CI</a> to build the the pages and push the changes from a development branch to the <code class="language-plaintext highlighter-rouge">master</code> branch since this is the branch which is used to deploy the pages. In my case it is only merging the <code class="language-plaintext highlighter-rouge">_site</code> data.</p>
 
 <h2 id="migrating-existing-pages">Migrating Existing Pages</h2>
 
@@ -395,7 +395,7 @@ bundle <span class="nb">exec </span>jekyll serve
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="nc">Channel</span> <span class="n">httpServer</span> <span class="o">=</span> <span class="nc">NettyServerProviders</span><span class="o">.</span><span class="na">initializeNettyHttpServer</span><span class="o">(</span><span class="no">BASE_URI_HTTP</span><span class="o">,</span> <span class="nc">HelloResource</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
 </code></pre></div></div>
 
-<p>As you can see, we are providing it with a single resource class called <strong>HelloResource.class</strong>. However, the <strong>NettyServerProviders.class</strong> accepts an array of resource classses, so you can simply just add them as necessary,e.g.,<code class="highlighter-rouge">final Channel httpServer = NettyServerProviders.initializeNettyHttpServer(BASE_URI_HTTP, HelloResource.class, Resource2.class, Resource3.class, Resource4.class);</code></p>
+<p>As you can see, we are providing it with a single resource class called <strong>HelloResource.class</strong>. However, the <strong>NettyServerProviders.class</strong> accepts an array of resource classses, so you can simply just add them as necessary,e.g.,<code class="language-plaintext highlighter-rouge">final Channel httpServer = NettyServerProviders.initializeNettyHttpServer(BASE_URI_HTTP, HelloResource.class, Resource2.class, Resource3.class, Resource4.class);</code></p>
 
 <h3 id="project">Project</h3>
 
@@ -458,11 +458,11 @@ bundle <span class="nb">exec </span>jekyll serve
 
 <ol>
   <li>Using a command prompt or Powershell. type the following:
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install wfastcgi
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install wfastcgi
 </code></pre></div>    </div>
   </li>
   <li>Once <em>pip</em> finshes installing <em>wfastcgi</em>, run the following command to enable <em>wfastcgi</em>.
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wfastcgi-enable     
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wfastcgi-enable     
 </code></pre></div>    </div>
     <p><img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/pipInstall.png" alt="pip install" /></p>
   </li>
@@ -593,7 +593,7 @@ Click OK.
 </span></code></pre></div>    </div>
   </li>
   <li>Generate your public and private keys, and a CSR for signing by a third party if necessary.
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl gencert -initca csr_ca.json | cfssljson -bare ca
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl gencert -initca csr_ca.json | cfssljson -bare ca
 </code></pre></div>    </div>
   </li>
   <li>Create your configuration file <strong>ca_config.json</strong>. My version differs from the first reference listed below. You will need to provide your own key. Here is an online resource to generate one: <a href="https://www.random.org/bytes/">Random Byte Generator</a>
@@ -622,7 +622,7 @@ Click OK.
 </span></code></pre></div>    </div>
   </li>
   <li>Start your server:
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl serve -ca-key ca-key.pem -ca ca.pem -config config_ca.json
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl serve -ca-key ca-key.pem -ca ca.pem -config config_ca.json
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -677,15 +677,15 @@ Click OK.
 </span></code></pre></div>    </div>
   </li>
   <li>The command below will generate the key (<strong>groot-key.pem</strong>), and CSR (<strong>groot.csr</strong>). Then it will use the provided configuration to contact the server and return the signed certificate. The certificate will be called <strong>groot.pem</strong>.
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl gencert -config config_client.json csr_client.json | cfssljson -bare groot
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl gencert -config config_client.json csr_client.json | cfssljson -bare groot
 </code></pre></div>    </div>
   </li>
   <li>(ALTERNATIVE) If you already have a CSR, you can request that the server sign it. This will provide a certificate called <strong>groot.pem</strong>
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl sign -config config_client.json groot.csr | cfssljson -bare groot
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl sign -config config_client.json groot.csr | cfssljson -bare groot
 </code></pre></div>    </div>
   </li>
   <li>(ALTERNATIVE) If you need additional host names, e.g, Subject Alternative Name (SAN), you can use the following command substituting hostnames below with comma separated values.
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl sign -config config_client.json -hostname=quill.example.com,ronan.example.com,kree.example.com groot.csr | cfssljson -bare groot
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl sign -config config_client.json -hostname=quill.example.com,ronan.example.com,kree.example.com groot.csr | cfssljson -bare groot
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -722,11 +722,11 @@ Click OK.
 <ol>
   <li>I am partial to installing the nginx server by unzipping the file to  <em>C:\nginx-1.13.12</em>. This helps us to avoid any path related issues.</li>
   <li>Next, we will install the WinSW file to the nginx directory.</li>
-  <li>Rename the WinSW executable to <code class="highlighter-rouge">nginx-service.exe</code>.</li>
+  <li>Rename the WinSW executable to <code class="language-plaintext highlighter-rouge">nginx-service.exe</code>.</li>
   <li>Create an XML file called <strong>nginx-service.xml</strong>. Modify it as shown below.</li>
-  <li>Run <code class="highlighter-rouge">nginx-service.exe install</code> to install the service</li>
-  <li>The <em>conf/nginx.conf</em> needs to be modified to point to our mercurial service. You will need to modify <code class="highlighter-rouge">server_name</code> and <code class="highlighter-rouge">listen</code> to match your environment. Please see the example below.</li>
-  <li>The Mercurial service we installed earlier is set to startup and listen on all IP interfaces by default (0.0.0.0). We want to modify this to bind to localhost. This will prevent the service from being exposed except through our NGINX. This is accomplished by changing the line in the <code class="highlighter-rouge">hg-service.bat</code> to the following: <code class="highlighter-rouge">"C:\Python27\Scripts\hg.exe" serve --address localhost --web-conf C:\hg\hgweb.config</code></li>
+  <li>Run <code class="language-plaintext highlighter-rouge">nginx-service.exe install</code> to install the service</li>
+  <li>The <em>conf/nginx.conf</em> needs to be modified to point to our mercurial service. You will need to modify <code class="language-plaintext highlighter-rouge">server_name</code> and <code class="language-plaintext highlighter-rouge">listen</code> to match your environment. Please see the example below.</li>
+  <li>The Mercurial service we installed earlier is set to startup and listen on all IP interfaces by default (0.0.0.0). We want to modify this to bind to localhost. This will prevent the service from being exposed except through our NGINX. This is accomplished by changing the line in the <code class="language-plaintext highlighter-rouge">hg-service.bat</code> to the following: <code class="language-plaintext highlighter-rouge">"C:\Python27\Scripts\hg.exe" serve --address localhost --web-conf C:\hg\hgweb.config</code></li>
   <li>Start the service and enjoy.</li>
 </ol>
 
@@ -748,7 +748,7 @@ Click OK.
 <h4 id="nginxconf">nginx.conf</h4>
 <p>We need to add a location to the file to proxy the connection to our Mercurial service.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>worker_processes 1;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>worker_processes 1;
 events {
     worker_connections 1024;
 }

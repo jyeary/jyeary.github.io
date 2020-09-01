@@ -161,7 +161,7 @@
 
             <p>You first must create the sequence you want to use to add the identity value for the column. Then replace the values in highlighted below appropriately for your environment.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE OR REPLACE TRIGGER {SCHEMA.TRIGGER_NAME}
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CREATE OR REPLACE TRIGGER {SCHEMA.TRIGGER_NAME}
 BEFORE INSERT ON {SCHEMA.TABLE_NAME} FOR EACH ROW
 BEGIN
 IF :NEW.{COLUMN_NAME} IS NULL

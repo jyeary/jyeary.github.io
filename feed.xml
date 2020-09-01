@@ -10,7 +10,7 @@
       <item>
         <title>Spring: How to Redirect the Context Root to Open API 3.0 (Swagger) UI</title>
         
-          <description>&lt;p&gt;I needed to set up my REST application to redirect users to my Open API Specification 3.0 (Swagger) UI in Spring. This can easily be accomplished by adding the following &lt;code class=&quot;highlighter-rouge&quot;&gt;@Controller&lt;/code&gt; to the project.
+          <description>&lt;p&gt;I needed to set up my REST application to redirect users to my Open API Specification 3.0 (Swagger) UI in Spring. This can easily be accomplished by adding the following &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Controller&lt;/code&gt; to the project.
 ```java
 package com.example.web;&lt;/p&gt;
 
@@ -43,7 +43,7 @@ package com.example.web;&lt;/p&gt;
         <title>cfssl Intermediate and Client Certificates</title>
         
           <description>&lt;h3 id=&quot;introduction&quot;&gt;Introduction&lt;/h3&gt;
-&lt;p&gt;In a previous blog post &lt;a href=&quot;/2018-05-25-cfssl-cloudflare-ssl.html&quot;&gt;CFSSL Cloudflare SSL&lt;/a&gt; I discussed how to setup &lt;code class=&quot;highlighter-rouge&quot;&gt;cfssl&lt;/code&gt; as a Certification Authority (CA) for issuing your own certificates. This becomes increasingly important in the world of containers. Especially when those containers are on internal networks, and VPCs where getting a &lt;a href=&quot;https://letsencrypt.org/&quot;&gt;Let’s Encrypt&lt;/a&gt; certificate is not possible, or desirable.&lt;/p&gt;
+&lt;p&gt;In a previous blog post &lt;a href=&quot;/2018-05-25-cfssl-cloudflare-ssl.html&quot;&gt;CFSSL Cloudflare SSL&lt;/a&gt; I discussed how to setup &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cfssl&lt;/code&gt; as a Certification Authority (CA) for issuing your own certificates. This becomes increasingly important in the world of containers. Especially when those containers are on internal networks, and VPCs where getting a &lt;a href=&quot;https://letsencrypt.org/&quot;&gt;Let’s Encrypt&lt;/a&gt; certificate is not possible, or desirable.&lt;/p&gt;
 
 &lt;h3 id=&quot;new-and-improved&quot;&gt;New and Improved&lt;/h3&gt;
 &lt;p&gt;I was looking for a way to set up intermediate and client certificates. I was looking for ideas on how to setup the CA to handle these additional certificates. I found a post by Johannes Tegnér&lt;sup&gt;1&lt;/sup&gt;. I liked his layout idea which I slighly modified below.&lt;/p&gt;
@@ -54,7 +54,7 @@ package com.example.web;&lt;/p&gt;
         /development
     /certs
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;I tried his using the files he provided, but I believe that &lt;code class=&quot;highlighter-rouge&quot;&gt;cfssl&lt;/code&gt; was updated between his post and today. As a result, the &lt;code class=&quot;highlighter-rouge&quot;&gt;config.json&lt;/code&gt; files would not work without slight modifications. Here is my &lt;code class=&quot;highlighter-rouge&quot;&gt;config.json&lt;/code&gt; for intermediate certificates. This file goes in the &lt;code class=&quot;highlighter-rouge&quot;&gt;intermediate&lt;/code&gt; directory.&lt;/p&gt;
+&lt;p&gt;I tried his using the files he provided, but I believe that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cfssl&lt;/code&gt; was updated between his post and today. As a result, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config.json&lt;/code&gt; files would not work without slight modifications. Here is my &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config.json&lt;/code&gt; for intermediate certificates. This file goes in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;intermediate&lt;/code&gt; directory.&lt;/p&gt;
 &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
     &quot;signing&quot;: {
         &quot;default&quot;: {
@@ -106,7 +106,7 @@ package com.example.web;&lt;/p&gt;
 cfssl genkey &lt;span class=&quot;nt&quot;&gt;-initca&lt;/span&gt; ../intermediate.json | cfssljson &lt;span class=&quot;nt&quot;&gt;-bare&lt;/span&gt; development
 cfssl sign &lt;span class=&quot;nt&quot;&gt;-ca&lt;/span&gt; ../../root/ca.pem &lt;span class=&quot;nt&quot;&gt;-ca-key&lt;/span&gt; ../../root/ca-key.pem &lt;span class=&quot;nt&quot;&gt;--config&lt;/span&gt; ../config.json &lt;span class=&quot;nt&quot;&gt;-profile&lt;/span&gt; development  development.csr | cfssljson &lt;span class=&quot;nt&quot;&gt;-bare&lt;/span&gt; development 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Here is my &lt;code class=&quot;highlighter-rouge&quot;&gt;config.json&lt;/code&gt; for different usage profiles for the final certificates.&lt;/p&gt;
+&lt;p&gt;Here is my &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config.json&lt;/code&gt; for different usage profiles for the final certificates.&lt;/p&gt;
 &lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
     &quot;signing&quot;: {
         &quot;default&quot;: {
@@ -146,7 +146,7 @@ cfssl sign &lt;span class=&quot;nt&quot;&gt;-ca&lt;/span&gt; ../../root/ca.pem &
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;The final step for my purposes was generating the client certs.
-Here is my &lt;code class=&quot;highlighter-rouge&quot;&gt;client.json&lt;/code&gt; file which is the same as Johannes’ file. His explanation is worth quoting.&lt;/p&gt;
+Here is my &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;client.json&lt;/code&gt; file which is the same as Johannes’ file. His explanation is worth quoting.&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;When it comes to the client certificate, we don’t set any hosts, as we want to be able to
 connect to the services without having to care about the clients current host. It’s okay 
@@ -194,7 +194,7 @@ to do though, if you want to!&lt;/p&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker container run &lt;span class=&quot;nt&quot;&gt;-it&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 4000:4000 &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$PWD&lt;/span&gt;:/blog ruby:2.6.6 /bin/bash
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Where the $PWD is the checked out blog. I set up an alias called &lt;code class=&quot;highlighter-rouge&quot;&gt;docker-blog&lt;/code&gt; in zsh to run the container. Once the container is started, I go to the &lt;code class=&quot;highlighter-rouge&quot;&gt;/blog&lt;/code&gt; directory and run the following:&lt;/p&gt;
+&lt;p&gt;Where the $PWD is the checked out blog. I set up an alias called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-blog&lt;/code&gt; in zsh to run the container. Once the container is started, I go to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/blog&lt;/code&gt; directory and run the following:&lt;/p&gt;
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /blog &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
 gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;bundler jekyll &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
 bundle &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
@@ -368,8 +368,8 @@ bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
         
           <description>&lt;h3 id=&quot;centos-open-source-rhel&quot;&gt;Centos (Open Source RHEL)&lt;/h3&gt;
 &lt;ol&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker pull centos:7&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker run -d -it --name email-marketing -p 8080:8080 -p 8443:8443 -p 1527:1527 -p 25:25 -p 113:113 -p 443:443 -p 80:80 -p 8085:8085 -p 44385:44385 centos:7&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker pull centos:7&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker run -d -it --name email-marketing -p 8080:8080 -p 8443:8443 -p 1527:1527 -p 25:25 -p 113:113 -p 443:443 -p 80:80 -p 8085:8085 -p 44385:44385 centos:7&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 </description>
@@ -572,7 +572,7 @@ bundle &lt;span class=&quot;nb&quot;&gt;exec &lt;/span&gt;jekyll serve
       <item>
         <title>Qwiklabs Network Performance Testing Lab</title>
         
-          <description>&lt;p&gt;I completed the Qwiklabs Network Performance Testing Lab for Google Cloud Networking. In the lab, they mention using &lt;a href=&quot;https://www.wireshark.org/&quot;&gt;Wireshark&lt;/a&gt;, or &lt;a href=&quot;https://www.cloudshark.org/&quot;&gt;CloudShark&lt;/a&gt; to examine the &lt;code class=&quot;highlighter-rouge&quot;&gt;webserver.pcap&lt;/code&gt; file that is generated from the &lt;code class=&quot;highlighter-rouge&quot;&gt;tcpdump&lt;/code&gt; command. They have you copy the file to a bucket and copy it from the bucket.&lt;/p&gt;
+          <description>&lt;p&gt;I completed the Qwiklabs Network Performance Testing Lab for Google Cloud Networking. In the lab, they mention using &lt;a href=&quot;https://www.wireshark.org/&quot;&gt;Wireshark&lt;/a&gt;, or &lt;a href=&quot;https://www.cloudshark.org/&quot;&gt;CloudShark&lt;/a&gt; to examine the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;webserver.pcap&lt;/code&gt; file that is generated from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tcpdump&lt;/code&gt; command. They have you copy the file to a bucket and copy it from the bucket.&lt;/p&gt;
 
 </description>
         
@@ -2015,7 +2015,7 @@ Is “&lt;strong&gt;THANKS FOR A GREAT POW WOW DAY&lt;/strong&gt;”. &lt;br /&g
   &lt;li&gt;Confirm remote host has Xaccess configured to allow remote connections.
   &lt;strong&gt;Note:&lt;/strong&gt;The file is located in /etc/dt/conf/ on Solaris 9&lt;/li&gt;
   &lt;li&gt;Type on the local host:
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  X -query &amp;lt;hostname or IP address&amp;gt;
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  X -query &amp;lt;hostname or IP address&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
@@ -2033,10 +2033,10 @@ Is “&lt;strong&gt;THANKS FOR A GREAT POW WOW DAY&lt;/strong&gt;”. &lt;br /&g
         <title>Tip: Resetting Enviroment Variables without Logging Out (UNIX/Solaris/Linux/OS X)</title>
         
           <description>&lt;p&gt;To reset environment variable changes in bash without logging out&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;source ~/.profile
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;source ~/.profile
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;Confirm changes by:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set | grep &amp;lt;changed parameter&amp;gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set | grep &amp;lt;changed parameter&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         
@@ -2052,7 +2052,7 @@ Is “&lt;strong&gt;THANKS FOR A GREAT POW WOW DAY&lt;/strong&gt;”. &lt;br /&g
         <title>Tip: XDMCP using Cygwin (UNIX/Solaris/Linux/OS X)</title>
         
           <description>&lt;p&gt;XDMCP to a UNIX system using &lt;a href=&quot;http://www.cygwin.com/&quot;&gt;cygwin&lt;/a&gt; on Windows.&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;XWin.exe -kb :0 -query [hostname or ip address]
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;XWin.exe -kb :0 -query [hostname or ip address]
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         
@@ -2068,9 +2068,9 @@ Is “&lt;strong&gt;THANKS FOR A GREAT POW WOW DAY&lt;/strong&gt;”. &lt;br /&g
         <title>Tip: Redirect Output to a tty (UNIX/Solaris/Linux/OS X)</title>
         
           <description>&lt;p&gt;Redirect ouptut to tty using the following command:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;script -a /dev/null | tee /dev/pts/XXX
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;script -a /dev/null | tee /dev/pts/XXX
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Where XXX is the &lt;code class=&quot;highlighter-rouge&quot;&gt;tty&lt;/code&gt; target&lt;/p&gt;
+&lt;p&gt;Where XXX is the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tty&lt;/code&gt; target&lt;/p&gt;
 </description>
         
         <pubDate>Thu, 24 Dec 2009 14:39:00 +0000</pubDate>
@@ -2194,19 +2194,19 @@ Is “&lt;strong&gt;THANKS FOR A GREAT POW WOW DAY&lt;/strong&gt;”. &lt;br /&g
           <description>&lt;p&gt;I have been asked to show how to translate line feeds between Mac, UNIX, and Windows. This comes up often so here is one way using PERL which was designed to do just what we need.&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;How to translate Mac OS file linefeed to UNIX linefeeds:
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  perl -pi -e 's/r/n/g' file_with_mac_linefeeds.txt
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  perl -pi -e 's/r/n/g' file_with_mac_linefeeds.txt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;How to translate UNIX file linefeeds to Mac OS linefeeds:
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  perl -pi -e 's/n/r/g' file_with_unix_linefeeds.txt
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  perl -pi -e 's/n/r/g' file_with_unix_linefeeds.txt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;Translate a Windows file linefeeds to UNIX linefeeds:
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  perl -pi -e 's/rn/n/g' file_with_win_linefeeds.txt
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  perl -pi -e 's/rn/n/g' file_with_win_linefeeds.txt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;Translate Windows file linefeeds to Mac OS linefeeds:
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  perl -pi -e 's/rn/r/g' file_with_win_linefeeds.txt
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  perl -pi -e 's/rn/r/g' file_with_win_linefeeds.txt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
@@ -2225,7 +2225,7 @@ Is “&lt;strong&gt;THANKS FOR A GREAT POW WOW DAY&lt;/strong&gt;”. &lt;br /&g
         <title>Loading /etc/hosts into NetInfo (OS X 10.4 Leopard)</title>
         
           <description>&lt;p&gt;You can load your &lt;strong&gt;/etc/hosts&lt;/strong&gt; file into NetInfoManager’s database using the following command:&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;niload -m hosts &amp;lt; /etc/hosts
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;niload -m hosts &amp;lt; /etc/hosts
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         

@@ -52,7 +52,7 @@
   <li>Confirm remote host has Xaccess configured to allow remote connections.
   <strong>Note:</strong>The file is located in /etc/dt/conf/ on Solaris 9</li>
   <li>Type on the local host:
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  X -query &lt;hostname or IP address&gt;
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  X -query &lt;hostname or IP address&gt;
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -68,10 +68,10 @@
 	  <guid>//2009-12-24-tip-resetting-enviroment-variables-without-logging-out-unixsolarislinuxos-x.html</guid>
 	  <description><![CDATA[
 	     <p>To reset environment variable changes in bash without logging out</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source ~/.profile
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>source ~/.profile
 </code></pre></div></div>
 <p>Confirm changes by:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set | grep &lt;changed parameter&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set | grep &lt;changed parameter&gt;
 </code></pre></div></div>
 
 	  ]]></description>
@@ -85,7 +85,7 @@
 	  <guid>//2009-12-24-tip-xdmcp-using-cygwin-unixsolarislinuxos-x.html</guid>
 	  <description><![CDATA[
 	     <p>XDMCP to a UNIX system using <a href="http://www.cygwin.com/">cygwin</a> on Windows.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>XWin.exe -kb :0 -query [hostname or ip address]
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>XWin.exe -kb :0 -query [hostname or ip address]
 </code></pre></div></div>
 
 	  ]]></description>
@@ -99,9 +99,9 @@
 	  <guid>//2009-12-24-tip-redirect-output-to-a-tty-unixsolarislinuxos-x.html</guid>
 	  <description><![CDATA[
 	     <p>Redirect ouptut to tty using the following command:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>script -a /dev/null | tee /dev/pts/XXX
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>script -a /dev/null | tee /dev/pts/XXX
 </code></pre></div></div>
-<p>Where XXX is the <code class="highlighter-rouge">tty</code> target</p>
+<p>Where XXX is the <code class="language-plaintext highlighter-rouge">tty</code> target</p>
 
 	  ]]></description>
 	</item>
@@ -187,11 +187,11 @@
 	     <p>To repair Preferences (.plist) files use the following command:</p>
 
 <h3 id="user-preferences">User Preferences</h3>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo plutil –s ~/Library/Preferences/*.plist
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo plutil –s ~/Library/Preferences/*.plist
 </code></pre></div></div>
 
 <h3 id="system-preferences">System Preferences</h3>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo plutil –s /Library/Preferences/*.plist
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo plutil –s /Library/Preferences/*.plist
 </code></pre></div></div>
 
 	  ]]></description>
@@ -207,19 +207,19 @@
 	     <p>I have been asked to show how to translate line feeds between Mac, UNIX, and Windows. This comes up often so here is one way using PERL which was designed to do just what we need.</p>
 <ol>
   <li>How to translate Mac OS file linefeed to UNIX linefeeds:
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/r/n/g' file_with_mac_linefeeds.txt
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/r/n/g' file_with_mac_linefeeds.txt
 </code></pre></div>    </div>
   </li>
   <li>How to translate UNIX file linefeeds to Mac OS linefeeds:
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/n/r/g' file_with_unix_linefeeds.txt
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/n/r/g' file_with_unix_linefeeds.txt
 </code></pre></div>    </div>
   </li>
   <li>Translate a Windows file linefeeds to UNIX linefeeds:
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/rn/n/g' file_with_win_linefeeds.txt
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/rn/n/g' file_with_win_linefeeds.txt
 </code></pre></div>    </div>
   </li>
   <li>Translate Windows file linefeeds to Mac OS linefeeds:
-    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/rn/r/g' file_with_win_linefeeds.txt
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  perl -pi -e 's/rn/r/g' file_with_win_linefeeds.txt
 </code></pre></div>    </div>
   </li>
 </ol>
@@ -237,7 +237,7 @@
 	  <guid>//2009-12-14-loading-etchosts-into-netinfo-os-x-10-4-leopard.html</guid>
 	  <description><![CDATA[
 	     <p>You can load your <strong>/etc/hosts</strong> file into NetInfoManager’s database using the following command:</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>niload -m hosts &lt; /etc/hosts
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>niload -m hosts &lt; /etc/hosts
 </code></pre></div></div>
 
 	  ]]></description>

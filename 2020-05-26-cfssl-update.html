@@ -160,7 +160,7 @@
         <section class="post-content">
 
             <h3 id="introduction">Introduction</h3>
-<p>In a previous blog post <a href="/2018-05-25-cfssl-cloudflare-ssl.html">CFSSL Cloudflare SSL</a> I discussed how to setup <code class="highlighter-rouge">cfssl</code> as a Certification Authority (CA) for issuing your own certificates. This becomes increasingly important in the world of containers. Especially when those containers are on internal networks, and VPCs where getting a <a href="https://letsencrypt.org/">Let’s Encrypt</a> certificate is not possible, or desirable.</p>
+<p>In a previous blog post <a href="/2018-05-25-cfssl-cloudflare-ssl.html">CFSSL Cloudflare SSL</a> I discussed how to setup <code class="language-plaintext highlighter-rouge">cfssl</code> as a Certification Authority (CA) for issuing your own certificates. This becomes increasingly important in the world of containers. Especially when those containers are on internal networks, and VPCs where getting a <a href="https://letsencrypt.org/">Let’s Encrypt</a> certificate is not possible, or desirable.</p>
 
 <h3 id="new-and-improved">New and Improved</h3>
 <p>I was looking for a way to set up intermediate and client certificates. I was looking for ideas on how to setup the CA to handle these additional certificates. I found a post by Johannes Tegnér<sup>1</sup>. I liked his layout idea which I slighly modified below.</p>
@@ -171,7 +171,7 @@
         /development
     /certs
 </code></pre></div></div>
-<p>I tried his using the files he provided, but I believe that <code class="highlighter-rouge">cfssl</code> was updated between his post and today. As a result, the <code class="highlighter-rouge">config.json</code> files would not work without slight modifications. Here is my <code class="highlighter-rouge">config.json</code> for intermediate certificates. This file goes in the <code class="highlighter-rouge">intermediate</code> directory.</p>
+<p>I tried his using the files he provided, but I believe that <code class="language-plaintext highlighter-rouge">cfssl</code> was updated between his post and today. As a result, the <code class="language-plaintext highlighter-rouge">config.json</code> files would not work without slight modifications. Here is my <code class="language-plaintext highlighter-rouge">config.json</code> for intermediate certificates. This file goes in the <code class="language-plaintext highlighter-rouge">intermediate</code> directory.</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
     "signing": {
         "default": {
@@ -223,7 +223,7 @@
 cfssl genkey <span class="nt">-initca</span> ../intermediate.json | cfssljson <span class="nt">-bare</span> development
 cfssl sign <span class="nt">-ca</span> ../../root/ca.pem <span class="nt">-ca-key</span> ../../root/ca-key.pem <span class="nt">--config</span> ../config.json <span class="nt">-profile</span> development  development.csr | cfssljson <span class="nt">-bare</span> development 
 </code></pre></div></div>
-<p>Here is my <code class="highlighter-rouge">config.json</code> for different usage profiles for the final certificates.</p>
+<p>Here is my <code class="language-plaintext highlighter-rouge">config.json</code> for different usage profiles for the final certificates.</p>
 <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
     "signing": {
         "default": {
@@ -263,7 +263,7 @@ cfssl sign <span class="nt">-ca</span> ../../root/ca.pem <span class="nt">-ca-ke
 }
 </code></pre></div></div>
 <p>The final step for my purposes was generating the client certs.
-Here is my <code class="highlighter-rouge">client.json</code> file which is the same as Johannes’ file. His explanation is worth quoting.</p>
+Here is my <code class="language-plaintext highlighter-rouge">client.json</code> file which is the same as Johannes’ file. His explanation is worth quoting.</p>
 <blockquote>
   <p>When it comes to the client certificate, we don’t set any hosts, as we want to be able to
 connect to the services without having to care about the clients current host. It’s okay 

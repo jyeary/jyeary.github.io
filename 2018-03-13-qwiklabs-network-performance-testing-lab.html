@@ -159,7 +159,7 @@
 
         <section class="post-content">
 
-            <p>I completed the Qwiklabs Network Performance Testing Lab for Google Cloud Networking. In the lab, they mention using <a href="https://www.wireshark.org/">Wireshark</a>, or <a href="https://www.cloudshark.org/">CloudShark</a> to examine the <code class="highlighter-rouge">webserver.pcap</code> file that is generated from the <code class="highlighter-rouge">tcpdump</code> command. They have you copy the file to a bucket and copy it from the bucket.</p>
+            <p>I completed the Qwiklabs Network Performance Testing Lab for Google Cloud Networking. In the lab, they mention using <a href="https://www.wireshark.org/">Wireshark</a>, or <a href="https://www.cloudshark.org/">CloudShark</a> to examine the <code class="language-plaintext highlighter-rouge">webserver.pcap</code> file that is generated from the <code class="language-plaintext highlighter-rouge">tcpdump</code> command. They have you copy the file to a bucket and copy it from the bucket.</p>
 
 <p>This is not necessary.</p>
 
@@ -167,7 +167,7 @@
 
 <p>I decided to look on the Docker Hub and found a project <a href="https://hub.docker.com/r/ffeldhaus/wireshark/">ffeldhaus/wireshark</a> that seemed to meet my needs. The other wireshark versions required X-Windows to be installed which would not work on a Windows 10 Pro platform.</p>
 
-<p>The ffeldhaus/wireshark version worked flawlessly. It uses <a href="https://xpra.org/">Xpra</a> to expose Wireshark via a browser. It was slick. Once I copied the file to the wireshark container, it opened easily in the browser. The featured image in the blog is my actual data. <code class="highlighter-rouge">docker cp webserver.pcap wireshark:/</code></p>
+<p>The ffeldhaus/wireshark version worked flawlessly. It uses <a href="https://xpra.org/">Xpra</a> to expose Wireshark via a browser. It was slick. Once I copied the file to the wireshark container, it opened easily in the browser. The featured image in the blog is my actual data. <code class="language-plaintext highlighter-rouge">docker cp webserver.pcap wireshark:/</code></p>
 
 <p>So when you are doing any of the labs, take a moment to consider other technologies and don’t necessarily settle on the approach that the course is offering you.</p>
 

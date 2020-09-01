@@ -166,19 +166,19 @@
 
 <h4 id="to-hide-an-account">To hide an account:</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo defaults write /Library/Preferences/com.apple.loginwindow HiddenUsersList -array-add account1
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo defaults write /Library/Preferences/com.apple.loginwindow HiddenUsersList -array-add account1
 </code></pre></div></div>
 <p>This will hide the user names, but has the side effect of adding a login called <strong>Other</strong>.</p>
 
 <h4 id="to-prevent-the-other-login-from-appearing-use">To prevent the Other login from appearing use:</h4>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWOTHERUSERS_MANAGED -bool false
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWOTHERUSERS_MANAGED -bool false
 </code></pre></div></div>
 
 <h3 id="unhide-accounts">Unhide Accounts</h3>
 <p>To unhide all the names you may have previously hidden, you could execute the following from the command line.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo defaults delete /Library/Preferences/com.apple.loginwindow HiddenUsersList
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo defaults delete /Library/Preferences/com.apple.loginwindow HiddenUsersList
 </code></pre></div></div>
 
 

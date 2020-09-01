@@ -221,7 +221,7 @@
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="nc">Channel</span> <span class="n">httpServer</span> <span class="o">=</span> <span class="nc">NettyServerProviders</span><span class="o">.</span><span class="na">initializeNettyHttpServer</span><span class="o">(</span><span class="no">BASE_URI_HTTP</span><span class="o">,</span> <span class="nc">HelloResource</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
 </code></pre></div></div>
 
-<p>As you can see, we are providing it with a single resource class called <strong>HelloResource.class</strong>. However, the <strong>NettyServerProviders.class</strong> accepts an array of resource classses, so you can simply just add them as necessary,e.g.,<code class="highlighter-rouge">final Channel httpServer = NettyServerProviders.initializeNettyHttpServer(BASE_URI_HTTP, HelloResource.class, Resource2.class, Resource3.class, Resource4.class);</code></p>
+<p>As you can see, we are providing it with a single resource class called <strong>HelloResource.class</strong>. However, the <strong>NettyServerProviders.class</strong> accepts an array of resource classses, so you can simply just add them as necessary,e.g.,<code class="language-plaintext highlighter-rouge">final Channel httpServer = NettyServerProviders.initializeNettyHttpServer(BASE_URI_HTTP, HelloResource.class, Resource2.class, Resource3.class, Resource4.class);</code></p>
 
 <h3 id="project">Project</h3>
 

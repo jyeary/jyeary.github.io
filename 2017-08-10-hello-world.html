@@ -162,9 +162,9 @@
             <p>This is my attempt to get Wordpress running on OpenShift 2 using 2 gears. I would like to migrate my personal blog for John Yeary from Blogger to another blogging platform so that I have more control of the
 layout, and appearance. So I backed up the data from Blogger and used the import tool and it seems to have worked more amazingly than I could have imagined.</p>
 
-<p>Connecting to the MySQL database on the gear requires a little more finesse since it is not exposed publicly. Great for security, but not so great for getting remote access. I used the <code class="highlighter-rouge">rhc port-forward</code> command to accomplish the task.</p>
+<p>Connecting to the MySQL database on the gear requires a little more finesse since it is not exposed publicly. Great for security, but not so great for getting remote access. I used the <code class="language-plaintext highlighter-rouge">rhc port-forward</code> command to accomplish the task.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rhc port-forward -a &lt;application-name&gt;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rhc port-forward -a &lt;application-name&gt;
 </code></pre></div></div>
 
 <p>Here are the items that I see remaining:</p>

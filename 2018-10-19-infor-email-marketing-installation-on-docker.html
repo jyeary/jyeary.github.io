@@ -161,29 +161,29 @@
 
             <h3 id="centos-open-source-rhel">Centos (Open Source RHEL)</h3>
 <ol>
-  <li><code class="highlighter-rouge">docker pull centos:7</code></li>
-  <li><code class="highlighter-rouge">docker run -d -it --name email-marketing -p 8080:8080 -p 8443:8443 -p 1527:1527 -p 25:25 -p 113:113 -p 443:443 -p 80:80 -p 8085:8085 -p 44385:44385 centos:7</code></li>
+  <li><code class="language-plaintext highlighter-rouge">docker pull centos:7</code></li>
+  <li><code class="language-plaintext highlighter-rouge">docker run -d -it --name email-marketing -p 8080:8080 -p 8443:8443 -p 1527:1527 -p 25:25 -p 113:113 -p 443:443 -p 80:80 -p 8085:8085 -p 44385:44385 centos:7</code></li>
 </ol>
 
 <p>Here is my version of the command which sets the custom private bridge network and host name.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -d -it --name email-marketing -p 8080:8080 -p 8443:8443 -p 1527:1527 -p 25:25 -p 113:113 -p 443:443 -p 80:80 -p 8085:8085 -p 44385:44385 -h em.vm.lotus.bluelotussoftware.com  --network 10.0.3.x-bridge centos:7
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker run -d -it --name email-marketing -p 8080:8080 -p 8443:8443 -p 1527:1527 -p 25:25 -p 113:113 -p 443:443 -p 80:80 -p 8085:8085 -p 44385:44385 -h em.vm.lotus.bluelotussoftware.com  --network 10.0.3.x-bridge centos:7
 </code></pre></div></div>
 <ol>
-  <li>Connect to centos instance via <code class="highlighter-rouge">Exec</code> on Kitematic.</li>
-  <li><code class="highlighter-rouge">/bin/bash</code> to create a BASH prompt.</li>
-  <li>(OPTIONAL) <code class="highlighter-rouge">yum update</code>. Agree to any packages and wait for it to complete.</li>
+  <li>Connect to centos instance via <code class="language-plaintext highlighter-rouge">Exec</code> on Kitematic.</li>
+  <li><code class="language-plaintext highlighter-rouge">/bin/bash</code> to create a BASH prompt.</li>
+  <li>(OPTIONAL) <code class="language-plaintext highlighter-rouge">yum update</code>. Agree to any packages and wait for it to complete.</li>
   <li>(OPTIONAL) Restart centos instance in Kitematic.</li>
-  <li><code class="highlighter-rouge">yum install java-1.7.0</code> to install OpenJDK 7 JRE. Agree to any packages and wait for it to complete.</li>
-  <li>(ALTERNATIVE) If you want to install the OpenJDK 7 (JDK), use this command instead <code class="highlighter-rouge">yum install java-1.7.0-openjdk-devel</code></li>
-  <li><code class="highlighter-rouge">java -version</code> should indicate something similar to this:
+  <li><code class="language-plaintext highlighter-rouge">yum install java-1.7.0</code> to install OpenJDK 7 JRE. Agree to any packages and wait for it to complete.</li>
+  <li>(ALTERNATIVE) If you want to install the OpenJDK 7 (JDK), use this command instead <code class="language-plaintext highlighter-rouge">yum install java-1.7.0-openjdk-devel</code></li>
+  <li><code class="language-plaintext highlighter-rouge">java -version</code> should indicate something similar to this:
     <blockquote>
       <p>java version “1.7.0_181”
 OpenJDK Runtime Environment (rhel-2.6.14.5.el7-x86_64 u181-b00)
 OpenJDK 64-Bit Server VM (build 24.181-b00, mixed mode)</p>
     </blockquote>
   </li>
-  <li>Copy the Email Marketing <code class="highlighter-rouge">install.bin</code> file to the centos instance using <code class="highlighter-rouge">docker cp install.bin email-marketing:/</code>.</li>
+  <li>Copy the Email Marketing <code class="language-plaintext highlighter-rouge">install.bin</code> file to the centos instance using <code class="language-plaintext highlighter-rouge">docker cp install.bin email-marketing:/</code>.</li>
   <li>Install Email Marketing using the defaults. Don’t install SSL since we don’t have a certificate yet.</li>
   <li>Start the outgoing service and configure DNS.
     <blockquote>
@@ -191,13 +191,13 @@ OpenJDK 64-Bit Server VM (build 24.181-b00, mixed mode)</p>
 environment this should already be set for your machine, e.g. <em>usgvdjyeary01.em.infor.com</em>.</p>
     </blockquote>
   </li>
-  <li>Copy the <em>keystore.jks</em> file to the server which contains the key we will use for SSL/TLS. <code class="highlighter-rouge">docker cp keystore.jks email-marketing:/root/INFOR/EM/config</code></li>
+  <li>Copy the <em>keystore.jks</em> file to the server which contains the key we will use for SSL/TLS. <code class="language-plaintext highlighter-rouge">docker cp keystore.jks email-marketing:/root/INFOR/EM/config</code></li>
   <li>Modify the configuration on the server to use your keystore and configure SSL/TLS. Ensure if you are using a self-signed certificate, that you install the certificate in the trusted keystore (cacerts) which is located in <strong>/etc/alternatives/jre/lib/security</strong></li>
 </ol>
 
 <h3 id="private-network">Private Network</h3>
 <p>I set up a private network (VLAN) for my environment in Docker. I did this to make it easier to setup DNS (bind). Listed below are some parameters you will need for a private network.</p>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Set the default_bridge to false unless you want this to be your default network.
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Set the default_bridge to false unless you want this to be your default network.
 com.docker.network.bridge.default_bridge=false
 com.docker.network.bridge.enable_icc=true
 com.docker.network.bridge.enable_ip_masquerade=true

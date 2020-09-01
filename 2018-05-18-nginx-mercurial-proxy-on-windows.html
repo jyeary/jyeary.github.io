@@ -174,11 +174,11 @@
 <ol>
   <li>I am partial to installing the nginx server by unzipping the file to  <em>C:\nginx-1.13.12</em>. This helps us to avoid any path related issues.</li>
   <li>Next, we will install the WinSW file to the nginx directory.</li>
-  <li>Rename the WinSW executable to <code class="highlighter-rouge">nginx-service.exe</code>.</li>
+  <li>Rename the WinSW executable to <code class="language-plaintext highlighter-rouge">nginx-service.exe</code>.</li>
   <li>Create an XML file called <strong>nginx-service.xml</strong>. Modify it as shown below.</li>
-  <li>Run <code class="highlighter-rouge">nginx-service.exe install</code> to install the service</li>
-  <li>The <em>conf/nginx.conf</em> needs to be modified to point to our mercurial service. You will need to modify <code class="highlighter-rouge">server_name</code> and <code class="highlighter-rouge">listen</code> to match your environment. Please see the example below.</li>
-  <li>The Mercurial service we installed earlier is set to startup and listen on all IP interfaces by default (0.0.0.0). We want to modify this to bind to localhost. This will prevent the service from being exposed except through our NGINX. This is accomplished by changing the line in the <code class="highlighter-rouge">hg-service.bat</code> to the following: <code class="highlighter-rouge">"C:\Python27\Scripts\hg.exe" serve --address localhost --web-conf C:\hg\hgweb.config</code></li>
+  <li>Run <code class="language-plaintext highlighter-rouge">nginx-service.exe install</code> to install the service</li>
+  <li>The <em>conf/nginx.conf</em> needs to be modified to point to our mercurial service. You will need to modify <code class="language-plaintext highlighter-rouge">server_name</code> and <code class="language-plaintext highlighter-rouge">listen</code> to match your environment. Please see the example below.</li>
+  <li>The Mercurial service we installed earlier is set to startup and listen on all IP interfaces by default (0.0.0.0). We want to modify this to bind to localhost. This will prevent the service from being exposed except through our NGINX. This is accomplished by changing the line in the <code class="language-plaintext highlighter-rouge">hg-service.bat</code> to the following: <code class="language-plaintext highlighter-rouge">"C:\Python27\Scripts\hg.exe" serve --address localhost --web-conf C:\hg\hgweb.config</code></li>
   <li>Start the service and enjoy.</li>
 </ol>
 
@@ -200,7 +200,7 @@
 <h4 id="nginxconf">nginx.conf</h4>
 <p>We need to add a location to the file to proxy the connection to our Mercurial service.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>worker_processes 1;
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>worker_processes 1;
 events {
     worker_connections 1024;
 }
