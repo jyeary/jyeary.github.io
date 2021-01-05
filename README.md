@@ -15,7 +15,7 @@ This blog is a port of Ghost's default theme [Casper](https://github.com/tryghos
 
 **1)** that we need to generate your site locally (more details below) and push the resulting HTML to a Github repository;
 
-**2)** built the site with [travis-ci](https://travis-ci.org/) (with goodies from [jekyll-travis](https://github.com/mfenner/jekyll-travis)) automatically pushing the generated *_site/* files to your *gh-pages* branch.
+**2)** built the site with [travis-ci](https://travis-ci.com/) (with goodies from [jekyll-travis](https://github.com/mfenner/jekyll-travis)) automatically pushing the generated *_site/* files to your *gh-pages* branch.
  This later approach is the one I am currently using to generate the live demo.
 
 For option **1)** simply clone this repository (*master branch*), and then run `bundle exec jekyll serve` inside the directory. Upload the resulting *_site/* contents to your repository (*master branch* if uploading as your personal page (username.github.io) or *gh-pages branch* if uploading as a project page (as for the [demo](https://github.com/jekyller/jasper/tree/gh-pages)).
@@ -36,6 +36,16 @@ bundle install && \
 bundle exec jekyll serve
 ```
 
+### Updating Ruby Gems
+
+Modify the `Gemfile` with the appropriate changes and run the following.
+
+```
+bundle update
+```
+
+Compare the generated `Gemfile.lock` and make sure that the changes meet the requirements from [Github Pages Dependency versions](https://pages.github.com/versions/).
+
 ### Author pages
 
 In order to properly generate author pages you need to rename the field *categories* in the front matter of every post to match that of your each author *username* as defined in the *[\_config.yml](_config.yml)* file.
@@ -46,7 +56,7 @@ With the latest update, multiple author blogs are now supported out of the box.
 
 Same licence as the one provided by Ghost's team. See Casper's theme [license](GHOST.txt).
 
-Copyright (C) 2015-2020 - Released under the MIT License.
+Copyright (C) 2015-2021 - Released under the MIT License.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
