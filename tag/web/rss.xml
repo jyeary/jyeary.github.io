@@ -12,6 +12,35 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>Running Kibana on Docker</title>
+	  <link>//2021-01-15-kibana-docker.html</link>
+	  <author></author>
+	  <pubDate>2021-01-15T00:00:00+00:00</pubDate>
+	  <guid>//2021-01-15-kibana-docker.html</guid>
+	  <description><![CDATA[
+	     <p>There are a number of documents on how to run Kibana on Docker using a <code class="language-plaintext highlighter-rouge">docker-compose</code> file. The instructions from Elastic have you create a link, but there is nothing as simple as the commands below.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container run -d --rm -e ELASTICSEARCH_HOSTS=https://{YOUR_SERVER_IP_HERE}:9200 -p 5601:5601 docker.elastic.co/kibana/kibana:7.10.0
+</code></pre></div></div>
+
+<p>This will create an instance of Kibana that is removed when you are done with it. You just need to replace the <code class="language-plaintext highlighter-rouge">{YOUR_SERVER_IP_HERE}</code> with the IP address or DNS name of the server, e.g. localhost.</p>
+
+<p>If you need to provide a custom <code class="language-plaintext highlighter-rouge">kibana.yml</code>, you can create the files locally and bind mount them as shown below.</p>
+
+<h3 id="powershell-example">Powershell Example</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container run -d --rm -e ELASTICSEARCH_HOSTS=https://{YOUR_SERVER_IP_HERE}:9200 -v ${PWD}/kibana/:/usr/share/kibana/config/ -p 5601:5601 docker.elastic.co/kibana/kibana:7.10.0
+</code></pre></div></div>
+
+<h3 id="macoslinuxunix-example">MacOS/Linux/UNIX Example</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container run -d --rm -e ELASTICSEARCH_HOSTS=https://{YOUR_SERVER_IP_HERE}:9200 -v $(PWD)/kibana/:/usr/share/kibana/config/ -p 5601:5601 docker.elastic.co/kibana/kibana:7.10.0
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>cfssl Intermediate and Client Certificates</title>
 	  <link>//2020-05-26-cfssl-update.html</link>
 	  <author></author>
@@ -696,104 +725,6 @@ Click OK.
   <li><a href="https://github.com/cloudflare/cfssl">cloudflare/cfssl</a></li>
   <li><a href="https://github.com/cloudflare/cfssl/issues/566">steps in bootstrap.txt not working #566</a></li>
 </ul>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>NGINX Mercurial Proxy on Windows</title>
-	  <link>//2018-05-18-nginx-mercurial-proxy-on-windows.html</link>
-	  <author></author>
-	  <pubDate>2018-05-18T03:02:30+00:00</pubDate>
-	  <guid>//2018-05-18-nginx-mercurial-proxy-on-windows.html</guid>
-	  <description><![CDATA[
-	     <p>In my previous article I explained how to setup <a href="/2018-05-16-mercurial-4-5-as-a-windows-service.html">Mercurial 4.5+ as a Windows Service</a>. In this article we will expand on that configuration, and use NGINX to proxy to the service.</p>
-
-<p><strong>Note:</strong> This is supposed to make the service faster. However in my testing, I found it slower. This does allow you to use other functionality like LDAP, and AD authentication which is not available to our Mercurial service.</p>
-
-<h3 id="requirements">Requirements</h3>
-<ul>
-  <li>Install Mercurial as a Windows Service as detailed in this article :  <a href="/2018-05-16-mercurial-4-5-as-a-windows-service.html">Mercurial 4.5+ as a Windows Service</a>.</li>
-  <li>Download <a href="http://nginx.org/en/download.html">NGINX for Windows</a>. The current version at the time of this article is 1.13.12.</li>
-  <li><a href="https://github.com/kohsuke/winsw/releases">winsw-v2.1.2</a> (Please select the version according to .Net version installed on your platform).</li>
-</ul>
-
-<h3 id="installation">Installation</h3>
-<ol>
-  <li>I am partial to installing the nginx server by unzipping the file to  <em>C:\nginx-1.13.12</em>. This helps us to avoid any path related issues.</li>
-  <li>Next, we will install the WinSW file to the nginx directory.</li>
-  <li>Rename the WinSW executable to <code class="language-plaintext highlighter-rouge">nginx-service.exe</code>.</li>
-  <li>Create an XML file called <strong>nginx-service.xml</strong>. Modify it as shown below.</li>
-  <li>Run <code class="language-plaintext highlighter-rouge">nginx-service.exe install</code> to install the service</li>
-  <li>The <em>conf/nginx.conf</em> needs to be modified to point to our mercurial service. You will need to modify <code class="language-plaintext highlighter-rouge">server_name</code> and <code class="language-plaintext highlighter-rouge">listen</code> to match your environment. Please see the example below.</li>
-  <li>The Mercurial service we installed earlier is set to startup and listen on all IP interfaces by default (0.0.0.0). We want to modify this to bind to localhost. This will prevent the service from being exposed except through our NGINX. This is accomplished by changing the line in the <code class="language-plaintext highlighter-rouge">hg-service.bat</code> to the following: <code class="language-plaintext highlighter-rouge">"C:\Python27\Scripts\hg.exe" serve --address localhost --web-conf C:\hg\hgweb.config</code></li>
-  <li>Start the service and enjoy.</li>
-</ol>
-
-<h4 id="nginx-servicexml">nginx-service.xml</h4>
-<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;service&gt;</span>
-    <span class="nt">&lt;id&gt;</span>nginx<span class="nt">&lt;/id&gt;</span>
-    <span class="nt">&lt;name&gt;</span>nginx<span class="nt">&lt;/name&gt;</span>
-    <span class="nt">&lt;description&gt;</span>nginx web server.<span class="nt">&lt;/description&gt;</span>
-    <span class="nt">&lt;depend&gt;</span>hg-serve<span class="nt">&lt;/depend&gt;</span>
-    <span class="nt">&lt;executable&gt;</span>nginx.exe<span class="nt">&lt;/executable&gt;</span>
-    <span class="nt">&lt;stopexecutable&gt;</span>nginx.exe<span class="nt">&lt;/stopexecutable&gt;</span>
-    <span class="nt">&lt;stopargument&gt;</span>-s<span class="nt">&lt;/stopargument&gt;</span>
-    <span class="nt">&lt;stopargument&gt;</span>quit<span class="nt">&lt;/stopargument&gt;</span> 
-    <span class="nt">&lt;logmode&gt;</span>rotate<span class="nt">&lt;/logmode&gt;</span>
-    <span class="nt">&lt;logpath&gt;</span>C:\nginx-1.13.12\logs<span class="nt">&lt;/logpath&gt;</span>
-<span class="nt">&lt;/service&gt;</span>
-</code></pre></div></div>
-
-<h4 id="nginxconf">nginx.conf</h4>
-<p>We need to add a location to the file to proxy the connection to our Mercurial service.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>worker_processes 1;
-events {
-    worker_connections 1024;
-}
-
-http {
-    include mime.types;
-    default_type application/octet-stream;
-    sendfile on;
-    keepalive_timeout 65;
-
-    server {
-        listen 8080;
-        server_name 10.0.2.15;
-
-    location / {
-        proxy_pass http://localhost:8000;
-        }
-
-        error_page 500 502 503 504  /50x.html;
-        location = /50x.html {
-            root html;
-        }
-    }
-
-#    server {
-#        listen 443 ssl;
-#        server_name 10.0.2.15;
-
-#        ssl_certificate server.pem;
-#        ssl_certificate_key server.key;
-
-#        ssl_session_cache shared:SSL:1m;
-#        ssl_session_timeout 5m;
-
-#        ssl_ciphers HIGH:!aNULL:!MD5;
-#        ssl_prefer_server_ciphers on;
-
-#   location / {
-#       proxy_pass http://localhost:8000;
-#       }
-#   }
-}
-</code></pre></div></div>
-
-<p><img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/05/nginx-mercurial-services-running.jpg" alt="Mercurial on NGINX" /></p>
 
 	  ]]></description>
 	</item>

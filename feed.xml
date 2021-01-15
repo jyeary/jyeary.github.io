@@ -8,6 +8,21 @@
     
       
       <item>
+        <title>Running Kibana on Docker</title>
+        
+          <description>&lt;p&gt;There are a number of documents on how to run Kibana on Docker using a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;docker-compose&lt;/code&gt; file. The instructions from Elastic have you create a link, but there is nothing as simple as the commands below.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 15 Jan 2021 00:00:00 +0000</pubDate>
+        <link>
+        https://johnyeary.com/2021-01-15-kibana-docker.html</link>
+        <guid isPermaLink="true">https://johnyeary.com/2021-01-15-kibana-docker.html</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Spring: How to Redirect the Context Root to Open API 3.0 (Swagger) UI</title>
         
           <description>&lt;p&gt;I needed to set up my REST application to redirect users to my Open API Specification 3.0 (Swagger) UI in Spring. This can easily be accomplished by adding the following &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Controller&lt;/code&gt; to the project.
