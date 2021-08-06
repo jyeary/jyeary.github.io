@@ -27,7 +27,7 @@ For option **2)** you will need to set up travis-ci for your personal fork. Brie
 You can pull the source from the repository using any branch, but the default (master) and then do the following to build and test it before deploying.
 
 ```
-docker container run -it --rm -p 4000:4000 -v $PWD:/blog ruby:2.7.1 /bin/bash
+docker container run -it --rm -p 4000:4000 -v $PWD:/blog ruby:2.7.3 /bin/bash
 ```
 ```
 cd /blog && \
@@ -56,6 +56,7 @@ With the latest update, multiple author blogs are now supported out of the box.
 
 Same licence as the one provided by Ghost's team. See Casper's theme [license](GHOST.txt).
 
+Copyright (C) 2009-2021 John Yeary
 Copyright (C) 2015-2021 - Released under the MIT License.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
