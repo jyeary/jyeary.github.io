@@ -16,7 +16,6 @@ SOURCE_BRANCH = CONFIG["branch"]
 DESTINATION_BRANCH = "master"
 
 def check_destination
-  puts "Checking destination"
   unless Dir.exist? CONFIG["destination"]
     puts "Cloning repository to destination"
     sh "git clone https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git #{CONFIG["destination"]}"
@@ -51,7 +50,7 @@ namespace :site do
 
     # Configure git if this is run in Travis CI
     if ENV["TRAVIS"]
-      puts "Detected Travis Build setting git parameters:  #{GIT_NAME} #{GIT_EMAIL}"
+      puts "Detected Travis CI Build setting git parameters" #{GIT_NAME}
       sh "git config --global user.name $GIT_NAME"
       sh "git config --global user.email $GIT_EMAIL"
       sh "git config --global push.default simple"
