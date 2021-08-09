@@ -51,7 +51,7 @@ namespace :site do
 
     # Configure git if this is run in Travis CI
     if ENV["TRAVIS"]
-      puts "Detected Travis Build setting git parameters:  #{GIT_NAME} #{GIT_EMAIL}"
+      puts "Detected Travis Build setting git parameters."
       sh "git config --global user.name $GIT_NAME"
       sh "git config --global user.email $GIT_EMAIL"
       sh "git config --global push.default simple"
@@ -61,10 +61,12 @@ namespace :site do
     check_destination
 
     sh "git checkout #{SOURCE_BRANCH}"
-    Dir.chdir(CONFIG["destination"]) { sh "git checkout #{DESTINATION_BRANCH}" }
 
     # Generate the site
     sh "bundle exec jekyll build"
+    
+    Dir.chdir(CONFIG["destination"]) { sh "git checkout #{DESTINATION_BRANCH}" }
+
 
     # Commit and push to github
     sha = `git log`.match(/[a-z0-9]{40}/)[0]
