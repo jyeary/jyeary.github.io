@@ -23,9 +23,9 @@ For option **1)** simply clone this repository (*master branch*), and then run `
 For option **2)** you will need to set up travis-ci for your personal fork. Briefly all you need then is to change your details in *[\_config.yml](_config.yml)* so that you can push to your github repo.
 
 Set the following parameters in the Travis CI repo settings environment variables:
-* GIT_USER - This is your Github username
-* GIT_EMAIL - This is a valid Github email address assigned to this account.
-* GH_TOKEN - This is a Github personal authentication token.
+* **GIT_USER** - This is your Github username
+* **GIT_EMAIL** - This is a valid Github email address assigned to this account.
+* **GH_TOKEN** - This is a Github personal authentication token.
 
 Alternatively, you can also need to generate a secure key to add to your *[.travis.yml](.travis.yml)* (you can find more info on how to do it in that file). 
 
