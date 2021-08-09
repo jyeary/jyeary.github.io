@@ -53,7 +53,6 @@ plugins:
 #safe: false
 #lsi: false
 username: jyeary
-password: $GITHUB_TOKEN
 repo: jyeary.github.io
 branch: 3.0.0
 #relative_source: ../jasper/

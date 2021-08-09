@@ -3,20 +3,12 @@ rvm:
   - 2.7
 before_install:
     - gem install bundler:2.2.25
-#install:
-# - bundle install
+install:
+ - bundle install
 script: bundle exec rake site:deploy --quiet
-#script: bundle exec rake site:build
-
-#deploy:
-#  provider: pages
-#  skip_cleanup: true
-#  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-#  keep_history: true
-#  on:
-#    branch: 
-#      master
 
 env:
   global:
-    secure: yAN3FA/n68NPTJKnhkXv+IWEV+eW9kp9zSdjg4GZEVHL4ES7CBAUov8+uINlXRE52VrQDfEM8VFv5MDvJfBs0Vptc8j28eB8fjZhHcIuSGSXJAxhFVBRUTbN3l77bM06i9g2qirdY7PbF/c1Ulk/rGOsXq189hRR5ahzbsWiUK41/H5fwXDDIo7VY65YR3UyLKfvQFedkErCWnVMznsMPPAn7+ogY7u8tcecuszzNB8TXHk2hFfgts870xRxuMTX74YQFiMNmj73Z5A53Acww93Vu72Fkx92iVAvoNO2PHXftpcpPKhHXVLjs+qZ2lxmtLcgckpn32eLZLVcJVbQATjmtL3QvQHO7Cf3yOmaUw1ukYBwRzleg11NBgl73CP0A9JXcYgJdIIY4Jv/Uag5559fHp3ldIgwk4Qta8rALGxt3Lw4nK6P+FowRJGcJEzmISoNBNvUjqmBSrRXvr+5E7hrqWSGMaK/GtJf4lm+9NHFtXcsukdJpkV/AJGLEpt6ezuGAzdu+UK4U5oWGOaqCmuK7wpvRLB/cZBMm55C1bRjXiYTKqpEg2XSF14INhW/2Ym60IN9Yf0tpTEfyz9sqP7sK4tjp3Rf1d0WedNgci4TmB48Ny/RDkuBzE/2by5zj8nmDQU6fE6aFZLY/xEPY7qEb7GZWg7xGbNrj9TuWS0=
+    secure: "nlu6Y5YLlmMh+sr6vLDRjmZ1YpV7L34y/Aq0I5s68uW3UfHxjQ/ce99qmjXIKdHgEdLmNiuRzP0Wdcmc+PHO4c6mVD481P+J5PmGNshYWIEPnGRDSNX+vGskhdZP7XGhfFaUTUFMCYlo0TYgWPVFXc6P5oq+zGJo1q12t0Di8Z2XtS03hTNPnHsSGMrKmbrUc/hUutb/fOw/uJL+f2dA2KvTaFY67iYVcgO
+U77BZA9hna0khxYYy3Bu7uz0lGm5+JbiGJr+uhEI4Pxxd66Kabb55X3mZgyh098i0+h/fl/3ntv5QPoHNw88DNQcusKRqEtc6mHysU2IlvAQFatIMpXxShPs/YYsCrVDqh54o7Xr12L94VP23nCf3MIn0KVtVJEfAUJu1jyGqwv/1kfFi7J+rksQRLgoYR3JANcKJHFo4Eqdez6U1CUfax4AR+73PKN+K1Z9yKPR/4U2qg
+3+JiFAy/7Y0HuzkYYe4n1uDVytk4iWTe2McV2tH38xwTodDkREanQtMBQYO0cVSyaiwv0gCbFRr43mke6ZvdjyG6N3ld0237+fkYrGFDOLH9ISETbrexlUPsbDp+DfEysHb2ugYaiF6Gne5R82zWic37Y5UDkSljPXgjn5RPsiCxx+GIE0I27WQ84gVGzUkrZuIas/swmAv6tzz1mnwXTGqiC0="
