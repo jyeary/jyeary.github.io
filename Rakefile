@@ -16,7 +16,9 @@ SOURCE_BRANCH = CONFIG["branch"]
 DESTINATION_BRANCH = "master"
 
 def check_destination
+  puts "Checking destination"
   unless Dir.exist? CONFIG["destination"]
+    puts "Cloning repository to destination"
     sh "git clone https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git #{CONFIG["destination"]}"
   end
 end
