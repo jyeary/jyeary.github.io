@@ -49,6 +49,7 @@ namespace :site do
 
     # Configure git if this is run in Travis CI
     if ENV["TRAVIS"]
+      puts "Detected Travis Build setting git parameters"
       sh "git config --global user.name $GIT_NAME"
       sh "git config --global user.email $GIT_EMAIL"
       sh "git config --global push.default simple"
