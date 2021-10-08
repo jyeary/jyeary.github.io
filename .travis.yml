@@ -1,7 +1,8 @@
 language: ruby
+rvm:
+- 2.7.3
+before_install:
+- gem install bundler:2.2.25
 install:
-  - bundle install
+- bundle install
 script: bundle exec rake site:deploy --quiet
-env:
-  global:
-    secure: E7bCS6KL1WylGsEHcMEBrcAi78ggunjqEh2eY5GUuj83hiPh1pEDF3mjyyfE3XbokAt6fB8z9glWYjHjB6MF6z34Y76wEMbHnMWix5WWvT4yLg6fBh3p6PnrYFxX2MzzY8Rb3Fz248PhkvJDSJSJfWjE6ZqlMsnMFn9OqL4KWHUKS0dEs6NXzSMVDfkKentGM9cAVoLUyeMJED/O1/PkStvFEq9GibluV+YO3H3LNjhsbqBdagxFJW5XZoj69YShjJoyn+B0/wl74Tv3dGiAhFHwZn0qsR+SuxCNQQ6soOivu7wvVscYaewUfDtSV+TXbaE2UnjHG6tjcYTRl0eK/9NdoiLCazmq6oNOaEffi3SsN3vTCPoa68+5aQuFeyF9+flOn5p7qVHN2NnWDXG/wA23IarVdT1KZvBdhUtwM26+iRym/qIkwJb21AIXeMCBdoOyGDZqTDJHeR9ICecE/T9L3676aZMFOpOu5J43K9IbPgMQr5FAxt/8XW5MIl4FttrjZJHaIALVIpq4suqrHqPwRNt7d6BvutU82Hrjjcyd+SSNs2m2nlfTPlCJyHh2wWtBgRIPoUpPmKHArnpiNm+g8uO7uf/3b8q6BVp6kzWc/UF8Gb/Kfz9eLUPiLqKd5s6UEUxfX4Ug1p9Utxnpm0wIBTnN27oKp6Ehvdvccd0=
