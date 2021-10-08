@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>Running Kibana on Docker</title>
+    <title>Data URI Utility</title>
     <meta name="description" content="A Caffeinated Java Developer." />
 
     <!-- Mobile Meta -->
@@ -27,31 +27,31 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="https://johnyeary.com//2021-01-15-kibana-docker.html" />
+        <link rel="canonical" href="https://johnyeary.com//2021-10-08-data-uri.html" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="John Yeary" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Running Kibana on Docker" />
+    <meta property="og:title" content="Data URI Utility" />
     <meta property="og:description" content="A Caffeinated Java Developer." />
-    <meta property="og:url" content="https://johnyeary.com//2021-01-15-kibana-docker.html" />
-    <meta property="og:image" content="/assets/images/pexels-eric-hammett-2989658.jpg" />
+    <meta property="og:url" content="https://johnyeary.com//2021-10-08-data-uri.html" />
+    <meta property="og:image" content="/assets/images/pexels-markus-spiske-330771.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Running Kibana on Docker" />
+    <meta name="twitter:title" content="Data URI Utility" />
     <meta name="twitter:description" content="A Caffeinated Java Developer." />
-    <meta name="twitter:url" content="https://johnyeary.com//2021-01-15-kibana-docker.html" />
-    <meta name="twitter:image:src" content="/assets/images/pexels-eric-hammett-2989658.jpg" />
+    <meta name="twitter:url" content="https://johnyeary.com//2021-10-08-data-uri.html" />
+    <meta name="twitter:image:src" content="/assets/images/pexels-markus-spiske-330771.jpg" />
 
     <script type="application/ld+json">
 {
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "John Yeary",
-    "name": "Running Kibana on Docker",
-    "url": "https://johnyeary.com//2021-01-15-kibana-docker.html",
-    "image": "/assets/images/pexels-eric-hammett-2989658.jpg",
+    "name": "Data URI Utility",
+    "url": "https://johnyeary.com//2021-10-08-data-uri.html",
+    "image": "/assets/images/pexels-markus-spiske-330771.jpg",
     "description": "A Caffeinated Java Developer."
 }
     </script>
@@ -122,7 +122,7 @@
 <!-- Everything inside the #post tags pulls data from the post -->
 <!-- #post -->
 
-<header class="main-header post-head " style="background-image: url(/assets/images/pexels-eric-hammett-2989658.jpg) ">
+<header class="main-header post-head " style="background-image: url(/assets/images/pexels-markus-spiske-330771.jpg) ">
     <nav class="main-nav  overlay  clearfix">
         <a class="blog-logo" href="/"><img src="/assets/images/logo.jpg" alt="Blog Logo" /></a>
         
@@ -133,10 +133,10 @@
 
 <main class="content" role="main">
 
-    <article class="post tag-web">
+    <article class="post tag-java">
 
         <header class="post-header">
-            <h1 class="post-title">Running Kibana on Docker</h1>
+            <h1 class="post-title">Data URI Utility</h1>
             <section class="post-meta">
             <!-- <a href='/'></a> -->
 
@@ -145,13 +145,13 @@
                     <a href='/author/jyeary'>John Yeary</a>
                 
             
-            <time class="post-date" datetime="2021-01-15">15 Jan 2021</time>
+            <time class="post-date" datetime="2021-10-08">08 Oct 2021</time>
                 <!-- [[tags prefix=" on "]] -->
                 
                 on
                 
                     
-                       <a href='/tag/web'>Web</a>
+                       <a href='/tag/java'>Java</a>
                     
                 
                 
@@ -160,24 +160,58 @@
 
         <section class="post-content">
 
-            <p>There are a number of documents on how to run Kibana on Docker using a <code class="language-plaintext highlighter-rouge">docker-compose</code> file. The instructions from Elastic have you create a link, but there is nothing as simple as the commands below.</p>
+            <h3 id="introduction">Introduction</h3>
+<p>I have on occasion had to convert an image, usually an icon into a data URI to embed in a web application. I was looking for a simple application to perform the conversion, but usually they are included in larger frameworks.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container run -d --rm -e ELASTICSEARCH_HOSTS=https://{YOUR_SERVER_IP_HERE}:9200 -p 5601:5601 docker.elastic.co/kibana/kibana:7.10.0
+<p>I wrote a quick conversion utility as shown below.</p>
+
+<p>The code can be found in the <a href="https://github.com/jyeary/commons-utils">commons-utils</a> project on GitHub.</p>
+
+<h3 id="code">Code</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.example.uri</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.nio.file.Files</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Base64</span><span class="o">;</span>
+
+<span class="cm">/**
+ *
+ * @author John Yeary &lt;jyeary@bluelotussoftware.com&gt;
+ */</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">Utils</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Convert a file into base 64 encoded URI.Primarily used for creating
+     * encoded images to be displayed inline in HTML.
+     *
+     * @param file The file to be converted into a data URI.
+     * @return A base 64 encoded representation of the the file in a data URI
+     * format.
+     * @throws IOException If an exception occurs during processing of the file.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">toDataURI</span><span class="o">(</span><span class="kd">final</span> <span class="nc">File</span> <span class="n">file</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+        <span class="c1">// Check content type of the file</span>
+        <span class="nc">String</span> <span class="n">contentType</span> <span class="o">=</span> <span class="nc">Files</span><span class="o">.</span><span class="na">probeContentType</span><span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">toPath</span><span class="o">());</span>
+
+        <span class="c1">// Read data as byte[]</span>
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="nc">Files</span><span class="o">.</span><span class="na">readAllBytes</span><span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">toPath</span><span class="o">());</span>
+        
+        <span class="c1">// Convert byte[] to base64</span>
+        <span class="nc">String</span> <span class="n">encoded</span> <span class="o">=</span> <span class="nc">Base64</span><span class="o">.</span><span class="na">getEncoder</span><span class="o">().</span><span class="na">encodeToString</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+
+        <span class="c1">// Create "data URI"</span>
+        <span class="nc">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"data:"</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">contentType</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">";base64,"</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">encoded</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
 </code></pre></div></div>
 
-<p>This will create an instance of Kibana that is removed when you are done with it. You just need to replace the <code class="language-plaintext highlighter-rouge">{YOUR_SERVER_IP_HERE}</code> with the IP address or DNS name of the server, e.g. localhost.</p>
-
-<p>If you need to provide a custom <code class="language-plaintext highlighter-rouge">kibana.yml</code>, you can create the files locally and bind mount them as shown below.</p>
-
-<h3 id="powershell-example">Powershell Example</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container run -d --rm -e ELASTICSEARCH_HOSTS=https://{YOUR_SERVER_IP_HERE}:9200 -v ${PWD}/kibana/:/usr/share/kibana/config/ -p 5601:5601 docker.elastic.co/kibana/kibana:7.10.0
-</code></pre></div></div>
-
-<h3 id="macoslinuxunix-example">MacOS/Linux/UNIX Example</h3>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container run -d --rm -e ELASTICSEARCH_HOSTS=https://{YOUR_SERVER_IP_HERE}:9200 -v $(PWD)/kibana/:/usr/share/kibana/config/ -p 5601:5601 docker.elastic.co/kibana/kibana:7.10.0
-</code></pre></div></div>
 
 
         </section>
@@ -210,16 +244,16 @@
 
                     <section class="share">
                         <h4>Share this post</h4>
-                        <a class="icon-twitter" href="https://twitter.com/share?text=Running Kibana on Docker&amp;url=https://johnyeary.com/2021-01-15-kibana-docker.html"
+                        <a class="icon-twitter" href="https://twitter.com/share?text=Data URI Utility&amp;url=https://johnyeary.com/2021-10-08-data-uri.html"
                             onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                             <span class="hidden">Twitter</span>
                         </a>
-                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://johnyeary.com/2021-01-15-kibana-docker.html"
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://johnyeary.com/2021-10-08-data-uri.html"
                             onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                             <span class="hidden">Facebook</span>
                         </a>
                         <!--
-                        <a class="icon-google-plus" href="https://plus.google.com/share?url=https://johnyeary.com2021-01-15-kibana-docker.html"
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=https://johnyeary.com2021-10-08-data-uri.html"
                            onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                             <span class="hidden">Google+</span>
                         </a>
@@ -234,8 +268,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     var disqus_shortname = 'john-yeary'; // required: replace example with your forum shortname
-    var disqus_identifier = '/2021-01-15-kibana-docker.html';
-    var disqus_url = 'https://johnyeary.com/2021-01-15-kibana-docker.html';
+    var disqus_identifier = '/2021-10-08-data-uri.html';
+    var disqus_url = 'https://johnyeary.com/2021-10-08-data-uri.html';
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function () {
@@ -260,20 +294,13 @@
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/pexels-markus-spiske-330771.jpg)" href="/2021-10-08-data-uri.html">
-            <section class="post">
-                <h2>Data URI Utility</h2>
-                <p>### Introduction I have on occasion had to convert an image, usually an icon into...</p>
-            </section>
-        </a>
-    
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/assets/images/pexels-magda-ehlers-985266.jpg)" href="/2020-08-13-spring-swagger-redirect.html">
+        <a class="read-next-story prev " style="background-image: url(/assets/images/pexels-eric-hammett-2989658.jpg)" href="/2021-01-15-kibana-docker.html">
             <section class="post">
-                <h2>Spring: How to Redirect the Context Root to Open API 3.0 (Swagger) UI</h2>
-                <p>I needed to set up my REST application to redirect users to my Open API...</p>
+                <h2>Running Kibana on Docker</h2>
+                <p>There are a number of documents on how to run Kibana on Docker using a...</p>
             </section>
         </a>
     

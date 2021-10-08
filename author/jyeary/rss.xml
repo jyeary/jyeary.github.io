@@ -12,6 +12,69 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>Data URI Utility</title>
+	  <link>//2021-10-08-data-uri.html</link>
+	  <author></author>
+	  <pubDate>2021-10-08T00:00:00+00:00</pubDate>
+	  <guid>//2021-10-08-data-uri.html</guid>
+	  <description><![CDATA[
+	     <h3 id="introduction">Introduction</h3>
+<p>I have on occasion had to convert an image, usually an icon into a data URI to embed in a web application. I was looking for a simple application to perform the conversion, but usually they are included in larger frameworks.</p>
+
+<p>I wrote a quick conversion utility as shown below.</p>
+
+<p>The code can be found in the <a href="https://github.com/jyeary/commons-utils">commons-utils</a> project on GitHub.</p>
+
+<h3 id="code">Code</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.example.uri</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.nio.file.Files</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Base64</span><span class="o">;</span>
+
+<span class="cm">/**
+ *
+ * @author John Yeary &lt;jyeary@bluelotussoftware.com&gt;
+ */</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">Utils</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Convert a file into base 64 encoded URI.Primarily used for creating
+     * encoded images to be displayed inline in HTML.
+     *
+     * @param file The file to be converted into a data URI.
+     * @return A base 64 encoded representation of the the file in a data URI
+     * format.
+     * @throws IOException If an exception occurs during processing of the file.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">toDataURI</span><span class="o">(</span><span class="kd">final</span> <span class="nc">File</span> <span class="n">file</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+        <span class="c1">// Check content type of the file</span>
+        <span class="nc">String</span> <span class="n">contentType</span> <span class="o">=</span> <span class="nc">Files</span><span class="o">.</span><span class="na">probeContentType</span><span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">toPath</span><span class="o">());</span>
+
+        <span class="c1">// Read data as byte[]</span>
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="nc">Files</span><span class="o">.</span><span class="na">readAllBytes</span><span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">toPath</span><span class="o">());</span>
+        
+        <span class="c1">// Convert byte[] to base64</span>
+        <span class="nc">String</span> <span class="n">encoded</span> <span class="o">=</span> <span class="nc">Base64</span><span class="o">.</span><span class="na">getEncoder</span><span class="o">().</span><span class="na">encodeToString</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+
+        <span class="c1">// Create "data URI"</span>
+        <span class="nc">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"data:"</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">contentType</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">";base64,"</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">encoded</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Running Kibana on Docker</title>
 	  <link>//2021-01-15-kibana-docker.html</link>
 	  <author></author>
@@ -1028,53 +1091,6 @@ this month. Once I am back to being healthy, I will achieve this goal.</p>
 <p>One of the goals I have is to migrate my blog from Wordpress over to Github, and to write more frequently. Let’s see how that works out by the end of 2020.</p>
 
 <p>Happy New Year 2020.</p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>Programming Merit Badge</title>
-	  <link>//2019-11-09-programming-merit-badge.html</link>
-	  <author></author>
-	  <pubDate>2019-11-09T00:00:00+00:00</pubDate>
-	  <guid>//2019-11-09-programming-merit-badge.html</guid>
-	  <description><![CDATA[
-	     <h2 id="the-next-generation-of-developers">The Next Generation of Developers</h2>
-
-<p>This is the 4th year I have taught the Programming Merit Badge to Boy Scouts in the Southbounder District of the Blue Ridge Council in Greenville, SC. I consider it quite an honor to be asked to do it for this many years. The Boy Scout program was instrumental in my development as a boy. This has been my way of paying it forward to the next generation. My oldest son is an Eagle Scout, and my youngest is well into his journey at this point.</p>
-
-<p>I have been a Boy Scout Assistant Scout Master, Unit Commissioner, Roundtable Commissioner, Cub Master, and a Den Leader. The most fulfilling part of my Scouting experience as an adult was Cub Master. I still think I am a 9 year old boy at heart. If you have not considered working with kids whether in Scouting, or another youth program, give it a chance. You will feel rewarded and humbled by the experience. I think I have learned more from the scouts than I have taught them.</p>
-
-<h2 id="programming-merit-badge">Programming Merit Badge</h2>
-
-<p>There are key elements that must be completed, and these will change over time as the program evolves. They broadly include safety, history, general knowledge, and coding. A key element that must be completed for all the participants is the Boy Scout Cyber Chip. At the time of this writing, it must be renewed yearly, and covers different age groups.</p>
-
-<h3 id="safety">Safety</h3>
-
-<p>This topic can be exciting if you can make a connection with the scouts on the topic. I am a gamer, so I am guilty of doing a lot of bad things with regards to ergomonics while playing games. When I relate my experiences, I get instant feedback of “Wow… me too!” Building that sense of espirit de corps with the scouts makes a tough topic interesting. They also become curious about what games I play. I also make mods for games which helps me to relate with them.</p>
-
-<h3 id="history">History</h3>
-
-<p>We can’t talk about where we are without knowing where we have been. I enjoy this section, and the scouts and parents who are present seem to enjoy it as well. I think my side bars about various items like the story of Grace Hopper and computer bugs make them laugh. If you don’t know the story, do a quick search on Google.</p>
-
-<h3 id="general-knowledge">General Knowledge</h3>
-
-<p>I talk about the languages and usage with examples. The legal section on copyrights, patents, trademarks, and trade secrets (though really important) is one section that causes obvious glaze on their faces. Thankfully, I have a really cool career to get them talking: cryptanalyist.</p>
-
-<h3 id="code">Code</h3>
-
-<p>This is what the scouts are here to learn. I talk about some basics of how to code with tools like <code class="language-plaintext highlighter-rouge">notepad</code>, a terminal, and <code class="language-plaintext highlighter-rouge">javac</code>. I show them some of the pitfalls of this approach. It does not take a lot of effort to prove this point. Then I show them how to use the <a href="https://netbeans.apache.org/">Apache Netbeans IDE</a> to do development. If you are teaching programming, the clear choice is <a href="https://netbeans.apache.org/">Apache Netbeans IDE</a> for development. The hurdles to learning to use it are minimal. The scouts caught on quickly, and the few shortcut keys I taught them were used in earnest.</p>
-
-<p>My goal was to teach them to code beyond the basic “Hello World!”. I have an example on how to calculate where <code class="language-plaintext highlighter-rouge">x</code> crosses the <code class="language-plaintext highlighter-rouge">x-axis</code> using the equation of a line: \(y=mx+b\)</p>
-
-<h2 id="references">References</h2>
-
-<ol>
-  <li><a href="https://www.dropbox.com/s/si8knmvagx73e98/Programming%20Merit%20Badge%20-%20Module%201%20-%20Safety.pptx?dl=0">Programming Merit Badge - Module 1 - Safety</a></li>
-  <li><a href="https://www.dropbox.com/s/njle8szc42fhx6q/Programming%20Merit%20Badge%20-%20Module%202%20-%20History.pptx?dl=0">Programming Merit Badge - Module 2 - History</a></li>
-  <li><a href="https://www.dropbox.com/s/732eprnflk56x8o/Programming%20Merit%20Badge%20-%20Module%203%20-%20General%20Knowledge.pptx?dl=0">Programming Merit Badge - Module 3 - General Knowledge</a></li>
-  <li><a href="https://www.dropbox.com/s/p451sp1ey4teroo/Programming%20Merit%20Badge%20-%20Module%204%20-%20Code.pptx?dl=0">Programming Merit Badge - Module 4 - Code</a></li>
-</ol>
 
 	  ]]></description>
 	</item>
