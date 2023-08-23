@@ -11,7 +11,7 @@ jobs:
       - ruby/install-deps
       - run:
           name: rake test
-          command: bundle exec rake site:build
+          command: bundle exec rake site:deploy -n 
   deploy:
     # This is an example deploy job, not actually used by the workflow
     docker:
