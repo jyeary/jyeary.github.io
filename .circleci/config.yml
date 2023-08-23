@@ -2,29 +2,16 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@2.0.1
 jobs:
-  test-ruby:
-    # Install gems, run rake tests
+  deploy:
     docker:
       - image: cimg/ruby:2.7.4
     steps:
       - checkout
       - ruby/install-deps
       - run:
-          name: rake test
-          command: bundle exec rake site:deploy
-  deploy:
-    # This is an example deploy job, not actually used by the workflow
-    docker:
-      - image: cimg/ruby:2.7.4
-    steps:
-      # Replace this with steps to deploy to users
-      - run:
           name: deploy
-          command: '#e.g. ./deploy.sh'
+          command: bundle exec rake site:deploy
 workflows:
   build-and-test:
     jobs:
-      - test-ruby
-    # - deploy:
-    #     requires:
-    #       - test-ruby
+      - deploy
