@@ -56,6 +56,14 @@ namespace :site do
       sh "git config --global push.default simple"
     end
 
+    # Configure git if this is run in CircleCI
+      if ENV["CIRCLECI"]
+        puts "Detected CircleCI Build setting git parameters"
+        sh "git config --global user.name $GIT_NAME"
+        sh "git config --global user.email $GIT_EMAIL"
+        sh "git config --global push.default simple"
+      end
+
     # Make sure destination folder exists as git repo
     check_destination
 
