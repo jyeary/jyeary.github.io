@@ -6,11 +6,11 @@ jobs:
     docker:
       - image: cimg/ruby:2.7.4
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "8a:f8:fd:01:f9:65:96:8f:f5:20:be:b6:55:e0:7b:9f"
       - checkout
       - ruby/install-deps
-      - add_ssh_keys:
-            fingerprints:
-              - "8a:f8:fd:01:f9:65:96:8f:f5:20:be:b6:55:e0:7b:9f"
       - run:
           name: deploy
           command: bundle exec rake site:deploy
