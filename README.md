@@ -76,7 +76,7 @@ With the latest update, multiple author blogs are now supported out of the box.
 
 Same licence as the one provided by Ghost's team. See Casper's theme [license](GHOST.txt).
 
-Copyright (C) 2009-2023 John Yeary
+Copyright (C) 2009-2024 John Yeary
 
 Copyright (C) 2015-2021 - Released under the MIT License.
 

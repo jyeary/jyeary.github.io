@@ -272,7 +272,7 @@ DEPENDENCIES
   jekyll (= 3.9.3)
   jekyll-paginate (~> 1.1.0)
   jekyll-sitemap (~> 1.4.0)
-  nokogiri (~> 1.15.2)
+  nokogiri (~> 1.15.4)
   rake (~> 13.0.6)
   rexml (>= 3.2.5)
   sass (~> 3.7.4)
@@ -281,4 +281,4 @@ RUBY VERSION
    ruby 2.7.4p191
 
 BUNDLED WITH
-   2.2.25
+   2.4.22
