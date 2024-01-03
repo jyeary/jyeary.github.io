@@ -38,9 +38,20 @@ You can pull the source from the repository using any branch, but the default (m
 ```
 docker container run -it --rm -p 4000:4000 -v $PWD:/blog ruby:2.7.3 /bin/bash
 ```
+The simplest way to run the application is:
 ```
 cd /blog && \
-gem install bundler jekyll && \
+gem install bundler -v 2.4.22 && \
+bundle install && \
+bundle exec jekyll serve
+```
+
+or you may need some form like below for specific versions:
+```
+cd /blog && \
+gem install bundler -v 2.4.22 && \
+gem install sass-embedded -v 1.63.6 && \
+gem install jekyll && \
 bundle install && \
 bundle exec jekyll serve
 ```

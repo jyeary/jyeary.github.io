@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 
-gem 'jekyll', '~> 3.9.3'
+ruby '2.7.4'
+
+gem 'jekyll', '= 3.9.3'
 gem 'github-pages', '~> 228'
 gem 'nokogiri', '~> 1.15.2'
 gem 'rake', '~> 13.0.6'
