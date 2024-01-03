@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>johnyeary.com/</title>
+   
+   <link>https://johnyeary.com</link>
+   <description>A Caffeinated Java Developer.</description>
+   <language>en-us</language>
+   <managingEditor> </managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>Running Kibana on Docker</title>
+	  <link>//2021-01-15-kibana-docker.html</link>
+	  <author></author>
+	  <pubDate>2021-01-15T00:00:00+00:00</pubDate>
+	  <guid>//2021-01-15-kibana-docker.html</guid>
+	  <description><![CDATA[
+	     <p>There are a number of documents on how to run Kibana on Docker using a <code class="language-plaintext highlighter-rouge">docker-compose</code> file. The instructions from Elastic have you create a link, but there is nothing as simple as the commands below.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container run -d --rm -e ELASTICSEARCH_HOSTS=https://{YOUR_SERVER_IP_HERE}:9200 -p 5601:5601 docker.elastic.co/kibana/kibana:7.10.0
+</code></pre></div></div>
+
+<p>This will create an instance of Kibana that is removed when you are done with it. You just need to replace the <code class="language-plaintext highlighter-rouge">{YOUR_SERVER_IP_HERE}</code> with the IP address or DNS name of the server, e.g. localhost.</p>
+
+<p>If you need to provide a custom <code class="language-plaintext highlighter-rouge">kibana.yml</code>, you can create the files locally and bind mount them as shown below.</p>
+
+<h3 id="powershell-example">Powershell Example</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container run -d --rm -e ELASTICSEARCH_HOSTS=https://{YOUR_SERVER_IP_HERE}:9200 -v ${PWD}/kibana/:/usr/share/kibana/config/ -p 5601:5601 docker.elastic.co/kibana/kibana:7.10.0
+</code></pre></div></div>
+
+<h3 id="macoslinuxunix-example">MacOS/Linux/UNIX Example</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container run -d --rm -e ELASTICSEARCH_HOSTS=https://{YOUR_SERVER_IP_HERE}:9200 -v $(PWD)/kibana/:/usr/share/kibana/config/ -p 5601:5601 docker.elastic.co/kibana/kibana:7.10.0
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>cfssl Intermediate and Client Certificates</title>
+	  <link>//2020-05-26-cfssl-update.html</link>
+	  <author></author>
+	  <pubDate>2020-05-26T21:13:48+00:00</pubDate>
+	  <guid>//2020-05-26-cfssl-update.html</guid>
+	  <description><![CDATA[
+	     <h3 id="introduction">Introduction</h3>
+<p>In a previous blog post <a href="/2018-05-25-cfssl-cloudflare-ssl.html">CFSSL Cloudflare SSL</a> I discussed how to setup <code class="language-plaintext highlighter-rouge">cfssl</code> as a Certification Authority (CA) for issuing your own certificates. This becomes increasingly important in the world of containers. Especially when those containers are on internal networks, and VPCs where getting a <a href="https://letsencrypt.org/">Let’s Encrypt</a> certificate is not possible, or desirable.</p>
+
+<h3 id="new-and-improved">New and Improved</h3>
+<p>I was looking for a way to set up intermediate and client certificates. I was looking for ideas on how to setup the CA to handle these additional certificates. I found a post by Johannes Tegnér<sup>1</sup>. I liked his layout idea which I slighly modified below.</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/CA
+    /root
+    /intermediate
+        /production
+        /development
+    /certs
+</code></pre></div></div>
+<p>I tried his using the files he provided, but I believe that <code class="language-plaintext highlighter-rouge">cfssl</code> was updated between his post and today. As a result, the <code class="language-plaintext highlighter-rouge">config.json</code> files would not work without slight modifications. Here is my <code class="language-plaintext highlighter-rouge">config.json</code> for intermediate certificates. This file goes in the <code class="language-plaintext highlighter-rouge">intermediate</code> directory.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "signing": {
+        "default": {
+            "expiry": "720h",
+            "usages": [
+                "signing",
+                "key encipherment",
+                "cert sign",
+                "crl sign"
+            ]
+        },
+        "profiles": {
+            "development": {
+                "ca_constraint": {
+                    "is_ca": true,
+                    "max_path_len": 0,
+                    "max_path_len_zero": true
+                },
+                "expiry": "2160h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+                    "cert sign",
+                    "crl sign"
+                ]
+            },
+            "production": {
+                "ca_constraint": {
+                    "is_ca": true,
+                    "max_path_len": 0,
+                    "max_path_len_zero": true
+                },
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+                    "cert sign",
+                    "crl sign",
+                    "server auth",
+                    "client auth"
+                ]
+            }
+        }
+    }
+}
+</code></pre></div></div>
+<p>The intermediate certificates can be created with the following commands without using the network configuration in my previous blog post.</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>CA/intermediate/development
+cfssl genkey <span class="nt">-initca</span> ../intermediate.json | cfssljson <span class="nt">-bare</span> development
+cfssl sign <span class="nt">-ca</span> ../../root/ca.pem <span class="nt">-ca-key</span> ../../root/ca-key.pem <span class="nt">--config</span> ../config.json <span class="nt">-profile</span> development  development.csr | cfssljson <span class="nt">-bare</span> development 
+</code></pre></div></div>
+<p>Here is my <code class="language-plaintext highlighter-rouge">config.json</code> for different usage profiles for the final certificates.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "signing": {
+        "default": {
+            "expiry": "43800h"
+        },
+        "profiles": {
+            "client": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "digital signature",
+                    "key encipherment",
+                    "client auth"
+                ]
+            },
+            "peer": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "digital signature",
+                    "key encipherment",
+                    "client auth",
+                    "server auth"
+                ]
+            },
+            "server": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "digital signing",
+                    "key encipherment",
+                    "server auth"
+                ]
+            }
+        }
+    }
+}
+</code></pre></div></div>
+<p>The final step for my purposes was generating the client certs.
+Here is my <code class="language-plaintext highlighter-rouge">client.json</code> file which is the same as Johannes’ file. His explanation is worth quoting.</p>
+<blockquote>
+  <p>When it comes to the client certificate, we don’t set any hosts, as we want to be able to
+connect to the services without having to care about the clients current host. It’s okay 
+to do though, if you want to!</p>
+</blockquote>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "CN": "Client",
+    "hosts": [
+        ""
+    ]
+}
+</code></pre></div></div>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl gencert <span class="nt">-ca</span> ../intermediate/production/production.pem <span class="nt">-ca-key</span> ../intermediate/production/production-key.pem <span class="nt">-config</span><span class="o">=</span>config.json <span class="nt">-profile</span><span class="o">=</span>client client.json | cfssljson <span class="nt">-bare</span> client
+</code></pre></div></div>
+
+<h3 id="references">References</h3>
+<ol>
+  <li><a href="https://jite.eu/2019/2/6/ca-with-cfssl/">Certificate Authority with CFSSL </a></li>
+  <li><a href="https://github.com/cloudflare/cfssl">CFSSL: Cloudflare’s PKI and TLS toolkit</a></li>
+</ol>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Blog Migration Completed</title>
+	  <link>//2020-05-26-blog-migration-complete.html</link>
+	  <author></author>
+	  <pubDate>2020-05-26T20:34:34+00:00</pubDate>
+	  <guid>//2020-05-26-blog-migration-complete.html</guid>
+	  <description><![CDATA[
+	     <p>I finally finished migrating my blog from Wordpress to GitHub pages over the Memorial Day weekend. I started the process when I was in Maine at the end of 2019. I now find myself almost six months into 2020 and finally completed the migration.</p>
+
+<p>The significant advantage of Wordpress is its ease of use to get started. However, trying to maintain a database, and upgrades made it a chore. I was also hosting it on Google Cloud. That meant I was responsible for maintainence and security. I also had the additional expense of paying for the VM and data storage.</p>
+
+<p>GitHub makes a compelling choice. This is particularly true since I write my pages in Markdown, and it is a first class citizen on GitHub. I had issues everytime I upgraded Wordpress with the plugin(s) I was using to do Markdown on it. This was part of the maintenance headache that I decided to remedy.</p>
+
+<p>Today I am writing my post on <a href="https://dillinger.io/">Dillinger</a> running in a Docker container. I will save the post to my github repo, and push it. <a href="https://travis-ci.com/">Travis CI</a> will pull the updates, and build the pages and push them back to GitHub on the master branch.</p>
+
+<p>I know that seems like a lot of additional work, but it really is not. I can also test my <a href="https://jekyllrb.com/">Jekyll</a> pages locally using a Docker container to do the building to see what the final product is going to look like.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container run <span class="nt">-it</span> <span class="nt">--rm</span> <span class="nt">-p</span> 4000:4000 <span class="nt">-v</span> <span class="nv">$PWD</span>:/blog ruby:2.6.6 /bin/bash
+</code></pre></div></div>
+<p>Where the $PWD is the checked out blog. I set up an alias called <code class="language-plaintext highlighter-rouge">docker-blog</code> in zsh to run the container. Once the container is started, I go to the <code class="language-plaintext highlighter-rouge">/blog</code> directory and run the following:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /blog <span class="o">&amp;&amp;</span> <span class="se">\</span>
+gem <span class="nb">install </span>bundler jekyll <span class="o">&amp;&amp;</span> <span class="se">\</span>
+bundle <span class="nb">install</span> <span class="o">&amp;&amp;</span> <span class="se">\</span>
+bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+<p>That completes my local environment to blog until I am sure I like it and commit.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Programming Merit Badge</title>
+	  <link>//2019-11-09-programming-merit-badge.html</link>
+	  <author></author>
+	  <pubDate>2019-11-09T00:00:00+00:00</pubDate>
+	  <guid>//2019-11-09-programming-merit-badge.html</guid>
+	  <description><![CDATA[
+	     <h2 id="the-next-generation-of-developers">The Next Generation of Developers</h2>
+
+<p>This is the 4th year I have taught the Programming Merit Badge to Boy Scouts in the Southbounder District of the Blue Ridge Council in Greenville, SC. I consider it quite an honor to be asked to do it for this many years. The Boy Scout program was instrumental in my development as a boy. This has been my way of paying it forward to the next generation. My oldest son is an Eagle Scout, and my youngest is well into his journey at this point.</p>
+
+<p>I have been a Boy Scout Assistant Scout Master, Unit Commissioner, Roundtable Commissioner, Cub Master, and a Den Leader. The most fulfilling part of my Scouting experience as an adult was Cub Master. I still think I am a 9 year old boy at heart. If you have not considered working with kids whether in Scouting, or another youth program, give it a chance. You will feel rewarded and humbled by the experience. I think I have learned more from the scouts than I have taught them.</p>
+
+<h2 id="programming-merit-badge">Programming Merit Badge</h2>
+
+<p>There are key elements that must be completed, and these will change over time as the program evolves. They broadly include safety, history, general knowledge, and coding. A key element that must be completed for all the participants is the Boy Scout Cyber Chip. At the time of this writing, it must be renewed yearly, and covers different age groups.</p>
+
+<h3 id="safety">Safety</h3>
+
+<p>This topic can be exciting if you can make a connection with the scouts on the topic. I am a gamer, so I am guilty of doing a lot of bad things with regards to ergomonics while playing games. When I relate my experiences, I get instant feedback of “Wow… me too!” Building that sense of espirit de corps with the scouts makes a tough topic interesting. They also become curious about what games I play. I also make mods for games which helps me to relate with them.</p>
+
+<h3 id="history">History</h3>
+
+<p>We can’t talk about where we are without knowing where we have been. I enjoy this section, and the scouts and parents who are present seem to enjoy it as well. I think my side bars about various items like the story of Grace Hopper and computer bugs make them laugh. If you don’t know the story, do a quick search on Google.</p>
+
+<h3 id="general-knowledge">General Knowledge</h3>
+
+<p>I talk about the languages and usage with examples. The legal section on copyrights, patents, trademarks, and trade secrets (though really important) is one section that causes obvious glaze on their faces. Thankfully, I have a really cool career to get them talking: cryptanalyist.</p>
+
+<h3 id="code">Code</h3>
+
+<p>This is what the scouts are here to learn. I talk about some basics of how to code with tools like <code class="language-plaintext highlighter-rouge">notepad</code>, a terminal, and <code class="language-plaintext highlighter-rouge">javac</code>. I show them some of the pitfalls of this approach. It does not take a lot of effort to prove this point. Then I show them how to use the <a href="https://netbeans.apache.org/">Apache Netbeans IDE</a> to do development. If you are teaching programming, the clear choice is <a href="https://netbeans.apache.org/">Apache Netbeans IDE</a> for development. The hurdles to learning to use it are minimal. The scouts caught on quickly, and the few shortcut keys I taught them were used in earnest.</p>
+
+<p>My goal was to teach them to code beyond the basic “Hello World!”. I have an example on how to calculate where <code class="language-plaintext highlighter-rouge">x</code> crosses the <code class="language-plaintext highlighter-rouge">x-axis</code> using the equation of a line: \(y=mx+b\)</p>
+
+<h2 id="references">References</h2>
+
+<ol>
+  <li><a href="https://www.dropbox.com/s/si8knmvagx73e98/Programming%20Merit%20Badge%20-%20Module%201%20-%20Safety.pptx?dl=0">Programming Merit Badge - Module 1 - Safety</a></li>
+  <li><a href="https://www.dropbox.com/s/njle8szc42fhx6q/Programming%20Merit%20Badge%20-%20Module%202%20-%20History.pptx?dl=0">Programming Merit Badge - Module 2 - History</a></li>
+  <li><a href="https://www.dropbox.com/s/732eprnflk56x8o/Programming%20Merit%20Badge%20-%20Module%203%20-%20General%20Knowledge.pptx?dl=0">Programming Merit Badge - Module 3 - General Knowledge</a></li>
+  <li><a href="https://www.dropbox.com/s/p451sp1ey4teroo/Programming%20Merit%20Badge%20-%20Module%204%20-%20Code.pptx?dl=0">Programming Merit Badge - Module 4 - Code</a></li>
+</ol>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Blog Migration</title>
+	  <link>//2019-11-01-blog-migration.html</link>
+	  <author></author>
+	  <pubDate>2019-11-01T00:00:00+00:00</pubDate>
+	  <guid>//2019-11-01-blog-migration.html</guid>
+	  <description><![CDATA[
+	     <h2 id="introduction">Introduction</h2>
+
+<p>After a couple of years using Wordpress, I have found that constantly upgrading, broken plugins, managing a database, backups, and security certificates have brought me back to Github.</p>
+
+<p>When I first started the blogging journey, I wanted a text editor which I could use to create my posts. Over the years, I have found myself using <a href="https://www.markdownguide.org/">Markdown</a> at first for my Github projects, and finally for all of my work. This includes taking all my notes using Markdown.</p>
+
+<p>I decided to come back and take a look at GitHub, and reconsider my previous position of it not being the right fit for me. Today, I think it is a perfect fit. The platform has been enhanced, and a number of great templates have been created to make using it a lot easier. That said, a number of the templates are <strong>not</strong> non-technical user friendly. I have had some challenges getting the blog back off the ground using Github, but I think that the final results will be worth it.</p>
+
+<p>Over the next few weeks, I will begin the slow process of migrating the old blog pages over to Github, and adding new content. As I begin this journey, I will tell you how I did it.</p>
+
+<h2 id="decisions">Decisions</h2>
+
+<p>If you are not comfortable in <a href="https://www.markdownguide.org/">Markdown</a> then using Github pages are not for you. You have to decide if you want to learn it, and use it. Otherwise the risk is that you will <strong>not</strong> blog which is the opposite of your objective.</p>
+
+<p>If you have a blog already, then you need to decide if you want to do the work to migrate it. This could be an enormous undertaking if you have been doing it for years. It also could be something that you may not want to do. I have another blog <a href="http://javaevangelist.blogspot.com/">Java Evangelist John Yeary</a> which is quite large. I wrote it on Blogger, and decided that I <strong>did not</strong> want to move it. It was established, and profitible. I did decide years ago that I wanted to move it from a propietary platform and make it more “my own”. Thus I created a blog simply called John Yeary. That is the blog we are going to be migrating.</p>
+
+<h2 id="first-steps">First Steps</h2>
+
+<p>The first step in getting started in creating, or migrating a blog is to find a good template to use. You can go all-in on creating your own using, but even <a href="https://jekyllrb.com/">jekyll</a> uses a basic template called <em>minima</em> when you create a simple site using the tutorial.</p>
+
+<p>I chose a template based on the popular <a href="https://ghost.org/blog/">ghost</a> platform called <a href="https://github.com/jekyller/jasper">Jasper</a>. There is another version called <a href="https://github.com/jekyller/jasper2">Jasper 2</a>, but I found the original Jasper version more my style.</p>
+
+<p>The nice thing about choosing to use an open source template is that you are free to modify it to match your needs. This was not insurmountable in Wordpress, but much more challenging. I was also in fear of the template being upgraded that would make me have to figure out what changed, and if anything was broken. Since we are using a source control system (git) and we can control our own destiny with regards to upgrades, then the worries about template changes from Wordpress are no longer an issue.</p>
+
+<p>Next, I would make sure that you understand what the templates do and how they are configured. The <a href="https://jekyllrb.com/docs/">Jekyll Quickstart</a> is very good. It will give you a great foundation on how Jekyll generates the pages, and displays them.</p>
+
+<p>In my case I chose to use <a href="https://github.com/jekyller/jasper">Jasper</a> for my templates. This template uses plugins to generate additional functionality on the pages, as a result it can not be used directly for generating my pages from Github. In this case, I am using <a href="https://travis-ci.com/">Travis CI</a> to build the the pages and push the changes from a development branch to the <code class="language-plaintext highlighter-rouge">master</code> branch since this is the branch which is used to deploy the pages. In my case it is only merging the <code class="language-plaintext highlighter-rouge">_site</code> data.</p>
+
+<h2 id="migrating-existing-pages">Migrating Existing Pages</h2>
+
+<p>There are a number of mechanisms to import existing blog formats into Jekyll. They can be found on the <a href="https://import.jekyllrb.com/docs/home/">Jekyll Import Documentation</a>. I am migrating from Wordpress so I tried a couple of different mechanisms. Although, it mentions the Wordpress.com importers for use with the online site, I found them to be useful on the self-hosted variety I was using. The best one after trying them all was <a href="https://github.com/thomasf/exitwp">Exitwp</a>.</p>
+
+<p>I found that not just one tool worked for me, and I am going to have to use multiple results and merge them to get the pages migrated.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>JS Equality Table</title>
+	  <link>//2019-03-27-js-equality-table.html</link>
+	  <author></author>
+	  <pubDate>2019-03-27T15:25:39+00:00</pubDate>
+	  <guid>//2019-03-27-js-equality-table.html</guid>
+	  <description><![CDATA[
+	     <p>It seems I am always looking for the difference between <strong>==</strong> and <strong>===</strong>.  I was looking at a response to a question on Stackoverflow when I found this gem. I am publishing it here in case anyone else needs a graphical explanation.</p>
+
+<p><a href="https://dorey.github.io/JavaScript-Equality-Table/">JavaScript-Equality-Table</a></p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>j2html framework</title>
+	  <link>//2018-09-15-j2html-framework.html</link>
+	  <author></author>
+	  <pubDate>2018-09-15T15:50:14+00:00</pubDate>
+	  <guid>//2018-09-15-j2html-framework.html</guid>
+	  <description><![CDATA[
+	     <p>I had my first exposure to this fun and easy to use framework in Java Magazine - <a href="http://www.javamagazine.mozaicreader.com/JulyAugust2018/facebook#&amp;pageSet=27&amp;page=0&amp;contentItem=0&quot;">j2html: An HTML5 Generator Library</a>. I have to say that it is slick and easy for the most part. The more HTML you use… the more complex it becomes. However, if you need to output an error page, a login page on the fly, or simple pages to display information, this framework is hard to beat.</p>
+
+<p>This example is from Java Magazine… You really need to read the well written article.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.example</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">static</span> <span class="n">j2html</span><span class="o">.</span><span class="na">TagCreator</span><span class="o">.*;</span>
+<span class="kn">import</span> <span class="nn">j2html.tags.Tag</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Example3</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">String</span> <span class="n">output</span> <span class="o">=</span> <span class="n">form</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">withMethod</span><span class="o">(</span><span class="s">"post"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">with</span><span class="o">(</span>
+        <span class="n">genericInput</span><span class="o">(</span><span class="s">"text"</span><span class="o">,</span> <span class="s">"username"</span><span class="o">,</span> <span class="s">"Enter your Username"</span><span class="o">),</span>
+        <span class="n">genericInput</span><span class="o">(</span><span class="s">"password"</span><span class="o">,</span> <span class="s">"password"</span><span class="o">,</span> <span class="s">"Enter your password"</span><span class="o">),</span>
+        <span class="n">submitButton</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">renderFormatted</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">output</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Tag</span> <span class="nf">genericInput</span><span class="o">(</span><span class="nc">String</span> <span class="n">type</span><span class="o">,</span> <span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="nc">String</span> <span class="n">placeholder</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">input</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">withType</span><span class="o">(</span><span class="n">type</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">withId</span><span class="o">(</span><span class="n">name</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">withPlaceholder</span><span class="o">(</span><span class="n">placeholder</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">isRequired</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="nc">Tag</span> <span class="nf">submitButton</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">button</span><span class="o">(</span><span class="s">"Login"</span><span class="o">).</span><span class="na">withType</span><span class="o">(</span><span class="s">"submit"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>A login page done programmatically. How slick is that? Read the article and share the love.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Netty and JAX-RS (Jersey)</title>
+	  <link>//2018-09-15-netty-and-jax-rs-jersey.html</link>
+	  <author></author>
+	  <pubDate>2018-09-15T15:21:52+00:00</pubDate>
+	  <guid>//2018-09-15-netty-and-jax-rs-jersey.html</guid>
+	  <description><![CDATA[
+	     <h3 id="introduction">Introduction</h3>
+
+<p>Netty and Jersey are a great combination for providing RESTful web services based on JAX-RS. Netty is designed for high-throughput, and Jersey is designed for ease of use. The example application below is an attempt to make demonstrate how to use these powerful technologies in short order.</p>
+
+<h3 id="code">Code</h3>
+
+<p>The following class can be re-used in your personal projects in in a simple manner.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.bluelotussoftware</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">io.netty.channel.Channel</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.URI</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.glassfish.jersey.netty.connector.NettyConnectorProvider</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.glassfish.jersey.netty.httpserver.NettyHttpContainerProvider</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.glassfish.jersey.server.ResourceConfig</span><span class="o">;</span>
+
+<span class="cm">/**
+ * A basic implementation of {@link NettyConnectorProvider} providing HTTP and HTTP/2 servers for the {@link URI} and
+ * resource classes provided.
+ *
+ * @author John Yeary &amp;lt;jyeary@bluelotussoftware.com&amp;gt;
+ * @version 1.0.0
+ */</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">NettyServerProviders</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Initializes a {@link NettyHttpContainerProvider} using the provided {@link URI} and resource classes with HTTP
+     * 1.1.
+     *
+     * @param baseURI The base URI to connect to the server.
+     * @param classes The resource classes to provide serve using this provider.
+     * @return A initialized Netty {@link Channel}.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Channel</span> <span class="nf">initializeNettyHttpServer</span><span class="o">(</span><span class="kd">final</span> <span class="nc">String</span> <span class="n">baseURI</span><span class="o">,</span> <span class="kd">final</span> <span class="nc">Class</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;?&amp;</span><span class="n">gt</span><span class="o">;...</span> <span class="n">classes</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="nc">ResourceConfig</span> <span class="n">rc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ResourceConfig</span><span class="o">(</span><span class="n">classes</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">NettyHttpContainerProvider</span><span class="o">.</span><span class="na">createServer</span><span class="o">(</span><span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">baseURI</span><span class="o">),</span> <span class="n">rc</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Initializes a {@link NettyHttpContainerProvider} using the provided {@link URI} and resource classes with HTTP/2.
+     *
+     * @param baseURI The base URI to connect to the server.
+     * @param classes The resource classes to provide serve using this provider.
+     * @return A initialized Netty {@link Channel}.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Channel</span> <span class="nf">initializeNettyHttp2Server</span><span class="o">(</span><span class="kd">final</span> <span class="nc">String</span> <span class="n">baseURI</span><span class="o">,</span> <span class="kd">final</span> <span class="nc">Class</span><span class="o">&amp;</span><span class="n">lt</span><span class="o">;?&amp;</span><span class="n">gt</span><span class="o">;...</span> <span class="n">classes</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="nc">ResourceConfig</span> <span class="n">rc</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ResourceConfig</span><span class="o">(</span><span class="n">classes</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">NettyHttpContainerProvider</span><span class="o">.</span><span class="na">createHttp2Server</span><span class="o">(</span><span class="no">URI</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">baseURI</span><span class="o">),</span> <span class="n">rc</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The implementation is just as easy.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="nc">Channel</span> <span class="n">httpServer</span> <span class="o">=</span> <span class="nc">NettyServerProviders</span><span class="o">.</span><span class="na">initializeNettyHttpServer</span><span class="o">(</span><span class="no">BASE_URI_HTTP</span><span class="o">,</span> <span class="nc">HelloResource</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>As you can see, we are providing it with a single resource class called <strong>HelloResource.class</strong>. However, the <strong>NettyServerProviders.class</strong> accepts an array of resource classses, so you can simply just add them as necessary,e.g.,<code class="language-plaintext highlighter-rouge">final Channel httpServer = NettyServerProviders.initializeNettyHttpServer(BASE_URI_HTTP, HelloResource.class, Resource2.class, Resource3.class, Resource4.class);</code></p>
+
+<h3 id="project">Project</h3>
+
+<p>The application can be downloaded from Github here: <a href="https://github.com/jyeary/jersey-netty-service">jersey-netty-service</a>.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Mercurial on IIS</title>
+	  <link>//2018-06-29-mercurial-on-iis.html</link>
+	  <author></author>
+	  <pubDate>2018-06-29T22:10:25+00:00</pubDate>
+	  <guid>//2018-06-29-mercurial-on-iis.html</guid>
+	  <description><![CDATA[
+	     <h3 id="introduction">Introduction</h3>
+<p>I was recently tasked with updating our Mercurial repository at work. The original repository and configuration using Apache had been in place for years without issues generally. The latest Apache versions for Windows are provided by third parties and not from Apache Foundation anymore.</p>
+
+<p>When I looked at the configuration we were using, the Python FastCGI modules were very old and had not been updated in years. In fairness, they didn’t need to be for our application, but there were no updates for the latest Apache HTTPD server. The existing third party versions of Apache didn’t include the required libraries for the old modules. I didn’t want to install everything required to compile a new version of Apache for our environment. This would add application maintenance overhead to me to maintain and update it. So what were my alternatives?</p>
+
+<p>Since the application was already running on a Windows server, I decided to see if I could implement it on Windows without having to migrate to a Linux server. Although migrating to Linux, or UNIX would have been my preference, it was not available to me. The solution was to try to use IIS to serve up the application. Specifically, I had a set of requirements:</p>
+<ol>
+  <li>Windows AD authentication.</li>
+  <li>Mercurial needed to be available via HTTPS.</li>
+  <li>Latest version of Mercurial</li>
+  <li>Simple implementation</li>
+  <li>Easy maintenance</li>
+</ol>
+
+<p>The ease of maintenance would be normal Windows server updates. The implementation should be sufficiently simple that a new ops, or engineer could be assigned the task of updating it, or maintaining it.</p>
+
+<p>Since Mercurial is popular, I thought finding some details on deploying Mercurial on IIS would be simple. I found some blog posts and wiki pages on it, but they were very old. Nothing was up-to-date. So I decided to write my own post with details I gathered from multiple blog posts and references.</p>
+
+<h3 id="python">Python</h3>
+<p>Install Python. I installed the <strong>python-2.7.15.amd64.msi</strong> on the server accepting the defaults except I also added Python to the path as shown below.</p>
+
+<p><img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/PythonInstall.png" alt="Python Install" /></p>
+
+<h3 id="mercurial">Mercurial</h3>
+<p>Install Mercurial. I installed <strong>mercurial-4.6.1.win-amd64-py2.7.msi</strong> which will install it into the Python installation.</p>
+
+<p>Once the installation is complete open a command prompt or Powershell and type <em>hg</em>. It should display a list of commands available.</p>
+
+<h3 id="iis">IIS</h3>
+<p>Install/activate IIS. We need to insure that CGI is enabled for wfastcgi.</p>
+<ol>
+  <li>Open <strong>Server Manager</strong></li>
+  <li>Go to <strong>Add Roles and Features</strong>. Scroll down and select <strong>Web Server (IIS)</strong> and <strong>Next</strong>. Continue <strong>Next</strong> until you reach <em>Role Services</em>. 
+  <img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/AddRemoveIIS.png" alt="Add Remove IIS" /></li>
+  <li>(OPTIONAL) Under <strong>Performance</strong>, select <em>Dynamic Content Compression</em>.</li>
+  <li>(OPTIONAL) Under <strong>Security</strong>, select any mechanism you want to use to allow users to connect. I selected <em>Basic Authentication</em> and <em>Windows Authentication</em>. Click <strong>Next</strong>.
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/RoleSevices.png" alt="Roles Services" /></li>
+  <li>Check options and click <strong>Install</strong>.</li>
+  <li>Once the install completes, we need to go back to <strong>Add Roles and Features</strong>. This time navigate to <em>Application Development</em> and select <em>CGI</em>.
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/CGIEnabled.png" alt="CGI Enabled" /></li>
+</ol>
+
+<h3 id="python-fastcgi-implementation-wfastcgi">Python FastCGI implementation (wfastcgi)</h3>
+<p>I looked for an implementation that would provide the sufficient capabilities to serve up the pages quickly with little overhead. I looked at a number of implementations. I was looking at wfastcgi and noticed that it was created and maintained by Microsoft. Bonus!</p>
+
+<ol>
+  <li>Using a command prompt or Powershell. type the following:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install wfastcgi
+</code></pre></div>    </div>
+  </li>
+  <li>Once <em>pip</em> finshes installing <em>wfastcgi</em>, run the following command to enable <em>wfastcgi</em>.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wfastcgi-enable     
+</code></pre></div>    </div>
+    <p><img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/pipInstall.png" alt="pip install" /></p>
+  </li>
+  <li>After enabling <em>wfastcgi</em>, we can refresh our IIS Application Server Manager instance and we will have a new IIS management category called <strong>FastCGI Settings</strong>. Just confirm its presence we will attend to it shortly.</li>
+  <li>Next go to Sites in IIS Admin and ensure that you have the <em>Default Website</em> stopped.</li>
+  <li>Right-click and <strong>Add Website</strong>. This will bring up a form to configure. I set my settings as shown below. You may change them to meet your needs.
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/AddWebsite.png" alt="Add Website" /></li>
+  <li>Set the website bindings as shown below:
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/SiteBindings.png" alt="Site Bindings" /></li>
+</ol>
+
+<h3 id="final-configuration">Final Configuration</h3>
+<ol>
+  <li>Copy the <strong>C:\Python27\Lib\site-packages\wfastcgi.py</strong> to the root directory of your new site. In my case it is the <em>C:\inetpub\hg</em> directory.</li>
+  <li>Place the following script in the root directory and name it <strong>hgweb.py</strong>:
+    <div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">config</span> = <span class="s2">"hgweb.config"</span>
+<span class="n">from</span> <span class="n">mercurial</span> <span class="n">import</span> <span class="n">demandimport</span>; <span class="n">demandimport</span>.<span class="n">enable</span>()
+<span class="n">from</span> <span class="n">mercurial</span>.<span class="n">hgweb</span> <span class="n">import</span> <span class="n">hgweb</span>
+<span class="n">application</span> = <span class="n">hgweb</span>(<span class="n">config</span>)
+</code></pre></div>    </div>
+  </li>
+  <li>Create a <strong>hgweb.config</strong> file and place it in the root directory. If you use the script below, please make sure you have a path to your repositories set. You can use the instructions available in Mercurial to reconfigure it later. Here is an example:
+    <div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[<span class="n">web</span>]
+<span class="n">encoding</span> = <span class="n">UTF</span>-<span class="m">8</span>
+<span class="n">allow_push</span> = *
+<span class="n">push_ssl</span> = <span class="n">False</span>
+<span class="n">allow_archive</span> = <span class="n">gz</span> <span class="n">zip</span> <span class="n">bz2</span>
+<span class="n">descend</span> = <span class="n">True</span>
+<span class="n">collapse</span> = <span class="n">True</span>
+<span class="n">style</span>=<span class="n">gitweb</span>
+[<span class="n">paths</span>]
+/ = <span class="n">C</span>:\<span class="n">repos</span>\*
+</code></pre></div>    </div>
+    <p><strong>NOTE:</strong> This method of listing repositories can be very slow if there are a number of repositories. It is better to list them individually.</p>
+  </li>
+  <li>Go to the IIS Admin <strong>Sites</strong> and select your Mercurial site. Go to <strong>Handler Mappings</strong>.</li>
+  <li>Click <strong>Add Module Mapping</strong> and provide the following details:
+    <ul>
+      <li><strong>Request Path:</strong> *</li>
+      <li><strong>Module:</strong> FastCgiModule</li>
+      <li><strong>Executable:</strong> C:\Python27\python.exe|C:\inetpub\hg\wfastcgi.py
+<strong>WARNING:</strong> There can not be any spaces between the values and the pipe (|) character otherwise it won’t work and you will be hating life trying to figure out why its not working.</li>
+      <li><strong>Name:</strong> hg-wfastcgi
+Continue to the next step below.</li>
+    </ul>
+  </li>
+  <li>Click on <em>Request Restrictions</em> button.
+    <ul>
+      <li><strong>Mapping</strong> » Uncheck checkbox <strong>Invoke handler only if request mapped to</strong>.</li>
+      <li><strong>Verbs:</strong> » <em>All Verbs</em> radio button selected.</li>
+      <li><strong>Access:</strong> » <em>Script</em>  radio button selected.
+Click OK.
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/HandlerMapping.png" alt="Handler Mapping" /></li>
+    </ul>
+  </li>
+  <li>Click OK. This will prompt you to create an application to handle the requests. <strong>Important</strong> Click *Yes**.
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/CreateApplicationHandler.png" alt="Create Application Handler" /></li>
+  <li>Configuring <em>wfastcgi</em> to respond to Mercurial requests. Go to the IIS Admin <em>FastCGI Settings</em> page.
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/FastCGISettings01.png" alt="FastCGI Settings Default" /></li>
+  <li>You should see the newly created handler at the bottom of the list. Click <strong>Edit</strong> which will bring up the form window. If it doesn’t exist, then you will need to <strong>Add Application</strong>. Fill in the following:
+    <ul>
+      <li><strong>Full Path:</strong> <em>C:\Python27\python.exe</em> (Only required if adding application)</li>
+      <li><strong>Arguments:</strong> <em>C:\inetpub\hg\wfastcgi.py</em> (Only required if adding application)</li>
+      <li><strong>General » Max Instances:</strong> 10</li>
+      <li><strong>Process Model » Activity Timeout:</strong> 300</li>
+      <li><strong>Process Model » Idle Timeout:</strong> 600</li>
+      <li><strong>Process Model » Request Timeout:</strong> 600</li>
+      <li><strong>General » Environment Variables:</strong> You will be adding the following environment variables:</li>
+      <li><strong>Name:</strong> <em>PYTHONPATH</em> <strong>Value:</strong> <em>C:\inetpub\hg</em></li>
+      <li><strong>Name:</strong> <em>WSGI_HANDLER</em> <strong>Value:</strong> <em>hgweb.application</em><br />
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/FastCGISettings02.png" alt="FastCGI Settings Updated" />
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/PYTHONPATH.png" alt="PYTHONPATH Environment Setting" />
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/WSGI_HANDLER.png" alt="WSGI_HANDLER Environment Setting" /></li>
+    </ul>
+  </li>
+  <li>Restart the web server and you should be in business. Open a browser and go to the address of the machine and you should see any repositories that are listed in your <strong>hgweb.config</strong> file.
+<img src="https://storage.googleapis.com/methodical-kaleidoscope-7367/2018/06/Success.png" alt="Mercurial on IIS" /></li>
+</ol>
+
+<h3 id="security">Security</h3>
+<p>The application is not configured with authentication at this point. If you decide to use AD, you will need to configure IIS for the site to use AD. If you choose to use authentication, don’t forget to modify the <strong>hgweb.config</strong> file to <em>allow_push</em> for the users that should be allowed to push changes to the repository.</p>
+
+<h3 id="references">References</h3>
+<ul>
+  <li><a href="http://nick.txtcc.com/index.php/other/910">Setting up a Mercurial server under IIS7 on Windows Server 2008 R2</a></li>
+  <li><a href="http://blog.vishalon.net/running-mercurial-2-x-web-server-on-iis-7-5">Running Mercurial 2.x Web server on IIS 7.5</a></li>
+  <li><a href="http://www.jeremyskinner.co.uk/mercurial-on-iis7/">Setting up a Mercurial server under IIS7 on Windows Server 2008 R2</a></li>
+  <li><a href="https://pypi.org/project/wfastcgi/">wfastcgi 3.0.0</a></li>
+  <li><a href="https://medium.com/@bilalbayasut/deploying-python-web-app-flask-in-windows-server-iis-using-fastcgi-6c1873ae0ad8">Deploying Python web app (Flask) in Windows Server (IIS) using FastCGI</a></li>
+  <li><a href="https://www.mercurial-scm.org/wiki/PublishingRepositories#hgweb">3.2. Getting the hgweb script</a></li>
+  <li><a href="https://gist.github.com/bparaj/ac8dd5c35a15a7633a268e668f4d2c94">Python Flask on IIS with wfastcgi</a></li>
+</ul>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>CFSSL Cloudflare SSL</title>
+	  <link>//2018-05-25-cfssl-cloudflare-ssl.html</link>
+	  <author></author>
+	  <pubDate>2018-05-25T15:30:39+00:00</pubDate>
+	  <guid>//2018-05-25-cfssl-cloudflare-ssl.html</guid>
+	  <description><![CDATA[
+	     <p>A normal devops activity is installing certificates on your servers. However, most servers if used internally don’t need an official CA signed certificate for normal operations. Especially when dealing with development machines, or testing. So why pay the man… when you can be the man! Be your own CA!</p>
+
+<h3 id="cloudflare-ssl-cfssl">Cloudflare SSL (cfssl)</h3>
+<p>Cloudflare open-sourced their cfssl software under a BSD license. It is written in go, and offers a number of great features. However, like any number of open-source projects, it lacks really good documentation. The software works great once you get it figured out. Let me try to show you how I set up my configuration.</p>
+
+<h4 id="bootstrap-instructions">Bootstrap Instructions</h4>
+<ol>
+  <li>Create a Certificate Authority (CA) Certificate Signing Request (CSR). This is the file used to generate our CA name, keys, and generate our own CSR (if we want it signed by another CA). Here is an example <strong>ca_csr.json</strong>.
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"CN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal CA"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"algo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rsa"</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2048</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+   </span><span class="nl">"C"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"L"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Greenville"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"O"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Charlie Company"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"OU"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPS"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"ST"</span><span class="p">:</span><span class="w"> </span><span class="s2">"South Carolina"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>Generate your public and private keys, and a CSR for signing by a third party if necessary.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl gencert -initca csr_ca.json | cfssljson -bare ca
+</code></pre></div>    </div>
+  </li>
+  <li>Create your configuration file <strong>ca_config.json</strong>. My version differs from the first reference listed below. You will need to provide your own key. Here is an online resource to generate one: <a href="https://www.random.org/bytes/">Random Byte Generator</a>
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"signing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"default"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="nl">"auth_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"key1"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8760h"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"usages"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+       </span><span class="s2">"signing"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"key encipherment"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"server auth"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"cert sign"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"crl sign"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"client auth"</span><span class="w">
+     </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"auth_keys"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"key1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;</span><span class="mi">16</span><span class="w"> </span><span class="err">byte</span><span class="w"> </span><span class="err">hex</span><span class="w"> </span><span class="err">API</span><span class="w"> </span><span class="err">key</span><span class="w"> </span><span class="err">here&gt;</span><span class="w"> </span><span class="p">,</span><span class="w">
+   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"standard"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>Start your server:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl serve -ca-key ca-key.pem -ca ca.pem -config config_ca.json
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="generating-and-signing-certificates">Generating and Signing Certificates</h3>
+<p><strong>Note:</strong> The server name in this example is called <em>groot</em>, as in, <em>I am Groot!</em> from the movie <em>Guardians of the Galaxy</em>.</p>
+
+<ol>
+  <li>Create Create a <strong>csr_client.json</strong>. This contains the information for the server for which we want create a certificate.
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"CN"</span><span class="p">:</span><span class="w"> </span><span class="s2">"groot.example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"hosts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="s2">"iamgroot.example.com"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"*.example.com"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"algo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rsa"</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">2048</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"names"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+   </span><span class="nl">"C"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"L"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Greenville"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"O"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Charlie Company"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"OU"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPS"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"ST"</span><span class="p">:</span><span class="w"> </span><span class="s2">"South Carolina"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>Create a <strong>config_client.json</strong>. This contains the information required to connect to our new server.
+    <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"signing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"default"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="nl">"auth_remote"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="nl">"auth_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"key1"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"remote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"caserver"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"auth_keys"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"key1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;16 byte hex API key here. Same key as server.&gt;"</span><span class="p">,</span><span class="w">
+ </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"standard"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"remotes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nl">"caserver"</span><span class="p">:</span><span class="w"> </span><span class="s2">"127.0.0.1"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>    </div>
+  </li>
+  <li>The command below will generate the key (<strong>groot-key.pem</strong>), and CSR (<strong>groot.csr</strong>). Then it will use the provided configuration to contact the server and return the signed certificate. The certificate will be called <strong>groot.pem</strong>.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl gencert -config config_client.json csr_client.json | cfssljson -bare groot
+</code></pre></div>    </div>
+  </li>
+  <li>(ALTERNATIVE) If you already have a CSR, you can request that the server sign it. This will provide a certificate called <strong>groot.pem</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl sign -config config_client.json groot.csr | cfssljson -bare groot
+</code></pre></div>    </div>
+  </li>
+  <li>(ALTERNATIVE) If you need additional host names, e.g, Subject Alternative Name (SAN), you can use the following command substituting hostnames below with comma separated values.
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl sign -config config_client.json -hostname=quill.example.com,ronan.example.com,kree.example.com groot.csr | cfssljson -bare groot
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="references">References</h3>
+<ul>
+  <li><a href="https://blog.cloudflare.com/how-to-build-your-own-public-key-infrastructure/">How to build your own public key infrastructure</a></li>
+  <li><a href="https://github.com/cloudflare/cfssl">cloudflare/cfssl</a></li>
+  <li><a href="https://github.com/cloudflare/cfssl/issues/566">steps in bootstrap.txt not working #566</a></li>
+</ul>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

@@ -1,0 +1,1100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>johnyeary.com/</title>
+   
+   <link>https://johnyeary.com</link>
+   <description>A Caffeinated Java Developer.</description>
+   <language>en-us</language>
+   <managingEditor> </managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>Data URI Utility</title>
+	  <link>//2021-10-08-data-uri.html</link>
+	  <author></author>
+	  <pubDate>2021-10-08T00:00:00+00:00</pubDate>
+	  <guid>//2021-10-08-data-uri.html</guid>
+	  <description><![CDATA[
+	     <h3 id="introduction">Introduction</h3>
+<p>I have on occasion had to convert an image, usually an icon into a data URI to embed in a web application. I was looking for a simple application to perform the conversion, but usually they are included in larger frameworks.</p>
+
+<p>I wrote a quick conversion utility as shown below.</p>
+
+<p>The code can be found in the <a href="https://github.com/jyeary/commons-utils">commons-utils</a> project on GitHub.</p>
+
+<h3 id="code">Code</h3>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.example.uri</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.nio.file.Files</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Base64</span><span class="o">;</span>
+
+<span class="cm">/**
+ *
+ * @author John Yeary &lt;jyeary@bluelotussoftware.com&gt;
+ */</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">Utils</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Convert a file into base 64 encoded URI.Primarily used for creating
+     * encoded images to be displayed inline in HTML.
+     *
+     * @param file The file to be converted into a data URI.
+     * @return A base 64 encoded representation of the the file in a data URI
+     * format.
+     * @throws IOException If an exception occurs during processing of the file.
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">toDataURI</span><span class="o">(</span><span class="kd">final</span> <span class="nc">File</span> <span class="n">file</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+        <span class="c1">// Check content type of the file</span>
+        <span class="nc">String</span> <span class="n">contentType</span> <span class="o">=</span> <span class="nc">Files</span><span class="o">.</span><span class="na">probeContentType</span><span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">toPath</span><span class="o">());</span>
+
+        <span class="c1">// Read data as byte[]</span>
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">data</span> <span class="o">=</span> <span class="nc">Files</span><span class="o">.</span><span class="na">readAllBytes</span><span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">toPath</span><span class="o">());</span>
+        
+        <span class="c1">// Convert byte[] to base64</span>
+        <span class="nc">String</span> <span class="n">encoded</span> <span class="o">=</span> <span class="nc">Base64</span><span class="o">.</span><span class="na">getEncoder</span><span class="o">().</span><span class="na">encodeToString</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+
+        <span class="c1">// Create "data URI"</span>
+        <span class="nc">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">"data:"</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">contentType</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">";base64,"</span><span class="o">);</span>
+        <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">encoded</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Running Kibana on Docker</title>
+	  <link>//2021-01-15-kibana-docker.html</link>
+	  <author></author>
+	  <pubDate>2021-01-15T00:00:00+00:00</pubDate>
+	  <guid>//2021-01-15-kibana-docker.html</guid>
+	  <description><![CDATA[
+	     <p>There are a number of documents on how to run Kibana on Docker using a <code class="language-plaintext highlighter-rouge">docker-compose</code> file. The instructions from Elastic have you create a link, but there is nothing as simple as the commands below.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container run -d --rm -e ELASTICSEARCH_HOSTS=https://{YOUR_SERVER_IP_HERE}:9200 -p 5601:5601 docker.elastic.co/kibana/kibana:7.10.0
+</code></pre></div></div>
+
+<p>This will create an instance of Kibana that is removed when you are done with it. You just need to replace the <code class="language-plaintext highlighter-rouge">{YOUR_SERVER_IP_HERE}</code> with the IP address or DNS name of the server, e.g. localhost.</p>
+
+<p>If you need to provide a custom <code class="language-plaintext highlighter-rouge">kibana.yml</code>, you can create the files locally and bind mount them as shown below.</p>
+
+<h3 id="powershell-example">Powershell Example</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container run -d --rm -e ELASTICSEARCH_HOSTS=https://{YOUR_SERVER_IP_HERE}:9200 -v ${PWD}/kibana/:/usr/share/kibana/config/ -p 5601:5601 docker.elastic.co/kibana/kibana:7.10.0
+</code></pre></div></div>
+
+<h3 id="macoslinuxunix-example">MacOS/Linux/UNIX Example</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container run -d --rm -e ELASTICSEARCH_HOSTS=https://{YOUR_SERVER_IP_HERE}:9200 -v $(PWD)/kibana/:/usr/share/kibana/config/ -p 5601:5601 docker.elastic.co/kibana/kibana:7.10.0
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Spring: How to Redirect the Context Root to Open API 3.0 (Swagger) UI</title>
+	  <link>//2020-08-13-spring-swagger-redirect.html</link>
+	  <author></author>
+	  <pubDate>2020-08-13T17:00:00+00:00</pubDate>
+	  <guid>//2020-08-13-spring-swagger-redirect.html</guid>
+	  <description><![CDATA[
+	     <p>I needed to set up my REST application to redirect users to my Open API Specification 3.0 (Swagger) UI in Spring. This can easily be accomplished by adding the following <code class="language-plaintext highlighter-rouge">@Controller</code> to the project.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.example.web</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Controller</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="o">;</span>
+
+<span class="cm">/**
+ * Root context redirection to OpenAPI API Specification (OAS) documentation.
+ *
+ * @author John Yeary &lt;jyeary@bluelotussoftware.com&gt;
+ * @version 1.0.0
+ */</span>
+<span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OASController</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * Sets the index page mapping to point to the Swagger UI.
+     *
+     * @return A redirect to the Swagger UI.
+     */</span>
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">index</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">"redirect:swagger-ui.html"</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Spring CORS Configuration</title>
+	  <link>//2020-07-02-spring-cors-configuration.html</link>
+	  <author></author>
+	  <pubDate>2020-07-02T00:00:00+00:00</pubDate>
+	  <guid>//2020-07-02-spring-cors-configuration.html</guid>
+	  <description><![CDATA[
+	     <p>I was working on an application today trying to setup CORS in Spring 2.1.8 (I know its an older version of Spring) and it would not work. It turns out I needed to update it to at least 2.2.0. Along the way, I was not able to find really good examples of how to setup customized handlers. Here is an example which allow simple defaults.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.cors.CorsConfiguration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.cors.CorsConfigurationSource</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.cors.UrlBasedCorsConfigurationSource</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.filter.CorsFilter</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ApplicationConfiguration</span>  <span class="o">{</span>
+
+    <span class="nd">@Bean</span>
+    <span class="nc">CorsConfigurationSource</span> <span class="nf">corsConfigurationSource</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">CorsConfiguration</span> <span class="n">configuration</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CorsConfiguration</span><span class="o">().</span><span class="na">applyPermitDefaultValues</span><span class="o">();</span>
+        <span class="nc">UrlBasedCorsConfigurationSource</span> <span class="n">source</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UrlBasedCorsConfigurationSource</span><span class="o">();</span>
+        <span class="n">source</span><span class="o">.</span><span class="na">registerCorsConfiguration</span><span class="o">(</span><span class="s">"/**"</span><span class="o">,</span> <span class="n">configuration</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">source</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">CorsFilter</span> <span class="nf">corsFilter</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">CorsFilter</span><span class="o">(</span><span class="n">corsConfigurationSource</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>cfssl Intermediate and Client Certificates</title>
+	  <link>//2020-05-26-cfssl-update.html</link>
+	  <author></author>
+	  <pubDate>2020-05-26T21:13:48+00:00</pubDate>
+	  <guid>//2020-05-26-cfssl-update.html</guid>
+	  <description><![CDATA[
+	     <h3 id="introduction">Introduction</h3>
+<p>In a previous blog post <a href="/2018-05-25-cfssl-cloudflare-ssl.html">CFSSL Cloudflare SSL</a> I discussed how to setup <code class="language-plaintext highlighter-rouge">cfssl</code> as a Certification Authority (CA) for issuing your own certificates. This becomes increasingly important in the world of containers. Especially when those containers are on internal networks, and VPCs where getting a <a href="https://letsencrypt.org/">Let’s Encrypt</a> certificate is not possible, or desirable.</p>
+
+<h3 id="new-and-improved">New and Improved</h3>
+<p>I was looking for a way to set up intermediate and client certificates. I was looking for ideas on how to setup the CA to handle these additional certificates. I found a post by Johannes Tegnér<sup>1</sup>. I liked his layout idea which I slighly modified below.</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/CA
+    /root
+    /intermediate
+        /production
+        /development
+    /certs
+</code></pre></div></div>
+<p>I tried his using the files he provided, but I believe that <code class="language-plaintext highlighter-rouge">cfssl</code> was updated between his post and today. As a result, the <code class="language-plaintext highlighter-rouge">config.json</code> files would not work without slight modifications. Here is my <code class="language-plaintext highlighter-rouge">config.json</code> for intermediate certificates. This file goes in the <code class="language-plaintext highlighter-rouge">intermediate</code> directory.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "signing": {
+        "default": {
+            "expiry": "720h",
+            "usages": [
+                "signing",
+                "key encipherment",
+                "cert sign",
+                "crl sign"
+            ]
+        },
+        "profiles": {
+            "development": {
+                "ca_constraint": {
+                    "is_ca": true,
+                    "max_path_len": 0,
+                    "max_path_len_zero": true
+                },
+                "expiry": "2160h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+                    "cert sign",
+                    "crl sign"
+                ]
+            },
+            "production": {
+                "ca_constraint": {
+                    "is_ca": true,
+                    "max_path_len": 0,
+                    "max_path_len_zero": true
+                },
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "key encipherment",
+                    "cert sign",
+                    "crl sign",
+                    "server auth",
+                    "client auth"
+                ]
+            }
+        }
+    }
+}
+</code></pre></div></div>
+<p>The intermediate certificates can be created with the following commands without using the network configuration in my previous blog post.</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>CA/intermediate/development
+cfssl genkey <span class="nt">-initca</span> ../intermediate.json | cfssljson <span class="nt">-bare</span> development
+cfssl sign <span class="nt">-ca</span> ../../root/ca.pem <span class="nt">-ca-key</span> ../../root/ca-key.pem <span class="nt">--config</span> ../config.json <span class="nt">-profile</span> development  development.csr | cfssljson <span class="nt">-bare</span> development 
+</code></pre></div></div>
+<p>Here is my <code class="language-plaintext highlighter-rouge">config.json</code> for different usage profiles for the final certificates.</p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "signing": {
+        "default": {
+            "expiry": "43800h"
+        },
+        "profiles": {
+            "client": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "digital signature",
+                    "key encipherment",
+                    "client auth"
+                ]
+            },
+            "peer": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "digital signature",
+                    "key encipherment",
+                    "client auth",
+                    "server auth"
+                ]
+            },
+            "server": {
+                "expiry": "43800h",
+                "usages": [
+                    "signing",
+                    "digital signing",
+                    "key encipherment",
+                    "server auth"
+                ]
+            }
+        }
+    }
+}
+</code></pre></div></div>
+<p>The final step for my purposes was generating the client certs.
+Here is my <code class="language-plaintext highlighter-rouge">client.json</code> file which is the same as Johannes’ file. His explanation is worth quoting.</p>
+<blockquote>
+  <p>When it comes to the client certificate, we don’t set any hosts, as we want to be able to
+connect to the services without having to care about the clients current host. It’s okay 
+to do though, if you want to!</p>
+</blockquote>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+    "CN": "Client",
+    "hosts": [
+        ""
+    ]
+}
+</code></pre></div></div>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cfssl gencert <span class="nt">-ca</span> ../intermediate/production/production.pem <span class="nt">-ca-key</span> ../intermediate/production/production-key.pem <span class="nt">-config</span><span class="o">=</span>config.json <span class="nt">-profile</span><span class="o">=</span>client client.json | cfssljson <span class="nt">-bare</span> client
+</code></pre></div></div>
+
+<h3 id="references">References</h3>
+<ol>
+  <li><a href="https://jite.eu/2019/2/6/ca-with-cfssl/">Certificate Authority with CFSSL </a></li>
+  <li><a href="https://github.com/cloudflare/cfssl">CFSSL: Cloudflare’s PKI and TLS toolkit</a></li>
+</ol>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Blog Migration Completed</title>
+	  <link>//2020-05-26-blog-migration-complete.html</link>
+	  <author></author>
+	  <pubDate>2020-05-26T20:34:34+00:00</pubDate>
+	  <guid>//2020-05-26-blog-migration-complete.html</guid>
+	  <description><![CDATA[
+	     <p>I finally finished migrating my blog from Wordpress to GitHub pages over the Memorial Day weekend. I started the process when I was in Maine at the end of 2019. I now find myself almost six months into 2020 and finally completed the migration.</p>
+
+<p>The significant advantage of Wordpress is its ease of use to get started. However, trying to maintain a database, and upgrades made it a chore. I was also hosting it on Google Cloud. That meant I was responsible for maintainence and security. I also had the additional expense of paying for the VM and data storage.</p>
+
+<p>GitHub makes a compelling choice. This is particularly true since I write my pages in Markdown, and it is a first class citizen on GitHub. I had issues everytime I upgraded Wordpress with the plugin(s) I was using to do Markdown on it. This was part of the maintenance headache that I decided to remedy.</p>
+
+<p>Today I am writing my post on <a href="https://dillinger.io/">Dillinger</a> running in a Docker container. I will save the post to my github repo, and push it. <a href="https://travis-ci.com/">Travis CI</a> will pull the updates, and build the pages and push them back to GitHub on the master branch.</p>
+
+<p>I know that seems like a lot of additional work, but it really is not. I can also test my <a href="https://jekyllrb.com/">Jekyll</a> pages locally using a Docker container to do the building to see what the final product is going to look like.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>docker container run <span class="nt">-it</span> <span class="nt">--rm</span> <span class="nt">-p</span> 4000:4000 <span class="nt">-v</span> <span class="nv">$PWD</span>:/blog ruby:2.6.6 /bin/bash
+</code></pre></div></div>
+<p>Where the $PWD is the checked out blog. I set up an alias called <code class="language-plaintext highlighter-rouge">docker-blog</code> in zsh to run the container. Once the container is started, I go to the <code class="language-plaintext highlighter-rouge">/blog</code> directory and run the following:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /blog <span class="o">&amp;&amp;</span> <span class="se">\</span>
+gem <span class="nb">install </span>bundler jekyll <span class="o">&amp;&amp;</span> <span class="se">\</span>
+bundle <span class="nb">install</span> <span class="o">&amp;&amp;</span> <span class="se">\</span>
+bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+<p>That completes my local environment to blog until I am sure I like it and commit.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Simple SMTP Client</title>
+	  <link>//2020-05-23-simple-SMTP-client.html</link>
+	  <author></author>
+	  <pubDate>2020-05-23T00:00:00+00:00</pubDate>
+	  <guid>//2020-05-23-simple-SMTP-client.html</guid>
+	  <description><![CDATA[
+	     <h2 id="introduction">Introduction</h2>
+<p>I was cleaning up my hard drive when I came across another simple and easy to use SMTP client using plain Java (no frameworks required). This was written originally written in 2004 with just some minor updates prior to publishing here.</p>
+
+<h2 id="code">Code</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
+ * SimpleTextMessage.java
+ *
+ * Created on August 7, 2004, 7:46 PM
+ */</span>
+
+<span class="cm">/*
+ * Copyright (C) 2004 JavaNetwork, LLC. All Rights Reserved.
+ * Copyright (C) 2004-2020 Blue Lotus Holdings, LLC. All Rights Reserved.
+ *
+ * This software is provided "AS IS," without a warranty of any kind. ALL
+ * EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES,
+ * INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. Blue Lotus Software AND
+ * ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES OR LIABILITIES
+ * SUFFERED BY LICENSEE AS A RESULT OF  OR RELATING TO USE, MODIFICATION
+ * OR DISTRIBUTION OF THE SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL
+ * Blue Lotus Software OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR
+ * FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE
+ * DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY,
+ * ARISING OUT OF THE USE OF OR INABILITY TO USE SOFTWARE, EVEN IF Blue Lotus Software HAS
+ * BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ *
+ * You acknowledge that Software is not designed, licensed or intended
+ * for use in the design, construction, operation or maintenance of any
+ * nuclear facility.
+ */</span>
+
+<span class="kn">package</span> <span class="nn">net.javanetwork.mail.smtp</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.sun.mail.smtp.SMTPAddressSucceededException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.sun.mail.smtp.SMTPMessage</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.sun.mail.smtp.SMTPSendFailedException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.sun.mail.smtp.SMTPTransport</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Properties</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.activation.DataHandler</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.mail.Message</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.mail.MessagingException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.mail.Session</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.mail.internet.InternetAddress</span><span class="o">;</span>
+
+<span class="cm">/**
+ * @author John Yeary
+ * @version 0.1
+ */</span>
+
+<span class="cm">/**
+ * Creates a simple single part RFC822 text message.
+ */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleTextMessage</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">auth</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">user</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">smtphost</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">InternetAddress</span> <span class="n">from</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">cc</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">bcc</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">subject</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">message</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Properties</span> <span class="n">props</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">SMTPMessage</span> <span class="n">msg</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">SMTPTransport</span> <span class="n">t</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">DataHandler</span> <span class="n">dh</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+
+    <span class="cm">/**
+     * Constructs a new instance of SimpleTextMessage with the specified SMTP
+     * mail server that requires user authorization. It also has a flag to turn
+     * on verbose output (default is false).
+     *
+     * @param smtphost SMTP mail host
+     * @param user user name for authorization
+     * @param password password
+     * @param from sender
+     * @param to recipient addresses
+     * @param subject subject
+     * @param message text of the message
+     * @param verbose boolean flag to turn on verbose output
+     */</span>
+    <span class="kd">public</span> <span class="nf">SimpleTextMessage</span><span class="o">(</span><span class="nc">String</span> <span class="n">smtphost</span><span class="o">,</span> <span class="nc">String</span> <span class="n">user</span><span class="o">,</span> <span class="nc">String</span> <span class="n">password</span><span class="o">,</span> <span class="nc">InternetAddress</span> <span class="n">from</span><span class="o">,</span>
+            <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span><span class="o">,</span> <span class="nc">String</span> <span class="n">subject</span><span class="o">,</span> <span class="nc">String</span> <span class="n">message</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">smtphost</span> <span class="o">=</span> <span class="n">smtphost</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">user</span> <span class="o">=</span> <span class="n">user</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">password</span> <span class="o">=</span> <span class="n">password</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">from</span> <span class="o">=</span> <span class="n">from</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">to</span> <span class="o">=</span> <span class="n">to</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">subject</span> <span class="o">=</span> <span class="n">subject</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">message</span> <span class="o">=</span> <span class="n">message</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">verbose</span> <span class="o">=</span> <span class="n">verbose</span><span class="o">;</span>
+
+        <span class="n">auth</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+
+        <span class="n">props</span> <span class="o">=</span> <span class="nc">System</span><span class="o">.</span><span class="na">getProperties</span><span class="o">();</span>
+        <span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"mail.smtp.host"</span><span class="o">,</span> <span class="n">smtphost</span><span class="o">);</span>
+        <span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"mail.smtp.sendpartial"</span><span class="o">,</span> <span class="nc">Boolean</span><span class="o">.</span><span class="na">TRUE</span><span class="o">);</span>
+        <span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"mail.smtp.dsn.notify"</span><span class="o">,</span> <span class="s">"SUCCESS,FAILURE"</span><span class="o">);</span>
+        <span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"mail.smtp.dsn.ret"</span><span class="o">,</span> <span class="s">"FULL"</span><span class="o">);</span>
+        <span class="n">props</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"mail.smtp.reportsuccess"</span><span class="o">,</span> <span class="nc">Boolean</span><span class="o">.</span><span class="na">TRUE</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Constructs a new instance of SimpleTextMessage with the specified SMTP
+     * mail server that requires user authorization. It also has a flag to turn
+     * on verbose output (default is false).
+     *
+     * @param smtphost SMTP mail host
+     * @param user user name for authorization
+     * @param password password
+     * @param from sender
+     * @param to recipient addresses
+     * @param cc carbon copy recipient addresses
+     * @param subject subject
+     * @param message text of the message
+     * @param verbose boolean flag to turn on verbose output
+     */</span>
+    <span class="kd">public</span> <span class="nf">SimpleTextMessage</span><span class="o">(</span><span class="nc">String</span> <span class="n">smtphost</span><span class="o">,</span> <span class="nc">String</span> <span class="n">user</span><span class="o">,</span> <span class="nc">String</span> <span class="n">password</span><span class="o">,</span> <span class="nc">InternetAddress</span> <span class="n">from</span><span class="o">,</span>
+            <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span><span class="o">,</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">cc</span><span class="o">,</span> <span class="nc">String</span> <span class="n">subject</span><span class="o">,</span> <span class="nc">String</span> <span class="n">message</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">smtphost</span><span class="o">,</span> <span class="n">user</span><span class="o">,</span> <span class="n">password</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span> <span class="n">subject</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">verbose</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">cc</span> <span class="o">=</span> <span class="n">cc</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Constructs a new instance of SimpleTextMessage with the specified SMTP
+     * mail server that requires user authorization. It also has a flag to turn
+     * on verbose output (default is false).
+     *
+     * @param smtphost SMTP mail host
+     * @param user user name for authorization
+     * @param password password
+     * @param from sender
+     * @param to recipient addresses
+     * @param cc carbon copy recipient addresses
+     * @param bcc blind carbon copy recipient addresses
+     * @param subject subject
+     * @param message text of the message
+     * @param auth
+     * @param verbose boolean flag to turn on verbose output
+     */</span>
+    <span class="kd">public</span> <span class="nf">SimpleTextMessage</span><span class="o">(</span><span class="nc">String</span> <span class="n">smtphost</span><span class="o">,</span> <span class="nc">String</span> <span class="n">user</span><span class="o">,</span> <span class="nc">String</span> <span class="n">password</span><span class="o">,</span> <span class="nc">InternetAddress</span> <span class="n">from</span><span class="o">,</span>
+            <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span><span class="o">,</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">cc</span><span class="o">,</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">bcc</span><span class="o">,</span> <span class="nc">String</span> <span class="n">subject</span><span class="o">,</span> <span class="nc">String</span> <span class="n">message</span><span class="o">,</span>
+            <span class="kt">boolean</span> <span class="n">auth</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">smtphost</span><span class="o">,</span> <span class="n">user</span><span class="o">,</span> <span class="n">password</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span> <span class="n">cc</span><span class="o">,</span> <span class="n">subject</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">verbose</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">bcc</span> <span class="o">=</span> <span class="n">bcc</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Constructs a new instance of SimpleTextMessage with the specified SMTP
+     * mail server that requires user authorization. It also has a flag to turn
+     * on verbose output (default is false).
+     *
+     * @param smtphost SMTP mail host
+     * @param user user name for authorization
+     * @param password password
+     * @param from sender
+     * @param to recipient addresses
+     * @param bcc blind carbon copy recipient addresses
+     * @param subject subject
+     * @param message text of the message
+     * @param auth
+     * @param verbose boolean flag to turn on verbose output
+     */</span>
+    <span class="kd">public</span> <span class="nf">SimpleTextMessage</span><span class="o">(</span><span class="nc">String</span> <span class="n">smtphost</span><span class="o">,</span> <span class="nc">String</span> <span class="n">user</span><span class="o">,</span> <span class="nc">String</span> <span class="n">password</span><span class="o">,</span> <span class="nc">InternetAddress</span> <span class="n">from</span><span class="o">,</span>
+            <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span><span class="o">,</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">bcc</span><span class="o">,</span> <span class="nc">String</span> <span class="n">subject</span><span class="o">,</span> <span class="nc">String</span> <span class="n">message</span><span class="o">,</span>
+            <span class="kt">boolean</span> <span class="n">auth</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">smtphost</span><span class="o">,</span> <span class="n">user</span><span class="o">,</span> <span class="n">password</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span> <span class="n">subject</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">verbose</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">bcc</span> <span class="o">=</span> <span class="n">bcc</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Constructs a new instance of SimpleTextMessage with the specified SMTP
+     * mail server that does not require user authorization. It also has a flag
+     * to turn on verbose output (default is false).
+     *
+     * @param smtphost SMTP mail host
+     * @param from sender
+     * @param to recipient addresses
+     * @param subject subject
+     * @param message text of the message
+     * @param verbose boolean flag to turn on verbose output
+     */</span>
+    <span class="kd">public</span> <span class="nf">SimpleTextMessage</span><span class="o">(</span><span class="nc">String</span> <span class="n">smtphost</span><span class="o">,</span> <span class="nc">InternetAddress</span> <span class="n">from</span><span class="o">,</span>
+            <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span><span class="o">,</span> <span class="nc">String</span> <span class="n">subject</span><span class="o">,</span> <span class="nc">String</span> <span class="n">message</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">smtphost</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span> <span class="n">subject</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">verbose</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Constructs a new instance of SimpleTextMessage with the specified SMTP
+     * mail server that does not require user authorization. It also has a flag
+     * to turn on verbose output (default is false).
+     *
+     * @param smtphost SMTP mail host
+     * @param from sender
+     * @param to recipient addresses
+     * @param cc carbon copy recipient addresses
+     * @param subject subject
+     * @param message text of the message
+     * @param verbose boolean flag to turn on verbose output
+     */</span>
+    <span class="kd">public</span> <span class="nf">SimpleTextMessage</span><span class="o">(</span><span class="nc">String</span> <span class="n">smtphost</span><span class="o">,</span> <span class="nc">InternetAddress</span> <span class="n">from</span><span class="o">,</span>
+            <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span><span class="o">,</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">cc</span><span class="o">,</span> <span class="nc">String</span> <span class="n">subject</span><span class="o">,</span> <span class="nc">String</span> <span class="n">message</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">smtphost</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span> <span class="n">subject</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">verbose</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">cc</span> <span class="o">=</span> <span class="n">cc</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Constructs a new instance of SimpleTextMessage with the specified SMTP
+     * mail server that does not require user authorization. It also has a flag
+     * to turn on verbose output (default is false).
+     *
+     * @param smtphost SMTP mail host
+     * @param from sender
+     * @param to recipient addresses
+     * @param cc carbon copy recipient addresses
+     * @param bcc blind carbon copy recipient addresses
+     * @param subject subject
+     * @param message text of the message
+     * @param verbose boolean flag to turn on verbose output
+     */</span>
+    <span class="kd">public</span> <span class="nf">SimpleTextMessage</span><span class="o">(</span><span class="nc">String</span> <span class="n">smtphost</span><span class="o">,</span> <span class="nc">InternetAddress</span> <span class="n">from</span><span class="o">,</span>
+            <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span><span class="o">,</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">cc</span><span class="o">,</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">bcc</span><span class="o">,</span> <span class="nc">String</span> <span class="n">subject</span><span class="o">,</span> <span class="nc">String</span> <span class="n">message</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">smtphost</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span> <span class="n">cc</span><span class="o">,</span> <span class="n">subject</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">verbose</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">bcc</span> <span class="o">=</span> <span class="n">bcc</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Constructs a new instance of SimpleTextMessage with the specified SMTP
+     * mail server that does not require user authorization. It also has a flag
+     * to turn on verbose output (default is false).
+     *
+     * @param smtphost SMTP mail host
+     * @param from sender
+     * @param to recipient addresses
+     * @param bcc blind carbon copy recipient addresses
+     * @param subject subject
+     * @param message text of the message
+     * @param verbose boolean flag to turn on verbose output
+     */</span>
+    <span class="kd">public</span> <span class="nf">SimpleTextMessage</span><span class="o">(</span><span class="nc">String</span> <span class="n">smtphost</span><span class="o">,</span> <span class="nc">InternetAddress</span> <span class="n">from</span><span class="o">,</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span><span class="o">,</span> <span class="nc">String</span> <span class="n">subject</span><span class="o">,</span>
+            <span class="nc">String</span> <span class="n">message</span><span class="o">,</span> <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">bcc</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">smtphost</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">bcc</span><span class="o">,</span> <span class="n">subject</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">verbose</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Constructs a new instance of SimpleTextMessage with the specified SMTP
+     * mail server that does not require user authorization. verbose output is
+     * disabled.
+     *
+     * @param smtphost SMTP mail host
+     * @param from sender
+     * @param to recipient addresses
+     * @param subject subject
+     * @param message text of the message
+     *
+     */</span>
+    <span class="kd">public</span> <span class="nf">SimpleTextMessage</span><span class="o">(</span><span class="nc">String</span> <span class="n">smtphost</span><span class="o">,</span> <span class="nc">InternetAddress</span> <span class="n">from</span><span class="o">,</span>
+            <span class="nc">InternetAddress</span><span class="o">[]</span> <span class="n">to</span><span class="o">,</span> <span class="nc">String</span> <span class="n">subject</span><span class="o">,</span> <span class="nc">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">smtphost</span><span class="o">,</span> <span class="n">from</span><span class="o">,</span> <span class="n">to</span><span class="o">,</span> <span class="n">subject</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Create a simple SMTP text/plain message and send it.
+     */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">create</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">Session</span> <span class="n">session</span> <span class="o">=</span> <span class="nc">Session</span><span class="o">.</span><span class="na">getDefaultInstance</span><span class="o">(</span><span class="n">props</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SMTPMessage</span><span class="o">(</span><span class="n">session</span><span class="o">);</span>
+            <span class="n">msg</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">"X-Mailer"</span><span class="o">,</span> <span class="s">"JavaNetwork SimpleTextMessage MUA 0.1"</span><span class="o">);</span>
+            <span class="n">msg</span><span class="o">.</span><span class="na">setFrom</span><span class="o">(</span><span class="n">from</span><span class="o">);</span>
+            <span class="n">msg</span><span class="o">.</span><span class="na">setRecipients</span><span class="o">(</span><span class="nc">Message</span><span class="o">.</span><span class="na">RecipientType</span><span class="o">.</span><span class="na">TO</span><span class="o">,</span> <span class="n">to</span><span class="o">);</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">cc</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">cc</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">msg</span><span class="o">.</span><span class="na">setRecipients</span><span class="o">(</span><span class="nc">Message</span><span class="o">.</span><span class="na">RecipientType</span><span class="o">.</span><span class="na">CC</span><span class="o">,</span> <span class="n">cc</span><span class="o">);</span>
+            <span class="o">}</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">bcc</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">bcc</span><span class="o">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">msg</span><span class="o">.</span><span class="na">setRecipients</span><span class="o">(</span><span class="nc">Message</span><span class="o">.</span><span class="na">RecipientType</span><span class="o">.</span><span class="na">BCC</span><span class="o">,</span> <span class="n">bcc</span><span class="o">);</span>
+            <span class="o">}</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">subject</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">subject</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">msg</span><span class="o">.</span><span class="na">setSubject</span><span class="o">(</span><span class="n">subject</span><span class="o">);</span>
+            <span class="o">}</span>
+
+            <span class="n">msg</span><span class="o">.</span><span class="na">setSentDate</span><span class="o">(</span><span class="k">new</span> <span class="nc">Date</span><span class="o">());</span>
+            <span class="n">dh</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DataHandler</span><span class="o">(</span><span class="n">message</span><span class="o">,</span> <span class="s">"text/plain"</span><span class="o">);</span>
+            <span class="n">msg</span><span class="o">.</span><span class="na">setDataHandler</span><span class="o">(</span><span class="n">dh</span><span class="o">);</span>
+
+            <span class="c1">// Set the SMTP transport to use the current session</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="o">(</span><span class="nc">SMTPTransport</span><span class="o">)</span> <span class="n">session</span><span class="o">.</span><span class="na">getTransport</span><span class="o">(</span><span class="s">"smtp"</span><span class="o">);</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">setReportSuccess</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span> <span class="c1">// report successfully sent message as SMTPSendSucceededException</span>
+
+            <span class="c1">// Check for SMTP server authorization requirements</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">auth</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">t</span><span class="o">.</span><span class="na">connect</span><span class="o">(</span><span class="n">smtphost</span><span class="o">,</span> <span class="n">user</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">t</span><span class="o">.</span><span class="na">connect</span><span class="o">();</span>
+            <span class="o">}</span>
+            <span class="c1">// Extract all of the recipients from the message and send</span>
+            <span class="nc">SMTPTransport</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">msg</span><span class="o">,</span> <span class="n">msg</span><span class="o">.</span><span class="na">getAllRecipients</span><span class="o">());</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"All Messages Sent"</span><span class="o">);</span>
+
+        <span class="cm">/* It appears that the SMTPSendSuccededException and SMTPSendFailedExceptions are never
+         * returned from the SMTP host. Further investigation is necessary as to why this does not
+         * happen. The code is left "as is" until a solution is determined. The order of the exceptions
+         * may need to be changed to chain the SMTPSendSuccededException from the SMTPSendFailedException.
+         */</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">SMTPAddressSucceededException</span> <span class="n">sse</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">sse</span><span class="o">.</span><span class="na">getNextException</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sse</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"SUCCEEDED"</span><span class="o">);</span>
+
+                <span class="k">if</span> <span class="o">(</span><span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Address: "</span> <span class="o">+</span> <span class="n">sse</span><span class="o">.</span><span class="na">getAddress</span><span class="o">());</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Command: "</span> <span class="o">+</span> <span class="n">sse</span><span class="o">.</span><span class="na">getCommand</span><span class="o">());</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Return Code: "</span> <span class="o">+</span> <span class="n">sse</span><span class="o">.</span><span class="na">getReturnCode</span><span class="o">());</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Response: "</span> <span class="o">+</span> <span class="n">sse</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Message:"</span><span class="o">);</span>
+                    <span class="k">try</span> <span class="o">{</span>
+                        <span class="n">msg</span><span class="o">.</span><span class="na">writeTo</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">);</span>
+                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="o">|</span> <span class="nc">MessagingException</span> <span class="n">ignored</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">SMTPSendFailedException</span> <span class="n">sfe</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">sfe</span><span class="o">.</span><span class="na">getNextException</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sfe</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"FAILED"</span><span class="o">);</span>
+
+                <span class="k">if</span> <span class="o">(</span><span class="n">verbose</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Command: "</span> <span class="o">+</span> <span class="n">sfe</span><span class="o">.</span><span class="na">getCommand</span><span class="o">());</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Return Code: "</span> <span class="o">+</span> <span class="n">sfe</span><span class="o">.</span><span class="na">getReturnCode</span><span class="o">());</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Response: "</span> <span class="o">+</span> <span class="n">sfe</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">MessagingException</span> <span class="n">me</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Messaging exception!"</span><span class="o">);</span>
+            <span class="n">me</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">);</span>
+
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="c1">// Close connection</span>
+                <span class="n">t</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">MessagingException</span> <span class="n">ignored</span><span class="o">)</span> <span class="o">{</span>
+            <span class="o">}</span> <span class="c1">//Already Closed</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Apache FTP Client... A Found Surprise</title>
+	  <link>//2020-05-22-apache-ftp-client.html</link>
+	  <author></author>
+	  <pubDate>2020-05-22T00:00:00+00:00</pubDate>
+	  <guid>//2020-05-22-apache-ftp-client.html</guid>
+	  <description><![CDATA[
+	     <h2 id="introduction">Introduction</h2>
+<p>I was cleaning up my hard drive this Memorial Day weekend when I found a bunch of code I wrote many years ago. It is funny how hindsight is 20/20. The old code examples I found were in some cases awful by today’s standards. At the time, I thought it looked pretty good. I guess as we celebrate 25 years of Java and me coding it, we should look at some code from dusty days past.</p>
+
+<h2 id="code">Code</h2>
+
+<p>The code was originally written for Apache <code class="language-plaintext highlighter-rouge">commons-net-1.3.0</code>, but it still works and not a lot has changed with Apache… or FTP for decades. Let’s look at some code. I did update some of it from its original state. I couldn’t let it pass. It may have a little Java 8+ “enhancements”.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/*
+ * FTPTransfer.java
+ *
+ * Created on January 23, 2004, 8:20 AM
+ */</span>
+
+ <span class="cm">/*
+ * Copyright (C) 2004 John Yeary. All Rights Reserved.
+ *
+ * THIS SOFTWARE IS PROVIDED "AS IS," WITHOUT A WARRANTY OF ANY KIND. ALL
+ * EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES,
+ * INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A
+ * PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY EXCLUDED. JOHN YEARY AND
+ * ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES OR LIABILITIES
+ * SUFFERED BY LICENSEE AS A RESULT OF  OR RELATING TO USE, MODIFICATION
+ * OR DISTRIBUTION OF THE SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL
+ * JOHN YEARY OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR
+ * FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE
+ * DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY,
+ * ARISING OUT OF THE USE OF OR INABILITY TO USE SOFTWARE, EVEN IF JOHN YEARY HAS
+ * BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ *
+ * You acknowledge that Software is not designed, licensed or intended
+ * for use in the design, construction, operation or maintenance of any
+ * nuclear facility.
+ */</span>
+
+<span class="kn">package</span> <span class="nn">net.javanetwork.net</span><span class="o">;</span>
+
+<span class="cm">/**
+ *
+ * @author John Yeary
+ * @version $Revision$
+ *
+ * &lt;p&gt;
+ * This class is designed to transfer files via FTP using the org.apache.commons.net framework.&lt;/p&gt;
+ */</span>
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileInputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileNotFoundException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.net.SocketException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.logging.Level</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.logging.Logger</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.regex.PatternSyntaxException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">lombok.Data</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">lombok.NoArgsConstructor</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.commons.net.ftp.FTP</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.commons.net.ftp.FTPClient</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.commons.net.ftp.FTPConnectionClosedException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.commons.net.ftp.FTPReply</span><span class="o">;</span>
+
+<span class="nd">@NoArgsConstructor</span>
+<span class="nd">@Data</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FTPTransfer</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="nc">FTPClient</span> <span class="n">ftp</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Logger</span> <span class="n">log</span> <span class="o">=</span> <span class="nc">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="nc">FTPTransfer</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getCanonicalName</span><span class="o">());</span>
+
+    <span class="cm">/**
+     * The username to use to login to FTP server.
+     */</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">username</span><span class="o">;</span>
+
+    <span class="cm">/**
+     * The target FTP server hostname.
+     */</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">hostname</span><span class="o">;</span>
+
+    <span class="cm">/**
+     * Password for username.
+     */</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span><span class="o">;</span>
+
+    <span class="cm">/**
+     * The target directory for where the files are to be placed.
+     */</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">targetDirectory</span><span class="o">;</span>
+
+    <span class="cm">/**
+     * File transfer type. It is usually {@link FTP#ASCII_FILE_TYPE}, or {@link FTP#BINARY_FILE_TYPE}. The default file
+     * transfer type is ASCII.
+     */</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">fileType</span> <span class="o">=</span> <span class="no">FTP</span><span class="o">.</span><span class="na">ASCII_FILE_TYPE</span><span class="o">;</span>
+
+    <span class="cm">/**
+     * Logging level. The default logging level is INFO.
+     */</span>
+    <span class="kd">private</span> <span class="nc">Level</span> <span class="n">logLevel</span> <span class="o">=</span> <span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">;</span>
+
+    <span class="cm">/**
+     * An array of files to be transferred.
+     */</span>
+    <span class="kd">private</span> <span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">File</span><span class="o">[]</span> <span class="n">files</span><span class="o">;</span>
+
+    <span class="cm">/**
+     * Indicates if the directory should be created on the remote FTP server if they do not exist.
+     */</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">createDirectories</span><span class="o">;</span>
+
+    <span class="cm">/**
+     * Connect to FTP server based on the hostname, username, and password set. If it encounters any issues connecting,
+     * it will call the &lt;code&gt;disconnect()&lt;/code&gt; method. This method also starts the default logging.
+     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">connect</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">replyCode</span><span class="o">;</span>
+
+        <span class="n">ftp</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FTPClient</span><span class="o">();</span>
+
+        <span class="k">try</span> <span class="o">{</span>
+
+            <span class="k">if</span> <span class="o">(</span><span class="n">hostname</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="s">"Connecting to {0}."</span><span class="o">,</span> <span class="n">hostname</span><span class="o">);</span>
+                <span class="n">ftp</span><span class="o">.</span><span class="na">connect</span><span class="o">(</span><span class="n">hostname</span><span class="o">);</span>
+                <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="s">"User: {0}"</span><span class="o">,</span> <span class="n">username</span><span class="o">);</span>
+                <span class="n">ftp</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">username</span><span class="o">,</span> <span class="n">password</span><span class="o">);</span>
+                <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="n">ftp</span><span class="o">.</span><span class="na">getReplyString</span><span class="o">());</span>
+
+                <span class="c1">// Check to make sure we have a usable connection</span>
+                <span class="n">replyCode</span> <span class="o">=</span> <span class="n">ftp</span><span class="o">.</span><span class="na">getReplyCode</span><span class="o">();</span>
+
+                <span class="k">if</span> <span class="o">(!</span><span class="nc">FTPReply</span><span class="o">.</span><span class="na">isPositiveCompletion</span><span class="o">(</span><span class="n">replyCode</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="s">"FTP failed to connect with reply code: {0}"</span><span class="o">,</span> <span class="n">replyCode</span><span class="o">);</span>
+                    <span class="n">disconnect</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="s">"No hostname set. Exiting application."</span><span class="o">);</span>
+                <span class="nc">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+            <span class="o">}</span>
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">SocketException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="s">"SocketException on Connection"</span><span class="o">);</span>
+            <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="s">"IOException on Connection"</span><span class="o">);</span>
+            <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Disconnect from connected FTP server.
+     */</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">disconnect</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="s">"Logging out."</span><span class="o">);</span>
+            <span class="n">ftp</span><span class="o">.</span><span class="na">logout</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">ignored</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">ftp</span><span class="o">.</span><span class="na">isConnected</span><span class="o">())</span> <span class="o">{</span>
+                    <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="s">"Disconnecting."</span><span class="o">);</span>
+                    <span class="n">ftp</span><span class="o">.</span><span class="na">disconnect</span><span class="o">();</span>
+                    <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="s">"Disconnected."</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">WARNING</span><span class="o">,</span> <span class="s">"IOException on disconnect."</span><span class="o">);</span>
+                <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">WARNING</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+     * Transfers a single file in ASCII or BINARY depending on the file type set using &lt;code&gt;setFileType&lt;/code&gt;. The
+     * default file transfer type is ASCII.
+     *
+     * @return
+     */</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">transferFiles</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">reply</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="nc">FileInputStream</span> <span class="n">in</span><span class="o">;</span>
+        <span class="nc">String</span><span class="o">[]</span> <span class="n">targetDirectorySplit</span><span class="o">;</span>
+
+        <span class="c1">// Connect to server.</span>
+        <span class="n">connect</span><span class="o">();</span>
+
+        <span class="c1">// Check to see if we are connected before continuing</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">ftp</span><span class="o">.</span><span class="na">isConnected</span><span class="o">())</span> <span class="o">{</span>
+
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="c1">// Change to the requested directory</span>
+                <span class="n">reply</span> <span class="o">=</span> <span class="n">ftp</span><span class="o">.</span><span class="na">cwd</span><span class="o">(</span><span class="n">targetDirectory</span><span class="o">);</span>
+                <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="n">ftp</span><span class="o">.</span><span class="na">getReplyString</span><span class="o">());</span>
+
+                <span class="k">if</span> <span class="o">(</span><span class="nc">FTPReply</span><span class="o">.</span><span class="na">isNegativePermanent</span><span class="o">(</span><span class="n">reply</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">reply</span> <span class="o">==</span> <span class="nc">FTPReply</span><span class="o">.</span><span class="na">CODE_553</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="c1">// Permission denied to target directory</span>
+
+                    <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="s">"{0} - Permission denied to target directory."</span><span class="o">,</span> <span class="n">ftp</span><span class="o">.</span><span class="na">getReplyString</span><span class="o">());</span>
+
+                <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="nc">FTPReply</span><span class="o">.</span><span class="na">isNegativePermanent</span><span class="o">(</span><span class="n">reply</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">reply</span> <span class="o">==</span> <span class="nc">FTPReply</span><span class="o">.</span><span class="na">CODE_550</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="s">"Directory: {0} does not not exist."</span><span class="o">,</span> <span class="n">targetDirectory</span><span class="o">);</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">createDirectories</span><span class="o">)</span> <span class="o">{</span>
+
+                        <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="s">"Attempting to create {0}."</span><span class="o">,</span> <span class="n">targetDirectory</span><span class="o">);</span>
+
+                        <span class="c1">//Split the target directory into tokens to create the directory and sub-directories</span>
+                        <span class="n">targetDirectorySplit</span> <span class="o">=</span> <span class="n">targetDirectory</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">"/"</span><span class="o">);</span>
+
+                        <span class="c1">//Create the directory and sub-directories</span>
+                        <span class="k">for</span> <span class="o">(</span><span class="nc">String</span> <span class="n">directory</span> <span class="o">:</span> <span class="n">targetDirectorySplit</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="s">"Creating: {0}"</span><span class="o">,</span> <span class="n">directory</span><span class="o">);</span>
+                            <span class="n">reply</span> <span class="o">=</span> <span class="n">ftp</span><span class="o">.</span><span class="na">mkd</span><span class="o">(</span><span class="n">directory</span><span class="o">);</span>
+                            <span class="n">ftp</span><span class="o">.</span><span class="na">cwd</span><span class="o">(</span><span class="n">directory</span><span class="o">);</span>
+                            <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="n">ftp</span><span class="o">.</span><span class="na">getReplyString</span><span class="o">());</span>
+                        <span class="o">}</span>
+                        <span class="c1">// Check the final response from server to decide if we should continue.</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="nc">FTPReply</span><span class="o">.</span><span class="na">isNegativePermanent</span><span class="o">(</span><span class="n">reply</span><span class="o">))</span> <span class="o">{</span>
+                            <span class="n">disconnect</span><span class="o">();</span>
+                            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                        <span class="o">}</span>
+                    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                        <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="s">"Directory: {0} does not not exist, and the application is not set to create directories."</span><span class="o">,</span> <span class="n">targetDirectory</span><span class="o">);</span>
+                        <span class="n">disconnect</span><span class="o">();</span>
+                        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">PatternSyntaxException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span>
+                        <span class="s">"The target directory format was not in typical UNIX style: /directory/subdirectory"</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="s">"Can not create directory {0}."</span><span class="o">,</span> <span class="n">targetDirectory</span><span class="o">);</span>
+                <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="n">ftp</span><span class="o">.</span><span class="na">getReplyString</span><span class="o">());</span>
+                <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="c1">// Set the file type for data transfer</span>
+            <span class="n">ftp</span><span class="o">.</span><span class="na">setFileType</span><span class="o">(</span><span class="n">fileType</span><span class="o">);</span>
+            <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="n">ftp</span><span class="o">.</span><span class="na">getReplyString</span><span class="o">());</span>
+
+            <span class="c1">//Start transferring the files.</span>
+            <span class="k">for</span> <span class="o">(</span><span class="nc">File</span> <span class="n">file</span> <span class="o">:</span> <span class="n">files</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">file</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="s">"Opening FileInputStream to: {0}"</span><span class="o">,</span> <span class="n">file</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+                    <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileInputStream</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
+                    <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="s">"Transferring {0} to server."</span><span class="o">,</span> <span class="n">file</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+                    <span class="n">ftp</span><span class="o">.</span><span class="na">storeFile</span><span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">in</span><span class="o">);</span>
+                    <span class="n">reply</span> <span class="o">=</span> <span class="n">ftp</span><span class="o">.</span><span class="na">getReplyCode</span><span class="o">();</span>
+                    <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="n">ftp</span><span class="o">.</span><span class="na">getReplyString</span><span class="o">());</span>
+                    <span class="c1">// close the FileInputStream</span>
+                    <span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+                    <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="s">"FileInputStream closed."</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">FTPConnectionClosedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">FileNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">SEVERE</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">ftp</span><span class="o">.</span><span class="na">isConnected</span><span class="o">())</span> <span class="o">{</span>
+                    <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="s">"Disconnecting."</span><span class="o">);</span>
+                    <span class="n">ftp</span><span class="o">.</span><span class="na">disconnect</span><span class="o">();</span>
+                    <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">INFO</span><span class="o">,</span> <span class="s">"Disconnected."</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">WARNING</span><span class="o">,</span> <span class="s">"IOException on disconnect."</span><span class="o">);</span>
+                <span class="n">log</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="nc">Level</span><span class="o">.</span><span class="na">WARNING</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">reply</span> <span class="o">==</span> <span class="mi">226</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Here is an example of how to use it.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">net.javanetwork.net</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">lombok.NoArgsConstructor</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.commons.net.ftp.FTP</span><span class="o">;</span>
+
+<span class="nd">@NoArgsConstructor</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FTPExample</span> <span class="o">{</span>
+
+    <span class="cm">/**
+     * @param args the command line arguments
+     */</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">FTPTransfer</span> <span class="n">ft</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FTPTransfer</span><span class="o">();</span>
+        <span class="nc">File</span><span class="o">[]</span> <span class="n">nf</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+        <span class="n">nf</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"java.png"</span><span class="o">);</span>
+        <span class="n">ft</span><span class="o">.</span><span class="na">setFiles</span><span class="o">(</span><span class="n">nf</span><span class="o">);</span>
+        <span class="n">ft</span><span class="o">.</span><span class="na">setFileType</span><span class="o">(</span><span class="no">FTP</span><span class="o">.</span><span class="na">BINARY_FILE_TYPE</span><span class="o">);</span> <span class="c1">// The Default is FTP.ASCII</span>
+        <span class="n">ft</span><span class="o">.</span><span class="na">setHostname</span><span class="o">(</span><span class="s">"speedtest.tele2.net"</span><span class="o">);</span>
+        <span class="n">ft</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">"anonymous"</span><span class="o">);</span>
+        <span class="n">ft</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="s">"anonymous"</span><span class="o">);</span>
+        <span class="n">ft</span><span class="o">.</span><span class="na">setTargetDirectory</span><span class="o">(</span><span class="s">"/upload"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">ft</span><span class="o">.</span><span class="na">transferFiles</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>It is interesting that this code is originally from 2004. The FTP host http://speedtest.tele2.net allows anonymous connections for testing upload and download speeds. A great feature is that it has downloadable files of various sizes for testing.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Convert Server Certificate and Key into PKCS#12, and Java Keystore (JKS)</title>
+	  <link>//2020-03-13-import-pkcs12-keystore.html</link>
+	  <author></author>
+	  <pubDate>2020-03-13T12:00:00+00:00</pubDate>
+	  <guid>//2020-03-13-import-pkcs12-keystore.html</guid>
+	  <description><![CDATA[
+	     <p>I was looking for simple instructions on how to convert a certificate to a keystore. Here is my simplified version.</p>
+
+<ol>
+  <li>Build the certificate chain into a single file.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat </span>server.pem intermediate.pem root.pem <span class="o">&gt;</span> import.pem
+</code></pre></div>    </div>
+  </li>
+  <li>Convert the private key and merged certificate files into a PKCS12 file.
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl pkcs12 <span class="nt">-export</span> <span class="nt">-in</span> import.pem <span class="nt">-inkey</span> server.key <span class="nt">-name</span> serverHostName <span class="o">&gt;</span> server.p12
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Import the PKCS12 file into Java Keystore (JKS).</p>
+
+    <p><strong>Note:</strong> Java 9 changed the default Java Keystore to PKCS#12. The following is only required for Java 8, or applications that have JKS dependency. See <a href="http://openjdk.java.net/jeps/229">JEP 229: Create PKCS12 Keystores by Default</a></p>
+  </li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>keytool <span class="nt">-importkeystore</span> <span class="nt">-srckeystore</span> server.p12 <span class="nt">-destkeystore</span> keystore.jks <span class="nt">-srcstoretype</span> pkcs12 <span class="nt">-alias</span> serverHostName 
+</code></pre></div></div>
+
+<h2 id="notes">Notes</h2>
+
+<p>If you are using PKCS#12 as your keystore, edit the <code class="language-plaintext highlighter-rouge">JAVA_HOME/jre/lib/security/java.security</code> file and change the default keystore type as shown below:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Default keystore type.
+keystore.type=pkcs12
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Resolutions</title>
+	  <link>//2020-01-01-resolution.html</link>
+	  <author></author>
+	  <pubDate>2020-01-01T00:00:00+00:00</pubDate>
+	  <guid>//2020-01-01-resolution.html</guid>
+	  <description><![CDATA[
+	     <h1 id="do-achievable-things">Do Achievable Things!</h1>
+
+<p>Every year most people make resolutions to do things like lose weight, eat more at home, travel, etc. After
+some period of time most of those resolutions follow the way of the dinosaur. This year my New Year’s resolution
+is to <strong>Do Achievable Things</strong>. This phrase is meant to act as a reminder to make decisions to do things that you can feel
+a sense of success. Pick small tasks like walk daily, or run a mile. These small acts add up over time and builds upon success after success.</p>
+
+<p>This last year I lost 30 lbs. I was running everyday, and switched over to a training plan to run a half-marathon this month. Unfortunately, I got a really bad
+cold with bronchitis which totally derailed my running and training. The goal was reachable, but forces outside my control are going to make this goal unreachable
+this month. Once I am back to being healthy, I will achieve this goal.</p>
+
+<p>One of the goals I have is to migrate my blog from Wordpress over to Github, and to write more frequently. Let’s see how that works out by the end of 2020.</p>
+
+<p>Happy New Year 2020.</p>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>
