@@ -930,7 +930,7 @@ layout, and appearance. So I backed up the data from Blogger and used the import
     
       
       <item>
-        <title>A Seafarer's Cautionary Tale</title>
+        <title>A Seafarer&apos;s Cautionary Tale</title>
         
           <description>&lt;p&gt;&lt;a href=&quot;https://photos.marinetraffic.com/ais/showphoto.aspx?photoid=1993052&quot;&gt;&lt;img src=&quot;https://photos.marinetraffic.com/ais/showphoto.aspx?photoid=1993052&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -1529,7 +1529,7 @@ Is “&lt;strong&gt;THANKS FOR A GREAT POW WOW DAY&lt;/strong&gt;”. &lt;br /&g
     
       
       <item>
-        <title>Linda Norgrove's Tragic Death</title>
+        <title>Linda Norgrove&apos;s Tragic Death</title>
         
           <description>&lt;figure class=&quot;image&quot;&gt;
     &lt;img src=&quot;https://civiliancontractors.files.wordpress.com/2011/02/linda-norgrove-grid-6x2.jpg&quot; alt=&quot;Linda Norgrove&quot; /&gt;
@@ -1597,7 +1597,7 @@ Is “&lt;strong&gt;THANKS FOR A GREAT POW WOW DAY&lt;/strong&gt;”. &lt;br /&g
       <item>
         <title>Exploding Manholes</title>
         
-          <description>&lt;p&gt;&lt;img src=&quot;assets/images/3718921415_477dea162e.jpg&quot; alt=&quot;'Manhole Cover Designs: Urban Industrial Artworks under Our Feet'&quot; /&gt;&lt;/p&gt;
+          <description>&lt;p&gt;&lt;img src=&quot;assets/images/3718921415_477dea162e.jpg&quot; alt=&quot;&apos;Manhole Cover Designs: Urban Industrial Artworks under Our Feet&apos;&quot; /&gt;&lt;/p&gt;
 
 </description>
         
@@ -1727,7 +1727,7 @@ Is “&lt;strong&gt;THANKS FOR A GREAT POW WOW DAY&lt;/strong&gt;”. &lt;br /&g
     
       
       <item>
-        <title>Say It Ain't So...Derek Lee leaves Chicago Cubs</title>
+        <title>Say It Ain&apos;t So...Derek Lee leaves Chicago Cubs</title>
         
           <description>&lt;figure class=&quot;image&quot;&gt;
     &lt;img src=&quot;http://2.bp.blogspot.com/_UZzjPhczYTc/TG7XmSdwnpI/AAAAAAAABJI/9wNJwMj1qqo/s1600/LeeJerseyCropped.jpg&quot; alt=&quot;Derek Lee&quot; /&gt;
@@ -2274,19 +2274,19 @@ Is “&lt;strong&gt;THANKS FOR A GREAT POW WOW DAY&lt;/strong&gt;”. &lt;br /&g
           <description>&lt;p&gt;I have been asked to show how to translate line feeds between Mac, UNIX, and Windows. This comes up often so here is one way using PERL which was designed to do just what we need.&lt;/p&gt;
 &lt;ol&gt;
   &lt;li&gt;How to translate Mac OS file linefeed to UNIX linefeeds:
-    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  perl -pi -e 's/r/n/g' file_with_mac_linefeeds.txt
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  perl -pi -e &apos;s/r/n/g&apos; file_with_mac_linefeeds.txt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;How to translate UNIX file linefeeds to Mac OS linefeeds:
-    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  perl -pi -e 's/n/r/g' file_with_unix_linefeeds.txt
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  perl -pi -e &apos;s/n/r/g&apos; file_with_unix_linefeeds.txt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;Translate a Windows file linefeeds to UNIX linefeeds:
-    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  perl -pi -e 's/rn/n/g' file_with_win_linefeeds.txt
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  perl -pi -e &apos;s/rn/n/g&apos; file_with_win_linefeeds.txt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;Translate Windows file linefeeds to Mac OS linefeeds:
-    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  perl -pi -e 's/rn/r/g' file_with_win_linefeeds.txt
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  perl -pi -e &apos;s/rn/r/g&apos; file_with_win_linefeeds.txt
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
