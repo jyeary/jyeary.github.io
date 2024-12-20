@@ -3,8 +3,8 @@
 This blog is a port of Ghost's default theme [Casper](https://github.com/tryghost/casper) for Jekyll inspired by [Kasper](https://github.com/rosario/kasper).
 
 [![Build Status](https://api.travis-ci.com/jyeary/jyeary.github.io.svg?branch=3.0.0)](https://travis-ci.com/jyeary/jyeary.github.io)
-[![Ruby](https://img.shields.io/badge/ruby-2.7.8-blue.svg?style=flat)](https://travis-ci.org/jyeary/jyeary.github.io)
-[![Jekyll](https://img.shields.io/badge/jekyll-3.9.2-blue.svg?style=flat)](https://travis-ci.org/jyeary/jyeary.github.io)
+[![Ruby](https://img.shields.io/badge/ruby-3.3.4-blue.svg?style=flat)](https://travis-ci.org/jyeary/jyeary.github.io)
+[![Jekyll](https://img.shields.io/badge/jekyll-3.1.0-blue.svg?style=flat)](https://travis-ci.org/jyeary/jyeary.github.io)
 
 
 ## How to use it
@@ -35,22 +35,23 @@ Make sure you read the documentation from [jekyll-travis](https://github.com/mfe
 
 You can pull the source from the repository using any branch, but the default (master) and then do the following to build and test it before deploying.
 
+```shell
+docker container run -it --rm -p 4000:4000 -v $PWD:/blog ruby:3.3.4 /bin/bash
 ```
-docker container run -it --rm -p 4000:4000 -v $PWD:/blog ruby:2.7.3 /bin/bash
-```
+
 The simplest way to run the application is:
-```
+```shell
 cd /blog && \
-gem install bundler -v 2.4.22 && \
+gem install bundler -v 2.6.1 && \
 bundle install && \
 bundle exec jekyll serve
 ```
 
 or you may need some form like below for specific versions:
-```
+```shell
 cd /blog && \
-gem install bundler -v 2.4.22 && \
-gem install sass-embedded -v 1.63.6 && \
+gem install bundler -v 2.6.1 && \
+gem install sass-embedded -v 1.83 && \
 gem install jekyll && \
 bundle install && \
 bundle exec jekyll serve
