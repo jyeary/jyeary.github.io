@@ -4,7 +4,7 @@ ruby '3.3.4'
 
 gem 'jekyll', '~> 3.10'
 gem 'github-pages', '~> 232'
-gem 'nokogiri', '~> 1.18.3'
+gem 'nokogiri', '~> 1.18.8'
 gem 'rake', '~> 13.1.0'
 gem 'addressable', '~> 2.8', '>= 2.8.7'
 gem 'rexml', '~> 3.4'
