@@ -247,11 +247,11 @@ You may see `_XSERVTransmkdir: Owner of /tmp/.X11-unix should be set to root` an
 
 Here's NetBeans, inside Xephyr, inside the container, building and running a sample project:
 
-![NetBeans running a build inside the nested Xephyr display, managed by IceWM, showing a successful Maven build](/assets/images/netbeans-docker/xephyr-build-success.png)
+![NetBeans running a build inside the nested Xephyr display, managed by IceWM, showing a successful Maven build](/assets/images/xephyr-build-success.png)
 
 And the IDE window itself on an earlier pass through this setup, before a project was loaded:
 
-![Apache NetBeans IDE window launching on the Xephyr display](/assets/images/netbeans-docker/netbeans-launch.png)
+![Apache NetBeans IDE window launching on the Xephyr display](/assets/images/netbeans-launch.png)
 
 *(Those two screenshots are from an earlier run against NetBeans 22, back when that was the version I had pinned — the process is identical with the current default of NetBeans 31.)*
 
