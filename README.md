@@ -2,38 +2,44 @@
 
 This blog is a port of Ghost's default theme [Casper](https://github.com/tryghost/casper) for Jekyll inspired by [Kasper](https://github.com/rosario/kasper).
 
-[![Build Status](https://api.travis-ci.com/jyeary/jyeary.github.io.svg?branch=3.0.0)](https://travis-ci.com/jyeary/jyeary.github.io)
-[![Ruby](https://img.shields.io/badge/ruby-3.3.4-blue.svg?style=flat)](https://travis-ci.org/jyeary/jyeary.github.io)
-[![Jekyll](https://img.shields.io/badge/jekyll-3.1.0-blue.svg?style=flat)](https://travis-ci.org/jyeary/jyeary.github.io)
+[![Build and deploy Jekyll site](https://github.com/jyeary/jyeary.github.io/actions/workflows/jekyll.yml/badge.svg?branch=3.0.0)](https://github.com/jyeary/jyeary.github.io/actions/workflows/jekyll.yml)
+[![Ruby](https://img.shields.io/badge/ruby-3.3.4-blue.svg?style=flat)](https://github.com/jyeary/jyeary.github.io/actions/workflows/jekyll.yml)
+[![Jekyll](https://img.shields.io/badge/jekyll-3.10.0-blue.svg?style=flat)](https://github.com/jyeary/jyeary.github.io/actions/workflows/jekyll.yml)
 
 
 ## How to use it
 
 ### Deployment
 
-**Important:**  For security reasons, Github does not allow plugins (under _plugins/) when deploying with Github Pages. This means:
+The site is built and published by GitHub Actions. The workflow is defined in
+*[.github/workflows/jekyll.yml](.github/workflows/jekyll.yml)*: every push to the
+`3.0.0` branch (or a manual run from the **Actions** tab) builds the site with
+`jekyll build` and deploys the generated *_site/* directory straight to GitHub
+Pages via [`actions/deploy-pages`](https://github.com/actions/deploy-pages).
 
-**1)** that we need to generate your site locally (more details below) and push the resulting HTML to a Github repository;
+Because the build runs in the workflow rather than on GitHub's own Pages build,
+custom plugins under *_plugins/* are supported.
 
-**2)** built the site with [travis-ci](https://travis-ci.com/) (with goodies from [jekyll-travis](https://github.com/mfenner/jekyll-travis)) automatically pushing the generated *_site/* files to your *gh-pages* branch.
- This later approach is the one I am currently using to generate the live site.
+To set this up on a fork:
 
-For option **1)** simply clone this repository (*master branch*), and then run `bundle exec jekyll serve` inside the directory. Upload the resulting *_site/* contents to your repository (*master branch* if uploading as your personal page (username.github.io) or *gh-pages branch* if uploading as a project page (as for the [demo](https://github.com/jekyller/jasper/tree/gh-pages)).
+1. Update your details in *[\_config.yml](_config.yml)*.
+2. In the repository settings, under **Settings → Pages**, set **Source** to
+   **GitHub Actions**.
+3. Push to the `3.0.0` branch (or adjust the branch name in
+   *[.github/workflows/jekyll.yml](.github/workflows/jekyll.yml)*).
 
-For option **2)** you will need to set up travis-ci for your personal fork. Briefly all you need then is to change your details in *[\_config.yml](_config.yml)* so that you can push to your github repo.
+No personal access tokens or extra secrets are required — the workflow uses the
+built-in `GITHUB_TOKEN`.
 
-Set the following parameters in the Travis CI repo settings environment variables:
-* **GIT_USER** - This is your Github username
-* **GIT_EMAIL** - This is a valid Github email address assigned to this account.
-* **GH_TOKEN** - This is a Github personal authentication token.
+### Building locally
 
-Alternatively, you can also need to generate a secure key to add to your *[.travis.yml](.travis.yml)* (you can find more info on how to do it in that file). 
-
-Make sure you read the documentation from [jekyll-travis](https://github.com/mfenner/jekyll-travis). This approach has clear advantages in that you simply push changes to your files and all the html files are generated for you. Also you get to know if everything is still fine with your site builds. Don't hesitate to contact me if you still have any issues (see below about issue tracking).
+Clone this repository and run `bundle exec jekyll serve` inside the directory to
+preview the site at `http://localhost:4000`. The generated output lives in
+*_site/*.
 
 ### Docker
 
-You can pull the source from the repository using any branch, but the default (master) and then do the following to build and test it before deploying.
+You can pull the source from the repository using any branch, but the default (`3.0.0`), then do the following to build and test it before deploying.
 
 ```shell
 docker container run -it --rm -p 4000:4000 -v $PWD:/blog ruby:3.3.4 /bin/bash
@@ -77,7 +83,7 @@ With the latest update, multiple author blogs are now supported out of the box.
 
 Same licence as the one provided by Ghost's team. See Casper's theme [license](GHOST.txt).
 
-Copyright (C) 2009-2024 John Yeary
+Copyright (C) 2009-2026 John Yeary
 
 Copyright (C) 2015-2021 - Released under the MIT License.
 
