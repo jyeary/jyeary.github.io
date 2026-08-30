@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2017-08-10 17:14:30+00:00
 title: Wordpress on OpenShift 2
-date: 2017-08-10 17:14:30.000000000 +00:00
 categories: jyeary
 tags: web
 subclass: 'post tag-web'

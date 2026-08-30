@@ -9,7 +9,7 @@ date: 2009-10-17 15:39:00+00:00
 title: Anuloma Viloma - Alternate Nostril Breathing (Sivananda Style)
 categories: jyeary
 tags: yoga
-subclass: 'post tag-yoga' 
+subclass: 'post tag-yoga'
 ---
 A variation of the alternate nostril breathing technique. This pranayama technique has a quieting effect, and reduces mental turbulence. The ultimate effect of this technique is to quietly reduce the mind to becoming a witness to the process, and make the breathing effortless.
 

@@ -4,7 +4,7 @@ cover: 'assets/images/abstract-apple-art-black-and-white-434346.jpg'
 logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
-disqus: no
+disqus: false
 date: 2009-12-14 17:17:00+00:00
 title: How to Repair plist files on OS X
 categories: jyeary

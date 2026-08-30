@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2015-07-18 11:09:00+00:00
 title: Cyber Warfare
-date: 2015-07-18 11:09:00.000000000 +00:00
 categories: jyeary
 tags: national-security
 subclass: 'post tag-national-security'

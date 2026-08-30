@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2009-09-14 20:22:00+00:00
 title: Decisive Force in Afganistan
-date: 2009-09-14 20:22:00.000000000 +00:00
 categories: jyeary
 tags: national-security
 subclass: 'post tag-national-security'

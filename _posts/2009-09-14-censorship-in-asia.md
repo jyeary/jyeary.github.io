@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2009-09-14 20:29:00+00:00
 title: Censorship in Asia
-date: 2009-09-14 20:29:00.000000000 +00:00
 categories: jyeary
 tags: national-security
 subclass: 'post tag-national-security'

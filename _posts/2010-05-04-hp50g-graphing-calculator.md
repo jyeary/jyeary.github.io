@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2010-05-04 08:51:00+00:00
 title: HP50g Graphing Calculator
-date: 2010-05-04 08:51:00.000000000 +00:00
 categories: jyeary
 tags: life
 subclass: 'post tag-life'

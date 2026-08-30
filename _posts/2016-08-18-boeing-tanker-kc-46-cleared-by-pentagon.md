@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2016-08-18 17:44:00+00:00
 title: Boeing Tanker KC-46 Cleared by Pentagon
-date: 2016-08-18 17:44:00.000000000 +00:00
 categories: jyeary
 tags: military
 subclass: 'post tag-military'

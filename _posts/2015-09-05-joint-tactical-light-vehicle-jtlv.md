@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2015-09-05 06:55:00+00:00
 title: Joint Tactical Light Vehicle (JTLV)
-date: 2015-09-05 06:55:00.000000000 +00:00
 categories: jyeary
 tags: military
 subclass: 'post tag-military'

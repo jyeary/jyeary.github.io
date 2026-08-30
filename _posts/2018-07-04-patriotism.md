@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2018-07-04 13:48:50+00:00
 title: Patriotism
-date: 2018-07-04 13:48:50.000000000 +00:00
 categories: jyeary
 tags: life
 subclass: 'post tag-life'

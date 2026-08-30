@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2015-08-02 10:46:00+00:00
 title: Military Lending Act Regulation Expansion
-date: 2015-08-02 10:46:00.000000000 +00:00
 categories: jyeary
 tags: military
 subclass: 'post tag-military'

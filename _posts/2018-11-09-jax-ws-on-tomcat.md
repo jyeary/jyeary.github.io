@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2018-11-09 11:18:37+00:00
 title: JAX-WS on Tomcat
-date: 2018-11-09 11:18:37.000000000 +00:00
 categories: jyeary
 tags: java
 subclass: 'post tag-java'

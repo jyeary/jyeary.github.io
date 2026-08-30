@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2018-09-15 15:50:14+00:00
 title: j2html framework
-date: 2018-09-15 15:50:14.000000000 +00:00
 categories: jyeary
 tags: java web
 subclass: 'post tag-java tag-web'

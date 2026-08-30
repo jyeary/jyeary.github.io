@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2009-10-16 10:58:00+00:00
 title: Volume of a Pizza
-date: 2009-10-16 10:58:00.000000000 +00:00
 categories: jyeary
 tags: life
 subclass: 'post tag-life'

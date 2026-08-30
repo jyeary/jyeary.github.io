@@ -1,12 +1,12 @@
 ---
 layout: post
-#cover: 'assets/images/cover4.jpg'
+cover:
 logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2011-07-10 10:43:00+00:00
 title: Moonshine Jelly
-date: 2011-07-10 10:43:00.000000000 +00:00
 categories: jyeary
 tags: life
 subclass: 'post tag-life'

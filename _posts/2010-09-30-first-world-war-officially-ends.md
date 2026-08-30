@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2010-09-30 19:26:00+00:00
 title: First World War Officially Ends
-date: 2010-09-30 19:26:00.000000000 +00:00
 categories: jyeary
 tags: military
 subclass: 'post tag-military'

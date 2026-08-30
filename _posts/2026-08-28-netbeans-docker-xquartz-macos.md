@@ -8,7 +8,7 @@ disqus: true
 date: 2026-08-28 09:00:00+00:00
 title: "Getting a Real IDE Running Safely in Docker on a Mac: NetBeans, XQuartz, and a Nested X Server"
 categories: jyeary
-tags: [java, netbeans, docker, ai-assisted]
+tags: java netbeans docker ai-assisted
 subclass: 'post tag-java tag-netbeans tag-docker tag-ai-assisted'
 ---
 

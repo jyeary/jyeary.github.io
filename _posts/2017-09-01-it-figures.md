@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2017-09-01 10:23:17+00:00
 title: It Figures...
-date: 2017-09-01 10:23:17.000000000 +00:00
 categories: jyeary
 tags: web
 subclass: 'post tag-web'

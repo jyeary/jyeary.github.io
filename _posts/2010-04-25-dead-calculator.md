@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2010-04-25 17:23:00+00:00
 title: Dead Calculator
-date: 2010-04-25 17:23:00.000000000 +00:00
 categories: jyeary
 tags: life
 subclass: 'post tag-life'

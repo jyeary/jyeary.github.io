@@ -1,5 +1,6 @@
 ---
 layout: post
+cover:
 logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary

@@ -1,12 +1,12 @@
 ---
 layout: post
-title: The Grid and Spies
-date: 2009-04-13 18:32:00.000000000 +00:00
 cover: 'assets/images/flag-usa-controls-security-camera-97509.jpg'
 logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2009-04-13 18:32:00+00:00
+title: The Grid and Spies
 categories: jyeary
 tags: national-security
 subclass: 'post tag-national-security'

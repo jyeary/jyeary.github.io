@@ -1,12 +1,12 @@
 ---
 layout: post
-#cover: 'assets/images/cover4.jpg'
+cover:
 logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2009-09-14 20:35:00+00:00
 title: Five Lined Skink Eating a Fly
-date: 2009-09-14 20:35:00.000000000 +00:00
 categories: jyeary
 tags: life
 subclass: 'post tag-life'

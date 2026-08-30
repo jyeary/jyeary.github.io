@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2009-04-20 08:03:00+00:00
 title: U.K. National ID Card and Real ID
-date: 2009-04-20 08:03:00.000000000 +00:00
 categories: jyeary
 tags: national-security
 subclass: 'post tag-national-security'

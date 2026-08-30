@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2018-09-15 15:21:52+00:00
 title: Netty and JAX-RS (Jersey)
-date: 2018-09-15 15:21:52.000000000 +00:00
 categories: jyeary
 tags: java web
 subclass: 'post tag-java tag-web'

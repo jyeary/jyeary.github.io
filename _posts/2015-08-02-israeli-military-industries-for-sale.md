@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2015-08-02 13:45:00+00:00
 title: Israeli Military Industries for Sale
-date: 2015-08-02 13:45:00.000000000 +00:00
 categories: jyeary
 tags: national-security
 subclass: 'post tag-national-security'

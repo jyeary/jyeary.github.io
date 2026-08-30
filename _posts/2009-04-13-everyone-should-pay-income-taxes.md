@@ -1,16 +1,15 @@
 ---
 layout: post
-title: Everyone Should Pay Income Taxes
-date: 2009-04-13 20:45:00.000000000 +00:00
 cover: 'assets/images/white-graphing-paper-164686.jpg'
 logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2009-04-13 20:45:00+00:00
+title: Everyone Should Pay Income Taxes
 categories: jyeary
 tags: life
 subclass: 'post tag-life'
-
 ---
 
 I read a really great [op ed](http://online.wsj.com/article/SB123958260423012269.html) in The Wall Street Journal from [Ari Fleischer](http://en.wikipedia.org/wiki/Ari_Fleischer) today. The piece is entitled the same as my blog title: [Everyone Should Pay Income Taxes](http://online.wsj.com/article/SB123958260423012269.html). Although, I am not totally in favor of some of his political ideas, the premise is sound.

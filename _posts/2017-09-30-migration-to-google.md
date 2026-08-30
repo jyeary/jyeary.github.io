@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2017-09-30 12:37:04+00:00
 title: Migration to Google
-date: 2017-09-30 12:37:04.000000000 +00:00
 categories: jyeary
 tags: web
 subclass: 'post tag-web'

@@ -9,7 +9,7 @@ date: 2009-10-17 15:42:00+00:00
 title: Bhastrika - Bellows Breath
 categories: jyeary
 tags: yoga
-subclass: 'post tag-yoga' 
+subclass: 'post tag-yoga'
 ---
 A technique for practicing Bhastrika. This is an energizing and cleansing breathing technique.  
   1. Start by relaxing the shoulders and taking slow, deep, abdominal breaths.

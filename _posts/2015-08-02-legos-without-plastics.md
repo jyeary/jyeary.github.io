@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2015-08-02 13:33:00+00:00
 title: Legos without Plastics?
-date: 2015-08-02 13:33:00.000000000 +00:00
 categories: jyeary
 tags: life
 subclass: 'post tag-life'

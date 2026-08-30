@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2018-03-09 21:12:28+00:00
 title: Apache Archiva on Docker
-date: 2018-03-09 21:12:28.000000000 +00:00
 categories: jyeary
 tags: web
 subclass: 'post tag-web'

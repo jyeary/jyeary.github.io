@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2018-09-07 10:18:30+00:00
 title: Useful Java Frameworks
-date: 2018-09-07 10:18:30.000000000 +00:00
 categories: jyeary
 tags: java
 subclass: 'post tag-java'

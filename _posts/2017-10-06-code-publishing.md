@@ -5,8 +5,8 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
+date: 2017-10-06 20:30:26+00:00
 title: Code Publishing
-date: 2017-10-06 20:30:26.000000000 +00:00
 categories: jyeary
 tags: java web
 subclass: 'post tag-java tag-web'
