@@ -51,3 +51,7 @@ exclude:
   - vendor
   - node_modules
   - .git
+  - .idea
+  - .vscode
+  - .github
+  - .jekyll-cache
