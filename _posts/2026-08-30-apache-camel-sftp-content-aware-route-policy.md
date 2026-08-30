@@ -5,7 +5,7 @@ logo: 'assets/images/logo.jpg'
 navigation: true
 author: jyeary
 disqus: true
-date: 2026-08-31 09:00:00+00:00
+date: 2026-08-30 09:00:00+00:00
 title: "Apache Camel: SFTP Content-Aware and Batch-Completion Route Policy"
 categories: [jyeary]
 tags: [java, camel, spring-boot, sftp, integration, ai-assisted]
