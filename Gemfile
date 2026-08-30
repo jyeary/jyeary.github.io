@@ -9,7 +9,7 @@ gem "jekyll", "~> 4.3"
 gem "rake", "~> 13.0"
 
 # Removed from Ruby's default gems in 3.4; liquid still expects it.
-gem "bigdecimal", "~> 3.1"
+gem "bigdecimal", "~> 4.1"
 
 # The site has no Sass sources; pin the lighter 2.x converter so the build
 # doesn't pull the large sass-embedded native gem.
