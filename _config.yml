@@ -18,7 +18,11 @@ description: "A Caffeinated Java Developer."
 
 url: https://johnyeary.com
 short_url: 'johnyeary.com/'
-google_analytics: UA-4194623-5
+# GA4 Measurement ID (looks like G-XXXXXXXXXX), from the property's Data Streams.
+# The old Universal Analytics property (UA-4194623-5) stopped collecting in 2023.
+# Uncomment and set this to activate the gtag.js snippet (renders only when
+# set and JEKYLL_ENV=production).
+# google_analytics: G-XXXXXXXXXX
 disqus: john-yeary
 baseurl: /
 

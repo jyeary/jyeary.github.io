@@ -4,7 +4,7 @@ This blog is a port of Ghost's default theme [Casper](https://github.com/tryghos
 
 [![Build and deploy Jekyll site](https://github.com/jyeary/jyeary.github.io/actions/workflows/jekyll.yml/badge.svg?branch=3.0.0)](https://github.com/jyeary/jyeary.github.io/actions/workflows/jekyll.yml)
 [![Ruby](https://img.shields.io/badge/ruby-3.3.4-blue.svg?style=flat)](https://github.com/jyeary/jyeary.github.io/actions/workflows/jekyll.yml)
-[![Jekyll](https://img.shields.io/badge/jekyll-3.10.0-blue.svg?style=flat)](https://github.com/jyeary/jyeary.github.io/actions/workflows/jekyll.yml)
+[![Jekyll](https://img.shields.io/badge/jekyll-4.4.1-blue.svg?style=flat)](https://github.com/jyeary/jyeary.github.io/actions/workflows/jekyll.yml)
 
 
 ## How to use it
@@ -39,39 +39,36 @@ preview the site at `http://localhost:4000`. The generated output lives in
 
 ### Docker
 
-You can pull the source from the repository using any branch, but the default (`3.0.0`), then do the following to build and test it before deploying.
+If you don't have Ruby installed locally, build and preview the site from the
+`ruby:3.3.4` image (matching the version pinned in the `Gemfile` and the
+workflow):
 
 ```shell
-docker container run -it --rm -p 4000:4000 -v $PWD:/blog ruby:3.3.4 /bin/bash
+docker container run -it --rm -p 4000:4000 -v $PWD:/blog -w /blog ruby:3.3.4 /bin/bash
 ```
 
-The simplest way to run the application is:
+Then, inside the container:
+
 ```shell
-cd /blog && \
 gem install bundler -v 2.6.1 && \
 bundle install && \
-bundle exec jekyll serve
+bundle exec jekyll serve --host 0.0.0.0
 ```
 
-or you may need some form like below for specific versions:
-```shell
-cd /blog && \
-gem install bundler -v 2.6.1 && \
-gem install sass-embedded -v 1.83 && \
-gem install jekyll && \
-bundle install && \
-bundle exec jekyll serve
-```
+The site is served at `http://localhost:4000`.
 
 ### Updating Ruby Gems
 
-Modify the `Gemfile` with the appropriate changes and run the following.
+The site runs a current Jekyll (4.x) and is built/deployed entirely by GitHub
+Actions, so there is no GitHub Pages dependency set to match. To update:
 
-```
+```shell
 bundle update
 ```
 
-Compare the generated `Gemfile.lock` and make sure that the changes meet the requirements from [Github Pages Dependency versions](https://pages.github.com/versions/).
+Review the `Gemfile.lock` diff, then confirm the build still succeeds
+(`bundle exec jekyll build`) before pushing — the workflow runs the same
+command.
 
 ### Author pages
 
