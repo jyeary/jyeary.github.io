@@ -5,14 +5,15 @@ updates:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
-    # Keep github-pages and its exact-pinned internal deps (nokogiri, sass,
-    # jekyll, kramdown, etc.) grouped together and out of independent bumps —
-    # they must move as a set, in lockstep with GitHub's own environment.
-    ignore:
-      - dependency-name: "nokogiri"
-      - dependency-name: "sass"
-      - dependency-name: "jekyll"
-      - dependency-name: "github-pages"
+    groups:
+      # Jekyll and its plugins tend to need to move together.
+      jekyll:
+        patterns:
+          - "jekyll"
+          - "jekyll-*"
+          - "kramdown*"
+          - "rouge"
+          - "liquid"
 
   - package-ecosystem: "github-actions"
     directory: "/"
