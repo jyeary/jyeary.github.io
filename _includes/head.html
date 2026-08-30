@@ -1,18 +1,24 @@
-    <link rel="canonical" href="{{ site.url }}{% if site.baseurl %}{{ site.baseurl }}{% endif %}{{ page.url }}" />
+    <link rel="canonical" href="{{ page.url | absolute_url }}" />
     <meta name="referrer" content="origin" />
-    <link rel="next" href="{{ site.baseurl }}page2/" />
+    {% if paginator %}
+        {% if page.class == 'tag-template' %}{% assign paginate_base = '/tag/' | append: page.tag %}
+        {% elsif page.class == 'author-template' %}{% assign paginate_base = '/author/' | append: page.author %}
+        {% else %}{% assign paginate_base = '' %}{% endif %}
+        {% if paginator.previous_page %}<link rel="prev" href="{% if paginator.previous_page == 1 %}{{ paginate_base | append: '/' | absolute_url }}{% else %}{{ paginate_base | append: '/page' | append: paginator.previous_page | append: '/' | absolute_url }}{% endif %}" />{% endif %}
+        {% if paginator.next_page %}<link rel="next" href="{{ paginate_base | append: '/page' | append: paginator.next_page | append: '/' | absolute_url }}" />{% endif %}
+    {% endif %}
 
     <meta property="og:site_name" content="{{ site.name }}" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.name }}{% endif %}" />
     <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
-    <meta property="og:url" content="{{ site.url }}{% if site.baseurl %}{{ site.baseurl }}{% endif %}{{ page.url }}" />
+    <meta property="og:url" content="{{ page.url | absolute_url }}" />
     <meta property="og:image" content="{{ site.baseurl }}{% if page.cover %}{{ page.cover }}{% else %}assets/images/cover1.jpg{% endif %}" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.name }}{% endif %}" />
     <meta name="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
-    <meta name="twitter:url" content="{{ site.url }}{% if site.baseurl %}{{ site.baseurl }}{% endif %}{{ page.url }}" />
+    <meta name="twitter:url" content="{{ page.url | absolute_url }}" />
     <meta name="twitter:image:src" content="{{ site.baseurl }}{% if page.cover %}{{ page.cover }}{% else %}assets/images/cover1.jpg{% endif %}" />
 
     <script type="application/ld+json">
@@ -21,7 +27,7 @@
     "@type": "Website",
     "publisher": "{{ site.name }}",
     "name": "{% if page.title %}{{ page.title }}{% else %}{{ site.name }}{% endif %}",
-    "url": "{{ site.url }}{% if site.baseurl %}{{ site.baseurl }}{% endif %}{{ page.url }}",
+    "url": "{{ page.url | absolute_url }}",
     "image": "{{ site.baseurl }}{% if page.cover %}{{ page.cover }}{% else %}assets/images/cover1.jpg{% endif %}",
     "description": "{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}"
 }
