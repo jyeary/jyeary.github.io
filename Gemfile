@@ -13,7 +13,7 @@ gem "bigdecimal", "~> 3.1"
 
 # The site has no Sass sources; pin the lighter 2.x converter so the build
 # doesn't pull the large sass-embedded native gem.
-gem "jekyll-sass-converter", "~> 2.2"
+gem "jekyll-sass-converter", "~> 3.1"
 
 group :jekyll_plugins do
   gem "jekyll-sitemap", "~> 1.4"
