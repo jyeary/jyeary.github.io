@@ -7,40 +7,11 @@ logo: 'assets/images/logo.jpg'
 current: tag
 ---
 
-<!-- dynamically overriding backgrounds for tags as well as descriptions -->
-{% if page.url contains 'java' %}
-   {% assign tag_description='The best programming language ever invented.' %}
-{% elsif page.url contains 'life' %}
-   {% assign new_cover='assets/images/brown-landscape-under-grey-sky-3244513.jpg' %}
-   {% assign tag_description='The search for meaning.' %}
-{% elsif page.url contains 'mac' %}
-   {% assign new_cover='assets/images/abstract-apple-art-black-and-white-434346.jpg' %}
-   {% assign tag_description='Simplicity.' %}
-{% elsif page.url contains 'merchant-marine' %}
-   {% assign new_cover='assets/images/US_Navy_090529-N-9123L-109_1.jpg' %}
-   {% assign tag_description='In Peace and War' %}
-   {% assign new_title='Merchant Marine' %}
-{% elsif page.url contains 'military' %}
-   {% assign new_cover='assets/images/vp-10.jpg' %}
-   {% assign tag_description='We have met the enemy and they are ours. - Oliver Hazard Perry' %}
-{% elsif page.url contains 'national-security' %}  
-   {% assign new_cover='assets/images/AmericanFlagBanner.jpg' %}
-   {% assign tag_description='We sleep safely at night because rough men stand ready to visit violence on those who would harm us. - Sir Winston Churchill' %}
-   {% assign new_title='National Security' %}
-{% elsif page.url contains 'sailing' %}  
-   {% assign new_cover='assets/images/pexels-mike-996328.jpg' %}
-   {% assign tag_description='If one does not know to which port one is sailing, no wind is favorable. - Lucius Annaeus Seneca'%}
-   {% assign new_title='Sailing' %}
-{% elsif page.url contains 'unix' %}
-   {% assign new_cover='assets/images/blur-bright-business-codes-207580.jpg' %}
-   {% assign tag_description='UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity. - Dennis Ritchie' %}
-{% elsif page.url contains 'web' %}
-    {% assign new_cover='assets/images/spider-web-with-drops-of-water-1477835.jpg' %}
-    {% assign tag_description='Web design...mystical voodoo.' %}
-{% elsif page.url contains 'yoga' %}
-    {% assign new_cover='assets/images/adventure-balance-balanced-balancing-7640.jpg' %}
-    {% assign tag_description='Practice' %}
-{% endif %}
+<!-- Per-tag cover, description, and display title come from _data/tags.yml -->
+{% assign tag_meta = site.data.tags[page.tag] %}
+{% assign new_cover = tag_meta.cover %}
+{% assign tag_description = tag_meta.description %}
+{% assign new_title = tag_meta.title %}
 
 <!-- default -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->

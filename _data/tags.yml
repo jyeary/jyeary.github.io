@@ -1,0 +1,55 @@
+# Per-tag cover image, description, and display title for /tag/<name> pages.
+# Keyed by the tag slug as it appears in a post's `tags:` front matter.
+# Any tag without an entry here falls back to the site cover and an
+# automatic "A N-post collection" description (see _layouts/tag.html).
+
+java:
+  description: The best programming language ever invented.
+
+life:
+  cover: assets/images/brown-landscape-under-grey-sky-3244513.jpg
+  description: The search for meaning.
+
+mac:
+  cover: assets/images/abstract-apple-art-black-and-white-434346.jpg
+  description: Simplicity.
+
+merchant-marine:
+  title: Merchant Marine
+  cover: assets/images/US_Navy_090529-N-9123L-109_1.jpg
+  description: In Peace and War
+
+military:
+  cover: assets/images/vp-10.jpg
+  description: We have met the enemy and they are ours. - Oliver Hazard Perry
+
+national-security:
+  title: National Security
+  cover: assets/images/AmericanFlagBanner.jpg
+  description: We sleep safely at night because rough men stand ready to visit violence on those who would harm us. - Sir Winston Churchill
+
+sailing:
+  title: Sailing
+  cover: assets/images/pexels-mike-996328.jpg
+  description: If one does not know to which port one is sailing, no wind is favorable. - Lucius Annaeus Seneca
+
+unix:
+  cover: assets/images/blur-bright-business-codes-207580.jpg
+  description: UNIX is basically a simple operating system, but you have to be a genius to understand the simplicity. - Dennis Ritchie
+
+web:
+  cover: assets/images/spider-web-with-drops-of-water-1477835.jpg
+  description: Web design...mystical voodoo.
+
+yoga:
+  cover: assets/images/adventure-balance-balanced-balancing-7640.jpg
+  description: Practice
+
+github-actions:
+  title: GitHub Actions
+
+ai-assisted:
+  title: AI-Assisted
+
+netbeans:
+  title: NetBeans

@@ -1,16 +1,6 @@
-    <!-- Previous/next page links - only displayed on page 2+ -->
+    <!-- Previous/next page links - shown at the top of the list on page 2+ (see .extra-pagination CSS) -->
     <div class="extra-pagination inner">
-        {% if page.class == 'home-template' %}
-            {% include post_pagination.html %}
-        {% elsif page.class == 'page-template' %}
-            {% include post_pagination.html %}
-        {% elsif page.class == 'author-template' %}
-            {% include author_pagination.html %}
-        {% elsif page.class == 'tag-template' %}
-            {% include tag_pagination.html %}
-        {% else %}
-            {% include post_pagination.html %}
-        {% endif %}
+        {% include pagination.html %}
     </div>
 
     <!-- This is the post loop - each post will be output using this markup -->
@@ -49,15 +39,5 @@
     </article>
     {% endfor %}
 
-    <!-- Previous/next page links - displayed on every page -->
-    {% if page.class == 'home-template' %}
-        {% include post_pagination.html %}
-    {% elsif page.class == 'page-template' %}
-        {% include post_pagination.html %}
-    {% elsif page.class == 'author-template' %}
-        {% include author_pagination.html %}
-    {% elsif page.class == 'tag-template' %}
-        {% include tag_pagination.html %}
-    {% else %}
-        {% include post_pagination.html %}
-    {% endif %}
+    <!-- Previous/next page links -->
+    {% include pagination.html %}

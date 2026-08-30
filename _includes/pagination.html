@@ -1,0 +1,7 @@
+{% if page.class == 'author-template' %}
+    {% include author_pagination.html %}
+{% elsif page.class == 'tag-template' %}
+    {% include tag_pagination.html %}
+{% else %}
+    {% include post_pagination.html %}
+{% endif %}
