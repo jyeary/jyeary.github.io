@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2020-08-13 17:00:00+00:00
 title: "Spring: How to Redirect the Context Root to Open API 3.0 (Swagger) UI"
-categories: jyeary
-tags: java
+categories: [jyeary]
+tags: [java]
 subclass: 'post tag-java'
 ---
 

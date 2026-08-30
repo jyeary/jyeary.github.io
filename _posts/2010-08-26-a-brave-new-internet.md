@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-08-26 20:43:00+00:00
 title: A Brave New Internet
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 I know many of you have read books like [Animal Farm](http://en.wikipedia.org/wiki/Animal_Farm), [1984](http://en.wikipedia.org/wiki/Nineteen_Eighty-Four), and [Brave New World](http://en.wikipedia.org/wiki/Brave_New_World). These negative Utopian ideologies are a far cry from the original [Utopia](http://en.wikipedia.org/wiki/Utopia).

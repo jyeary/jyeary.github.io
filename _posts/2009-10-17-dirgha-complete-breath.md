@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-10-17 15:46:00+00:00
 title: Dirgha - Complete Breath
-categories: jyeary
-tags: yoga
+categories: [jyeary]
+tags: [yoga]
 subclass: 'post tag-yoga'
 ---
 

@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2018-09-20 20:45:12+00:00
 title: SPAMC and Java
-categories: jyeary
-tags: java
+categories: [jyeary]
+tags: [java]
 subclass: 'post tag-java'
 ---
 ## Introduction

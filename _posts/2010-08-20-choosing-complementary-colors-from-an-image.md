@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-08-20 00:39:00+00:00
 title: Choosing Complementary Colors from an Image
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 I am designing a complementary [color scheme](http://en.wikipedia.org/wiki/Color_scheme) for my website, and blogs. I have a logo from a designer which is very nice, but I needed a [color palette](http://en.wikipedia.org/wiki/Palette_%28computing%29). I found a really cool color matcher based on an image that you upload.

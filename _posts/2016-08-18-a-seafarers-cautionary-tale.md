@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2016-08-18 22:01:00+00:00
 title: A Seafarer's Cautionary Tale
-categories: jyeary
-tags: merchant-marine
+categories: [jyeary]
+tags: [merchant-marine]
 subclass: 'post tag-merchant-marine'
 ---
 [![](https://photos.marinetraffic.com/ais/showphoto.aspx?photoid=1993052)](https://photos.marinetraffic.com/ais/showphoto.aspx?photoid=1993052)

@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2015-04-02 00:00:00+00:00
 title: A new Blogging Platform with Github Pages
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 I am looking at exporting my pages from Blogger to a platform where I can have more control over the layout. If this _endeavor_

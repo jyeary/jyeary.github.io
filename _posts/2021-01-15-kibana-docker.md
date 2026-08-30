@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2021-01-15 00:00:00+00:00
 title: Running Kibana on Docker
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 

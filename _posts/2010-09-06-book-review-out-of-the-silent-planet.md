@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-09-06 21:28:00+00:00
 title: 'Book Review: Out of the Silent Planet'
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 I read the [C.S. Lewis](http://en.wikipedia.org/wiki/C._S._Lewis) book called Out of the Silent Planet this weekend. It was a quick read. The book was written prior to actual space flight, and planetary exploration. As such, a number of the [science fiction](http://en.wikipedia.org/wiki/Science_fiction) elements are not believable in our modern world. When the book was written, its fanciful depiction of life on [Malacandra](http://en.wikipedia.org/wiki/The_Space_Trilogy) was probably more believable.

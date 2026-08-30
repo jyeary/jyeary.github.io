@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2015-03-29 22:27:00+00:00
 title: 'Chinese Hello Song: Honored Guests'
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 ### A Song for Cub Scouts

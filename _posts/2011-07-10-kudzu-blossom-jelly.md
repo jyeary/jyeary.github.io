@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2011-07-10 10:57:00+00:00
 title: Kudzu Blossom Jelly
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 {% include image.html url='/assets/images/KudzuBlossomJelly.jpg' caption='Kudzu Blossom Jelly' %}

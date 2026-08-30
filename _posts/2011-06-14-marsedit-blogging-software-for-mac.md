@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2011-06-14 01:46:00+00:00
 title: MarsEdit Blogging Software for Mac
-categories: jyeary
-tags: mac
+categories: [jyeary]
+tags: [mac]
 subclass: 'post tag-mac'
 ---
 {% include image.html url='http://lh5.ggpht.com/-LG1ULZ8xRRA/Tfa9dFbe_CI/AAAAAAAABOU/RFluMnfDRjM/IMG_0174.JPG?imgmax=800' caption='Sleepy Java' %}

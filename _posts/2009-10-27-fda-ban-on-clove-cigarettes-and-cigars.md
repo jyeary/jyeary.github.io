@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-10-27 12:12:00+00:00
 title: FDA Ban on Clove Cigarettes and Cigars
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 I was reading The Wall Street Journal® [To the FDA, This Indonesian Smoke Is Close but No Cigar](http://online.wsj.com/article/SB125660066262509223.html) about a ban by the FDA on clove based smoking products. I don't smoke, but I do occasionally like to have one. I must admit it has been a long time since I have had one.  

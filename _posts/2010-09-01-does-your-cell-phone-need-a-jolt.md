@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-09-01 00:22:00+00:00
 title: Does Your Cell Phone Need A Jolt?
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 [![Jolt Cola logo used until 2006](http://upload.wikimedia.org/wikipedia/en/3/37/Joltcola1.png)](http://en.wikipedia.org/wiki/File:Joltcola1.png)Image via [Wikipedia](http://en.wikipedia.org/wiki/File:Joltcola1.png)

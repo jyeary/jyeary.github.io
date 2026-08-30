@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-12-20 20:25:00+00:00
 title: OS X Startup Commands
-categories: jyeary
-tags: mac
+categories: [jyeary]
+tags: [mac]
 subclass: 'post tag-mac'
 ---
 

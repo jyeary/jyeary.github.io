@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-09-14 20:33:00+00:00
 title: Wacker and LaSalle Bridge Lights in Chicago
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 {% include image.html url='/assets/images/6a0120a56c0ed6970b0120a5c3770b970c-800wi.jpg' caption='Bridge Lights in Chicago' %}

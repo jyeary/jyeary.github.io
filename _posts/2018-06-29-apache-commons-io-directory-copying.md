@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2018-06-29 15:45:23+00:00
 title: Apache Commons IO Directory Copying
-categories: jyeary
-tags: java
+categories: [jyeary]
+tags: [java]
 subclass: 'post tag-java'
 ---
 ### Introduction

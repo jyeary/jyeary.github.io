@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2015-07-18 11:09:00+00:00
 title: Cyber Warfare
-categories: jyeary
-tags: national-security
+categories: [jyeary]
+tags: [national-security]
 subclass: 'post tag-national-security'
 ---
 In the Opinion section of the Wall Street Journal for Monday, 13 July

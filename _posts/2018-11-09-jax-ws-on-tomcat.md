@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2018-11-09 11:18:37+00:00
 title: JAX-WS on Tomcat
-categories: jyeary
-tags: java
+categories: [jyeary]
+tags: [java]
 subclass: 'post tag-java'
 ---
 ### Introduction

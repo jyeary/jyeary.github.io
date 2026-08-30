@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-04-25 17:23:00+00:00
 title: Dead Calculator
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 I was really bummed. I thought that the batteries in my TI-85 calculator were finally dying so I bought new ones yesterday. Well it turns out that the screen is dying a quick pixel death. I have had it since college. I bought it in 1992, and it will finally be retired when my new calculator arrives.

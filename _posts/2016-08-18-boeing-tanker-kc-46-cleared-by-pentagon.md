@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2016-08-18 17:44:00+00:00
 title: Boeing Tanker KC-46 Cleared by Pentagon
-categories: jyeary
-tags: military
+categories: [jyeary]
+tags: [military]
 subclass: 'post tag-military'
 ---
 The controversial Boeing KC-46 Refueling Tanker has finally cleared the Pentagon's testing and contract awarding process on the 15th of August 2016. The U.S. Air Force will issue the initial contract within the next 30 days to begin the construction of 19 KC-46 aircraft.

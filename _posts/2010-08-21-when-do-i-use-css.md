@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-08-21 21:19:00+00:00
 title: When Do I Use CSS?
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 {% include image.html url='http://upload.wikimedia.org/wikipedia/commons/thumb/8/86/CSS.svg/275px-CSS.svg.png' caption='A graphical depiction of a very simple css doc' %}

@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2020-03-13 12:00:00+00:00
 title: 'Convert Server Certificate and Key into PKCS#12, and Java Keystore (JKS)'
-categories: jyeary
-tags: java
+categories: [jyeary]
+tags: [java]
 subclass: 'post tag-java'
 ---
 

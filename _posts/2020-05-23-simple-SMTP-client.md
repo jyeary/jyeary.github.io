@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2020-05-23 00:00:00+00:00
 title: Simple SMTP Client
-categories: jyeary
-tags: java
+categories: [jyeary]
+tags: [java]
 subclass: 'post tag-java'
 ---
 ## Introduction

@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2018-03-13 20:03:54+00:00
 title: Qwiklabs Network Performance Testing Lab
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 I completed the Qwiklabs Network Performance Testing Lab for Google Cloud Networking. In the lab, they mention using [Wireshark](https://www.wireshark.org/), or [CloudShark](https://www.cloudshark.org/) to examine the `webserver.pcap` file that is generated from the `tcpdump` command. They have you copy the file to a bucket and copy it from the bucket. 

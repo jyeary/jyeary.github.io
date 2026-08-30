@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2017-09-07 02:03:55+00:00
 title: American Horror Story - Cult
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 I know it is in its 7th season, but I watched the first episode of season 7 tonight on FX. I was not scared, but I will say that it was creepy if not predictable in a horrible way. I will tune in next week to watch the second episode in the series. I really don't want to give anything away.

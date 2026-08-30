@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-10-17 18:30:00+00:00
 title: The Seven Spiritual Laws of Yoga - Days of the week
-categories: jyeary
-tags: yoga
+categories: [jyeary]
+tags: [yoga]
 subclass: 'post tag-yoga'
 ---
 The seven spiritual laws and the days of the week for reflection. The book Seven Spiritual Laws of Yoga defines the laws as follows:

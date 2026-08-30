@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-08-20 19:31:00+00:00
 title: Say It Ain't So...Derek Lee leaves Chicago Cubs
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 {% include image.html url='http://2.bp.blogspot.com/_UZzjPhczYTc/TG7XmSdwnpI/AAAAAAAABJI/9wNJwMj1qqo/s1600/LeeJerseyCropped.jpg' caption='Derek Lee' %}

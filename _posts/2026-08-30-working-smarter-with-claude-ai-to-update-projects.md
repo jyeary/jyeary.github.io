@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2026-08-30 09:00:00+00:00
 title: "Working Smarter with Claude AI to Update Projects"
-categories: jyeary
-tags: web github-pages dns ai-assisted
+categories: [jyeary]
+tags: [web, github-pages, dns, ai-assisted]
 subclass: 'post tag-web tag-github-pages tag-dns tag-ai-assisted'
 ---
 

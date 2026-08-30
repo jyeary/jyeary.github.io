@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2015-08-02 10:46:00+00:00
 title: Military Lending Act Regulation Expansion
-categories: jyeary
-tags: military
+categories: [jyeary]
+tags: [military]
 subclass: 'post tag-military'
 ---
 I wanted to take a moment to thank the Obama Administration for their rule changes with regards to the Military Lending Act of 2006. The new regulations make it harder for lenders (let's call them poachers) from charging outrageously high interest rates to our men and women who serve this country.

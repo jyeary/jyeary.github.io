@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-12-24 14:53:00+00:00
 title: 'Tip: X-Window Display on localhost from Remote system (UNIX/Solaris/Linux/OS X)'
-categories: jyeary
-tags: mac unix
+categories: [jyeary]
+tags: [mac, unix]
 subclass: 'post tag-mac tag-unix'
 ---
 X-Window display on local host with known hostname or IP address:

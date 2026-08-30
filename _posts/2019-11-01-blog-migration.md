@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2019-11-01 00:00:00+00:00
 title: Blog Migration
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 ## Introduction

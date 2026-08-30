@@ -7,8 +7,8 @@ author: jyeary
 disqus: false
 date: 2011-06-25 15:52:00+00:00
 title: NY and the Gay Marriage FAIL
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 ![](assets/images/300px-Marriage_and_pistol_license.jpg)

@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-04-03 00:26:00+00:00
 title: Standards of Training, Certification, and Watchkeeping (STCW) 95 Ammended
-categories: jyeary
-tags: merchant-marine
+categories: [jyeary]
+tags: [merchant-marine]
 subclass: 'post tag-merchant-marine'
 ---
 I need to take a number of certification/training courses which are required of all merchant mariner's who sail in international waters. These standards were implemented by the International Maritime Organization (IMO) which is part of the United Nations. The US is signatory to the agreement, and the USCG is charged with making sure that all mariner's are in compliance as required.  

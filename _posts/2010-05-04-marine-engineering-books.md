@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-05-04 22:00:00+00:00
 title: Marine Engineering Books
-categories: jyeary
-tags: merchant-marine
+categories: [jyeary]
+tags: [merchant-marine]
 subclass: 'post tag-merchant-marine'
 ---
 ### Cornell Maritime Press

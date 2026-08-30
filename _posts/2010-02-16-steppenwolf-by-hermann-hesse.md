@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-02-16 01:23:00+00:00
 title: Steppenwolf by Hermann Hesse
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 I read the novel Steppenwolf by Hermann Hesse last night and today. I was truly inspired by its wonderful use of the English language. This is of course via proxy since it was originally written in German in 1927, and translated later (1929) to English.

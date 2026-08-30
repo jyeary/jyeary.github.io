@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-04-02 23:54:00+00:00
 title: USCG Merchant Marine Physical
-categories: jyeary
-tags: merchant-marine
+categories: [jyeary]
+tags: [merchant-marine]
 subclass: 'post tag-merchant-marine'
 ---
 The only requirement for getting started in the US Merchant Marine is getting a CG-719 K/E physical. This physical is required to get a Merchant Mariners Document (MMD). I completed the CG-719 and CG-719 K/E physicals.  

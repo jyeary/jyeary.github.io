@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2016-06-29 21:26:00+00:00
 title: My son is trying his hand at Blogging
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 {% include image.html url='https://storage.googleapis.com/methodical-kaleidoscope-7367/2017/08/LastDayMonarchElementary.jpg' caption='Sean Yeary - Last day of school at Monarch (5th Grade)' %}

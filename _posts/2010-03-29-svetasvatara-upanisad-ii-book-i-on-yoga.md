@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-03-29 16:22:00+00:00
 title: 'Svetasvatara Upanisad II Book I : On Yoga'
-categories: jyeary
-tags: yoga
+categories: [jyeary]
+tags: [yoga]
 subclass: 'post tag-yoga'
 ---
 I have been reading The Upanisads. They are spiritual commentaries from Hinduism. They are very interesting and in many ways like more like Christian proverbs. I was reading a set of verses in the book titled above. I came across some interesting remarks around yoga instruction. The first is an instruction of where to practice yoga.

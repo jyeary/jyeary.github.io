@@ -7,8 +7,8 @@ author: jyeary
 disqus: false
 date: 2009-12-24 14:35:00+00:00
 title: Four Paths of Yoga
-categories: jyeary
-tags: yoga
+categories: [jyeary]
+tags: [yoga]
 subclass: 'post tag-yoga'
 ---
 * **Karma** – Active Path (service to others)

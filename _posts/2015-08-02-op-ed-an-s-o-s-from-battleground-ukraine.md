@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2015-08-02 18:14:00+00:00
 title: 'Op-ed: An S.O.S From Battleground Ukraine'
-categories: jyeary
-tags: national-security
+categories: [jyeary]
+tags: [national-security]
 subclass: 'post tag-national-security'
 ---
 ![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAAC3CAMAAAAGjUrGAAAAD1BMVEUAW7v/1QAAVcCgnnX/2QA7hKVZAAAAzUlEQVR4nO3QsQGAMAzAsBT4/2b2eO0onaAZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACASx62ednmY5vD5qSclJNyUk7KSTkpJ+WknJSTclJOykk5KSflpJyUk3JSTspJOSkn5aSclJNyUk7KSTkpJ+WknJSTclJOykk5KSflpJyUk3JSTspJOSkn5aSclJNyUk7KSTkpJ+WknJSTclJOykk5KSflpJyUk3JSTspJOSkn5aSclJNyUk7KSTkpJ+WknJSTclJOykk5KSflpH7zk2pa0LCuDAAAAABJRU5ErkJggg==)

@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-04-02 23:43:00+00:00
 title: Transportation Workers Identification Card (TWIC)
-categories: jyeary
-tags: merchant-marine national-security
+categories: [jyeary]
+tags: [merchant-marine, national-security]
 subclass: 'post tag-merchant-marine tag-national-security'
 ---
 All maritime personnel are now required to get a TWIC card before they can get their Merchant Mariners Document (MMD) issued. The TWIC is issued by the Transportation Security Administration (TSA).  

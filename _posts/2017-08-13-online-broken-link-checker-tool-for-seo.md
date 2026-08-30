@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2017-08-13 16:47:01+00:00
 title: Online Broken Link Checker Tool for SEO
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 The process of migrating my personal blog from [Blogger](https://blogger.com) to a [WordPress](https://wordpress.com) platform using OpenShift 2 to power it has been an amazing learning process. One of the biggest SEO issues facing any blogger is broken links. The greater the number of posts, the greater the chances.

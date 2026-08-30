@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2015-08-02 13:33:00+00:00
 title: Legos without Plastics?
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 I see that Lego is trying to develop a new material replacement for the iconic ABS plastic blocks it uses in its products. They used 77,000 metric tonnes of petroleum based ABS plastic to manufacture 60 million bricks in 2014. Apparently the challenge is to use a replacement material that will have the same color and characteristics as existing bricks. This will be no small challenge. I applaud their efforts, and I hope they are successful.

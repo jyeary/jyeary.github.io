@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-04-03 00:01:00+00:00
 title: USCG Merchant Marine Drug Testing
-categories: jyeary
-tags: merchant-marine
+categories: [jyeary]
+tags: [merchant-marine]
 subclass: 'post tag-merchant-marine'
 ---
 I had no problems with the drug testing, but I had more problems finding a place that is acceptable to the USCG. Arrgh...  

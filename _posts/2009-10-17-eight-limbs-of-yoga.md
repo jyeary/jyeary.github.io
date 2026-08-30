@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-10-17 18:16:00+00:00
 title: Eight Limbs of Yoga
-categories: jyeary
-tags: yoga
+categories: [jyeary]
+tags: [yoga]
 subclass: 'post tag-yoga'
 ---
   * Yama

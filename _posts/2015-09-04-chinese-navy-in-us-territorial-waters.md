@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2015-09-04 21:14:00+00:00
 title: Chinese Navy in US Territorial Waters
-categories: jyeary
-tags: military national-security
+categories: [jyeary]
+tags: [military, national-security]
 subclass: 'post tag-military tag-national-security'
 ---
 The Wall Street Journal reported yesterday and today that Chinese naval vessels were found in US territorial waters off of Alaska. Does this indicate a shift in Chinese military stance? I believe it is significant in its timing as noted in the articles.1, 2

@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-02-19 05:23:00+00:00
 title: Ground Up by Michael Idov
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 So that people don't think I am sleeping on the job. I read and finished Ground Up yesterday. Wow! Compared to Hermann Hesse this is for idiots who read the New York Times Bestsellers lists. OK, I know that was harsh. However, I have found fashion does not "Trump" substance in ALL cases. I know that was a bit harsher.

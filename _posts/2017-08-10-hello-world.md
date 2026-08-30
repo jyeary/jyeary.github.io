@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2017-08-10 17:14:30+00:00
 title: Wordpress on OpenShift 2
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 This is my attempt to get Wordpress running on OpenShift 2 using 2 gears. I would like to migrate my personal blog for John Yeary from Blogger to another blogging platform so that I have more control of the

@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2018-09-15 15:50:14+00:00
 title: j2html framework
-categories: jyeary
-tags: java web
+categories: [jyeary]
+tags: [java, web]
 subclass: 'post tag-java tag-web'
 ---
 I had my first exposure to this fun and easy to use framework in Java Magazine - [j2html: An HTML5 Generator Library](http://www.javamagazine.mozaicreader.com/JulyAugust2018/facebook#&amp;pageSet=27&amp;page=0&amp;contentItem=0"). I have to say that it is slick and easy for the most part. The more HTML you use... the more complex it becomes. However, if you need to output an error page, a login page on the fly, or simple pages to display information, this framework is hard to beat.

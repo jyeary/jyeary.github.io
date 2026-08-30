@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2018-11-09 19:59:47+00:00
 title: Simplifying Command Line Processing
-categories: jyeary
-tags: java
+categories: [jyeary]
+tags: [java]
 subclass: 'post tag-java'
 ---
 

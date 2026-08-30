@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2018-09-07 10:18:30+00:00
 title: Useful Java Frameworks
-categories: jyeary
-tags: java
+categories: [jyeary]
+tags: [java]
 subclass: 'post tag-java'
 ---
 I am providing a list of really cool and easy to use frameworks to make your coding easier in Java. I will keep updating this as I move along. Here are a few to get you started.

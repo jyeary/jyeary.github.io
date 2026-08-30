@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2016-08-18 23:49:00+00:00
 title: Shipbreaking Accelerating
-categories: jyeary
-tags: merchant-marine
+categories: [jyeary]
+tags: [merchant-marine]
 subclass: 'post tag-merchant-marine'
 ---
 The Wall Street Journal article: [Economic Slump Sends Big Ships to Scrap Heap](http://www.wsj.com/articles/economic-slump-sends-big-ships-to-scrap-heap-1471192256) details the downward spiral of the world economy, over capacity in the Merchant Marine fleets, and depressed shipping costs.

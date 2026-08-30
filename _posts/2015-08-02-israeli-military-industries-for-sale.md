@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2015-08-02 13:45:00+00:00
 title: Israeli Military Industries for Sale
-categories: jyeary
-tags: national-security
+categories: [jyeary]
+tags: [national-security]
 subclass: 'post tag-national-security'
 ---
 {% include image.html url='/assets/images/Uzi_1-1-300x158.jpg' caption='Uzi 1' %}

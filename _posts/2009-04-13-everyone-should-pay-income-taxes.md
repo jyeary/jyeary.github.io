@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-04-13 20:45:00+00:00
 title: Everyone Should Pay Income Taxes
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 

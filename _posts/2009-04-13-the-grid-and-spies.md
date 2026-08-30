@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-04-13 18:32:00+00:00
 title: The Grid and Spies
-categories: jyeary
-tags: national-security
+categories: [jyeary]
+tags: [national-security]
 subclass: 'post tag-national-security'
 ---
 The Wall Street Journal published a front page article on 8 April 2009 entitled [Electricity Grid in U.S. Penetrated By Spies](http://online.wsj.com/article/SB123914805204099085.html?mod=googlenews_wsj) It is a chilling report on the weakness of our national electrical infrastructure. They point out that the utilities failed to detect the breaches, and that they were informed by the CIA of the breaches. Good for our intelligence agencies, but poor marks for the commercial enterprises which should be more vested in security. The report generalizes the potential threat from countries like Russia, and China. The threats exist from those nations, but I offer a more chilling thought.

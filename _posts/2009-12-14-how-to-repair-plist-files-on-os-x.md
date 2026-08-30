@@ -7,8 +7,8 @@ author: jyeary
 disqus: false
 date: 2009-12-14 17:17:00+00:00
 title: How to Repair plist files on OS X
-categories: jyeary
-tags: mac
+categories: [jyeary]
+tags: [mac]
 subclass: 'post tag-mac'
 ---
 To repair Preferences (.plist) files use the following command:

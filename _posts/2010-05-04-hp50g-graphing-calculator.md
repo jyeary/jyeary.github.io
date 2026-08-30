@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-05-04 08:51:00+00:00
 title: HP50g Graphing Calculator
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 My new HP50g calculator arrived. I am really impressed with it. The functionality is incredible. There are a number of manuals and tutorials which come with the calculator. I completed the first manual, but I can tell that I have a long way to go with the tutorials.

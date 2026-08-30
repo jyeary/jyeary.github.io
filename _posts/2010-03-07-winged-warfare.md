@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-03-07 15:27:00+00:00
 title: Winged Warfare
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 I finished the autobiographical book by Lt. Col. William Bishop. As I noted in my last blog post, this is a great read for anyone who is a history buff, or an air warfare aficionado. It is interesting that some of the same air warfare rules of WW I are still applicable today.

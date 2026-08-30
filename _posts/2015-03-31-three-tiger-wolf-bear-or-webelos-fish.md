@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2015-03-31 18:16:00+00:00
 title: Three Tiger (Wolf, Bear, or Webelos) Fish
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 ### Three Tiger Fish

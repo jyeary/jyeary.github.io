@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2018-05-18 03:20:22+00:00
 title: Disabling and Enabling Hyper-V on Windows
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 I needed to be able to run VMWare and VirtualBox from my Windows 10 Pro machine. This machine also has Docker on it. The issue is that you can only have one Hypervisor working at a time. So Docker **OR** VirtualBox and VMWare. A temporary solution is to disable the Hyper-V using the following commands. Once this disabled, you can run VirtualBox and VMWare.

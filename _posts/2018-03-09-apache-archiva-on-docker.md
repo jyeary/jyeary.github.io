@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2018-03-09 21:12:28+00:00
 title: Apache Archiva on Docker
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 I tried Apache Archiva in a Docker container this evening. I was hoping that it would be a good alternative to Nexus. Once I got it running in the container I realized that it really does not support all the features that I use in Nexus.

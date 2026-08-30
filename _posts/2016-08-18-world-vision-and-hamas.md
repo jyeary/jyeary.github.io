@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2016-08-18 23:12:00+00:00
 title: World Vision and Hamas
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 {% include image.html url='https://storage.googleapis.com/methodical-kaleidoscope-7367/2016/08/worldvision.png' caption='World Vision' %}

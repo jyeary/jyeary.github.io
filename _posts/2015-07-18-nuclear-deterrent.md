@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2015-07-18 12:24:00+00:00
 title: Nuclear Deterrent
-categories: jyeary
-tags: national-security
+categories: [jyeary]
+tags: [national-security]
 subclass: 'post tag-national-security'
 ---
 The article [The Fading U.S. Nuclear

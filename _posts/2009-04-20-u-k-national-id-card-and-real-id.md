@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-04-20 08:03:00+00:00
 title: U.K. National ID Card and Real ID
-categories: jyeary
-tags: national-security
+categories: [jyeary]
+tags: [national-security]
 subclass: 'post tag-national-security'
 ---
 IBM and CSC were awarded the contract by the U.K. Identity and Passport Service for creating biometric enhanced IDs. The goal is to provide a safe and secure ID which contains built in verification of identity.

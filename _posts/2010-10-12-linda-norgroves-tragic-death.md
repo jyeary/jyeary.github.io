@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-10-12 12:23:00+00:00
 title: Linda Norgrove's Tragic Death
-categories: jyeary
-tags: military national-security
+categories: [jyeary]
+tags: [military, national-security]
 subclass: 'post tag-military tag-national-security'
 ---
 {% include image.html url='https://civiliancontractors.files.wordpress.com/2011/02/linda-norgrove-grid-6x2.jpg' caption='Linda Norgrove' %}

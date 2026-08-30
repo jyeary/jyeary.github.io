@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-10-17 12:01:00+00:00
 title: Three Types of Food - sattva, rajas, and tamas
-categories: jyeary
-tags: yoga
+categories: [jyeary]
+tags: [yoga]
 subclass: 'post tag-yoga'
 ---
 I was exposed to a philosophical idea about the three types of food from Indian tradition. Remarkably they seem to make a perfect fit with our modern understanding of foods.

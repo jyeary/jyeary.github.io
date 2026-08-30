@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-10-17 15:42:00+00:00
 title: Bhastrika - Bellows Breath
-categories: jyeary
-tags: yoga
+categories: [jyeary]
+tags: [yoga]
 subclass: 'post tag-yoga'
 ---
 A technique for practicing Bhastrika. This is an energizing and cleansing breathing technique.  

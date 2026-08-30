@@ -7,8 +7,8 @@ author: jyeary
 disqus: false
 date: 2009-12-14 16:07:00+00:00
 title: iPod Disk Scan
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 I was looking through some old notes on my computer and found these notes on how to scan the disk on your iPod (1st and 2nd generation).  

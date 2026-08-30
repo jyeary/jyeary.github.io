@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-04-02 23:24:00+00:00
 title: US Merchant Marine
-categories: jyeary
-tags: merchant-marine
+categories: [jyeary]
+tags: [merchant-marine]
 subclass: 'post tag-merchant-marine'
 ---
 I am in the process of renewing my USCG 3rd Assistant Engineer - Unlimited license. The process is complex to say the least. I have been told a number of times already that I should not have let it expire. Since I let it expire, the process of getting a new one is much more complex.  

@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2020-05-22 00:00:00+00:00
 title: Apache FTP Client... A Found Surprise
-categories: jyeary
-tags: java
+categories: [jyeary]
+tags: [java]
 subclass: 'post tag-java'
 ---
 

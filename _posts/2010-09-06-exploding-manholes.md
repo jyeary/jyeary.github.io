@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-09-06 21:03:00+00:00
 title: Exploding Manholes
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 !['Manhole Cover Designs: Urban Industrial Artworks under Our Feet'](assets/images/3718921415_477dea162e.jpg)

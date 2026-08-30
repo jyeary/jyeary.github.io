@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2020-05-26 21:13:48+00:00
 title: cfssl Intermediate and Client Certificates
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 ### Introduction

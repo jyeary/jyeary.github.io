@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-09-06 17:33:00+00:00
 title: 'Product Review: Technivorm Mochamaster KBT-741'
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 {% include image.html url='http://1.bp.blogspot.com/_UZzjPhczYTc/TIUlPAc5hWI/AAAAAAAABJQ/-R3G_LcY6aM/s1600/Technivorm1.png' caption='Technivorm Mochamaster KBT-741' %}

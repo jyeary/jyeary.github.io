@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-08-12 15:08:00+00:00
 title: The New Twitter
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 {% include image.html url='http://4.bp.blogspot.com/_UZzjPhczYTc/TGQNXMuMMfI/AAAAAAAABHk/zrXvJO8LD_M/s1600/TheNewTwitter.png' caption='The New Twitter' %}

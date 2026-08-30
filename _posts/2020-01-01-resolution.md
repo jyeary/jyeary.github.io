@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2020-01-01 00:00:00+00:00
 title: Resolutions
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 # Do Achievable Things!

@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2017-10-06 00:00:00+00:00
 title: Wordpress
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 

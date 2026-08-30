@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2018-07-04 13:48:50+00:00
 title: Patriotism
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 ### Independence Day...

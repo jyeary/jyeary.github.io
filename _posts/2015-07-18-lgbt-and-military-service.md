@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2015-07-18 18:50:00+00:00
 title: LGBT and Military Service
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 I understand that there has been a change in DoD policy to allow current transgender soldiers and sailors to remain in the service without fear of being discharged. We have come a great distance from my days as a sailor in the 1980s and 1990s.  

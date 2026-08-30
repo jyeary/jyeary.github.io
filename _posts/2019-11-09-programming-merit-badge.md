@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2019-11-09 00:00:00+00:00
 title: Programming Merit Badge
-categories: jyeary
-tags: web java
+categories: [jyeary]
+tags: [web, java]
 subclass: 'post tag-web tag-java'
 ---
 ## The Next Generation of Developers

@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2016-08-18 21:19:00+00:00
 title: Comprehensive Nuclear Test Ban Treaty (CTBT)
-categories: jyeary
-tags: national-security
+categories: [jyeary]
+tags: [national-security]
 subclass: 'post tag-national-security'
 ---
 The Wall Street Journal had an article [Evading the Constitution to Ban Nuclear Tests](http://www.wsj.com/articles/evading-the-constitution-to-ban-nuclear-tests-1471303498) that discussed the Comprehensive Nuclear Test Ban Treaty (CTBT). The Obama administration is trying to make an end run around Congress to get the U.N. to make member states who are signatory and who have not ratified the treaty a party to it. Therefore making it illegal for the U.S. to test nuclear weapons.

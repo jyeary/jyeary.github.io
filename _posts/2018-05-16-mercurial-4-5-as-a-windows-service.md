@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2018-05-16 20:49:59+00:00
 title: Mercurial 4.5+ as a Windows Service
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 ### Requirements:

@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2012-06-30 21:12:00+00:00
 title: 'Midwest Products - Japanese Zero Kit #425'
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 {% include image.html url='http://1.bp.blogspot.com/-9MBTxBrQ6x0/T-9odFI9TyI/AAAAAAAABg4/4Y0AWlyIiIk/s1600/IMG_0492.JPG' caption='Japanese Zero' %}

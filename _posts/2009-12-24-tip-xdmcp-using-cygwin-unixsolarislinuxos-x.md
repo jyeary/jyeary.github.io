@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-12-24 14:43:00+00:00
 title: 'Tip: XDMCP using Cygwin (UNIX/Solaris/Linux/OS X)'
-categories: jyeary
-tags: mac unix
+categories: [jyeary]
+tags: [mac, unix]
 subclass: 'post tag-mac tag-unix'
 ---
 XDMCP to a UNIX system using [cygwin](http://www.cygwin.com/) on Windows.

@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2011-06-13 21:28:00+00:00
 title: Window Lizard
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 I would love to be able to stick to a window like this lizard. How often do you hear:  

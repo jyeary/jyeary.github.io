@@ -7,8 +7,8 @@ author: jyeary
 disqus: false
 date: 2009-12-14 16:28:00+00:00
 title: OS X Account Settings Panther and Leopard (10.3/10.4)
-categories: jyeary
-tags: mac
+categories: [jyeary]
+tags: [mac]
 subclass: 'post tag-mac'
 ---
 ### OS X (10.3)  

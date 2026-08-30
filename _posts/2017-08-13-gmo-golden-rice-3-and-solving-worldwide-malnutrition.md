@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2017-08-13 21:46:05+00:00
 title: GMO Golden Rice 3 and Solving Worldwide Malnutrition
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 I just finished reading an article called New ‘golden rice’ offers 3 micronutrients1 which would go a long way to solving malnutrition in a significant portion of the world. The article mentions that about 50% of the world uses rice as their primary means of nutrition.

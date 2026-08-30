@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2015-08-02 14:56:00+00:00
 title: Huawei - Ballet Slippers
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 This advertisement caused a lot of controversy about the apparent distastefulness of the photo. **I strongly disagree!** The image is a great example of the hard work that it takes to make a ballet performance seem effortless.

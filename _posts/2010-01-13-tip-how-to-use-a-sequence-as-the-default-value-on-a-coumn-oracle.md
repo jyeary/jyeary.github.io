@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-01-13 22:08:00+00:00
 title: 'Tip: How to Use a Sequence as the Default Value on a Coumn (Oracle)'
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 You first must create the sequence you want to use to add the identity value for the column. Then replace the values in highlighted below appropriately for your environment.

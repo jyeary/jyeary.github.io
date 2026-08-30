@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2020-05-26 20:34:34+00:00
 title: Blog Migration Completed
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 I finally finished migrating my blog from Wordpress to GitHub pages over the Memorial Day weekend. I started the process when I was in Maine at the end of 2019. I now find myself almost six months into 2020 and finally completed the migration.

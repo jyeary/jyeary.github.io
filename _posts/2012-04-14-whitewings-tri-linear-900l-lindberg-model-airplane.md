@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2012-04-14 15:20:00+00:00
 title: Whitewings Tri-Linear 900L Lindberg Model Airplane
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 [![](http://2.bp.blogspot.com/-NJXGmp31MoE/T4mTPz0kcaI/AAAAAAAABYM/D3VKEdjxSPM/s320/IMG_0422.JPG)](http://2.bp.blogspot.com/-NJXGmp31MoE/T4mTPz0kcaI/AAAAAAAABYM/D3VKEdjxSPM/s1600/IMG_0422.JPG)

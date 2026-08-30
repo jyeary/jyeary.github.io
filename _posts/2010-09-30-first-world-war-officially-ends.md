@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-09-30 19:26:00+00:00
 title: First World War Officially Ends
-categories: jyeary
-tags: military
+categories: [jyeary]
+tags: [military]
 subclass: 'post tag-military'
 ---
 {% include image.html url='/assets/images/1491px-Treaty_of_Versailles_Signing_Hall_of_Mirrors.jpg' caption='Signing of Treaty of Versailles' %}

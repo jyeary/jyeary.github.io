@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-09-14 20:29:00+00:00
 title: Censorship in Asia
-categories: jyeary
-tags: national-security
+categories: [jyeary]
+tags: [national-security]
 subclass: 'post tag-national-security'
 ---
 I read a very good article this morning on the growing censorship of the Internet and blogging in Asia. The article: [Web Censoring Widens Across Southeast Asia](http://online.wsj.com/article/SB125288982580207609.html "Wall Street Journal Article - Web Censoring Widens Across Southeast Asia") was published in the Wall Street Journal for Monday, 14 September 2009.

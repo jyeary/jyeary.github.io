@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2015-08-02 15:19:00+00:00
 title: Greek Shipping Industry
-categories: jyeary
-tags: merchant-marine
+categories: [jyeary]
+tags: [merchant-marine]
 subclass: 'post tag-merchant-marine'
 ---
 I recently read the Wall Street Journal article called [Tide Turns for Greece's Shipping Industry](http://www.wsj.com/articles/tide-turns-for-greeces-shipping-industry-1437517198). I was struck by the view of the EU creditors who thought that they would be able to push the government to impose heavier tonnage taxes on shipping owners. This indicates to me that the EU creditors and regulators do not understand the shipping industry. The flag of convenience is called that for a reason. The EU will force an industry that supports the Greek economy through meaningful work for over 200,000 people to move to another location. The shipping companies are just the "land based HQ" for the actual core of the business: SHIPS.  

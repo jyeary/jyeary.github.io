@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2018-05-25 15:30:39+00:00
 title: CFSSL Cloudflare SSL
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 A normal devops activity is installing certificates on your servers. However, most servers if used internally don't need an official CA signed certificate for normal operations. Especially when dealing with development machines, or testing. So why pay the man... when you can be the man! Be your own CA!

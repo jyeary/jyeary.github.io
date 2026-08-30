@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-10-17 15:53:00+00:00
 title: Nadi Shodhana - Channel Clearing Breath (Alternate Nostril Breathing)
-categories: jyeary
-tags: yoga
+categories: [jyeary]
+tags: [yoga]
 subclass: 'post tag-yoga'
 ---
 A technique for performing Nadi Shodhana, or alternate nostril breathing. This pranayama technique has a quieting effect, and reduces mental turbulence. The ultimate effect of this technique is to quietly reduce the mind to becoming a witness to the process, and make the breathing effortless.  

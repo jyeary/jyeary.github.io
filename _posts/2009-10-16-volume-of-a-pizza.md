@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-10-16 10:58:00+00:00
 title: Volume of a Pizza
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 {% include math.html %}

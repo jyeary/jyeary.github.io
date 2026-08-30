@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-09-14 20:22:00+00:00
 title: Decisive Force in Afganistan
-categories: jyeary
-tags: national-security
+categories: [jyeary]
+tags: [national-security]
 subclass: 'post tag-national-security'
 ---
 I read the op-ed piece in the Wall Street Journal by Lindsey Graham,

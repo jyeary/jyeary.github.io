@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2018-05-18 03:02:30+00:00
 title: NGINX Mercurial Proxy on Windows
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 In my previous article I explained how to setup [Mercurial 4.5+ as a Windows Service](/2018-05-16-mercurial-4-5-as-a-windows-service.html). In this article we will expand on that configuration, and use NGINX to proxy to the service.

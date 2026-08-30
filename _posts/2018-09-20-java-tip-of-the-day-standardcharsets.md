@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2018-09-20 12:00:33+00:00
 title: 'Java Tip of the Day: StandardCharsets'
-categories: jyeary
-tags: java
+categories: [jyeary]
+tags: [java]
 subclass: 'post tag-java'
 ---
 ## Introduction

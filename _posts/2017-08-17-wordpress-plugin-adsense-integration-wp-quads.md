@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2017-08-17 23:04:05+00:00
 title: 'WordPress Plugin: AdSense Integration WP QUADS'
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 I was looking for an easy to implement plugin for management of Google Adsense. The [AdSense Integration WP QUADS](https://wordpress.org/plugins/quick-adsense-reloaded/) plugin is free and has some pay options, but for me at the moment, the free part works just fine.

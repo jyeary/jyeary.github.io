@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2011-07-10 10:43:00+00:00
 title: Moonshine Jelly
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 {% include image.html url='/assets/images/MoonshineJelly.jpg' caption='Moonshine Jelly' %}

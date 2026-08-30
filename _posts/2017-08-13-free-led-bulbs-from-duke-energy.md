@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2017-08-13 00:16:49+00:00
 title: Free LED Bulbs from Duke Energy
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 {% include image.html url='https://storage.googleapis.com/methodical-kaleidoscope-7367/2017/08/LEDBulbs-201x300.jpg' caption='Free LED Bulbs' %}

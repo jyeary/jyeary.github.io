@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2018-06-29 22:10:25+00:00
 title: Mercurial on IIS
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 ### Introduction

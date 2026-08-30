@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2017-08-17 23:15:42+00:00
 title: 'WordPress Plugin: Disqus Comment System'
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 One of the biggest challenges with blogging is the management of comments. The readers may show appreciation, or challenge your post. In both cases, you want to be able to publish the comments with as little moderation as possible. The problem we face in the Internet Society are trolls. Yes, you have all seen them, they post anonymously, post vulgar remarks, or try to bait you into a public discussion of their negative commentary. So how do you manage it?

@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-10-17 15:44:00+00:00
 title: Kapalabhati - Shining Breath
-categories: jyeary
-tags: yoga
+categories: [jyeary]
+tags: [yoga]
 subclass: 'post tag-yoga'
 ---
 A technique for performing Kapalabhati. This is an energizing and cleansing breath like Bhastrika.  

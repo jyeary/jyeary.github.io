@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-12-14 17:15:00+00:00
 title: Translating Line Feeds for Mac OS X, UNIX, and Windows
-categories: jyeary
-tags: mac
+categories: [jyeary]
+tags: [mac]
 subclass: 'post tag-mac'
 ---
 I have been asked to show how to translate line feeds between Mac, UNIX, and Windows. This comes up often so here is one way using PERL which was designed to do just what we need.  

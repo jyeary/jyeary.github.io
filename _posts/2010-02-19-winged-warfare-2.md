@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-02-19 05:32:00+00:00
 title: Winged Warfare
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 I flew for many years on P-3 Orion patrol planes for the US Navy. I had this dream of being like Lieutenant (Left-ten-ant) Colonel William A. Bishop. OK, I will humor you with who he is since it is currently the Olympic Games going on, and he is a Canadian hero.

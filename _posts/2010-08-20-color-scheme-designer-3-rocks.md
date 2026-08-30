@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-08-20 19:49:00+00:00
 title: Color Scheme Designer 3 Rocks!
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 Yesterday, I made mention of a tool to help you select a collection of [complementary colors](http://en.wikipedia.org/wiki/Complementary_color) based on an image you upload. The tools works well, but it pales in comparison to the [Color Scheme Designer](http://colorschemedesigner.com/). This tool allows you to pick a base color which I picked from the [Color Palette Generator](http://www.degraeve.com/color-palette/index.php).  From this base color you get any number of color combinations: complementary, mono, triad, tetrad, etc. It will even show you what the color combination would look like for someone with vision impairments such as color blindness. This is truly slick.

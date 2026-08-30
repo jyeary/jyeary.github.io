@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-04-25 21:18:00+00:00
 title: Advanced Firefighting - Broward Fire Academy
-categories: jyeary
-tags: merchant-marine
+categories: [jyeary]
+tags: [merchant-marine]
 subclass: 'post tag-merchant-marine'
 ---
 I completed my Basic/Advanced Firefighting STCW-95 required training at [Maritime Professional Training](http://www.mptusa.com/) two weeks ago. It was a really great class. The practical sessions were held for two days at the [Broward Fire Academy](http://www.broward.k12.fl.us/bfa//) in Davie, Fl (Fort Lauderdale). The class was a lot of fun.  

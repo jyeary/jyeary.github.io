@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-10-17 15:48:00+00:00
 title: Ujjayi - Victorious Breath (Success Breath)
-categories: jyeary
-tags: yoga
+categories: [jyeary]
+tags: [yoga]
 subclass: 'post tag-yoga'
 ---
 The Ujjayi breathing technique used to settle the mind and body. Requires the mind to focus on the breathing.  

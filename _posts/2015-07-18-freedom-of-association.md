@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2015-07-18 18:21:00+00:00
 title: Freedom of Association
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 I was contemplating the recent $135,000.00 fine imposed by the Oregon Labor Commission on the Sweet Cakes bakery because of their failure to bake a cake for a lesbian couple for their wedding. I find this to be so insane that I can't imagine how they even came to that number. Even an expensive wedding cake is not going to top $5,000.00 for the over-the-top wedding planner.  

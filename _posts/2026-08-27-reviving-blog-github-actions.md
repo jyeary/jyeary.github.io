@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2026-08-27 09:00:00+00:00
 title: "Reviving This Blog: Ditching Travis CI for GitHub Actions"
-categories: jyeary
-tags: jekyll docker github-actions ruby ai-assisted
+categories: [jyeary]
+tags: [jekyll, docker, github-actions, ruby, ai-assisted]
 subclass: 'post tag-jekyll tag-docker tag-github-actions tag-ruby tag-ai-assisted'
 ---
 

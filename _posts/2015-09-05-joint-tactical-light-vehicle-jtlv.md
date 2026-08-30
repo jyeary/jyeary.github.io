@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2015-09-05 06:55:00+00:00
 title: Joint Tactical Light Vehicle (JTLV)
-categories: jyeary
-tags: military
+categories: [jyeary]
+tags: [military]
 subclass: 'post tag-military'
 ---
 The DoD awarded the the initial production run of the JTLV to [OshKosh Defense](http://oshkoshdefense1-px.rtrk.com). It seems to have produced a number of interesting remarks from outsiders who think OshKosh B'Gosh childrens clothing.

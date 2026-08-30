@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-09-06 19:49:00+00:00
 title: Embarrasingly Hot...Remind Your Children
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 {% include image.html url='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Datil.jpg/1200px-Datil.jpg' caption='Datil Pepper' %}

@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2018-10-19 16:23:09+00:00
 title: Infor Email Marketing Installation on Docker
-categories: jyeary
-tags: java
+categories: [jyeary]
+tags: [java]
 subclass: 'post tag-java'
 ---
 ### Centos (Open Source RHEL)

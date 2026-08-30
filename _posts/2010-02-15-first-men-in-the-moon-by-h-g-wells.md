@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2010-02-15 15:09:00+00:00
 title: First Men in the Moon by H.G. Wells
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 I read the novel First Men in the Moon by H.G. Wells this weekend. It is really neat to read a novel of such fantastic proportions. The novel was written well before our first trip to the moon, and contains a lot of scientific conjecture from the 1890s and early 1900s.

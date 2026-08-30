@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2017-09-01 10:23:17+00:00
 title: It Figures...
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 Well I got a nice surprise from OpenShift a couple of days ago. The

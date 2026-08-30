@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2009-09-14 20:35:00+00:00
 title: Five Lined Skink Eating a Fly
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 I went to lunch today and saw this really neat Five Lined Skink who

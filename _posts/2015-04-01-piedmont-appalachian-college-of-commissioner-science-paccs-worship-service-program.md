@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2015-04-01 02:51:00+00:00
 title: Piedmont Appalachian College of Commissioner Science (PACCS) - Worship Service Program
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 I was going through my paperwork from Piedmont Appalachian College of Commissioner Science (PACCS) when I found a copy of our program. It was very well done, so I scanned it and published it for use as an example of how to do a good worship service.

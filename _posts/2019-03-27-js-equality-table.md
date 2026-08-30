@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2019-03-27 15:25:39+00:00
 title: JS Equality Table
-categories: jyeary
-tags: web
+categories: [jyeary]
+tags: [web]
 subclass: 'post tag-web'
 ---
 

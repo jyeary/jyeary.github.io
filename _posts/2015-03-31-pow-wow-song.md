@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2015-03-31 17:47:00+00:00
 title: Pow Wow Song
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 ### Pow Wow Song

@@ -7,8 +7,8 @@ author: jyeary
 disqus: true
 date: 2011-07-10 12:34:00+00:00
 title: Pulled Pork
-categories: jyeary
-tags: life
+categories: [jyeary]
+tags: [life]
 subclass: 'post tag-life'
 ---
 {% include image.html url='/assets/images/HomemadePulledPork.jpg' caption='Pulled Pork' %}
