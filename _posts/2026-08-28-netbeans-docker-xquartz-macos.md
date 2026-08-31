@@ -274,6 +274,10 @@ netbeans --jdkhome $(dirname $(dirname $(readlink -f $(which java))))
 
 None of the individual pieces here are exotic — Xephyr, IceWM, and X11 cookies have all been around for decades. What made this satisfying was the gap between "a window appears" and "I'd actually leave this running": dropping capabilities, scoping the auth cookie instead of opening the display wide, and not letting the container touch anything on the host except one folder it's supposed to. If you're chasing something similar for a different IDE or GUI tool, most of this setup should transfer directly — swap out the NetBeans-specific download step and the rest of the scaffolding (non-root user, Xephyr, IceWM, the cookie dance) stays the same.
 
+## Source Code
+
+The full project source — Dockerfile, `start-netbeans.sh`, and helper scripts — is on GitHub at [jyeary/netbeans-xwindows-docker-mac](https://github.com/jyeary/netbeans-xwindows-docker-mac).
+
 ---
 
 [^quick-version]: The rough first pass looked roughly like this: `xhost +SI:localuser:$(id -un)` to grant access, then a container with the host's `/tmp/.X11-unix` mounted directly (`-v /tmp/.X11-unix:/tmp/.X11-unix:rw`), a hand-downloaded Zulu 17 `.deb` and an Apache NetBeans 22 `.deb` installed straight via `apt install ./package.deb`, no explicit UID/GID mapping, and no capability dropping. It got a window on screen in a few minutes, which was the point — but every one of those shortcuts is something you'd want to undo before running it regularly: `xhost +` widens X11 access beyond just the container, mounting the host's raw X11 socket doesn't play well with a nested Xephyr display trying to manage its own, hardcoded package downloads mean re-doing the legwork for every version bump, and a container with default capabilities and no UID mapping is a much bigger blast radius than it needs to be. The hardened setup above is what replaced it.
